@@ -10,7 +10,7 @@ import 'package:get_it/get_it.dart';
 import 'app_logic/blocs/bloc_exports.dart';
 
 void main() async {
-  _initialiseMain();
+  await _initialiseMain();
 
   runApp(
     MultiBlocProvider(
@@ -34,7 +34,7 @@ void main() async {
   );
 }
 
-void _initialiseMain() async {
+Future<void> _initialiseMain() async {
   SetGetItDependencies().setupDatabaseDependencies();
   SetGetItDependencies().setupProviderDependencies();
   SetGetItDependencies().setupRepoDependencies();

@@ -20,20 +20,6 @@ class WebTabBar extends StatefulWidget {
 
 class WebTabBarState extends State<WebTabBar>
     with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 2, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,29 +88,10 @@ class _NavigationRailWidget extends StatelessWidget {
                       child: SizedBox(
                         height: 160,
                         child: NavigationRail(
-                          labelType: NavigationRailLabelType.all,
-                          indicatorColor: Colors.transparent,
-                          useIndicator: false,
-                          selectedLabelTextStyle: TextStyle(
-                              color: AppColors.accent.color, fontSize: 15),
-                          backgroundColor: AppColors.background.color,
-                          unselectedLabelTextStyle: const TextStyle(
-                              color: Colors.transparent, fontSize: 0),
-                          selectedIconTheme:
-                              IconThemeData(color: AppColors.accent.color),
-                          unselectedIconTheme: IconThemeData(
-                            color: AppColors.white.color,
-                          ),
                           selectedIndex: widget.tabIndex,
-                          onDestinationSelected: (int index) {
-                            NavigationUtils.WebHandleTabTap(context, index);
-                          },
-                          destinations: [
-                            DestinationData(const Icon(CupertinoIcons.search),
-                                AppLocalizations.of(context)!.tabBarSearch),
-                            DestinationData(const Icon(CupertinoIcons.home),
-                                AppLocalizations.of(context)!.homePageTitle),
-                          ],
+                          onDestinationSelected: (int index) =>
+                              onDestinationSelected(context, index),
+                          destinations: _createDestinations(context),
                         ),
                       ),
                     ),
@@ -141,5 +108,18 @@ class _NavigationRailWidget extends StatelessWidget {
             ),
           );
         });
+  }
+
+  List<NavigationRailDestination> _createDestinations(BuildContext context) {
+    return [
+      DestinationData(const Icon(CupertinoIcons.search),
+          AppLocalizations.of(context)!.tabBarSearch),
+      DestinationData(const Icon(CupertinoIcons.home),
+          AppLocalizations.of(context)!.homePageTitle),
+    ];
+  }
+
+  void onDestinationSelected(BuildContext context, int index) {
+    NavigationUtils.WebHandleTabTap(context, index);
   }
 }

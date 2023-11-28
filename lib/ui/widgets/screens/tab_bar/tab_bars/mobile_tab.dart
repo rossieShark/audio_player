@@ -21,19 +21,9 @@ class MobileTabBar extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
           showSelectedLabels: isHomePage(tabIndex) ? false : true,
           showUnselectedLabels: tabIndex == 1 ? false : true,
-          backgroundColor: AppColors.background.color,
-          selectedIconTheme: IconThemeData(color: AppColors.accent.color),
-          type: BottomNavigationBarType.fixed,
-          selectedLabelStyle: TextStyle(color: AppColors.accent.color),
-          unselectedIconTheme: IconThemeData(color: AppColors.white.color),
-          unselectedLabelStyle: TextStyle(color: AppColors.white.color),
-          selectedItemColor: Colors.transparent,
-          unselectedItemColor: Colors.transparent,
           useLegacyColorScheme: false,
           currentIndex: tabIndex,
-          onTap: (index) {
-            NavigationUtils.mobileHandleTabTap(context, index);
-          },
+          onTap: (index) => _navigationRails(context, index),
           items: [
             BottomNavigationBarItem(
               icon: const Icon(
@@ -53,5 +43,9 @@ class MobileTabBar extends StatelessWidget {
             ),
           ]),
     );
+  }
+
+  void _navigationRails(BuildContext context, int index) {
+    NavigationUtils.mobileHandleTabTap(context, index);
   }
 }

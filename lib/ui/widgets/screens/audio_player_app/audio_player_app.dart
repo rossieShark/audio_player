@@ -1,5 +1,6 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:audio_player/ui/theme/theme.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -85,9 +86,9 @@ class _AudioPlayerAppState extends State<AudioPlayerApp> {
                   fontFamily: AppFonts.lusitana.font,
                   fontWeight: FontWeight.w500),
             ),
-            navigationRailTheme: const NavigationRailThemeData(
-              indicatorColor: Colors.transparent,
-            ),
+            navigationRailTheme: AppThemeData().createNavBarTheme(),
+            bottomNavigationBarTheme:
+                AppThemeData().createBottomNavigationBarTheme(),
             primarySwatch: Colors.pink,
             highlightColor: Colors.transparent,
             splashFactory: NoSplash.splashFactory,
