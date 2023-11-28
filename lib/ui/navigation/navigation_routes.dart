@@ -40,7 +40,6 @@ enum RouteName {
   home,
   myMusic,
   search,
-
   favoriteTracks,
   favoriteAlbums,
   detailMusic,

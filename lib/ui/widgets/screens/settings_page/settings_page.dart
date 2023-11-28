@@ -2,9 +2,9 @@
 
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:audio_player/ui/navigation/navigation_routes.dart';
 
 import 'package:audio_player/ui/widgets/screens/settings_page/settings_index.dart';
-import 'package:audio_player/ui/widgets/screens/tab_bar/index.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';

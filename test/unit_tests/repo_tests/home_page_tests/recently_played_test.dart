@@ -1,5 +1,5 @@
 import 'package:audio_player/databases/database.dart';
-import 'package:audio_player/models/recently_played_model/recently_played_model.dart';
+import 'package:audio_player/domain/entity/recently_played_model/recently_played_model.dart';
 import 'package:audio_player/services/home_screen_service/home_service.dart';
 import 'package:audio_player/services/service.dart';
 import 'package:chopper/chopper.dart';

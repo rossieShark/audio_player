@@ -1,7 +1,7 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/domain/entity/played_song_model.dart';
-import 'package:audio_player/ui/widgets/screens/tab_bar/index.dart';
+import 'package:audio_player/ui/navigation/navigation_routes.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

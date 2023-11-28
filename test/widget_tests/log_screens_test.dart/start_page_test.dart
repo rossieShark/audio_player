@@ -1,7 +1,7 @@
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:audio_player/ui/widgets/screens/log_pages/start_page.dart';
-import 'package:audio_player/ui/widgets/screens/tab_bar/additional_widgets/navigation_routes.dart';
+import 'package:audio_player/ui/navigation/navigation_routes.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

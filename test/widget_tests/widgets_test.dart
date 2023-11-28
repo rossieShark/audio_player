@@ -71,17 +71,15 @@ void main() {
     // Verify that the ClipRRect widget is used with the correct border radius
     expect(find.byType(ClipRRect), findsOneWidget);
 
-    if (tester.widget<ClipRRect>(find.byType(ClipRRect)).borderRadius != null) {
-      final borderRadius =
-          tester.widget<ClipRRect>(find.byType(ClipRRect)).borderRadius!;
-      if (type == 'track') {
-        expect(borderRadius,
-            16.0 / 2); // Set your expected radius for 'track' type
-      }
-      if (type == 'album') {
-        expect(
-            borderRadius, 100 / 2); // Set your expected radius for 'track' type
-      }
+    final borderRadius =
+        tester.widget<ClipRRect>(find.byType(ClipRRect)).borderRadius;
+    if (type == 'track') {
+      expect(
+          borderRadius, 16.0 / 2); // Set your expected radius for 'track' type
+    }
+    if (type == 'album') {
+      expect(
+          borderRadius, 100 / 2); // Set your expected radius for 'track' type
     }
   });
   testWidgets('CreateSongTitle displays correctly',

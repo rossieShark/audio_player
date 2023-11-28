@@ -1,7 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:audio_player/ui/widgets/screens/tab_bar/index.dart';
+import 'package:audio_player/ui/navigation/navigation_routes.dart';
+
 import 'package:audio_player/services/services.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';

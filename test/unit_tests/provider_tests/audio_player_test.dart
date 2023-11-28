@@ -2,7 +2,7 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:audio_player/models/played_song_model.dart';
+import 'package:audio_player/domain/entity/played_song_model.dart';
 import 'package:mocktail/mocktail.dart';
 
 void main() {

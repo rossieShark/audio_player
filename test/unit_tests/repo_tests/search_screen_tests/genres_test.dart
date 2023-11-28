@@ -1,5 +1,5 @@
 import 'package:audio_player/databases/database.dart';
-import 'package:audio_player/models/genres_model/genres_model.dart';
+import 'package:audio_player/domain/entity/genres_model/genres_model.dart';
 import 'package:audio_player/services/genres_service/genres_service.dart';
 
 import 'package:audio_player/services/service.dart';
