@@ -27,7 +27,7 @@ class _FavoriteArtistListState extends State<FavoriteArtistList> {
     return BlocBuilder<FavoriteArtistBloc, FavoriteArtistState>(
         builder: (context, state) {
       return state.map(
-        error: (context) => NoResultsWidget(),
+        error: (context) => const NoResultsWidget(),
         loading: (context) => const Center(
           child: CustomFadingCircleIndicator(),
         ),

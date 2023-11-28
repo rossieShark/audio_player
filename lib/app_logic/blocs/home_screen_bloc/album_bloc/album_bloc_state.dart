@@ -1,11 +1,4 @@
 import 'package:audio_player/databases/database.dart';
-
-// class AlbumState {
-//   final List<BestAlbum> feed;
-
-//   AlbumState(this.feed);
-// }
-import 'package:audio_player/domain/entity/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'album_bloc_state.freezed.dart';
 part 'album_bloc_state.g.dart';

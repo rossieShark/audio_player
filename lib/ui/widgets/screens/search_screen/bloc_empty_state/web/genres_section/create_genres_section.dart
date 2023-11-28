@@ -1,5 +1,7 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:audio_player/ui/widgets/screens/index.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
@@ -46,46 +48,59 @@ class _GenresListState extends State<_GenresList> {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final crossAxisCount = width ~/ 260;
     return BlocBuilder<GenresBloc, GenresState>(
       builder: (context, state) {
-        if (state.genres.isEmpty) {
-          return const Center(
+        return state.map(
+          error: (context) => const NoResultsWidget(),
+          loading: (context) => const Center(
             child: CustomFadingCircleIndicator(),
-          );
-        } else {
-          final genres = state.genres;
-
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height - 300,
-              child: GridView.count(
-                padding: const EdgeInsets.all(20),
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-                crossAxisCount: crossAxisCount,
-                scrollDirection: Axis.vertical,
-                children: genres.asMap().entries.map((entry) {
-                  final index = entry.key;
-                  return GestureDetector(
-                    onTap: () {},
-                    child:
-                        HoverableWidget(builder: (context, child, isHovered) {
-                      return CreateGenresListContent(
-                        name: genres[index].name,
-                        image: genres[0].image,
-                        isHovered: isHovered,
-                      );
-                    }),
-                  );
-                }).toList(),
-              ),
-            ),
-          );
-        }
+          ),
+          loaded: (data) => _GenresGridView(
+            genres: data.data,
+          ),
+        );
       },
+    );
+  }
+}
+
+class _GenresGridView extends StatelessWidget {
+  const _GenresGridView({
+    super.key,
+    required this.genres,
+  });
+
+  final List<MusicGenre> genres;
+
+  @override
+  Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+    final crossAxisCount = width ~/ 260;
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height - 300,
+        child: GridView.count(
+          padding: const EdgeInsets.all(20),
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
+          crossAxisCount: crossAxisCount,
+          scrollDirection: Axis.vertical,
+          children: genres.asMap().entries.map((entry) {
+            final index = entry.key;
+            return GestureDetector(
+              onTap: () {},
+              child: HoverableWidget(builder: (context, child, isHovered) {
+                return CreateGenresListContent(
+                  name: genres[index].name,
+                  image: genres[0].image,
+                  isHovered: isHovered,
+                );
+              }),
+            );
+          }).toList(),
+        ),
+      ),
     );
   }
 }
