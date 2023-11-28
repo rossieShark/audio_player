@@ -1,24 +1,15 @@
 import 'package:audio_player/firebase_options.dart';
-import 'package:audio_player/screens/tab_bar/index.dart';
-import 'package:audio_player/screens/tab_bar/audio_player_app.dart';
+import 'package:audio_player/ui/widgets/screens/tab_bar/index.dart';
+import 'package:audio_player/ui/widgets/screens/tab_bar/audio_player_app.dart';
 
-import 'package:audio_player/widgets/widget_exports.dart';
+import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'app_logic/blocs/bloc_exports.dart';
 
 void main() async {
-  SetGetItDependencies().setupDatabaseDependencies();
-  SetGetItDependencies().setupProviderDependencies();
-  SetGetItDependencies().setupRepoDependencies();
-  SetGetItDependencies().setupBlocDependencies();
-  SetGetItDependencies().setupServiceDependencies();
-  WidgetsFlutterBinding.ensureInitialized();
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  _initialiseMain();
 
   runApp(
     MultiBlocProvider(
@@ -39,5 +30,18 @@ void main() async {
             }),
       ),
     ),
+  );
+}
+
+void _initialiseMain() async {
+  SetGetItDependencies().setupDatabaseDependencies();
+  SetGetItDependencies().setupProviderDependencies();
+  SetGetItDependencies().setupRepoDependencies();
+  SetGetItDependencies().setupBlocDependencies();
+  SetGetItDependencies().setupServiceDependencies();
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
   );
 }

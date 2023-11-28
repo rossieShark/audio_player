@@ -2,8 +2,8 @@
 
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'package:audio_player/screens/tab_bar/index.dart';
-import 'package:audio_player/widgets/app_alert.dart';
+import 'package:audio_player/ui/widgets/screens/tab_bar/index.dart';
+import 'package:audio_player/ui/widgets/widgets/app_alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

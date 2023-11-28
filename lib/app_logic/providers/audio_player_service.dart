@@ -1,4 +1,4 @@
-import 'package:audio_player/models/played_song_model.dart';
+import 'package:audio_player/domain/entity/played_song_model.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 import 'package:flutter/material.dart';

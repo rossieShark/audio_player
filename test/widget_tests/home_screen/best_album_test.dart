@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:audio_player/databases/database.dart';
-import 'package:audio_player/screens/home_screen/home_screen_index.dart';
+import 'package:audio_player/ui/widgets/screens/home_screen/home_screen_index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nock/nock.dart';

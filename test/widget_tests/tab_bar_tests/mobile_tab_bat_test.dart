@@ -1,6 +1,6 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:audio_player/screens/index.dart';
+import 'package:audio_player/ui/widgets/screens/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

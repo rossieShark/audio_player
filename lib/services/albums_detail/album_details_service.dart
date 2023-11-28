@@ -1,5 +1,5 @@
 import 'package:audio_player/databases/database.dart';
-import 'package:audio_player/models/models.dart';
+import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/services/service.dart';
 
 class AlbumDetailsRepository {

@@ -1,5 +1,5 @@
 import 'package:audio_player/databases/database.dart';
-import 'package:audio_player/models/favorite_folder_model.dart';
+import 'package:audio_player/domain/entity/favorite_folder_model.dart';
 import 'package:flutter/material.dart';
 
 class MyMusicFoldersProvider extends ChangeNotifier {

@@ -1,9 +1,9 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:audio_player/databases/database.dart';
-import 'package:audio_player/models/home_screen_data/favourite_artist_model/favourite_artist_model.dart';
-import 'package:audio_player/models/home_screen_data/home_screen_data.dart';
+import 'package:audio_player/domain/entity/home_screen_data/favourite_artist_model/favourite_artist_model.dart';
+import 'package:audio_player/domain/entity/home_screen_data/home_screen_data.dart';
 
-import 'package:audio_player/models/recently_played_model/recently_played_model.dart';
+import 'package:audio_player/domain/entity/recently_played_model/recently_played_model.dart';
 import 'package:audio_player/services/service.dart';
 
 class RecentlyPlayedRepository {

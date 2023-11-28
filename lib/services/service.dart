@@ -1,6 +1,6 @@
-import 'package:audio_player/models/home_screen_data/favourite_artist_model/favourite_artist_model.dart';
-import 'package:audio_player/models/models.dart';
-import 'package:audio_player/models/recently_played_model/recently_played_model.dart';
+import 'package:audio_player/domain/entity/home_screen_data/favourite_artist_model/favourite_artist_model.dart';
+import 'package:audio_player/domain/entity/models.dart';
+import 'package:audio_player/domain/entity/recently_played_model/recently_played_model.dart';
 import 'package:audio_player/services/services.dart';
 import 'package:chopper/chopper.dart';
 

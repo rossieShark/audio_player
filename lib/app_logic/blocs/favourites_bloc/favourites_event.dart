@@ -1,4 +1,4 @@
-import 'package:audio_player/models/models.dart';
+import 'package:audio_player/domain/entity/models.dart';
 
 abstract class FavoriteEvent {}
 
