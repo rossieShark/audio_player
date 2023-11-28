@@ -1,6 +1,8 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 import 'package:audio_player/ui/widgets/screens/home_screen/home_screen_index.dart';
+import 'package:audio_player/ui/widgets/screens/search_screen/bloc_no_results_state/no_results_widget.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -33,10 +35,7 @@ class _HomePageState extends State<HomePage> {
           IconButtonWidget(
               iconData: Icons.ios_share,
               color: AppColors.accent.color,
-              onPressed: () {
-                // Share.share('check out my website https://example.com',
-                //     subject: 'Look what I made!');
-              }),
+              onPressed: () {}),
           IconButtonWidget(
               iconData: Icons.settings,
               color: AppColors.accent.color,
@@ -203,14 +202,13 @@ class _BuildBestAlbumsSectionState extends State<_BuildBestAlbumsSection> {
               style: Theme.of(context).textTheme.titleMedium),
         ),
         BlocBuilder<AlbumBloc, AlbumState>(builder: (context, state) {
-          if (state.feed.isEmpty) {
-            return const Center(
+          return state.map(
+            error: (context) => const NoResultsWidget(),
+            loading: (context) => const Center(
               child: CustomFadingCircleIndicator(),
-            );
-          } else {
-            final albumList = state.feed;
-            return BestAlbumList(bestAlbumList: albumList);
-          }
+            ),
+            loaded: (data) => BestAlbumList(bestAlbumList: data.data),
+          );
         })
       ],
     );

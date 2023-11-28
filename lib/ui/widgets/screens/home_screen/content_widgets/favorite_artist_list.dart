@@ -1,5 +1,7 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+
 import 'package:audio_player/databases/database.dart';
+import 'package:audio_player/ui/widgets/screens/index.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
@@ -24,14 +26,13 @@ class _FavoriteArtistListState extends State<FavoriteArtistList> {
   Widget build(BuildContext context) {
     return BlocBuilder<FavoriteArtistBloc, FavoriteArtistState>(
         builder: (context, state) {
-      if (state.favoriteArtistList.isEmpty) {
-        return const Center(
+      return state.map(
+        error: (context) => NoResultsWidget(),
+        loading: (context) => const Center(
           child: CustomFadingCircleIndicator(),
-        );
-      } else {
-        final favoriteArtistList = state.favoriteArtistList;
-        return CreateListView(favoriteArtistList: favoriteArtistList);
-      }
+        ),
+        loaded: (data) => CreateListView(favoriteArtistList: data.data),
+      );
     });
   }
 }

@@ -1,7 +1,9 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
+import 'package:audio_player/ui/widgets/screens/search_screen/bloc_no_results_state/no_results_widget.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:infinite_carousel/infinite_carousel.dart';
@@ -29,19 +31,18 @@ class _RecentlyPlayedListState extends State<RecentlyPlayedList> {
   Widget build(BuildContext context) {
     return BlocBuilder<RecentlyPlayedBloc, RecentlyPlayedBlocState>(
         builder: (context, state) {
-      if (state.recentlyPlayedtList.isEmpty) {
-        return const Center(
+      return state.map(
+        error: (context) => const NoResultsWidget(),
+        loading: (context) => const Center(
           child: CustomFadingCircleIndicator(),
-        );
-      } else {
-        final chartItems = state.recentlyPlayedtList;
-        return PlatformBuilder(
-            web: ImageListView(chartItems: chartItems),
-            other: ImageScroll(chartItems: chartItems),
+        ),
+        loaded: (data) => PlatformBuilder(
+            web: ImageListView(chartItems: data.data),
+            other: ImageScroll(chartItems: data.data),
             builder: (context, child, widget) {
               return widget;
-            });
-      }
+            }),
+      );
     });
   }
 }
