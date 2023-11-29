@@ -30,8 +30,9 @@ class FavoriteAlbumBloc extends Bloc<FavoriteAlbumEvent, FavoriteAlbumState> {
     List<SongModel> albums = await _returnFavouriteAlbumsList();
     if (albums.isEmpty) {
       emit(const FavoriteAlbumState.noResults());
+    } else {
+      emit(FavoriteAlbumState.loaded(data: albums));
     }
-    emit(FavoriteAlbumState.loaded(data: albums));
   }
 
   void _onToggleFavouriteAlbum(

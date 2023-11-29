@@ -31,8 +31,9 @@ class FavoriteSongBloc extends Bloc<FavoriteSongEvent, FavouriteSongState> {
     List<SongModel> songs = await _returnFavouriteSongsList();
     if (songs.isEmpty) {
       emit(const FavouriteSongState.noResults());
+    } else {
+      emit(FavouriteSongState.loaded(data: songs));
     }
-    emit(FavouriteSongState.loaded(data: songs));
   }
 
   void _onToggleFavouriteSong(
