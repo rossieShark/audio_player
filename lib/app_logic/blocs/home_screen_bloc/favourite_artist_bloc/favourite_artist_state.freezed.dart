@@ -14,23 +14,27 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-FavoriteArtistState _$FavoriteArtistStateFromJson(Map<String, dynamic> json) {
+FavoriteArtistBlocState _$FavoriteArtistBlocStateFromJson(
+    Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'error':
-      return ErrorFavoriteArtistState.fromJson(json);
+      return ErrorFavoriteArtistBlocState.fromJson(json);
     case 'loading':
-      return LoadingFavoriteArtistState.fromJson(json);
+      return LoadingFavoriteArtistBlocState.fromJson(json);
     case 'loaded':
-      return LoadedFavoriteArtistState.fromJson(json);
+      return LoadedFavoriteArtistBlocState.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'FavoriteArtistState',
+      throw CheckedFromJsonException(
+          json,
+          'runtimeType',
+          'FavoriteArtistBlocState',
           'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
 /// @nodoc
-mixin _$FavoriteArtistState {
+mixin _$FavoriteArtistBlocState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() error,
@@ -55,23 +59,23 @@ mixin _$FavoriteArtistState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ErrorFavoriteArtistState value) error,
-    required TResult Function(LoadingFavoriteArtistState value) loading,
-    required TResult Function(LoadedFavoriteArtistState value) loaded,
+    required TResult Function(ErrorFavoriteArtistBlocState value) error,
+    required TResult Function(LoadingFavoriteArtistBlocState value) loading,
+    required TResult Function(LoadedFavoriteArtistBlocState value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ErrorFavoriteArtistState value)? error,
-    TResult? Function(LoadingFavoriteArtistState value)? loading,
-    TResult? Function(LoadedFavoriteArtistState value)? loaded,
+    TResult? Function(ErrorFavoriteArtistBlocState value)? error,
+    TResult? Function(LoadingFavoriteArtistBlocState value)? loading,
+    TResult? Function(LoadedFavoriteArtistBlocState value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ErrorFavoriteArtistState value)? error,
-    TResult Function(LoadingFavoriteArtistState value)? loading,
-    TResult Function(LoadedFavoriteArtistState value)? loaded,
+    TResult Function(ErrorFavoriteArtistBlocState value)? error,
+    TResult Function(LoadingFavoriteArtistBlocState value)? loading,
+    TResult Function(LoadedFavoriteArtistBlocState value)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -79,16 +83,17 @@ mixin _$FavoriteArtistState {
 }
 
 /// @nodoc
-abstract class $FavoriteArtistStateCopyWith<$Res> {
-  factory $FavoriteArtistStateCopyWith(
-          FavoriteArtistState value, $Res Function(FavoriteArtistState) then) =
-      _$FavoriteArtistStateCopyWithImpl<$Res, FavoriteArtistState>;
+abstract class $FavoriteArtistBlocStateCopyWith<$Res> {
+  factory $FavoriteArtistBlocStateCopyWith(FavoriteArtistBlocState value,
+          $Res Function(FavoriteArtistBlocState) then) =
+      _$FavoriteArtistBlocStateCopyWithImpl<$Res, FavoriteArtistBlocState>;
 }
 
 /// @nodoc
-class _$FavoriteArtistStateCopyWithImpl<$Res, $Val extends FavoriteArtistState>
-    implements $FavoriteArtistStateCopyWith<$Res> {
-  _$FavoriteArtistStateCopyWithImpl(this._value, this._then);
+class _$FavoriteArtistBlocStateCopyWithImpl<$Res,
+        $Val extends FavoriteArtistBlocState>
+    implements $FavoriteArtistBlocStateCopyWith<$Res> {
+  _$FavoriteArtistBlocStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -97,36 +102,39 @@ class _$FavoriteArtistStateCopyWithImpl<$Res, $Val extends FavoriteArtistState>
 }
 
 /// @nodoc
-abstract class _$$ErrorFavoriteArtistStateCopyWith<$Res> {
-  factory _$$ErrorFavoriteArtistStateCopyWith(_$ErrorFavoriteArtistState value,
-          $Res Function(_$ErrorFavoriteArtistState) then) =
-      __$$ErrorFavoriteArtistStateCopyWithImpl<$Res>;
+abstract class _$$ErrorFavoriteArtistBlocStateCopyWith<$Res> {
+  factory _$$ErrorFavoriteArtistBlocStateCopyWith(
+          _$ErrorFavoriteArtistBlocState value,
+          $Res Function(_$ErrorFavoriteArtistBlocState) then) =
+      __$$ErrorFavoriteArtistBlocStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ErrorFavoriteArtistStateCopyWithImpl<$Res>
-    extends _$FavoriteArtistStateCopyWithImpl<$Res, _$ErrorFavoriteArtistState>
-    implements _$$ErrorFavoriteArtistStateCopyWith<$Res> {
-  __$$ErrorFavoriteArtistStateCopyWithImpl(_$ErrorFavoriteArtistState _value,
-      $Res Function(_$ErrorFavoriteArtistState) _then)
+class __$$ErrorFavoriteArtistBlocStateCopyWithImpl<$Res>
+    extends _$FavoriteArtistBlocStateCopyWithImpl<$Res,
+        _$ErrorFavoriteArtistBlocState>
+    implements _$$ErrorFavoriteArtistBlocStateCopyWith<$Res> {
+  __$$ErrorFavoriteArtistBlocStateCopyWithImpl(
+      _$ErrorFavoriteArtistBlocState _value,
+      $Res Function(_$ErrorFavoriteArtistBlocState) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ErrorFavoriteArtistState implements ErrorFavoriteArtistState {
-  const _$ErrorFavoriteArtistState({final String? $type})
+class _$ErrorFavoriteArtistBlocState implements ErrorFavoriteArtistBlocState {
+  const _$ErrorFavoriteArtistBlocState({final String? $type})
       : $type = $type ?? 'error';
 
-  factory _$ErrorFavoriteArtistState.fromJson(Map<String, dynamic> json) =>
-      _$$ErrorFavoriteArtistStateFromJson(json);
+  factory _$ErrorFavoriteArtistBlocState.fromJson(Map<String, dynamic> json) =>
+      _$$ErrorFavoriteArtistBlocStateFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'FavoriteArtistState.error()';
+    return 'FavoriteArtistBlocState.error()';
   }
 
   @override
@@ -166,9 +174,9 @@ class _$ErrorFavoriteArtistState implements ErrorFavoriteArtistState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ErrorFavoriteArtistState value) error,
-    required TResult Function(LoadingFavoriteArtistState value) loading,
-    required TResult Function(LoadedFavoriteArtistState value) loaded,
+    required TResult Function(ErrorFavoriteArtistBlocState value) error,
+    required TResult Function(LoadingFavoriteArtistBlocState value) loading,
+    required TResult Function(LoadedFavoriteArtistBlocState value) loaded,
   }) {
     return error(this);
   }
@@ -176,9 +184,9 @@ class _$ErrorFavoriteArtistState implements ErrorFavoriteArtistState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ErrorFavoriteArtistState value)? error,
-    TResult? Function(LoadingFavoriteArtistState value)? loading,
-    TResult? Function(LoadedFavoriteArtistState value)? loaded,
+    TResult? Function(ErrorFavoriteArtistBlocState value)? error,
+    TResult? Function(LoadingFavoriteArtistBlocState value)? loading,
+    TResult? Function(LoadedFavoriteArtistBlocState value)? loaded,
   }) {
     return error?.call(this);
   }
@@ -186,9 +194,9 @@ class _$ErrorFavoriteArtistState implements ErrorFavoriteArtistState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ErrorFavoriteArtistState value)? error,
-    TResult Function(LoadingFavoriteArtistState value)? loading,
-    TResult Function(LoadedFavoriteArtistState value)? loaded,
+    TResult Function(ErrorFavoriteArtistBlocState value)? error,
+    TResult Function(LoadingFavoriteArtistBlocState value)? loading,
+    TResult Function(LoadedFavoriteArtistBlocState value)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -199,53 +207,55 @@ class _$ErrorFavoriteArtistState implements ErrorFavoriteArtistState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ErrorFavoriteArtistStateToJson(
+    return _$$ErrorFavoriteArtistBlocStateToJson(
       this,
     );
   }
 }
 
-abstract class ErrorFavoriteArtistState implements FavoriteArtistState {
-  const factory ErrorFavoriteArtistState() = _$ErrorFavoriteArtistState;
+abstract class ErrorFavoriteArtistBlocState implements FavoriteArtistBlocState {
+  const factory ErrorFavoriteArtistBlocState() = _$ErrorFavoriteArtistBlocState;
 
-  factory ErrorFavoriteArtistState.fromJson(Map<String, dynamic> json) =
-      _$ErrorFavoriteArtistState.fromJson;
+  factory ErrorFavoriteArtistBlocState.fromJson(Map<String, dynamic> json) =
+      _$ErrorFavoriteArtistBlocState.fromJson;
 }
 
 /// @nodoc
-abstract class _$$LoadingFavoriteArtistStateCopyWith<$Res> {
-  factory _$$LoadingFavoriteArtistStateCopyWith(
-          _$LoadingFavoriteArtistState value,
-          $Res Function(_$LoadingFavoriteArtistState) then) =
-      __$$LoadingFavoriteArtistStateCopyWithImpl<$Res>;
+abstract class _$$LoadingFavoriteArtistBlocStateCopyWith<$Res> {
+  factory _$$LoadingFavoriteArtistBlocStateCopyWith(
+          _$LoadingFavoriteArtistBlocState value,
+          $Res Function(_$LoadingFavoriteArtistBlocState) then) =
+      __$$LoadingFavoriteArtistBlocStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingFavoriteArtistStateCopyWithImpl<$Res>
-    extends _$FavoriteArtistStateCopyWithImpl<$Res,
-        _$LoadingFavoriteArtistState>
-    implements _$$LoadingFavoriteArtistStateCopyWith<$Res> {
-  __$$LoadingFavoriteArtistStateCopyWithImpl(
-      _$LoadingFavoriteArtistState _value,
-      $Res Function(_$LoadingFavoriteArtistState) _then)
+class __$$LoadingFavoriteArtistBlocStateCopyWithImpl<$Res>
+    extends _$FavoriteArtistBlocStateCopyWithImpl<$Res,
+        _$LoadingFavoriteArtistBlocState>
+    implements _$$LoadingFavoriteArtistBlocStateCopyWith<$Res> {
+  __$$LoadingFavoriteArtistBlocStateCopyWithImpl(
+      _$LoadingFavoriteArtistBlocState _value,
+      $Res Function(_$LoadingFavoriteArtistBlocState) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$LoadingFavoriteArtistState implements LoadingFavoriteArtistState {
-  const _$LoadingFavoriteArtistState({final String? $type})
+class _$LoadingFavoriteArtistBlocState
+    implements LoadingFavoriteArtistBlocState {
+  const _$LoadingFavoriteArtistBlocState({final String? $type})
       : $type = $type ?? 'loading';
 
-  factory _$LoadingFavoriteArtistState.fromJson(Map<String, dynamic> json) =>
-      _$$LoadingFavoriteArtistStateFromJson(json);
+  factory _$LoadingFavoriteArtistBlocState.fromJson(
+          Map<String, dynamic> json) =>
+      _$$LoadingFavoriteArtistBlocStateFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'FavoriteArtistState.loading()';
+    return 'FavoriteArtistBlocState.loading()';
   }
 
   @override
@@ -285,9 +295,9 @@ class _$LoadingFavoriteArtistState implements LoadingFavoriteArtistState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ErrorFavoriteArtistState value) error,
-    required TResult Function(LoadingFavoriteArtistState value) loading,
-    required TResult Function(LoadedFavoriteArtistState value) loaded,
+    required TResult Function(ErrorFavoriteArtistBlocState value) error,
+    required TResult Function(LoadingFavoriteArtistBlocState value) loading,
+    required TResult Function(LoadedFavoriteArtistBlocState value) loaded,
   }) {
     return loading(this);
   }
@@ -295,9 +305,9 @@ class _$LoadingFavoriteArtistState implements LoadingFavoriteArtistState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ErrorFavoriteArtistState value)? error,
-    TResult? Function(LoadingFavoriteArtistState value)? loading,
-    TResult? Function(LoadedFavoriteArtistState value)? loaded,
+    TResult? Function(ErrorFavoriteArtistBlocState value)? error,
+    TResult? Function(LoadingFavoriteArtistBlocState value)? loading,
+    TResult? Function(LoadedFavoriteArtistBlocState value)? loaded,
   }) {
     return loading?.call(this);
   }
@@ -305,9 +315,9 @@ class _$LoadingFavoriteArtistState implements LoadingFavoriteArtistState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ErrorFavoriteArtistState value)? error,
-    TResult Function(LoadingFavoriteArtistState value)? loading,
-    TResult Function(LoadedFavoriteArtistState value)? loaded,
+    TResult Function(ErrorFavoriteArtistBlocState value)? error,
+    TResult Function(LoadingFavoriteArtistBlocState value)? loading,
+    TResult Function(LoadedFavoriteArtistBlocState value)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -318,35 +328,39 @@ class _$LoadingFavoriteArtistState implements LoadingFavoriteArtistState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LoadingFavoriteArtistStateToJson(
+    return _$$LoadingFavoriteArtistBlocStateToJson(
       this,
     );
   }
 }
 
-abstract class LoadingFavoriteArtistState implements FavoriteArtistState {
-  const factory LoadingFavoriteArtistState() = _$LoadingFavoriteArtistState;
+abstract class LoadingFavoriteArtistBlocState
+    implements FavoriteArtistBlocState {
+  const factory LoadingFavoriteArtistBlocState() =
+      _$LoadingFavoriteArtistBlocState;
 
-  factory LoadingFavoriteArtistState.fromJson(Map<String, dynamic> json) =
-      _$LoadingFavoriteArtistState.fromJson;
+  factory LoadingFavoriteArtistBlocState.fromJson(Map<String, dynamic> json) =
+      _$LoadingFavoriteArtistBlocState.fromJson;
 }
 
 /// @nodoc
-abstract class _$$LoadedFavoriteArtistStateCopyWith<$Res> {
-  factory _$$LoadedFavoriteArtistStateCopyWith(
-          _$LoadedFavoriteArtistState value,
-          $Res Function(_$LoadedFavoriteArtistState) then) =
-      __$$LoadedFavoriteArtistStateCopyWithImpl<$Res>;
+abstract class _$$LoadedFavoriteArtistBlocStateCopyWith<$Res> {
+  factory _$$LoadedFavoriteArtistBlocStateCopyWith(
+          _$LoadedFavoriteArtistBlocState value,
+          $Res Function(_$LoadedFavoriteArtistBlocState) then) =
+      __$$LoadedFavoriteArtistBlocStateCopyWithImpl<$Res>;
   @useResult
   $Res call({List<FavoriteArtist> data});
 }
 
 /// @nodoc
-class __$$LoadedFavoriteArtistStateCopyWithImpl<$Res>
-    extends _$FavoriteArtistStateCopyWithImpl<$Res, _$LoadedFavoriteArtistState>
-    implements _$$LoadedFavoriteArtistStateCopyWith<$Res> {
-  __$$LoadedFavoriteArtistStateCopyWithImpl(_$LoadedFavoriteArtistState _value,
-      $Res Function(_$LoadedFavoriteArtistState) _then)
+class __$$LoadedFavoriteArtistBlocStateCopyWithImpl<$Res>
+    extends _$FavoriteArtistBlocStateCopyWithImpl<$Res,
+        _$LoadedFavoriteArtistBlocState>
+    implements _$$LoadedFavoriteArtistBlocStateCopyWith<$Res> {
+  __$$LoadedFavoriteArtistBlocStateCopyWithImpl(
+      _$LoadedFavoriteArtistBlocState _value,
+      $Res Function(_$LoadedFavoriteArtistBlocState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -354,7 +368,7 @@ class __$$LoadedFavoriteArtistStateCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$LoadedFavoriteArtistState(
+    return _then(_$LoadedFavoriteArtistBlocState(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -365,14 +379,14 @@ class __$$LoadedFavoriteArtistStateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$LoadedFavoriteArtistState implements LoadedFavoriteArtistState {
-  const _$LoadedFavoriteArtistState(
+class _$LoadedFavoriteArtistBlocState implements LoadedFavoriteArtistBlocState {
+  const _$LoadedFavoriteArtistBlocState(
       {required final List<FavoriteArtist> data, final String? $type})
       : _data = data,
         $type = $type ?? 'loaded';
 
-  factory _$LoadedFavoriteArtistState.fromJson(Map<String, dynamic> json) =>
-      _$$LoadedFavoriteArtistStateFromJson(json);
+  factory _$LoadedFavoriteArtistBlocState.fromJson(Map<String, dynamic> json) =>
+      _$$LoadedFavoriteArtistBlocStateFromJson(json);
 
   final List<FavoriteArtist> _data;
   @override
@@ -387,15 +401,15 @@ class _$LoadedFavoriteArtistState implements LoadedFavoriteArtistState {
 
   @override
   String toString() {
-    return 'FavoriteArtistState.loaded(data: $data)';
+    return 'FavoriteArtistBlocState.loaded(data: $data)';
   }
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedFavoriteArtistStateCopyWith<_$LoadedFavoriteArtistState>
-      get copyWith => __$$LoadedFavoriteArtistStateCopyWithImpl<
-          _$LoadedFavoriteArtistState>(this, _$identity);
+  _$$LoadedFavoriteArtistBlocStateCopyWith<_$LoadedFavoriteArtistBlocState>
+      get copyWith => __$$LoadedFavoriteArtistBlocStateCopyWithImpl<
+          _$LoadedFavoriteArtistBlocState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -434,9 +448,9 @@ class _$LoadedFavoriteArtistState implements LoadedFavoriteArtistState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ErrorFavoriteArtistState value) error,
-    required TResult Function(LoadingFavoriteArtistState value) loading,
-    required TResult Function(LoadedFavoriteArtistState value) loaded,
+    required TResult Function(ErrorFavoriteArtistBlocState value) error,
+    required TResult Function(LoadingFavoriteArtistBlocState value) loading,
+    required TResult Function(LoadedFavoriteArtistBlocState value) loaded,
   }) {
     return loaded(this);
   }
@@ -444,9 +458,9 @@ class _$LoadedFavoriteArtistState implements LoadedFavoriteArtistState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ErrorFavoriteArtistState value)? error,
-    TResult? Function(LoadingFavoriteArtistState value)? loading,
-    TResult? Function(LoadedFavoriteArtistState value)? loaded,
+    TResult? Function(ErrorFavoriteArtistBlocState value)? error,
+    TResult? Function(LoadingFavoriteArtistBlocState value)? loading,
+    TResult? Function(LoadedFavoriteArtistBlocState value)? loaded,
   }) {
     return loaded?.call(this);
   }
@@ -454,9 +468,9 @@ class _$LoadedFavoriteArtistState implements LoadedFavoriteArtistState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ErrorFavoriteArtistState value)? error,
-    TResult Function(LoadingFavoriteArtistState value)? loading,
-    TResult Function(LoadedFavoriteArtistState value)? loaded,
+    TResult Function(ErrorFavoriteArtistBlocState value)? error,
+    TResult Function(LoadingFavoriteArtistBlocState value)? loading,
+    TResult Function(LoadedFavoriteArtistBlocState value)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -467,21 +481,23 @@ class _$LoadedFavoriteArtistState implements LoadedFavoriteArtistState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LoadedFavoriteArtistStateToJson(
+    return _$$LoadedFavoriteArtistBlocStateToJson(
       this,
     );
   }
 }
 
-abstract class LoadedFavoriteArtistState implements FavoriteArtistState {
-  const factory LoadedFavoriteArtistState(
-      {required final List<FavoriteArtist> data}) = _$LoadedFavoriteArtistState;
+abstract class LoadedFavoriteArtistBlocState
+    implements FavoriteArtistBlocState {
+  const factory LoadedFavoriteArtistBlocState(
+          {required final List<FavoriteArtist> data}) =
+      _$LoadedFavoriteArtistBlocState;
 
-  factory LoadedFavoriteArtistState.fromJson(Map<String, dynamic> json) =
-      _$LoadedFavoriteArtistState.fromJson;
+  factory LoadedFavoriteArtistBlocState.fromJson(Map<String, dynamic> json) =
+      _$LoadedFavoriteArtistBlocState.fromJson;
 
   List<FavoriteArtist> get data;
   @JsonKey(ignore: true)
-  _$$LoadedFavoriteArtistStateCopyWith<_$LoadedFavoriteArtistState>
+  _$$LoadedFavoriteArtistBlocStateCopyWith<_$LoadedFavoriteArtistBlocState>
       get copyWith => throw _privateConstructorUsedError;
 }

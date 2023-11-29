@@ -48,7 +48,7 @@ class _GenresListState extends State<_GenresList> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenresBloc, GenresState>(
+    return BlocBuilder<GenresBloc, GenresBlocState>(
       builder: (context, state) {
         return state.map(
           error: (context) => const NoResultsWidget(),

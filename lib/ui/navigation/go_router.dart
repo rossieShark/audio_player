@@ -1,4 +1,5 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_bloc.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 import 'package:audio_player/ui/widgets/screens/index.dart';
 import 'package:audio_player/ui/widgets/screens/log_pages/sign_in_page.dart';
@@ -81,7 +82,11 @@ final router = GoRouter(
       path: '/${routeNameMap[RouteName.favoriteTracks]!}',
       pageBuilder: (context, state) => CupertinoPage(
         key: state.pageKey,
-        child: const MyFavoriteSongs(),
+        child: const MyFavoriteSongs().createWithMultiProviders([
+          BlocProvider<FavoriteSongBloc>(
+            create: (context) => GetIt.I.get(),
+          ),
+        ]),
       ),
     ),
     GoRoute(
@@ -106,9 +111,9 @@ final router = GoRouter(
           BlocProvider<AlbumDetailBloc>(
             create: (context) => GetIt.I.get(),
           ),
-          BlocProvider<FavoriteBloc>(
-            create: (context) => GetIt.I.get(),
-          ),
+          // BlocProvider<FavoriteSongBloc>(
+          //   create: (context) => GetIt.I.get(),
+          // ),
         ]),
       ),
     ),
@@ -125,9 +130,9 @@ final router = GoRouter(
               BlocProvider<DetailMusicPageBloc>(
                 create: (blocContext) => GetIt.I.get(),
               ),
-              BlocProvider<FavoriteBloc>(
-                create: (context) => GetIt.I.get(),
-              ),
+              // BlocProvider<FavoriteSongBloc>(
+              //   create: (context) => GetIt.I.get(),
+              // ),
             ]),
           );
         },
@@ -210,9 +215,9 @@ final webRouter = GoRouter(
                               BlocProvider<DetailMusicPageBloc>(
                                 create: (blocContext) => GetIt.I.get(),
                               ),
-                              BlocProvider<FavoriteBloc>(
-                                create: (context) => GetIt.I.get(),
-                              ),
+                              // BlocProvider<FavoriteSongBloc>(
+                              //   create: (context) => GetIt.I.get(),
+                              // ),
                             ],
                           ),
                         );
@@ -232,17 +237,21 @@ final webRouter = GoRouter(
                         BlocProvider<AlbumDetailBloc>(
                           create: (context) => GetIt.I.get(),
                         ),
-                        BlocProvider<FavoriteBloc>(
-                          create: (context) => GetIt.I.get(),
-                        )
+                        // BlocProvider<FavoriteSongBloc>(
+                        //   create: (context) => GetIt.I.get(),
+                        // )
                       ]),
                     ),
                   ),
                   GoRoute(
                     path: routeNameMap[RouteName.favoriteTracks]!,
-                    pageBuilder: (context, state) => const CupertinoPage(
-                      child: MyFavoriteSongs(),
-                    ),
+                    pageBuilder: (context, state) =>
+                        CupertinoPage(child: MyFavoriteSongs()
+                            // BlocProvider<FavoriteSongBloc>(
+                            //   create: (context) => GetIt.I.get(),
+                            // ),
+
+                            ),
                   ),
                   GoRoute(
                     path: routeNameMap[RouteName.favoriteAlbums]!,

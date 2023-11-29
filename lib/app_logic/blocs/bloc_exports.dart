@@ -10,10 +10,8 @@ export 'package:audio_player/app_logic/providers/recently_searched_provider.dart
 export 'package:audio_player/app_logic/blocs/tab_bar_bloc/tab_bar_bloc.dart';
 export 'package:audio_player/app_logic/blocs/genres_bloc/genres_bloc.dart';
 export 'package:audio_player/app_logic/blocs/home_screen_bloc/recently_played_bloc/recently_played_event.dart';
-export 'package:audio_player/app_logic/blocs/home_screen_bloc/recently_played_bloc/recently_played_state.dart';
-export 'package:audio_player/app_logic/blocs/favourites_bloc/favourites_bloc.dart';
-export 'package:audio_player/app_logic/blocs/favourites_bloc/favourites_event.dart';
-export 'package:audio_player/app_logic/blocs/favourites_bloc/favourites_states.dart';
+export 'package:audio_player/app_logic/blocs/home_screen_bloc/recently_played_bloc/recently_played_bloc_state.dart';
+
 export 'package:audio_player/app_logic/blocs/detail_music_bloc/detail_music_event.dart';
 export 'package:audio_player/app_logic/blocs/detail_music_bloc/detail_music_state.dart';
 export 'package:audio_player/app_logic/blocs/search_screen_bloc/search_state.dart';

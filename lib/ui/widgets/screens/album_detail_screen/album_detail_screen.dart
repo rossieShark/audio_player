@@ -65,12 +65,12 @@ class _AlbumDetailPageState extends State<AlbumDetailPage> {
                         : widget.image,
                     height: maxHeight / 2,
                   ),
-                  CreatePlayButtonSection(
-                      param: widget.param,
-                      title: widget.title,
-                      artist: widget.artist,
-                      image: widget.image,
-                      songList: songList),
+                  // CreatePlayButtonSection(
+                  //     param: widget.param,
+                  //     title: widget.title,
+                  //     artist: widget.artist,
+                  //     image: widget.image,
+                  //     songList: songList),
                   Positioned.fill(
                     top: maxHeight / 2 - 50,
                     child: SizedBox(

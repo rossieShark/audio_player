@@ -1,4 +1,7 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_bloc.dart';
+import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_event.dart';
+import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_states.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/ui/widgets/widgets/custom_buttons/custom_like_button.dart';
 
@@ -25,53 +28,51 @@ class LikeButtonWidget extends StatefulWidget {
 }
 
 class _LikeButtonWidgetState extends State<LikeButtonWidget> {
-  late FavoriteBloc favoriteBloc;
+// late FavoriteBloc favoriteBloc;
   bool isFavorite = false;
-  void _toggleFavorite() {
-    setState(() {
-      isFavorite = !isFavorite;
-    });
-  }
+  // void _toggleFavorite() {
+  //   setState(() {
+  //     isFavorite = !isFavorite;
+  //   });
+  // }
 
-  @override
-  void initState() {
-    super.initState();
+  // @override
+  // void initState() {
+  //   super.initState();
 
-    favoriteBloc = FavoriteBloc(
-      Provider.of<FavoriteProvider>(context, listen: false),
-    );
-  }
+  //   favoriteBloc = FavoriteBloc(
+  //     Provider.of<FavoriteProvider>(context, listen: false),
+  //   );
+  // }
 
-  @override
-  void didChangeDependencies() {
-    final favoriteProvider =
-        Provider.of<FavoriteProvider>(context, listen: false);
+  // @override
+  // void didChangeDependencies() {
+  //   final favoriteProvider =
+  //       Provider.of<FavoriteProvider>(context, listen: false);
 
-    isFavorite = favoriteProvider.isFavoriteSong(widget.id);
+  //   isFavorite = favoriteProvider.isFavoriteSong(widget.id);
 
-    super.didChangeDependencies();
-  }
+  //   super.didChangeDependencies();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FavoriteBloc, FavoriteState>(
-      builder: (context, state) {
-        return LikeButton(
-            onPressed: () {
-              _toggleFavorite();
-              final songInfoModel = SongModel(
-                preview: widget.preview,
-                type: "track",
-                id: widget.id,
-                artistNames: widget.artistNames,
-                title: widget.title,
-                image: widget.image,
-              );
+    return LikeButton(
+        onPressed: () {
+          // _toggleFavorite();
+          final songInfoModel = SongModel(
+            preview: widget.preview,
+            type: "track",
+            id: widget.id,
+            artistNames: widget.artistNames,
+            title: widget.title,
+            image: widget.image,
+            isFavourite: false,
+          );
 
-              favoriteBloc.add(ToggleFavoriteSongEvent(songInfoModel));
-            },
-            isFavorite: isFavorite);
-      },
-    );
+          final bloc = context.read<FavoriteSongBloc>();
+          bloc.add(ToggleIsFavourite(detailSong: songInfoModel));
+        },
+        isFavorite: isFavorite);
   }
 }

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'recently_played_state.dart';
+part of 'recently_played_bloc_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,27 +14,23 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-RecentlyPlayedBlocState _$RecentlyPlayedBlocStateFromJson(
-    Map<String, dynamic> json) {
+RecentlyPlayedState _$RecentlyPlayedStateFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'error':
-      return ErrorRecentlyPlayedBlocState.fromJson(json);
+      return ErrorRecentlyPlayedState.fromJson(json);
     case 'loading':
-      return LoadingRecentlyPlayedBlocState.fromJson(json);
+      return LoadingRecentlyPlayedState.fromJson(json);
     case 'loaded':
-      return LoadedRecentlyPlayedBlocState.fromJson(json);
+      return LoadedRecentlyPlayedState.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(
-          json,
-          'runtimeType',
-          'RecentlyPlayedBlocState',
+      throw CheckedFromJsonException(json, 'runtimeType', 'RecentlyPlayedState',
           'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
 /// @nodoc
-mixin _$RecentlyPlayedBlocState {
+mixin _$RecentlyPlayedState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() error,
@@ -59,23 +55,23 @@ mixin _$RecentlyPlayedBlocState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ErrorRecentlyPlayedBlocState value) error,
-    required TResult Function(LoadingRecentlyPlayedBlocState value) loading,
-    required TResult Function(LoadedRecentlyPlayedBlocState value) loaded,
+    required TResult Function(ErrorRecentlyPlayedState value) error,
+    required TResult Function(LoadingRecentlyPlayedState value) loading,
+    required TResult Function(LoadedRecentlyPlayedState value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ErrorRecentlyPlayedBlocState value)? error,
-    TResult? Function(LoadingRecentlyPlayedBlocState value)? loading,
-    TResult? Function(LoadedRecentlyPlayedBlocState value)? loaded,
+    TResult? Function(ErrorRecentlyPlayedState value)? error,
+    TResult? Function(LoadingRecentlyPlayedState value)? loading,
+    TResult? Function(LoadedRecentlyPlayedState value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ErrorRecentlyPlayedBlocState value)? error,
-    TResult Function(LoadingRecentlyPlayedBlocState value)? loading,
-    TResult Function(LoadedRecentlyPlayedBlocState value)? loaded,
+    TResult Function(ErrorRecentlyPlayedState value)? error,
+    TResult Function(LoadingRecentlyPlayedState value)? loading,
+    TResult Function(LoadedRecentlyPlayedState value)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -83,17 +79,16 @@ mixin _$RecentlyPlayedBlocState {
 }
 
 /// @nodoc
-abstract class $RecentlyPlayedBlocStateCopyWith<$Res> {
-  factory $RecentlyPlayedBlocStateCopyWith(RecentlyPlayedBlocState value,
-          $Res Function(RecentlyPlayedBlocState) then) =
-      _$RecentlyPlayedBlocStateCopyWithImpl<$Res, RecentlyPlayedBlocState>;
+abstract class $RecentlyPlayedStateCopyWith<$Res> {
+  factory $RecentlyPlayedStateCopyWith(
+          RecentlyPlayedState value, $Res Function(RecentlyPlayedState) then) =
+      _$RecentlyPlayedStateCopyWithImpl<$Res, RecentlyPlayedState>;
 }
 
 /// @nodoc
-class _$RecentlyPlayedBlocStateCopyWithImpl<$Res,
-        $Val extends RecentlyPlayedBlocState>
-    implements $RecentlyPlayedBlocStateCopyWith<$Res> {
-  _$RecentlyPlayedBlocStateCopyWithImpl(this._value, this._then);
+class _$RecentlyPlayedStateCopyWithImpl<$Res, $Val extends RecentlyPlayedState>
+    implements $RecentlyPlayedStateCopyWith<$Res> {
+  _$RecentlyPlayedStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -102,39 +97,36 @@ class _$RecentlyPlayedBlocStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ErrorRecentlyPlayedBlocStateCopyWith<$Res> {
-  factory _$$ErrorRecentlyPlayedBlocStateCopyWith(
-          _$ErrorRecentlyPlayedBlocState value,
-          $Res Function(_$ErrorRecentlyPlayedBlocState) then) =
-      __$$ErrorRecentlyPlayedBlocStateCopyWithImpl<$Res>;
+abstract class _$$ErrorRecentlyPlayedStateCopyWith<$Res> {
+  factory _$$ErrorRecentlyPlayedStateCopyWith(_$ErrorRecentlyPlayedState value,
+          $Res Function(_$ErrorRecentlyPlayedState) then) =
+      __$$ErrorRecentlyPlayedStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ErrorRecentlyPlayedBlocStateCopyWithImpl<$Res>
-    extends _$RecentlyPlayedBlocStateCopyWithImpl<$Res,
-        _$ErrorRecentlyPlayedBlocState>
-    implements _$$ErrorRecentlyPlayedBlocStateCopyWith<$Res> {
-  __$$ErrorRecentlyPlayedBlocStateCopyWithImpl(
-      _$ErrorRecentlyPlayedBlocState _value,
-      $Res Function(_$ErrorRecentlyPlayedBlocState) _then)
+class __$$ErrorRecentlyPlayedStateCopyWithImpl<$Res>
+    extends _$RecentlyPlayedStateCopyWithImpl<$Res, _$ErrorRecentlyPlayedState>
+    implements _$$ErrorRecentlyPlayedStateCopyWith<$Res> {
+  __$$ErrorRecentlyPlayedStateCopyWithImpl(_$ErrorRecentlyPlayedState _value,
+      $Res Function(_$ErrorRecentlyPlayedState) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ErrorRecentlyPlayedBlocState implements ErrorRecentlyPlayedBlocState {
-  const _$ErrorRecentlyPlayedBlocState({final String? $type})
+class _$ErrorRecentlyPlayedState implements ErrorRecentlyPlayedState {
+  const _$ErrorRecentlyPlayedState({final String? $type})
       : $type = $type ?? 'error';
 
-  factory _$ErrorRecentlyPlayedBlocState.fromJson(Map<String, dynamic> json) =>
-      _$$ErrorRecentlyPlayedBlocStateFromJson(json);
+  factory _$ErrorRecentlyPlayedState.fromJson(Map<String, dynamic> json) =>
+      _$$ErrorRecentlyPlayedStateFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'RecentlyPlayedBlocState.error()';
+    return 'RecentlyPlayedState.error()';
   }
 
   @override
@@ -174,9 +166,9 @@ class _$ErrorRecentlyPlayedBlocState implements ErrorRecentlyPlayedBlocState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ErrorRecentlyPlayedBlocState value) error,
-    required TResult Function(LoadingRecentlyPlayedBlocState value) loading,
-    required TResult Function(LoadedRecentlyPlayedBlocState value) loaded,
+    required TResult Function(ErrorRecentlyPlayedState value) error,
+    required TResult Function(LoadingRecentlyPlayedState value) loading,
+    required TResult Function(LoadedRecentlyPlayedState value) loaded,
   }) {
     return error(this);
   }
@@ -184,9 +176,9 @@ class _$ErrorRecentlyPlayedBlocState implements ErrorRecentlyPlayedBlocState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ErrorRecentlyPlayedBlocState value)? error,
-    TResult? Function(LoadingRecentlyPlayedBlocState value)? loading,
-    TResult? Function(LoadedRecentlyPlayedBlocState value)? loaded,
+    TResult? Function(ErrorRecentlyPlayedState value)? error,
+    TResult? Function(LoadingRecentlyPlayedState value)? loading,
+    TResult? Function(LoadedRecentlyPlayedState value)? loaded,
   }) {
     return error?.call(this);
   }
@@ -194,9 +186,9 @@ class _$ErrorRecentlyPlayedBlocState implements ErrorRecentlyPlayedBlocState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ErrorRecentlyPlayedBlocState value)? error,
-    TResult Function(LoadingRecentlyPlayedBlocState value)? loading,
-    TResult Function(LoadedRecentlyPlayedBlocState value)? loaded,
+    TResult Function(ErrorRecentlyPlayedState value)? error,
+    TResult Function(LoadingRecentlyPlayedState value)? loading,
+    TResult Function(LoadedRecentlyPlayedState value)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -207,55 +199,53 @@ class _$ErrorRecentlyPlayedBlocState implements ErrorRecentlyPlayedBlocState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ErrorRecentlyPlayedBlocStateToJson(
+    return _$$ErrorRecentlyPlayedStateToJson(
       this,
     );
   }
 }
 
-abstract class ErrorRecentlyPlayedBlocState implements RecentlyPlayedBlocState {
-  const factory ErrorRecentlyPlayedBlocState() = _$ErrorRecentlyPlayedBlocState;
+abstract class ErrorRecentlyPlayedState implements RecentlyPlayedState {
+  const factory ErrorRecentlyPlayedState() = _$ErrorRecentlyPlayedState;
 
-  factory ErrorRecentlyPlayedBlocState.fromJson(Map<String, dynamic> json) =
-      _$ErrorRecentlyPlayedBlocState.fromJson;
+  factory ErrorRecentlyPlayedState.fromJson(Map<String, dynamic> json) =
+      _$ErrorRecentlyPlayedState.fromJson;
 }
 
 /// @nodoc
-abstract class _$$LoadingRecentlyPlayedBlocStateCopyWith<$Res> {
-  factory _$$LoadingRecentlyPlayedBlocStateCopyWith(
-          _$LoadingRecentlyPlayedBlocState value,
-          $Res Function(_$LoadingRecentlyPlayedBlocState) then) =
-      __$$LoadingRecentlyPlayedBlocStateCopyWithImpl<$Res>;
+abstract class _$$LoadingRecentlyPlayedStateCopyWith<$Res> {
+  factory _$$LoadingRecentlyPlayedStateCopyWith(
+          _$LoadingRecentlyPlayedState value,
+          $Res Function(_$LoadingRecentlyPlayedState) then) =
+      __$$LoadingRecentlyPlayedStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingRecentlyPlayedBlocStateCopyWithImpl<$Res>
-    extends _$RecentlyPlayedBlocStateCopyWithImpl<$Res,
-        _$LoadingRecentlyPlayedBlocState>
-    implements _$$LoadingRecentlyPlayedBlocStateCopyWith<$Res> {
-  __$$LoadingRecentlyPlayedBlocStateCopyWithImpl(
-      _$LoadingRecentlyPlayedBlocState _value,
-      $Res Function(_$LoadingRecentlyPlayedBlocState) _then)
+class __$$LoadingRecentlyPlayedStateCopyWithImpl<$Res>
+    extends _$RecentlyPlayedStateCopyWithImpl<$Res,
+        _$LoadingRecentlyPlayedState>
+    implements _$$LoadingRecentlyPlayedStateCopyWith<$Res> {
+  __$$LoadingRecentlyPlayedStateCopyWithImpl(
+      _$LoadingRecentlyPlayedState _value,
+      $Res Function(_$LoadingRecentlyPlayedState) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$LoadingRecentlyPlayedBlocState
-    implements LoadingRecentlyPlayedBlocState {
-  const _$LoadingRecentlyPlayedBlocState({final String? $type})
+class _$LoadingRecentlyPlayedState implements LoadingRecentlyPlayedState {
+  const _$LoadingRecentlyPlayedState({final String? $type})
       : $type = $type ?? 'loading';
 
-  factory _$LoadingRecentlyPlayedBlocState.fromJson(
-          Map<String, dynamic> json) =>
-      _$$LoadingRecentlyPlayedBlocStateFromJson(json);
+  factory _$LoadingRecentlyPlayedState.fromJson(Map<String, dynamic> json) =>
+      _$$LoadingRecentlyPlayedStateFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'RecentlyPlayedBlocState.loading()';
+    return 'RecentlyPlayedState.loading()';
   }
 
   @override
@@ -295,9 +285,9 @@ class _$LoadingRecentlyPlayedBlocState
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ErrorRecentlyPlayedBlocState value) error,
-    required TResult Function(LoadingRecentlyPlayedBlocState value) loading,
-    required TResult Function(LoadedRecentlyPlayedBlocState value) loaded,
+    required TResult Function(ErrorRecentlyPlayedState value) error,
+    required TResult Function(LoadingRecentlyPlayedState value) loading,
+    required TResult Function(LoadedRecentlyPlayedState value) loaded,
   }) {
     return loading(this);
   }
@@ -305,9 +295,9 @@ class _$LoadingRecentlyPlayedBlocState
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ErrorRecentlyPlayedBlocState value)? error,
-    TResult? Function(LoadingRecentlyPlayedBlocState value)? loading,
-    TResult? Function(LoadedRecentlyPlayedBlocState value)? loaded,
+    TResult? Function(ErrorRecentlyPlayedState value)? error,
+    TResult? Function(LoadingRecentlyPlayedState value)? loading,
+    TResult? Function(LoadedRecentlyPlayedState value)? loaded,
   }) {
     return loading?.call(this);
   }
@@ -315,9 +305,9 @@ class _$LoadingRecentlyPlayedBlocState
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ErrorRecentlyPlayedBlocState value)? error,
-    TResult Function(LoadingRecentlyPlayedBlocState value)? loading,
-    TResult Function(LoadedRecentlyPlayedBlocState value)? loaded,
+    TResult Function(ErrorRecentlyPlayedState value)? error,
+    TResult Function(LoadingRecentlyPlayedState value)? loading,
+    TResult Function(LoadedRecentlyPlayedState value)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -328,39 +318,35 @@ class _$LoadingRecentlyPlayedBlocState
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LoadingRecentlyPlayedBlocStateToJson(
+    return _$$LoadingRecentlyPlayedStateToJson(
       this,
     );
   }
 }
 
-abstract class LoadingRecentlyPlayedBlocState
-    implements RecentlyPlayedBlocState {
-  const factory LoadingRecentlyPlayedBlocState() =
-      _$LoadingRecentlyPlayedBlocState;
+abstract class LoadingRecentlyPlayedState implements RecentlyPlayedState {
+  const factory LoadingRecentlyPlayedState() = _$LoadingRecentlyPlayedState;
 
-  factory LoadingRecentlyPlayedBlocState.fromJson(Map<String, dynamic> json) =
-      _$LoadingRecentlyPlayedBlocState.fromJson;
+  factory LoadingRecentlyPlayedState.fromJson(Map<String, dynamic> json) =
+      _$LoadingRecentlyPlayedState.fromJson;
 }
 
 /// @nodoc
-abstract class _$$LoadedRecentlyPlayedBlocStateCopyWith<$Res> {
-  factory _$$LoadedRecentlyPlayedBlocStateCopyWith(
-          _$LoadedRecentlyPlayedBlocState value,
-          $Res Function(_$LoadedRecentlyPlayedBlocState) then) =
-      __$$LoadedRecentlyPlayedBlocStateCopyWithImpl<$Res>;
+abstract class _$$LoadedRecentlyPlayedStateCopyWith<$Res> {
+  factory _$$LoadedRecentlyPlayedStateCopyWith(
+          _$LoadedRecentlyPlayedState value,
+          $Res Function(_$LoadedRecentlyPlayedState) then) =
+      __$$LoadedRecentlyPlayedStateCopyWithImpl<$Res>;
   @useResult
   $Res call({List<RecentlyPlayedSong> data});
 }
 
 /// @nodoc
-class __$$LoadedRecentlyPlayedBlocStateCopyWithImpl<$Res>
-    extends _$RecentlyPlayedBlocStateCopyWithImpl<$Res,
-        _$LoadedRecentlyPlayedBlocState>
-    implements _$$LoadedRecentlyPlayedBlocStateCopyWith<$Res> {
-  __$$LoadedRecentlyPlayedBlocStateCopyWithImpl(
-      _$LoadedRecentlyPlayedBlocState _value,
-      $Res Function(_$LoadedRecentlyPlayedBlocState) _then)
+class __$$LoadedRecentlyPlayedStateCopyWithImpl<$Res>
+    extends _$RecentlyPlayedStateCopyWithImpl<$Res, _$LoadedRecentlyPlayedState>
+    implements _$$LoadedRecentlyPlayedStateCopyWith<$Res> {
+  __$$LoadedRecentlyPlayedStateCopyWithImpl(_$LoadedRecentlyPlayedState _value,
+      $Res Function(_$LoadedRecentlyPlayedState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -368,7 +354,7 @@ class __$$LoadedRecentlyPlayedBlocStateCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$LoadedRecentlyPlayedBlocState(
+    return _then(_$LoadedRecentlyPlayedState(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -379,14 +365,14 @@ class __$$LoadedRecentlyPlayedBlocStateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$LoadedRecentlyPlayedBlocState implements LoadedRecentlyPlayedBlocState {
-  const _$LoadedRecentlyPlayedBlocState(
+class _$LoadedRecentlyPlayedState implements LoadedRecentlyPlayedState {
+  const _$LoadedRecentlyPlayedState(
       {required final List<RecentlyPlayedSong> data, final String? $type})
       : _data = data,
         $type = $type ?? 'loaded';
 
-  factory _$LoadedRecentlyPlayedBlocState.fromJson(Map<String, dynamic> json) =>
-      _$$LoadedRecentlyPlayedBlocStateFromJson(json);
+  factory _$LoadedRecentlyPlayedState.fromJson(Map<String, dynamic> json) =>
+      _$$LoadedRecentlyPlayedStateFromJson(json);
 
   final List<RecentlyPlayedSong> _data;
   @override
@@ -401,15 +387,15 @@ class _$LoadedRecentlyPlayedBlocState implements LoadedRecentlyPlayedBlocState {
 
   @override
   String toString() {
-    return 'RecentlyPlayedBlocState.loaded(data: $data)';
+    return 'RecentlyPlayedState.loaded(data: $data)';
   }
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedRecentlyPlayedBlocStateCopyWith<_$LoadedRecentlyPlayedBlocState>
-      get copyWith => __$$LoadedRecentlyPlayedBlocStateCopyWithImpl<
-          _$LoadedRecentlyPlayedBlocState>(this, _$identity);
+  _$$LoadedRecentlyPlayedStateCopyWith<_$LoadedRecentlyPlayedState>
+      get copyWith => __$$LoadedRecentlyPlayedStateCopyWithImpl<
+          _$LoadedRecentlyPlayedState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -448,9 +434,9 @@ class _$LoadedRecentlyPlayedBlocState implements LoadedRecentlyPlayedBlocState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ErrorRecentlyPlayedBlocState value) error,
-    required TResult Function(LoadingRecentlyPlayedBlocState value) loading,
-    required TResult Function(LoadedRecentlyPlayedBlocState value) loaded,
+    required TResult Function(ErrorRecentlyPlayedState value) error,
+    required TResult Function(LoadingRecentlyPlayedState value) loading,
+    required TResult Function(LoadedRecentlyPlayedState value) loaded,
   }) {
     return loaded(this);
   }
@@ -458,9 +444,9 @@ class _$LoadedRecentlyPlayedBlocState implements LoadedRecentlyPlayedBlocState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ErrorRecentlyPlayedBlocState value)? error,
-    TResult? Function(LoadingRecentlyPlayedBlocState value)? loading,
-    TResult? Function(LoadedRecentlyPlayedBlocState value)? loaded,
+    TResult? Function(ErrorRecentlyPlayedState value)? error,
+    TResult? Function(LoadingRecentlyPlayedState value)? loading,
+    TResult? Function(LoadedRecentlyPlayedState value)? loaded,
   }) {
     return loaded?.call(this);
   }
@@ -468,9 +454,9 @@ class _$LoadedRecentlyPlayedBlocState implements LoadedRecentlyPlayedBlocState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ErrorRecentlyPlayedBlocState value)? error,
-    TResult Function(LoadingRecentlyPlayedBlocState value)? loading,
-    TResult Function(LoadedRecentlyPlayedBlocState value)? loaded,
+    TResult Function(ErrorRecentlyPlayedState value)? error,
+    TResult Function(LoadingRecentlyPlayedState value)? loading,
+    TResult Function(LoadedRecentlyPlayedState value)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -481,23 +467,22 @@ class _$LoadedRecentlyPlayedBlocState implements LoadedRecentlyPlayedBlocState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LoadedRecentlyPlayedBlocStateToJson(
+    return _$$LoadedRecentlyPlayedStateToJson(
       this,
     );
   }
 }
 
-abstract class LoadedRecentlyPlayedBlocState
-    implements RecentlyPlayedBlocState {
-  const factory LoadedRecentlyPlayedBlocState(
+abstract class LoadedRecentlyPlayedState implements RecentlyPlayedState {
+  const factory LoadedRecentlyPlayedState(
           {required final List<RecentlyPlayedSong> data}) =
-      _$LoadedRecentlyPlayedBlocState;
+      _$LoadedRecentlyPlayedState;
 
-  factory LoadedRecentlyPlayedBlocState.fromJson(Map<String, dynamic> json) =
-      _$LoadedRecentlyPlayedBlocState.fromJson;
+  factory LoadedRecentlyPlayedState.fromJson(Map<String, dynamic> json) =
+      _$LoadedRecentlyPlayedState.fromJson;
 
   List<RecentlyPlayedSong> get data;
   @JsonKey(ignore: true)
-  _$$LoadedRecentlyPlayedBlocStateCopyWith<_$LoadedRecentlyPlayedBlocState>
+  _$$LoadedRecentlyPlayedStateCopyWith<_$LoadedRecentlyPlayedState>
       get copyWith => throw _privateConstructorUsedError;
 }

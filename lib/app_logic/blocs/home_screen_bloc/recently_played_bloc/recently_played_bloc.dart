@@ -3,25 +3,25 @@ import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/services/services.dart';
 
 class RecentlyPlayedBloc
-    extends Bloc<RecentlyPlayedBlocEvent, RecentlyPlayedBlocState> {
+    extends Bloc<RecentlyPlayedBlocEvent, RecentlyPlayedState> {
   final RecentlyPlayedRepository repository;
 
   RecentlyPlayedBloc(this.repository)
-      : super(const RecentlyPlayedBlocState.loading()) {
+      : super(const RecentlyPlayedState.loading()) {
     on<FetchRecentlyPlayedEvent>(_fetchRecentlyPlayed);
   }
 
-  void _fetchRecentlyPlayed(FetchRecentlyPlayedEvent event,
-      Emitter<RecentlyPlayedBlocState> emit) async {
+  void _fetchRecentlyPlayed(
+      FetchRecentlyPlayedEvent event, Emitter<RecentlyPlayedState> emit) async {
     try {
       final recentlyPlayedtList = await _returnSongs();
       if (recentlyPlayedtList.isEmpty) {
-        emit(const RecentlyPlayedBlocState.loading());
+        emit(const RecentlyPlayedState.loading());
       } else {
-        emit(RecentlyPlayedBlocState.loaded(data: recentlyPlayedtList));
+        emit(RecentlyPlayedState.loaded(data: recentlyPlayedtList));
       }
     } catch (error) {
-      emit(const RecentlyPlayedBlocState.error());
+      emit(const RecentlyPlayedState.error());
       print('Error fetching song detail: $error');
     }
   }

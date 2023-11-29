@@ -55,6 +55,7 @@ class FavoriteSongs extends Table {
   TextColumn get songImage => text()();
   TextColumn get type => text()();
   TextColumn get preview => text()();
+  BoolColumn get isFavourite => boolean()();
   @override
   Set<Column> get primaryKey => {id};
 }
@@ -67,6 +68,7 @@ class FavoriteAlbums extends Table {
   TextColumn get songImage => text()();
   TextColumn get type => text()();
   TextColumn get preview => text()();
+  BoolColumn get isFavourite => boolean()();
   @override
   Set<Column> get primaryKey => {id};
 }
@@ -79,6 +81,7 @@ class RecentlySearchedSongs extends Table {
   TextColumn get type => text()();
   TextColumn get songImage => text()();
   TextColumn get preview => text()();
+  BoolColumn get isFavourite => boolean()();
   @override
   Set<Column> get primaryKey => {id};
 }

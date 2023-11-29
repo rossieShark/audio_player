@@ -163,9 +163,9 @@ class _BuildFavoriteArtistSection extends StatelessWidget {
             style: Theme.of(context).textTheme.titleMedium),
       ),
       ResponsiveBuilder(
-        narrow: 107.0,
-        medium: 141.0,
-        large: 160.0,
+        narrow: 108.0,
+        medium: 146.0,
+        large: 165.0,
         builder: (context, child, height) {
           return SizedBox(
             height: height,
@@ -201,7 +201,7 @@ class _BuildBestAlbumsSectionState extends State<_BuildBestAlbumsSection> {
           child: Text(AppLocalizations.of(context)!.bestAlbums,
               style: Theme.of(context).textTheme.titleMedium),
         ),
-        BlocBuilder<AlbumBloc, AlbumState>(builder: (context, state) {
+        BlocBuilder<AlbumBloc, AlbumBlocState>(builder: (context, state) {
           return state.map(
             error: (context) => const NoResultsWidget(),
             loading: (context) => const Center(

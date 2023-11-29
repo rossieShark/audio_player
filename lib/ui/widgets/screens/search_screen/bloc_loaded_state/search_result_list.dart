@@ -51,47 +51,48 @@ class _SearchListViewState extends State<SearchListView> {
                   return HoverableWidget(builder: (context, child, isHovered) {
                     return GestureDetector(
                       onTap: () {
-                        int id = widget.searchResult[index].id;
-                        if ((widget.searchResult[index].type == 'track') &&
-                            !isHovered) {
-                          GoRouter.of(context).push(Uri(
-                                  path:
-                                      '/${routeNameMap[RouteName.detailMusic]!}$id')
-                              .toString());
+                        // int id = widget.searchResult[index].id;
+                        // if ((widget.searchResult[index].type == 'track') &&
+                        //     !isHovered) {
+                        //   GoRouter.of(context).push(Uri(
+                        //           path:
+                        //               '/${routeNameMap[RouteName.detailMusic]!}$id')
+                        //       .toString());
 
-                          recentlySearchedBloc.add(AddToRecentlySearchedEvent(
-                            SongModel(
-                              type: widget.searchResult[index].type,
-                              id: id.toString(),
-                              preview: widget.searchResult[index].preview,
-                              artistNames:
-                                  widget.searchResult[index].artist.name,
-                              title: widget.searchResult[index].title,
-                              image: widget.searchResult[index].artist.image,
-                            ),
-                          ));
-                        } else if ((widget.searchResult[index].type ==
-                                'track') &&
-                            isHovered) {
-                          null;
-                        } else {
-                          GoRouter.of(context).push(Uri(
-                                  path:
-                                      '/${routeNameMap[RouteName.albumDetail]!}$id')
-                              .toString());
+                        //   recentlySearchedBloc.add(AddToRecentlySearchedEvent(
+                        //     SongModel(
+                        //       type: widget.searchResult[index].type,
+                        //       id: id.toString(),
+                        //       preview: widget.searchResult[index].preview,
+                        //       artistNames:
+                        //           widget.searchResult[index].artist.name,
+                        //       title: widget.searchResult[index].title,
+                        //       image: widget.searchResult[index].artist.image,
+                        //     ),
+                        //   )
+                        //   );
+                        // } else if ((widget.searchResult[index].type ==
+                        //         'track') &&
+                        //     isHovered) {
+                        //   null;
+                        // } else {
+                        //   GoRouter.of(context).push(Uri(
+                        //           path:
+                        //               '/${routeNameMap[RouteName.albumDetail]!}$id')
+                        //       .toString());
 
-                          recentlySearchedBloc.add(AddToRecentlySearchedEvent(
-                            SongModel(
-                              preview: widget.searchResult[index].preview,
-                              type: widget.searchResult[index].type,
-                              id: id.toString(),
-                              artistNames:
-                                  widget.searchResult[index].artist.name,
-                              title: widget.searchResult[index].title,
-                              image: widget.searchResult[index].artist.image,
-                            ),
-                          ));
-                        }
+                        //   recentlySearchedBloc.add(AddToRecentlySearchedEvent(
+                        //     SongModel(
+                        //       preview: widget.searchResult[index].preview,
+                        //       type: widget.searchResult[index].type,
+                        //       id: id.toString(),
+                        //       artistNames:
+                        //           widget.searchResult[index].artist.name,
+                        //       title: widget.searchResult[index].title,
+                        //       image: widget.searchResult[index].artist.image,
+                        //     ),
+                        //   ));
+                        // }
                       },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
@@ -184,19 +185,20 @@ class _CreateImageSection extends StatelessWidget {
                                   : Icon(Icons.play_arrow,
                                       color: AppColors.white.color),
                               onPressed: () {
-                                recentlySearchedBloc
-                                    .add(AddToRecentlySearchedEvent(
-                                  SongModel(
-                                    preview: searchResult[index].preview,
-                                    type: searchResult[index].type,
-                                    id: searchResult[index].id.toString(),
-                                    artistNames:
-                                        searchResult[index].artist.name,
-                                    title: searchResult[index].title,
-                                    image: searchResult[index].artist.image,
-                                  ),
-                                ));
-                                playPauseMusic(context, musicProvider);
+                                // recentlySearchedBloc
+                                //     .add(AddToRecentlySearchedEvent(
+                                //   SongModel(
+                                //     preview: searchResult[index].preview,
+                                //     type: searchResult[index].type,
+                                //     id: searchResult[index].id.toString(),
+                                //     artistNames:
+                                //         searchResult[index].artist.name,
+                                //     title: searchResult[index].title,
+                                //     image: searchResult[index].artist.image,
+                                //   ),
+                                // )
+                                // );
+                                // playPauseMusic(context, musicProvider);
                               },
                               containerColor: Colors.transparent)),
                     )

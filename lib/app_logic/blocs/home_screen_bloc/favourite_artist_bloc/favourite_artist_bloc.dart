@@ -4,25 +4,25 @@ import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/services/home_screen_service/home_service.dart';
 
 class FavoriteArtistBloc
-    extends Bloc<FavoriteArtistEvent, FavoriteArtistState> {
+    extends Bloc<FavoriteArtistEvent, FavoriteArtistBlocState> {
   final FavoriteArtistRepository repository;
 
   FavoriteArtistBloc(this.repository)
-      : super(const FavoriteArtistState.loading()) {
+      : super(const FavoriteArtistBlocState.loading()) {
     on<FetchFavoriteArtistsEvent>(_fetchFavoriteArtists);
   }
 
   void _fetchFavoriteArtists(FetchFavoriteArtistsEvent event,
-      Emitter<FavoriteArtistState> emit) async {
+      Emitter<FavoriteArtistBlocState> emit) async {
     try {
       final favoriteArtists = await _returnArtists();
       if (favoriteArtists.isEmpty) {
-        emit(const FavoriteArtistState.loading());
+        emit(const FavoriteArtistBlocState.loading());
       } else {
-        emit(FavoriteArtistState.loaded(data: favoriteArtists));
+        emit(FavoriteArtistBlocState.loaded(data: favoriteArtists));
       }
     } catch (error) {
-      emit(const FavoriteArtistState.error());
+      emit(const FavoriteArtistBlocState.error());
       print('Error fetching song detail: $error');
     }
   }

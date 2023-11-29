@@ -14,23 +14,23 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-AlbumState _$AlbumStateFromJson(Map<String, dynamic> json) {
+AlbumBlocState _$AlbumBlocStateFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'error':
-      return ErrorAlbumState.fromJson(json);
+      return ErrorAlbumBlocState.fromJson(json);
     case 'loading':
-      return LoadingAlbumState.fromJson(json);
+      return LoadingAlbumBlocState.fromJson(json);
     case 'loaded':
-      return LoadedAlbumState.fromJson(json);
+      return LoadedAlbumBlocState.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'AlbumState',
+      throw CheckedFromJsonException(json, 'runtimeType', 'AlbumBlocState',
           'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
 /// @nodoc
-mixin _$AlbumState {
+mixin _$AlbumBlocState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() error,
@@ -55,23 +55,23 @@ mixin _$AlbumState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ErrorAlbumState value) error,
-    required TResult Function(LoadingAlbumState value) loading,
-    required TResult Function(LoadedAlbumState value) loaded,
+    required TResult Function(ErrorAlbumBlocState value) error,
+    required TResult Function(LoadingAlbumBlocState value) loading,
+    required TResult Function(LoadedAlbumBlocState value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ErrorAlbumState value)? error,
-    TResult? Function(LoadingAlbumState value)? loading,
-    TResult? Function(LoadedAlbumState value)? loaded,
+    TResult? Function(ErrorAlbumBlocState value)? error,
+    TResult? Function(LoadingAlbumBlocState value)? loading,
+    TResult? Function(LoadedAlbumBlocState value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ErrorAlbumState value)? error,
-    TResult Function(LoadingAlbumState value)? loading,
-    TResult Function(LoadedAlbumState value)? loaded,
+    TResult Function(ErrorAlbumBlocState value)? error,
+    TResult Function(LoadingAlbumBlocState value)? loading,
+    TResult Function(LoadedAlbumBlocState value)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -79,16 +79,16 @@ mixin _$AlbumState {
 }
 
 /// @nodoc
-abstract class $AlbumStateCopyWith<$Res> {
-  factory $AlbumStateCopyWith(
-          AlbumState value, $Res Function(AlbumState) then) =
-      _$AlbumStateCopyWithImpl<$Res, AlbumState>;
+abstract class $AlbumBlocStateCopyWith<$Res> {
+  factory $AlbumBlocStateCopyWith(
+          AlbumBlocState value, $Res Function(AlbumBlocState) then) =
+      _$AlbumBlocStateCopyWithImpl<$Res, AlbumBlocState>;
 }
 
 /// @nodoc
-class _$AlbumStateCopyWithImpl<$Res, $Val extends AlbumState>
-    implements $AlbumStateCopyWith<$Res> {
-  _$AlbumStateCopyWithImpl(this._value, this._then);
+class _$AlbumBlocStateCopyWithImpl<$Res, $Val extends AlbumBlocState>
+    implements $AlbumBlocStateCopyWith<$Res> {
+  _$AlbumBlocStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -97,35 +97,35 @@ class _$AlbumStateCopyWithImpl<$Res, $Val extends AlbumState>
 }
 
 /// @nodoc
-abstract class _$$ErrorAlbumStateCopyWith<$Res> {
-  factory _$$ErrorAlbumStateCopyWith(
-          _$ErrorAlbumState value, $Res Function(_$ErrorAlbumState) then) =
-      __$$ErrorAlbumStateCopyWithImpl<$Res>;
+abstract class _$$ErrorAlbumBlocStateCopyWith<$Res> {
+  factory _$$ErrorAlbumBlocStateCopyWith(_$ErrorAlbumBlocState value,
+          $Res Function(_$ErrorAlbumBlocState) then) =
+      __$$ErrorAlbumBlocStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ErrorAlbumStateCopyWithImpl<$Res>
-    extends _$AlbumStateCopyWithImpl<$Res, _$ErrorAlbumState>
-    implements _$$ErrorAlbumStateCopyWith<$Res> {
-  __$$ErrorAlbumStateCopyWithImpl(
-      _$ErrorAlbumState _value, $Res Function(_$ErrorAlbumState) _then)
+class __$$ErrorAlbumBlocStateCopyWithImpl<$Res>
+    extends _$AlbumBlocStateCopyWithImpl<$Res, _$ErrorAlbumBlocState>
+    implements _$$ErrorAlbumBlocStateCopyWith<$Res> {
+  __$$ErrorAlbumBlocStateCopyWithImpl(
+      _$ErrorAlbumBlocState _value, $Res Function(_$ErrorAlbumBlocState) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ErrorAlbumState implements ErrorAlbumState {
-  const _$ErrorAlbumState({final String? $type}) : $type = $type ?? 'error';
+class _$ErrorAlbumBlocState implements ErrorAlbumBlocState {
+  const _$ErrorAlbumBlocState({final String? $type}) : $type = $type ?? 'error';
 
-  factory _$ErrorAlbumState.fromJson(Map<String, dynamic> json) =>
-      _$$ErrorAlbumStateFromJson(json);
+  factory _$ErrorAlbumBlocState.fromJson(Map<String, dynamic> json) =>
+      _$$ErrorAlbumBlocStateFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'AlbumState.error()';
+    return 'AlbumBlocState.error()';
   }
 
   @override
@@ -165,9 +165,9 @@ class _$ErrorAlbumState implements ErrorAlbumState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ErrorAlbumState value) error,
-    required TResult Function(LoadingAlbumState value) loading,
-    required TResult Function(LoadedAlbumState value) loaded,
+    required TResult Function(ErrorAlbumBlocState value) error,
+    required TResult Function(LoadingAlbumBlocState value) loading,
+    required TResult Function(LoadedAlbumBlocState value) loaded,
   }) {
     return error(this);
   }
@@ -175,9 +175,9 @@ class _$ErrorAlbumState implements ErrorAlbumState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ErrorAlbumState value)? error,
-    TResult? Function(LoadingAlbumState value)? loading,
-    TResult? Function(LoadedAlbumState value)? loaded,
+    TResult? Function(ErrorAlbumBlocState value)? error,
+    TResult? Function(LoadingAlbumBlocState value)? loading,
+    TResult? Function(LoadedAlbumBlocState value)? loaded,
   }) {
     return error?.call(this);
   }
@@ -185,9 +185,9 @@ class _$ErrorAlbumState implements ErrorAlbumState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ErrorAlbumState value)? error,
-    TResult Function(LoadingAlbumState value)? loading,
-    TResult Function(LoadedAlbumState value)? loaded,
+    TResult Function(ErrorAlbumBlocState value)? error,
+    TResult Function(LoadingAlbumBlocState value)? loading,
+    TResult Function(LoadedAlbumBlocState value)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -198,49 +198,50 @@ class _$ErrorAlbumState implements ErrorAlbumState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ErrorAlbumStateToJson(
+    return _$$ErrorAlbumBlocStateToJson(
       this,
     );
   }
 }
 
-abstract class ErrorAlbumState implements AlbumState {
-  const factory ErrorAlbumState() = _$ErrorAlbumState;
+abstract class ErrorAlbumBlocState implements AlbumBlocState {
+  const factory ErrorAlbumBlocState() = _$ErrorAlbumBlocState;
 
-  factory ErrorAlbumState.fromJson(Map<String, dynamic> json) =
-      _$ErrorAlbumState.fromJson;
+  factory ErrorAlbumBlocState.fromJson(Map<String, dynamic> json) =
+      _$ErrorAlbumBlocState.fromJson;
 }
 
 /// @nodoc
-abstract class _$$LoadingAlbumStateCopyWith<$Res> {
-  factory _$$LoadingAlbumStateCopyWith(
-          _$LoadingAlbumState value, $Res Function(_$LoadingAlbumState) then) =
-      __$$LoadingAlbumStateCopyWithImpl<$Res>;
+abstract class _$$LoadingAlbumBlocStateCopyWith<$Res> {
+  factory _$$LoadingAlbumBlocStateCopyWith(_$LoadingAlbumBlocState value,
+          $Res Function(_$LoadingAlbumBlocState) then) =
+      __$$LoadingAlbumBlocStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingAlbumStateCopyWithImpl<$Res>
-    extends _$AlbumStateCopyWithImpl<$Res, _$LoadingAlbumState>
-    implements _$$LoadingAlbumStateCopyWith<$Res> {
-  __$$LoadingAlbumStateCopyWithImpl(
-      _$LoadingAlbumState _value, $Res Function(_$LoadingAlbumState) _then)
+class __$$LoadingAlbumBlocStateCopyWithImpl<$Res>
+    extends _$AlbumBlocStateCopyWithImpl<$Res, _$LoadingAlbumBlocState>
+    implements _$$LoadingAlbumBlocStateCopyWith<$Res> {
+  __$$LoadingAlbumBlocStateCopyWithImpl(_$LoadingAlbumBlocState _value,
+      $Res Function(_$LoadingAlbumBlocState) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$LoadingAlbumState implements LoadingAlbumState {
-  const _$LoadingAlbumState({final String? $type}) : $type = $type ?? 'loading';
+class _$LoadingAlbumBlocState implements LoadingAlbumBlocState {
+  const _$LoadingAlbumBlocState({final String? $type})
+      : $type = $type ?? 'loading';
 
-  factory _$LoadingAlbumState.fromJson(Map<String, dynamic> json) =>
-      _$$LoadingAlbumStateFromJson(json);
+  factory _$LoadingAlbumBlocState.fromJson(Map<String, dynamic> json) =>
+      _$$LoadingAlbumBlocStateFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'AlbumState.loading()';
+    return 'AlbumBlocState.loading()';
   }
 
   @override
@@ -280,9 +281,9 @@ class _$LoadingAlbumState implements LoadingAlbumState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ErrorAlbumState value) error,
-    required TResult Function(LoadingAlbumState value) loading,
-    required TResult Function(LoadedAlbumState value) loaded,
+    required TResult Function(ErrorAlbumBlocState value) error,
+    required TResult Function(LoadingAlbumBlocState value) loading,
+    required TResult Function(LoadedAlbumBlocState value) loaded,
   }) {
     return loading(this);
   }
@@ -290,9 +291,9 @@ class _$LoadingAlbumState implements LoadingAlbumState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ErrorAlbumState value)? error,
-    TResult? Function(LoadingAlbumState value)? loading,
-    TResult? Function(LoadedAlbumState value)? loaded,
+    TResult? Function(ErrorAlbumBlocState value)? error,
+    TResult? Function(LoadingAlbumBlocState value)? loading,
+    TResult? Function(LoadedAlbumBlocState value)? loaded,
   }) {
     return loading?.call(this);
   }
@@ -300,9 +301,9 @@ class _$LoadingAlbumState implements LoadingAlbumState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ErrorAlbumState value)? error,
-    TResult Function(LoadingAlbumState value)? loading,
-    TResult Function(LoadedAlbumState value)? loaded,
+    TResult Function(ErrorAlbumBlocState value)? error,
+    TResult Function(LoadingAlbumBlocState value)? loading,
+    TResult Function(LoadedAlbumBlocState value)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -313,34 +314,34 @@ class _$LoadingAlbumState implements LoadingAlbumState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LoadingAlbumStateToJson(
+    return _$$LoadingAlbumBlocStateToJson(
       this,
     );
   }
 }
 
-abstract class LoadingAlbumState implements AlbumState {
-  const factory LoadingAlbumState() = _$LoadingAlbumState;
+abstract class LoadingAlbumBlocState implements AlbumBlocState {
+  const factory LoadingAlbumBlocState() = _$LoadingAlbumBlocState;
 
-  factory LoadingAlbumState.fromJson(Map<String, dynamic> json) =
-      _$LoadingAlbumState.fromJson;
+  factory LoadingAlbumBlocState.fromJson(Map<String, dynamic> json) =
+      _$LoadingAlbumBlocState.fromJson;
 }
 
 /// @nodoc
-abstract class _$$LoadedAlbumStateCopyWith<$Res> {
-  factory _$$LoadedAlbumStateCopyWith(
-          _$LoadedAlbumState value, $Res Function(_$LoadedAlbumState) then) =
-      __$$LoadedAlbumStateCopyWithImpl<$Res>;
+abstract class _$$LoadedAlbumBlocStateCopyWith<$Res> {
+  factory _$$LoadedAlbumBlocStateCopyWith(_$LoadedAlbumBlocState value,
+          $Res Function(_$LoadedAlbumBlocState) then) =
+      __$$LoadedAlbumBlocStateCopyWithImpl<$Res>;
   @useResult
   $Res call({List<BestAlbum> data});
 }
 
 /// @nodoc
-class __$$LoadedAlbumStateCopyWithImpl<$Res>
-    extends _$AlbumStateCopyWithImpl<$Res, _$LoadedAlbumState>
-    implements _$$LoadedAlbumStateCopyWith<$Res> {
-  __$$LoadedAlbumStateCopyWithImpl(
-      _$LoadedAlbumState _value, $Res Function(_$LoadedAlbumState) _then)
+class __$$LoadedAlbumBlocStateCopyWithImpl<$Res>
+    extends _$AlbumBlocStateCopyWithImpl<$Res, _$LoadedAlbumBlocState>
+    implements _$$LoadedAlbumBlocStateCopyWith<$Res> {
+  __$$LoadedAlbumBlocStateCopyWithImpl(_$LoadedAlbumBlocState _value,
+      $Res Function(_$LoadedAlbumBlocState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -348,7 +349,7 @@ class __$$LoadedAlbumStateCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$LoadedAlbumState(
+    return _then(_$LoadedAlbumBlocState(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -359,14 +360,14 @@ class __$$LoadedAlbumStateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$LoadedAlbumState implements LoadedAlbumState {
-  const _$LoadedAlbumState(
+class _$LoadedAlbumBlocState implements LoadedAlbumBlocState {
+  const _$LoadedAlbumBlocState(
       {required final List<BestAlbum> data, final String? $type})
       : _data = data,
         $type = $type ?? 'loaded';
 
-  factory _$LoadedAlbumState.fromJson(Map<String, dynamic> json) =>
-      _$$LoadedAlbumStateFromJson(json);
+  factory _$LoadedAlbumBlocState.fromJson(Map<String, dynamic> json) =>
+      _$$LoadedAlbumBlocStateFromJson(json);
 
   final List<BestAlbum> _data;
   @override
@@ -381,14 +382,15 @@ class _$LoadedAlbumState implements LoadedAlbumState {
 
   @override
   String toString() {
-    return 'AlbumState.loaded(data: $data)';
+    return 'AlbumBlocState.loaded(data: $data)';
   }
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedAlbumStateCopyWith<_$LoadedAlbumState> get copyWith =>
-      __$$LoadedAlbumStateCopyWithImpl<_$LoadedAlbumState>(this, _$identity);
+  _$$LoadedAlbumBlocStateCopyWith<_$LoadedAlbumBlocState> get copyWith =>
+      __$$LoadedAlbumBlocStateCopyWithImpl<_$LoadedAlbumBlocState>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -427,9 +429,9 @@ class _$LoadedAlbumState implements LoadedAlbumState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ErrorAlbumState value) error,
-    required TResult Function(LoadingAlbumState value) loading,
-    required TResult Function(LoadedAlbumState value) loaded,
+    required TResult Function(ErrorAlbumBlocState value) error,
+    required TResult Function(LoadingAlbumBlocState value) loading,
+    required TResult Function(LoadedAlbumBlocState value) loaded,
   }) {
     return loaded(this);
   }
@@ -437,9 +439,9 @@ class _$LoadedAlbumState implements LoadedAlbumState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ErrorAlbumState value)? error,
-    TResult? Function(LoadingAlbumState value)? loading,
-    TResult? Function(LoadedAlbumState value)? loaded,
+    TResult? Function(ErrorAlbumBlocState value)? error,
+    TResult? Function(LoadingAlbumBlocState value)? loading,
+    TResult? Function(LoadedAlbumBlocState value)? loaded,
   }) {
     return loaded?.call(this);
   }
@@ -447,9 +449,9 @@ class _$LoadedAlbumState implements LoadedAlbumState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ErrorAlbumState value)? error,
-    TResult Function(LoadingAlbumState value)? loading,
-    TResult Function(LoadedAlbumState value)? loaded,
+    TResult Function(ErrorAlbumBlocState value)? error,
+    TResult Function(LoadingAlbumBlocState value)? loading,
+    TResult Function(LoadedAlbumBlocState value)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -460,21 +462,21 @@ class _$LoadedAlbumState implements LoadedAlbumState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LoadedAlbumStateToJson(
+    return _$$LoadedAlbumBlocStateToJson(
       this,
     );
   }
 }
 
-abstract class LoadedAlbumState implements AlbumState {
-  const factory LoadedAlbumState({required final List<BestAlbum> data}) =
-      _$LoadedAlbumState;
+abstract class LoadedAlbumBlocState implements AlbumBlocState {
+  const factory LoadedAlbumBlocState({required final List<BestAlbum> data}) =
+      _$LoadedAlbumBlocState;
 
-  factory LoadedAlbumState.fromJson(Map<String, dynamic> json) =
-      _$LoadedAlbumState.fromJson;
+  factory LoadedAlbumBlocState.fromJson(Map<String, dynamic> json) =
+      _$LoadedAlbumBlocState.fromJson;
 
   List<BestAlbum> get data;
   @JsonKey(ignore: true)
-  _$$LoadedAlbumStateCopyWith<_$LoadedAlbumState> get copyWith =>
+  _$$LoadedAlbumBlocStateCopyWith<_$LoadedAlbumBlocState> get copyWith =>
       throw _privateConstructorUsedError;
 }

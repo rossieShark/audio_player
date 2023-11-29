@@ -14,23 +14,23 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-GenresState _$GenresStateFromJson(Map<String, dynamic> json) {
+GenresBlocState _$GenresBlocStateFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'error':
-      return ErrorGenresState.fromJson(json);
+      return ErrorGenresBlocState.fromJson(json);
     case 'loading':
-      return LoadingGenresState.fromJson(json);
+      return LoadingGenresBlocState.fromJson(json);
     case 'loaded':
-      return LoadedGenresState.fromJson(json);
+      return LoadedGenresBlocState.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'GenresState',
+      throw CheckedFromJsonException(json, 'runtimeType', 'GenresBlocState',
           'Invalid union type "${json['runtimeType']}"!');
   }
 }
 
 /// @nodoc
-mixin _$GenresState {
+mixin _$GenresBlocState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() error,
@@ -55,23 +55,23 @@ mixin _$GenresState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ErrorGenresState value) error,
-    required TResult Function(LoadingGenresState value) loading,
-    required TResult Function(LoadedGenresState value) loaded,
+    required TResult Function(ErrorGenresBlocState value) error,
+    required TResult Function(LoadingGenresBlocState value) loading,
+    required TResult Function(LoadedGenresBlocState value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ErrorGenresState value)? error,
-    TResult? Function(LoadingGenresState value)? loading,
-    TResult? Function(LoadedGenresState value)? loaded,
+    TResult? Function(ErrorGenresBlocState value)? error,
+    TResult? Function(LoadingGenresBlocState value)? loading,
+    TResult? Function(LoadedGenresBlocState value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ErrorGenresState value)? error,
-    TResult Function(LoadingGenresState value)? loading,
-    TResult Function(LoadedGenresState value)? loaded,
+    TResult Function(ErrorGenresBlocState value)? error,
+    TResult Function(LoadingGenresBlocState value)? loading,
+    TResult Function(LoadedGenresBlocState value)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -79,16 +79,16 @@ mixin _$GenresState {
 }
 
 /// @nodoc
-abstract class $GenresStateCopyWith<$Res> {
-  factory $GenresStateCopyWith(
-          GenresState value, $Res Function(GenresState) then) =
-      _$GenresStateCopyWithImpl<$Res, GenresState>;
+abstract class $GenresBlocStateCopyWith<$Res> {
+  factory $GenresBlocStateCopyWith(
+          GenresBlocState value, $Res Function(GenresBlocState) then) =
+      _$GenresBlocStateCopyWithImpl<$Res, GenresBlocState>;
 }
 
 /// @nodoc
-class _$GenresStateCopyWithImpl<$Res, $Val extends GenresState>
-    implements $GenresStateCopyWith<$Res> {
-  _$GenresStateCopyWithImpl(this._value, this._then);
+class _$GenresBlocStateCopyWithImpl<$Res, $Val extends GenresBlocState>
+    implements $GenresBlocStateCopyWith<$Res> {
+  _$GenresBlocStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -97,35 +97,36 @@ class _$GenresStateCopyWithImpl<$Res, $Val extends GenresState>
 }
 
 /// @nodoc
-abstract class _$$ErrorGenresStateCopyWith<$Res> {
-  factory _$$ErrorGenresStateCopyWith(
-          _$ErrorGenresState value, $Res Function(_$ErrorGenresState) then) =
-      __$$ErrorGenresStateCopyWithImpl<$Res>;
+abstract class _$$ErrorGenresBlocStateCopyWith<$Res> {
+  factory _$$ErrorGenresBlocStateCopyWith(_$ErrorGenresBlocState value,
+          $Res Function(_$ErrorGenresBlocState) then) =
+      __$$ErrorGenresBlocStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ErrorGenresStateCopyWithImpl<$Res>
-    extends _$GenresStateCopyWithImpl<$Res, _$ErrorGenresState>
-    implements _$$ErrorGenresStateCopyWith<$Res> {
-  __$$ErrorGenresStateCopyWithImpl(
-      _$ErrorGenresState _value, $Res Function(_$ErrorGenresState) _then)
+class __$$ErrorGenresBlocStateCopyWithImpl<$Res>
+    extends _$GenresBlocStateCopyWithImpl<$Res, _$ErrorGenresBlocState>
+    implements _$$ErrorGenresBlocStateCopyWith<$Res> {
+  __$$ErrorGenresBlocStateCopyWithImpl(_$ErrorGenresBlocState _value,
+      $Res Function(_$ErrorGenresBlocState) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ErrorGenresState implements ErrorGenresState {
-  const _$ErrorGenresState({final String? $type}) : $type = $type ?? 'error';
+class _$ErrorGenresBlocState implements ErrorGenresBlocState {
+  const _$ErrorGenresBlocState({final String? $type})
+      : $type = $type ?? 'error';
 
-  factory _$ErrorGenresState.fromJson(Map<String, dynamic> json) =>
-      _$$ErrorGenresStateFromJson(json);
+  factory _$ErrorGenresBlocState.fromJson(Map<String, dynamic> json) =>
+      _$$ErrorGenresBlocStateFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'GenresState.error()';
+    return 'GenresBlocState.error()';
   }
 
   @override
@@ -165,9 +166,9 @@ class _$ErrorGenresState implements ErrorGenresState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ErrorGenresState value) error,
-    required TResult Function(LoadingGenresState value) loading,
-    required TResult Function(LoadedGenresState value) loaded,
+    required TResult Function(ErrorGenresBlocState value) error,
+    required TResult Function(LoadingGenresBlocState value) loading,
+    required TResult Function(LoadedGenresBlocState value) loaded,
   }) {
     return error(this);
   }
@@ -175,9 +176,9 @@ class _$ErrorGenresState implements ErrorGenresState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ErrorGenresState value)? error,
-    TResult? Function(LoadingGenresState value)? loading,
-    TResult? Function(LoadedGenresState value)? loaded,
+    TResult? Function(ErrorGenresBlocState value)? error,
+    TResult? Function(LoadingGenresBlocState value)? loading,
+    TResult? Function(LoadedGenresBlocState value)? loaded,
   }) {
     return error?.call(this);
   }
@@ -185,9 +186,9 @@ class _$ErrorGenresState implements ErrorGenresState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ErrorGenresState value)? error,
-    TResult Function(LoadingGenresState value)? loading,
-    TResult Function(LoadedGenresState value)? loaded,
+    TResult Function(ErrorGenresBlocState value)? error,
+    TResult Function(LoadingGenresBlocState value)? loading,
+    TResult Function(LoadedGenresBlocState value)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -198,50 +199,50 @@ class _$ErrorGenresState implements ErrorGenresState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ErrorGenresStateToJson(
+    return _$$ErrorGenresBlocStateToJson(
       this,
     );
   }
 }
 
-abstract class ErrorGenresState implements GenresState {
-  const factory ErrorGenresState() = _$ErrorGenresState;
+abstract class ErrorGenresBlocState implements GenresBlocState {
+  const factory ErrorGenresBlocState() = _$ErrorGenresBlocState;
 
-  factory ErrorGenresState.fromJson(Map<String, dynamic> json) =
-      _$ErrorGenresState.fromJson;
+  factory ErrorGenresBlocState.fromJson(Map<String, dynamic> json) =
+      _$ErrorGenresBlocState.fromJson;
 }
 
 /// @nodoc
-abstract class _$$LoadingGenresStateCopyWith<$Res> {
-  factory _$$LoadingGenresStateCopyWith(_$LoadingGenresState value,
-          $Res Function(_$LoadingGenresState) then) =
-      __$$LoadingGenresStateCopyWithImpl<$Res>;
+abstract class _$$LoadingGenresBlocStateCopyWith<$Res> {
+  factory _$$LoadingGenresBlocStateCopyWith(_$LoadingGenresBlocState value,
+          $Res Function(_$LoadingGenresBlocState) then) =
+      __$$LoadingGenresBlocStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingGenresStateCopyWithImpl<$Res>
-    extends _$GenresStateCopyWithImpl<$Res, _$LoadingGenresState>
-    implements _$$LoadingGenresStateCopyWith<$Res> {
-  __$$LoadingGenresStateCopyWithImpl(
-      _$LoadingGenresState _value, $Res Function(_$LoadingGenresState) _then)
+class __$$LoadingGenresBlocStateCopyWithImpl<$Res>
+    extends _$GenresBlocStateCopyWithImpl<$Res, _$LoadingGenresBlocState>
+    implements _$$LoadingGenresBlocStateCopyWith<$Res> {
+  __$$LoadingGenresBlocStateCopyWithImpl(_$LoadingGenresBlocState _value,
+      $Res Function(_$LoadingGenresBlocState) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$LoadingGenresState implements LoadingGenresState {
-  const _$LoadingGenresState({final String? $type})
+class _$LoadingGenresBlocState implements LoadingGenresBlocState {
+  const _$LoadingGenresBlocState({final String? $type})
       : $type = $type ?? 'loading';
 
-  factory _$LoadingGenresState.fromJson(Map<String, dynamic> json) =>
-      _$$LoadingGenresStateFromJson(json);
+  factory _$LoadingGenresBlocState.fromJson(Map<String, dynamic> json) =>
+      _$$LoadingGenresBlocStateFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'GenresState.loading()';
+    return 'GenresBlocState.loading()';
   }
 
   @override
@@ -281,9 +282,9 @@ class _$LoadingGenresState implements LoadingGenresState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ErrorGenresState value) error,
-    required TResult Function(LoadingGenresState value) loading,
-    required TResult Function(LoadedGenresState value) loaded,
+    required TResult Function(ErrorGenresBlocState value) error,
+    required TResult Function(LoadingGenresBlocState value) loading,
+    required TResult Function(LoadedGenresBlocState value) loaded,
   }) {
     return loading(this);
   }
@@ -291,9 +292,9 @@ class _$LoadingGenresState implements LoadingGenresState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ErrorGenresState value)? error,
-    TResult? Function(LoadingGenresState value)? loading,
-    TResult? Function(LoadedGenresState value)? loaded,
+    TResult? Function(ErrorGenresBlocState value)? error,
+    TResult? Function(LoadingGenresBlocState value)? loading,
+    TResult? Function(LoadedGenresBlocState value)? loaded,
   }) {
     return loading?.call(this);
   }
@@ -301,9 +302,9 @@ class _$LoadingGenresState implements LoadingGenresState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ErrorGenresState value)? error,
-    TResult Function(LoadingGenresState value)? loading,
-    TResult Function(LoadedGenresState value)? loaded,
+    TResult Function(ErrorGenresBlocState value)? error,
+    TResult Function(LoadingGenresBlocState value)? loading,
+    TResult Function(LoadedGenresBlocState value)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -314,34 +315,34 @@ class _$LoadingGenresState implements LoadingGenresState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LoadingGenresStateToJson(
+    return _$$LoadingGenresBlocStateToJson(
       this,
     );
   }
 }
 
-abstract class LoadingGenresState implements GenresState {
-  const factory LoadingGenresState() = _$LoadingGenresState;
+abstract class LoadingGenresBlocState implements GenresBlocState {
+  const factory LoadingGenresBlocState() = _$LoadingGenresBlocState;
 
-  factory LoadingGenresState.fromJson(Map<String, dynamic> json) =
-      _$LoadingGenresState.fromJson;
+  factory LoadingGenresBlocState.fromJson(Map<String, dynamic> json) =
+      _$LoadingGenresBlocState.fromJson;
 }
 
 /// @nodoc
-abstract class _$$LoadedGenresStateCopyWith<$Res> {
-  factory _$$LoadedGenresStateCopyWith(
-          _$LoadedGenresState value, $Res Function(_$LoadedGenresState) then) =
-      __$$LoadedGenresStateCopyWithImpl<$Res>;
+abstract class _$$LoadedGenresBlocStateCopyWith<$Res> {
+  factory _$$LoadedGenresBlocStateCopyWith(_$LoadedGenresBlocState value,
+          $Res Function(_$LoadedGenresBlocState) then) =
+      __$$LoadedGenresBlocStateCopyWithImpl<$Res>;
   @useResult
   $Res call({List<MusicGenre> data});
 }
 
 /// @nodoc
-class __$$LoadedGenresStateCopyWithImpl<$Res>
-    extends _$GenresStateCopyWithImpl<$Res, _$LoadedGenresState>
-    implements _$$LoadedGenresStateCopyWith<$Res> {
-  __$$LoadedGenresStateCopyWithImpl(
-      _$LoadedGenresState _value, $Res Function(_$LoadedGenresState) _then)
+class __$$LoadedGenresBlocStateCopyWithImpl<$Res>
+    extends _$GenresBlocStateCopyWithImpl<$Res, _$LoadedGenresBlocState>
+    implements _$$LoadedGenresBlocStateCopyWith<$Res> {
+  __$$LoadedGenresBlocStateCopyWithImpl(_$LoadedGenresBlocState _value,
+      $Res Function(_$LoadedGenresBlocState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -349,7 +350,7 @@ class __$$LoadedGenresStateCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$LoadedGenresState(
+    return _then(_$LoadedGenresBlocState(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -360,14 +361,14 @@ class __$$LoadedGenresStateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$LoadedGenresState implements LoadedGenresState {
-  const _$LoadedGenresState(
+class _$LoadedGenresBlocState implements LoadedGenresBlocState {
+  const _$LoadedGenresBlocState(
       {required final List<MusicGenre> data, final String? $type})
       : _data = data,
         $type = $type ?? 'loaded';
 
-  factory _$LoadedGenresState.fromJson(Map<String, dynamic> json) =>
-      _$$LoadedGenresStateFromJson(json);
+  factory _$LoadedGenresBlocState.fromJson(Map<String, dynamic> json) =>
+      _$$LoadedGenresBlocStateFromJson(json);
 
   final List<MusicGenre> _data;
   @override
@@ -382,14 +383,15 @@ class _$LoadedGenresState implements LoadedGenresState {
 
   @override
   String toString() {
-    return 'GenresState.loaded(data: $data)';
+    return 'GenresBlocState.loaded(data: $data)';
   }
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedGenresStateCopyWith<_$LoadedGenresState> get copyWith =>
-      __$$LoadedGenresStateCopyWithImpl<_$LoadedGenresState>(this, _$identity);
+  _$$LoadedGenresBlocStateCopyWith<_$LoadedGenresBlocState> get copyWith =>
+      __$$LoadedGenresBlocStateCopyWithImpl<_$LoadedGenresBlocState>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -428,9 +430,9 @@ class _$LoadedGenresState implements LoadedGenresState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ErrorGenresState value) error,
-    required TResult Function(LoadingGenresState value) loading,
-    required TResult Function(LoadedGenresState value) loaded,
+    required TResult Function(ErrorGenresBlocState value) error,
+    required TResult Function(LoadingGenresBlocState value) loading,
+    required TResult Function(LoadedGenresBlocState value) loaded,
   }) {
     return loaded(this);
   }
@@ -438,9 +440,9 @@ class _$LoadedGenresState implements LoadedGenresState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ErrorGenresState value)? error,
-    TResult? Function(LoadingGenresState value)? loading,
-    TResult? Function(LoadedGenresState value)? loaded,
+    TResult? Function(ErrorGenresBlocState value)? error,
+    TResult? Function(LoadingGenresBlocState value)? loading,
+    TResult? Function(LoadedGenresBlocState value)? loaded,
   }) {
     return loaded?.call(this);
   }
@@ -448,9 +450,9 @@ class _$LoadedGenresState implements LoadedGenresState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ErrorGenresState value)? error,
-    TResult Function(LoadingGenresState value)? loading,
-    TResult Function(LoadedGenresState value)? loaded,
+    TResult Function(ErrorGenresBlocState value)? error,
+    TResult Function(LoadingGenresBlocState value)? loading,
+    TResult Function(LoadedGenresBlocState value)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -461,21 +463,21 @@ class _$LoadedGenresState implements LoadedGenresState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LoadedGenresStateToJson(
+    return _$$LoadedGenresBlocStateToJson(
       this,
     );
   }
 }
 
-abstract class LoadedGenresState implements GenresState {
-  const factory LoadedGenresState({required final List<MusicGenre> data}) =
-      _$LoadedGenresState;
+abstract class LoadedGenresBlocState implements GenresBlocState {
+  const factory LoadedGenresBlocState({required final List<MusicGenre> data}) =
+      _$LoadedGenresBlocState;
 
-  factory LoadedGenresState.fromJson(Map<String, dynamic> json) =
-      _$LoadedGenresState.fromJson;
+  factory LoadedGenresBlocState.fromJson(Map<String, dynamic> json) =
+      _$LoadedGenresBlocState.fromJson;
 
   List<MusicGenre> get data;
   @JsonKey(ignore: true)
-  _$$LoadedGenresStateCopyWith<_$LoadedGenresState> get copyWith =>
+  _$$LoadedGenresBlocStateCopyWith<_$LoadedGenresBlocState> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -5,6 +5,7 @@ class SongModel {
   final String image;
   final String type;
   final String preview;
+  bool isFavourite;
 
   SongModel(
       {required this.id,
@@ -12,5 +13,6 @@ class SongModel {
       required this.artistNames,
       required this.image,
       required this.type,
-      required this.preview});
+      required this.preview,
+      required this.isFavourite});
 }

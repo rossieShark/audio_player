@@ -19,7 +19,7 @@ class RecentlySearchedProvider extends ChangeNotifier {
         id: int.parse(detailSong.id),
         title: detailSong.title,
         artist: detailSong.artistNames,
-        songImage: detailSong.image,
+        songImage: detailSong.image, isFavourite: detailSong.isFavourite,
       ),
     );
   }
@@ -47,6 +47,7 @@ class RecentlySearchedProvider extends ChangeNotifier {
             title: favoriteSong.title,
             artistNames: favoriteSong.artist,
             image: favoriteSong.songImage,
+            isFavourite: favoriteSong.isFavourite,
           ),
         )
         .toList();

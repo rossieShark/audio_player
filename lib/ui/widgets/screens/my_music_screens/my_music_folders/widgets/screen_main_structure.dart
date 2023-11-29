@@ -1,4 +1,6 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_bloc.dart';
+import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_event.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
@@ -10,8 +12,6 @@ class FavoritePageStructure extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
-    final favoriteProvider =
-        Provider.of<FavoriteProvider>(context, listen: true);
     return Scaffold(
       backgroundColor: AppColors.background.color,
       appBar: AppBar(
@@ -40,7 +40,8 @@ class FavoritePageStructure extends StatelessWidget {
               iconData: Icons.filter_list_alt,
               color: AppColors.accent.color,
               onPressed: () {
-                favoriteProvider.toggleSortSong();
+                final bloc = context.read<FavoriteSongBloc>();
+                bloc.add(SortSongsEvent());
               })
         ],
       ),
@@ -60,16 +61,25 @@ class FavoriteBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return songs.isEmpty
-        ? Center(
-            child: Text(
-            AppLocalizations.of(context)!.noMusicState,
-            style: TextStyle(
-                color: AppColors.white.color,
-                fontSize: 18,
-                fontFamily: AppFonts.colombia.font,
-                fontWeight: FontWeight.w700),
-          ))
-        : child;
+    return songs.isEmpty ? NoFavouritesTextWidget() : child;
+  }
+}
+
+class NoFavouritesTextWidget extends StatelessWidget {
+  const NoFavouritesTextWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: Text(
+      AppLocalizations.of(context)!.noMusicState,
+      style: TextStyle(
+          color: AppColors.white.color,
+          fontSize: 18,
+          fontFamily: AppFonts.colombia.font,
+          fontWeight: FontWeight.w700),
+    ));
   }
 }

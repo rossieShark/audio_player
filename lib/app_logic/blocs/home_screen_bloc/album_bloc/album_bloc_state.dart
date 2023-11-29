@@ -4,11 +4,11 @@ part 'album_bloc_state.freezed.dart';
 part 'album_bloc_state.g.dart';
 
 @Freezed(equal: false)
-class AlbumState with _$AlbumState {
-  const factory AlbumState.error() = ErrorAlbumState;
-  const factory AlbumState.loading() = LoadingAlbumState;
-  const factory AlbumState.loaded({required List<BestAlbum> data}) =
-      LoadedAlbumState;
-  factory AlbumState.fromJson(Map<String, Object?> json) =>
-      _$AlbumStateFromJson(json);
+class AlbumBlocState with _$AlbumBlocState {
+  const factory AlbumBlocState.error() = ErrorAlbumBlocState;
+  const factory AlbumBlocState.loading() = LoadingAlbumBlocState;
+  const factory AlbumBlocState.loaded({required List<BestAlbum> data}) =
+      LoadedAlbumBlocState;
+  factory AlbumBlocState.fromJson(Map<String, Object?> json) =>
+      _$AlbumBlocStateFromJson(json);
 }

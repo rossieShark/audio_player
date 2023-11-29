@@ -1,40 +1,69 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_bloc.dart';
+import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_event.dart';
+import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_states.dart';
+import 'package:audio_player/domain/entity/favorite_song_model.dart';
+
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
+import 'package:audio_player/ui/widgets/screens/index.dart';
 import 'package:audio_player/ui/widgets/screens/my_music_screens/my_music_index.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class MyFavoriteSongs extends StatelessWidget {
+class MyFavoriteSongs extends StatefulWidget {
   const MyFavoriteSongs({super.key});
 
   @override
+  State<MyFavoriteSongs> createState() => _MyFavoriteSongsState();
+}
+
+class _MyFavoriteSongsState extends State<MyFavoriteSongs> {
+  @override
+  void initState() {
+    super.initState();
+    final bloc = context.read<FavoriteSongBloc>();
+    bloc.add(const LoadFavouriteSongsEvent());
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final favoriteProvider =
-        Provider.of<FavoriteProvider>(context, listen: true);
-    return FavoritePageStructure(
-      child: FavoriteBody(
-        songs: favoriteProvider.favoriteSong,
-        child: FavoriteSongListView(
-          favoriteProvider: favoriteProvider,
-        ),
-      ),
+    return const FavoritePageStructure(
+      child: FavoriteSongListView(),
     );
   }
 }
 
-class FavoriteSongListView extends StatelessWidget {
+class FavoriteSongListView extends StatefulWidget {
   const FavoriteSongListView({
     super.key,
-    required this.favoriteProvider,
   });
 
-  final FavoriteProvider favoriteProvider;
+  @override
+  State<FavoriteSongListView> createState() => _FavoriteSongListViewState();
+}
+
+class _FavoriteSongListViewState extends State<FavoriteSongListView> {
+  @override
+  Widget build(BuildContext context) {
+    print('FavoriteSongListView rebuilt');
+    return BlocBuilder<FavoriteSongBloc, FavouriteSongState>(
+        builder: (context, state) {
+      return state.map(
+          loading: (context) => Center(child: CustomFadingCircleIndicator()),
+          noResults: (context) => NoFavouritesTextWidget(),
+          loaded: (data) => _CreateFavouritesSongListView(songs: data.data));
+    });
+  }
+}
+
+class _CreateFavouritesSongListView extends StatelessWidget {
+  final List<SongModel> songs;
+  const _CreateFavouritesSongListView({super.key, required this.songs});
 
   @override
   Widget build(BuildContext context) {
-    final songs = favoriteProvider.favoriteSong;
     return ListView.separated(
         itemCount: songs.length,
         separatorBuilder: (context, index) => const Divider(),
@@ -54,7 +83,8 @@ class FavoriteSongListView extends StatelessWidget {
                     child: const Icon(Icons.delete, color: Colors.white),
                   ),
                   onDismissed: (direction) {
-                    favoriteProvider.removeFromFavorites(song);
+                    final bloc = context.read<FavoriteSongBloc>();
+                    bloc.add(RemoveSongsEvent(song));
                   },
                   child: FavouriteListContent(song: song),
                 ),
@@ -77,7 +107,8 @@ class FavoriteSongListView extends StatelessWidget {
                     child: const Icon(Icons.delete, color: Colors.white),
                   ),
                   onDismissed: (direction) {
-                    favoriteProvider.removeFromFavorites(song);
+                    final bloc = context.read<FavoriteSongBloc>();
+                    bloc.add(RemoveSongsEvent(song));
                   },
                   child: CustomListViewContent(
                     imageSection: ResponsiveBuilder(

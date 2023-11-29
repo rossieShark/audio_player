@@ -1,46 +1,46 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'recently_played_state.dart';
+part of 'recently_played_bloc_state.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ErrorRecentlyPlayedBlocState _$$ErrorRecentlyPlayedBlocStateFromJson(
+_$ErrorRecentlyPlayedState _$$ErrorRecentlyPlayedStateFromJson(
         Map<String, dynamic> json) =>
-    _$ErrorRecentlyPlayedBlocState(
+    _$ErrorRecentlyPlayedState(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$ErrorRecentlyPlayedBlocStateToJson(
-        _$ErrorRecentlyPlayedBlocState instance) =>
+Map<String, dynamic> _$$ErrorRecentlyPlayedStateToJson(
+        _$ErrorRecentlyPlayedState instance) =>
     <String, dynamic>{
       'runtimeType': instance.$type,
     };
 
-_$LoadingRecentlyPlayedBlocState _$$LoadingRecentlyPlayedBlocStateFromJson(
+_$LoadingRecentlyPlayedState _$$LoadingRecentlyPlayedStateFromJson(
         Map<String, dynamic> json) =>
-    _$LoadingRecentlyPlayedBlocState(
+    _$LoadingRecentlyPlayedState(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$LoadingRecentlyPlayedBlocStateToJson(
-        _$LoadingRecentlyPlayedBlocState instance) =>
+Map<String, dynamic> _$$LoadingRecentlyPlayedStateToJson(
+        _$LoadingRecentlyPlayedState instance) =>
     <String, dynamic>{
       'runtimeType': instance.$type,
     };
 
-_$LoadedRecentlyPlayedBlocState _$$LoadedRecentlyPlayedBlocStateFromJson(
+_$LoadedRecentlyPlayedState _$$LoadedRecentlyPlayedStateFromJson(
         Map<String, dynamic> json) =>
-    _$LoadedRecentlyPlayedBlocState(
+    _$LoadedRecentlyPlayedState(
       data: (json['data'] as List<dynamic>)
           .map((e) => RecentlyPlayedSong.fromJson(e as Map<String, dynamic>))
           .toList(),
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$LoadedRecentlyPlayedBlocStateToJson(
-        _$LoadedRecentlyPlayedBlocState instance) =>
+Map<String, dynamic> _$$LoadedRecentlyPlayedStateToJson(
+        _$LoadedRecentlyPlayedState instance) =>
     <String, dynamic>{
       'data': instance.data,
       'runtimeType': instance.$type,

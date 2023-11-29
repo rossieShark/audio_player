@@ -24,7 +24,7 @@ class _FavoriteArtistListState extends State<FavoriteArtistList> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FavoriteArtistBloc, FavoriteArtistState>(
+    return BlocBuilder<FavoriteArtistBloc, FavoriteArtistBlocState>(
         builder: (context, state) {
       return state.map(
         error: (context) => const NoResultsWidget(),

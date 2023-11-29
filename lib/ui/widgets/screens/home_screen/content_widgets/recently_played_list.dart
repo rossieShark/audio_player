@@ -29,7 +29,7 @@ class _RecentlyPlayedListState extends State<RecentlyPlayedList> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RecentlyPlayedBloc, RecentlyPlayedBlocState>(
+    return BlocBuilder<RecentlyPlayedBloc, RecentlyPlayedState>(
         builder: (context, state) {
       return state.map(
         error: (context) => const NoResultsWidget(),
