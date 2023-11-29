@@ -14,9 +14,6 @@ class SetGetItDependencies {
   }
 
   void setupProviderDependencies() {
-    GetIt.instance.registerLazySingleton<RecentlySearchedProvider>(
-      () => RecentlySearchedProvider(GetIt.instance.get()),
-    );
     GetIt.instance.registerLazySingleton<MusicProvider>(
       () => MusicProvider(GetIt.instance.get()),
     );
@@ -88,6 +85,8 @@ class SetGetItDependencies {
         () => MyMusicFolderBlocBloc(GetIt.instance.get()));
     GetIt.instance.registerFactory<DetailMusicPageBloc>(
         () => DetailMusicPageBloc(GetIt.instance.get()));
+    // GetIt.instance.registerFactory<RecentlySearchedBloc>(
+    //     () => RecentlySearchedBloc(GetIt.instance.get()));
     GetIt.instance
         .registerFactory<RecentlyPlayedIdCubit>(() => RecentlyPlayedIdCubit());
   }

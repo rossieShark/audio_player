@@ -36,26 +36,14 @@ class _AudioPlayerAppState extends State<AudioPlayerApp> {
           create: (context) => GetIt.I.get(),
         ),
         BlocProvider<MyMusicFolderBlocBloc>(
-          create: (context) => GetIt.I.get(),
+          create: (context) => GetIt.I.get()..add(LoadMyMusicFoldersEvent()),
         ),
         BlocProvider<RecentlyPlayedIdCubit>(
           create: (context) => GetIt.I.get(),
         ),
-        ChangeNotifierProvider<RecentlySearchedProvider>(
-          create: (context) {
-            final RecentlySearchedProvider provider = GetIt.I.get();
-            provider.loadRecentlySearched();
-            return provider;
-          },
+        BlocProvider<RecentlySearchedBloc>(
+          create: (context) => GetIt.I.get()..add(LoadRecentlySearchedEvent()),
         ),
-        // ChangeNotifierProvider<RecentlyPlayedIdProvider>(
-        //   create: (context) => RecentlyPlayedIdProvider(),
-        // ),
-        // ChangeNotifierProvider<MyMusicFoldersProvider>(create: (context) {
-        //   final MyMusicFoldersProvider provider = GetIt.I.get();
-        //   provider.loadFolders();
-        //   return provider;
-        // }),
         ChangeNotifierProvider<MusicProvider>(
             create: (context) => GetIt.I.get()),
       ],

@@ -16,23 +16,23 @@ class RecentlySearchedList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final recentlySearched = Provider.of<RecentlySearchedProvider>(context);
-
-    return recentlySearched.recentlySearchedList.isEmpty
-        ? _CreateListEmptyState(width: width)
-        : _CreateListView(width: width, recentlySearched: recentlySearched);
+    return BlocBuilder<RecentlySearchedBloc, RecentlySearchedState>(
+        builder: (context, state) {
+      return state.map(
+        loading: (context) => Center(child: CustomFadingCircleIndicator()),
+        empty: (context) => _CreateListEmptyState(width: width),
+        loaded: (data) =>
+            _CreateListView(width: width, recentlySearched: data.data),
+      );
+    });
   }
 }
 
 class _CreateListView extends StatelessWidget {
-  const _CreateListView({
-    required this.width,
-    required this.recentlySearched,
-  });
+  final List<SongModel> recentlySearched;
+  const _CreateListView({required this.width, required this.recentlySearched});
 
   final double width;
-
-  final RecentlySearchedProvider recentlySearched;
 
   @override
   Widget build(BuildContext context) {
@@ -46,14 +46,13 @@ class _CreateListView extends StatelessWidget {
         builder: (context, child, widthVal) {
           return SizedBox(
             width: widthVal,
-            height: recentlySearched.recentlySearchedList.length.toDouble() *
-                    listHeight +
-                padding * 6,
+            height:
+                recentlySearched.length.toDouble() * listHeight + padding * 6,
             child: ListView.separated(
-                itemCount: recentlySearched.recentlySearchedList.length,
+                itemCount: recentlySearched.length,
                 separatorBuilder: (context, index) => const Divider(),
                 itemBuilder: (context, index) {
-                  final song = recentlySearched.recentlySearchedList[index];
+                  final song = recentlySearched[index];
 
                   return GestureDetector(
                     onTap: () {

@@ -114,6 +114,9 @@ class AudioAppDatabase extends _$AudioAppDatabase {
       into(recentlySearchedSongs).insert(song, mode: InsertMode.replace);
 
   Future<void> clearAll() => delete(recentlySearchedSongs).go();
+  Future<void> deleteRecentlySearched(int songId) =>
+      (delete(recentlySearchedSongs)..where((song) => song.id.equals(songId)))
+          .go();
 //Genres
   Future<List<MusicGenre>> getallGenres() {
     return select(musicGenres).get();

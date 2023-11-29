@@ -10,7 +10,6 @@ class MobileRecentlySearchedSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<RecentlySearchedProvider>(context);
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       const SizedBox(
         height: 20,
@@ -38,7 +37,8 @@ class MobileRecentlySearchedSection extends StatelessWidget {
       Center(
         child: TextButton(
           onPressed: () {
-            provider.removeAll();
+            final bloc = context.read<RecentlySearchedBloc>();
+            bloc.add(RemoveAllEvent());
           },
           child: Text(
             AppLocalizations.of(context)!.clearAll,

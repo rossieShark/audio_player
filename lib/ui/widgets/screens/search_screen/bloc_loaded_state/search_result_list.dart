@@ -1,8 +1,10 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/models.dart';
+import 'package:audio_player/ui/navigation/navigation_routes.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SearchListView extends StatefulWidget {
   const SearchListView({
@@ -16,104 +18,90 @@ class SearchListView extends StatefulWidget {
 }
 
 class _SearchListViewState extends State<SearchListView> {
-  late RecentlySearchedBloc recentlySearchedBloc;
   final double tabBarWidth = 51;
   final double padding = 16;
 
   SearchResultBloc get searchBloc => BlocProvider.of<SearchResultBloc>(context);
-  @override
-  void initState() {
-    super.initState();
-
-    recentlySearchedBloc = RecentlySearchedBloc(
-      Provider.of<RecentlySearchedProvider>(context, listen: false),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RecentlySearchedBloc, RecentlySearchedState>(
-        builder: (context, state) {
-      final width = MediaQuery.of(context).size.width;
-      return ResponsiveBuilder(
-          narrow: width,
-          medium: width - tabBarWidth,
-          large: width - tabBarWidth,
-          builder: (context, child, widthVal) {
-            return SizedBox(
-              width: widthVal,
-              height: (80 + padding) * widget.searchResult.length.toDouble(),
-              child: ListView(
-                scrollDirection: Axis.vertical,
-                physics: const NeverScrollableScrollPhysics(),
-                children: List.generate(widget.searchResult.length, (index) {
-                  return HoverableWidget(builder: (context, child, isHovered) {
-                    return GestureDetector(
-                      onTap: () {
-                        // int id = widget.searchResult[index].id;
-                        // if ((widget.searchResult[index].type == 'track') &&
-                        //     !isHovered) {
-                        //   GoRouter.of(context).push(Uri(
-                        //           path:
-                        //               '/${routeNameMap[RouteName.detailMusic]!}$id')
-                        //       .toString());
-
-                        //   recentlySearchedBloc.add(AddToRecentlySearchedEvent(
-                        //     SongModel(
-                        //       type: widget.searchResult[index].type,
-                        //       id: id.toString(),
-                        //       preview: widget.searchResult[index].preview,
-                        //       artistNames:
-                        //           widget.searchResult[index].artist.name,
-                        //       title: widget.searchResult[index].title,
-                        //       image: widget.searchResult[index].artist.image,
-                        //     ),
-                        //   )
-                        //   );
-                        // } else if ((widget.searchResult[index].type ==
-                        //         'track') &&
-                        //     isHovered) {
-                        //   null;
-                        // } else {
-                        //   GoRouter.of(context).push(Uri(
-                        //           path:
-                        //               '/${routeNameMap[RouteName.albumDetail]!}$id')
-                        //       .toString());
-
-                        //   recentlySearchedBloc.add(AddToRecentlySearchedEvent(
-                        //     SongModel(
-                        //       preview: widget.searchResult[index].preview,
-                        //       type: widget.searchResult[index].type,
-                        //       id: id.toString(),
-                        //       artistNames:
-                        //           widget.searchResult[index].artist.name,
-                        //       title: widget.searchResult[index].title,
-                        //       image: widget.searchResult[index].artist.image,
-                        //     ),
-                        //   ));
-                        // }
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-                        child: CustomListViewContent(
-                          imageSection: _CreateImageSection(
-                              searchResult: widget.searchResult,
-                              index: index,
-                              listHeight: 80),
-                          titleSection: CreateSongTitle(
-                            artistName: widget.searchResult[index].artist.name,
-                            songTitle: widget.searchResult[index].title,
-                            maxLines: 2,
-                          ),
+    final width = MediaQuery.of(context).size.width;
+    return ResponsiveBuilder(
+        narrow: width,
+        medium: width - tabBarWidth,
+        large: width - tabBarWidth,
+        builder: (context, child, widthVal) {
+          return SizedBox(
+            width: widthVal,
+            height: (80 + padding) * widget.searchResult.length.toDouble(),
+            child: ListView(
+              scrollDirection: Axis.vertical,
+              physics: const NeverScrollableScrollPhysics(),
+              children: List.generate(widget.searchResult.length, (index) {
+                return HoverableWidget(builder: (context, child, isHovered) {
+                  return GestureDetector(
+                    onTap: () {
+                      // int id = widget.searchResult[index].id;
+                      // if ((widget.searchResult[index].type == 'track') &&
+                      //     !isHovered) {
+                      //   GoRouter.of(context).push(Uri(
+                      //           path:
+                      //               '/${routeNameMap[RouteName.detailMusic]!}$id')
+                      //       .toString());
+                      //   final bloc = context.read<RecentlySearchedBloc>();
+                      //   bloc.add(AddToRecentlySearchedEvent(
+                      //     SongModel(
+                      //       type: widget.searchResult[index].type,
+                      //       id: id.toString(),
+                      //       preview: widget.searchResult[index].preview,
+                      //       artistNames: widget.searchResult[index].artist.name,
+                      //       title: widget.searchResult[index].title,
+                      //       image: widget.searchResult[index].artist.image,
+                      //       isFavourite: false,
+                      //     ),
+                      //   ));
+                      // } else if ((widget.searchResult[index].type == 'track') &&
+                      //     isHovered) {
+                      //   null;
+                      // } else {
+                      //   GoRouter.of(context).push(Uri(
+                      //           path:
+                      //               '/${routeNameMap[RouteName.albumDetail]!}$id')
+                      //       .toString());
+                      //   final bloc = context.read<RecentlySearchedBloc>();
+                      //   bloc.add(AddToRecentlySearchedEvent(
+                      //     SongModel(
+                      //       preview: widget.searchResult[index].preview,
+                      //       type: widget.searchResult[index].type,
+                      //       id: id.toString(),
+                      //       artistNames: widget.searchResult[index].artist.name,
+                      //       title: widget.searchResult[index].title,
+                      //       image: widget.searchResult[index].artist.image,
+                      //       isFavourite: false,
+                      //     ),
+                      //   ));
+                      // }
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                      child: CustomListViewContent(
+                        imageSection: _CreateImageSection(
+                            searchResult: widget.searchResult,
+                            index: index,
+                            listHeight: 80),
+                        titleSection: CreateSongTitle(
+                          artistName: widget.searchResult[index].artist.name,
+                          songTitle: widget.searchResult[index].title,
+                          maxLines: 2,
                         ),
                       ),
-                    );
-                  });
-                }),
-              ),
-            );
-          });
-    });
+                    ),
+                  );
+                });
+              }),
+            ),
+          );
+        });
   }
 }
 
@@ -182,20 +170,21 @@ class _CreateImageSection extends StatelessWidget {
                                   : Icon(Icons.play_arrow,
                                       color: AppColors.white.color),
                               onPressed: () {
-                                // recentlySearchedBloc
-                                //     .add(AddToRecentlySearchedEvent(
-                                //   SongModel(
-                                //     preview: searchResult[index].preview,
-                                //     type: searchResult[index].type,
-                                //     id: searchResult[index].id.toString(),
-                                //     artistNames:
-                                //         searchResult[index].artist.name,
-                                //     title: searchResult[index].title,
-                                //     image: searchResult[index].artist.image,
-                                //   ),
-                                // )
-                                // );
-                                // playPauseMusic(context, musicProvider);
+                                final bloc =
+                                    context.read<RecentlySearchedBloc>();
+                                bloc.add(AddToRecentlySearchedEvent(
+                                  SongModel(
+                                    preview: searchResult[index].preview,
+                                    type: searchResult[index].type,
+                                    id: searchResult[index].id.toString(),
+                                    artistNames:
+                                        searchResult[index].artist.name,
+                                    title: searchResult[index].title,
+                                    image: searchResult[index].artist.image,
+                                    isFavourite: false,
+                                  ),
+                                ));
+                                playPauseMusic(context, musicProvider);
                               },
                               containerColor: Colors.transparent)),
                     )

@@ -3,21 +3,41 @@ import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
-class CreateResentlySearchedListView extends StatefulWidget {
+class CreateResentlySearchedListView extends StatelessWidget {
+  final double width;
   const CreateResentlySearchedListView({
     super.key,
     required this.width,
   });
 
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<RecentlySearchedBloc, RecentlySearchedState>(
+        builder: (context, state) {
+      if (state is LoadedRecentlySearchedState) {
+        return _CreateResentlySearchedListView(
+            width: width, recentlySearched: state.data);
+      } else {
+        return Container();
+      }
+    });
+  }
+}
+
+class _CreateResentlySearchedListView extends StatefulWidget {
+  final List<SongModel> recentlySearched;
+  const _CreateResentlySearchedListView(
+      {super.key, required this.width, required this.recentlySearched});
+
   final double width;
 
   @override
-  State<CreateResentlySearchedListView> createState() =>
+  State<_CreateResentlySearchedListView> createState() =>
       _CreateResentlySearchedListViewState();
 }
 
 class _CreateResentlySearchedListViewState
-    extends State<CreateResentlySearchedListView> {
+    extends State<_CreateResentlySearchedListView> {
   final ScrollController _horizontalScroll = ScrollController();
 
   bool _canScrollBack = false;
@@ -44,7 +64,6 @@ class _CreateResentlySearchedListViewState
 
   @override
   Widget build(BuildContext context) {
-    final recentlySearched = Provider.of<RecentlySearchedProvider>(context);
     const double listHeight = 70;
     return HoverableWidget(builder: (context, child, isHovered) {
       return Stack(
@@ -52,11 +71,11 @@ class _CreateResentlySearchedListViewState
           SizedBox(
             height: 200,
             child: ListView.builder(
-                itemCount: recentlySearched.recentlySearchedList.length,
+                itemCount: widget.recentlySearched.length,
                 scrollDirection: Axis.horizontal,
                 controller: _horizontalScroll,
                 itemBuilder: (context, index) {
-                  final song = recentlySearched.recentlySearchedList[index];
+                  final song = widget.recentlySearched[index];
                   return GestureDetector(
                     onTap: () {},
                     child: _CreateListViewContent(
@@ -94,7 +113,6 @@ class _CreateListViewContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final recentlySearched = Provider.of<RecentlySearchedProvider>(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
       child: HoverableWidget(builder: (context, child, isHovered) {
@@ -103,7 +121,6 @@ class _CreateListViewContent extends StatelessWidget {
             _CreateSongInfoLayer(song: song),
             Positioned.fill(
                 child: _CreateButtonsLayer(
-              recentlySearched: recentlySearched,
               song: song,
               isHovered: isHovered,
             ))
@@ -156,12 +173,10 @@ class _CreateSongInfoLayer extends StatelessWidget {
 
 class _CreateButtonsLayer extends StatelessWidget {
   const _CreateButtonsLayer({
-    required this.recentlySearched,
     required this.song,
     required this.isHovered,
   });
 
-  final RecentlySearchedProvider recentlySearched;
   final SongModel song;
   final bool isHovered;
 
@@ -193,7 +208,8 @@ class _CreateButtonsLayer extends StatelessWidget {
       children: [
         IconButtonWidget(
           onPressed: () {
-            recentlySearched.removeFromFavorites(song);
+            final bloc = context.read<RecentlySearchedBloc>();
+            bloc.add(RemoveFromRecentlySearchedEvent(song));
           },
           iconData: Icons.cancel,
           size: 30,
