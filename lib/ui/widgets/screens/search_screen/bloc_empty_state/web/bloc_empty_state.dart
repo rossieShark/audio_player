@@ -17,7 +17,7 @@ class _CreateBlocEmptyStateState extends State<CreateBlocEmptyState> {
   @override
   void initState() {
     super.initState();
-    context.read<RecentlySearchedBloc>().add(LoadRecentlySearchedEvent());
+    context.read<RecentlySearchedBloc>().add(const LoadRecentlySearchedEvent());
   }
 
   @override
@@ -26,8 +26,8 @@ class _CreateBlocEmptyStateState extends State<CreateBlocEmptyState> {
       child: BlocBuilder<RecentlySearchedBloc, RecentlySearchedState>(
           builder: (context, state) {
         return state.map(
-          loading: (context) => Center(child: CustomFadingCircleIndicator()),
-          empty: (context) => CreateGenresSection(),
+          loading: (context) => const Center(child: CustomFadingCircleIndicator()),
+          empty: (context) => const CreateGenresSection(),
           loaded: (data) => const Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,

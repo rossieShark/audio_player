@@ -19,7 +19,7 @@ class RecentlySearchedList extends StatelessWidget {
     return BlocBuilder<RecentlySearchedBloc, RecentlySearchedState>(
         builder: (context, state) {
       return state.map(
-        loading: (context) => Center(child: CustomFadingCircleIndicator()),
+        loading: (context) => const Center(child: CustomFadingCircleIndicator()),
         empty: (context) => _CreateListEmptyState(width: width),
         loaded: (data) =>
             _CreateListView(width: width, recentlySearched: data.data),

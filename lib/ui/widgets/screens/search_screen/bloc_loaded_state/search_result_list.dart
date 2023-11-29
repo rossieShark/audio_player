@@ -1,10 +1,8 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/models.dart';
-import 'package:audio_player/ui/navigation/navigation_routes.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class SearchListView extends StatefulWidget {
   const SearchListView({

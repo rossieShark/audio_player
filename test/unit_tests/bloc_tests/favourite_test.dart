@@ -1,4 +1,3 @@
-import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/favorite_song_model.dart';
 
 import 'package:bloc_test/bloc_test.dart';
@@ -37,9 +36,13 @@ void main() {
       when(() => mockFavoriteProvider.isFavoriteSong('songId'))
           .thenReturn(false);
       when(() => mockFavoriteProvider.addToFavorites(any()))
-          .thenAnswer((_) async {});
+          .thenAnswer((_) async {
+            return null;
+          });
       when(() => mockFavoriteProvider.removeFromFavorites(any()))
-          .thenAnswer((_) async {});
+          .thenAnswer((_) async {
+            return null;
+          });
       return favoriteBloc;
     },
     act: (bloc) => bloc.add(ToggleFavoriteSongEvent(createSong())),
@@ -59,9 +62,13 @@ void main() {
       when(() => mockFavoriteProvider.isFavoriteSong('songId'))
           .thenReturn(true);
       when(() => mockFavoriteProvider.addToFavorites(any()))
-          .thenAnswer((_) async {});
+          .thenAnswer((_) async {
+            return null;
+          });
       when(() => mockFavoriteProvider.removeFromFavorites(any()))
-          .thenAnswer((_) async {});
+          .thenAnswer((_) async {
+            return null;
+          });
       return favoriteBloc;
     },
     act: (bloc) => bloc.add(ToggleFavoriteSongEvent(createSong())),
@@ -81,9 +88,13 @@ void main() {
       when(() => mockFavoriteProvider.isFavoriteAlbum('songId'))
           .thenReturn(false);
       when(() => mockFavoriteProvider.addToFavoritesAlbum(any()))
-          .thenAnswer((_) async {});
+          .thenAnswer((_) async {
+            return null;
+          });
       when(() => mockFavoriteProvider.removeFromFavoritesAlbum(any()))
-          .thenAnswer((_) async {});
+          .thenAnswer((_) async {
+            return null;
+          });
       return favoriteBloc;
     },
     act: (bloc) => bloc.add(ToggleFavoriteAlbumEvent(createSong())),
@@ -103,9 +114,13 @@ void main() {
       when(() => mockFavoriteProvider.isFavoriteAlbum('songId'))
           .thenReturn(true);
       when(() => mockFavoriteProvider.addToFavoritesAlbum(any()))
-          .thenAnswer((_) async {});
+          .thenAnswer((_) async {
+            return null;
+          });
       when(() => mockFavoriteProvider.removeFromFavoritesAlbum(any()))
-          .thenAnswer((_) async {});
+          .thenAnswer((_) async {
+            return null;
+          });
       return favoriteBloc;
     },
     act: (bloc) => bloc.add(ToggleFavoriteAlbumEvent(createSong())),

@@ -14,7 +14,7 @@ class LoadRecentlySearchedEvent extends RecentlySearchedEvent {
 class AddToRecentlySearchedEvent extends RecentlySearchedEvent {
   final SongModel songModel;
 
-  AddToRecentlySearchedEvent(this.songModel);
+  const AddToRecentlySearchedEvent(this.songModel);
 
   @override
   // TODO: implement props

@@ -38,7 +38,7 @@ class MobileRecentlySearchedSection extends StatelessWidget {
         child: TextButton(
           onPressed: () {
             final bloc = context.read<RecentlySearchedBloc>();
-            bloc.add(RemoveAllEvent());
+            bloc.add(const RemoveAllEvent());
           },
           child: Text(
             AppLocalizations.of(context)!.clearAll,

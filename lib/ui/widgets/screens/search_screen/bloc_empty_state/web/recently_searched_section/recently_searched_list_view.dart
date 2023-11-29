@@ -27,7 +27,7 @@ class CreateResentlySearchedListView extends StatelessWidget {
 class _CreateResentlySearchedListView extends StatefulWidget {
   final List<SongModel> recentlySearched;
   const _CreateResentlySearchedListView(
-      {super.key, required this.width, required this.recentlySearched});
+      {required this.width, required this.recentlySearched});
 
   final double width;
 
