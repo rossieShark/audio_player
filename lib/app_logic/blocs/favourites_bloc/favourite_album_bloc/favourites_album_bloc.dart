@@ -1,6 +1,4 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_album_bloc/favourites_album_event.dart';
-import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_album_bloc/favourites_album_states.dart';
 import 'package:audio_player/domain/entity/favorite_song_model.dart';
 import 'package:audio_player/services/database_service.dart';
 

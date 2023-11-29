@@ -1,7 +1,5 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_album_bloc/favourites_album_bloc.dart';
-import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_bloc.dart';
-import 'package:audio_player/app_logic/blocs/my_music_folders_bloc/my_music_foldder_bloc.dart';
+
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/ui/theme/theme.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
@@ -40,6 +38,9 @@ class _AudioPlayerAppState extends State<AudioPlayerApp> {
         BlocProvider<MyMusicFolderBlocBloc>(
           create: (context) => GetIt.I.get(),
         ),
+        BlocProvider<RecentlyPlayedIdCubit>(
+          create: (context) => GetIt.I.get(),
+        ),
         ChangeNotifierProvider<RecentlySearchedProvider>(
           create: (context) {
             final RecentlySearchedProvider provider = GetIt.I.get();
@@ -47,9 +48,9 @@ class _AudioPlayerAppState extends State<AudioPlayerApp> {
             return provider;
           },
         ),
-        ChangeNotifierProvider<RecentlyPlayedIdProvider>(
-          create: (context) => RecentlyPlayedIdProvider(),
-        ),
+        // ChangeNotifierProvider<RecentlyPlayedIdProvider>(
+        //   create: (context) => RecentlyPlayedIdProvider(),
+        // ),
         // ChangeNotifierProvider<MyMusicFoldersProvider>(create: (context) {
         //   final MyMusicFoldersProvider provider = GetIt.I.get();
         //   provider.loadFolders();

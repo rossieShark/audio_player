@@ -1,7 +1,4 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_album_bloc/favourites_album_bloc.dart';
-import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_album_bloc/favourites_album_event.dart';
-import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_album_bloc/favourites_album_states.dart';
 import 'package:audio_player/domain/entity/favorite_song_model.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 import 'package:audio_player/ui/widgets/screens/my_music_screens/my_music_index.dart';
@@ -27,7 +24,7 @@ class _MyFavoriteAlbumState extends State<MyFavoriteAlbum> {
 
   @override
   Widget build(BuildContext context) {
-    return FavoritePageStructure(
+    return const FavoritePageStructure(
       child: FavoriteAlbumListView(),
     );
   }
@@ -43,8 +40,9 @@ class FavoriteAlbumListView extends StatelessWidget {
     return BlocBuilder<FavoriteAlbumBloc, FavoriteAlbumState>(
         builder: (context, state) {
       return state.map(
-          loading: (context) => Center(child: CustomFadingCircleIndicator()),
-          noResults: (context) => NoFavouritesTextWidget(),
+          loading: (context) =>
+              const Center(child: CustomFadingCircleIndicator()),
+          noResults: (context) => const NoFavouritesTextWidget(),
           loaded: (data) => _CreateFavouriteAlbumListView(albums: data.data));
     });
   }
@@ -53,7 +51,6 @@ class FavoriteAlbumListView extends StatelessWidget {
 class _CreateFavouriteAlbumListView extends StatelessWidget {
   final List<SongModel> albums;
   const _CreateFavouriteAlbumListView({
-    super.key,
     required this.albums,
   });
 

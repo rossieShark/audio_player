@@ -1,6 +1,4 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_bloc.dart';
-import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_event.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
@@ -41,7 +39,7 @@ class FavoritePageStructure extends StatelessWidget {
               color: AppColors.accent.color,
               onPressed: () {
                 final bloc = context.read<FavoriteSongBloc>();
-                bloc.add(SortSongsEvent());
+                bloc.add(const SortSongsEvent());
               })
         ],
       ),
@@ -61,7 +59,7 @@ class FavoriteBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return songs.isEmpty ? NoFavouritesTextWidget() : child;
+    return songs.isEmpty ? const NoFavouritesTextWidget() : child;
   }
 }
 

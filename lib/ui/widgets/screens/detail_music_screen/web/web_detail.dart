@@ -12,7 +12,7 @@ class WebDetailMusicPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final id = Provider.of<RecentlyPlayedIdProvider>(context).id;
+    final id = context.watch<RecentlyPlayedIdCubit>().state;
 
     if (id == null) {
       return SizedBox(

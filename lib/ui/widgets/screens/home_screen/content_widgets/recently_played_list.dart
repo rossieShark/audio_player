@@ -183,8 +183,7 @@ class RecentlyPlayedPageContent extends StatelessWidget {
       required this.artistName});
 
   void playPauseMusic(BuildContext context, MusicProvider musicProvider) {
-    Provider.of<RecentlyPlayedIdProvider>(context, listen: false)
-        .setId(id.toString());
+    context.read<RecentlyPlayedIdCubit>().setId(id.toString());
     if (musicProvider.isCurrentlyPlaying(id)) {
       if (musicProvider.isPlaying) {
         musicProvider.pause();

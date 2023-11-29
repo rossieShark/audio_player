@@ -1,6 +1,4 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/app_logic/blocs/my_music_folders_bloc/my_music_foldder_bloc.dart';
-import 'package:audio_player/app_logic/blocs/my_music_folders_bloc/my_music_foldder_state.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
@@ -63,14 +61,14 @@ class _MyMusicPageState extends State<MyMusicPage> {
         ],
       ),
       body: PlatformBuilder(
-          web: Column(
+          web: const Column(
             children: [
-              const Padding(
+              Padding(
                 padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
                 child: _MyFavoriteListView(),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
                 child: _NewFoldersBlocBuilder(),
               ),
             ],
@@ -90,8 +88,8 @@ class _MyMusicPageState extends State<MyMusicPage> {
                 padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
                 child: _MyFavoriteListView(),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
                 child: _NewFoldersBlocBuilder(),
               ),
             ],
@@ -196,7 +194,7 @@ class _NewFoldersBlocBuilder extends StatelessWidget {
     return BlocBuilder<MyMusicFolderBlocBloc, MyMusicFolderState>(
         builder: (context, state) {
       return state.map(
-        empty: (context) => SizedBox(),
+        empty: (context) => const SizedBox(),
         loaded: (folders) => _NewFolddersListView(
           folders: folders.folders,
         ),
@@ -209,7 +207,6 @@ class _NewFolddersListView extends StatelessWidget {
   final List<FavoriteFolder> folders;
   const _NewFolddersListView({
     required this.folders,
-    super.key,
   });
 
   @override

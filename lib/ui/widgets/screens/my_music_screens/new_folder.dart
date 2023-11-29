@@ -98,7 +98,6 @@ class _NewFolderState extends State<NewFolder> {
 
 class _AddFolderButton extends StatelessWidget {
   const _AddFolderButton({
-    super.key,
     required TextEditingController newFolderTextField,
   }) : _newFolderTextField = newFolderTextField;
 

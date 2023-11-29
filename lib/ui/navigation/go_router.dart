@@ -1,5 +1,5 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_bloc.dart';
+
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 import 'package:audio_player/ui/widgets/screens/index.dart';
 import 'package:audio_player/ui/widgets/screens/log_pages/sign_in_page.dart';
@@ -246,12 +246,7 @@ final webRouter = GoRouter(
                   GoRoute(
                     path: routeNameMap[RouteName.favoriteTracks]!,
                     pageBuilder: (context, state) =>
-                        CupertinoPage(child: MyFavoriteSongs()
-                            // BlocProvider<FavoriteSongBloc>(
-                            //   create: (context) => GetIt.I.get(),
-                            // ),
-
-                            ),
+                        const CupertinoPage(child: MyFavoriteSongs()),
                   ),
                   GoRoute(
                     path: routeNameMap[RouteName.favoriteAlbums]!,

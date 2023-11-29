@@ -1,9 +1,8 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/models.dart';
-import 'package:audio_player/ui/navigation/navigation_routes.dart';
+
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class SearchListView extends StatefulWidget {
   const SearchListView({
@@ -129,7 +128,8 @@ class _CreateImageSection extends StatelessWidget {
   final List<SearchData> searchResult;
   final int index;
   void playPauseMusic(BuildContext context, MusicProvider musicProvider) {
-    Provider.of<RecentlyPlayedIdProvider>(context, listen: false)
+    context
+        .read<RecentlyPlayedIdCubit>()
         .setId(searchResult[index].id.toString());
     if (musicProvider.isCurrentlyPlaying(searchResult[index].id)) {
       if (musicProvider.isPlaying) {
@@ -151,9 +151,6 @@ class _CreateImageSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final musicProvider = Provider.of<MusicProvider>(context, listen: false);
-    RecentlySearchedBloc recentlySearchedBloc = RecentlySearchedBloc(
-      Provider.of<RecentlySearchedProvider>(context, listen: false),
-    );
     return Stack(
       children: [
         ImageinAlbum(

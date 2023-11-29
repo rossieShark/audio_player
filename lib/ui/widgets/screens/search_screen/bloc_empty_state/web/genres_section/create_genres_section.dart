@@ -66,7 +66,6 @@ class _GenresListState extends State<_GenresList> {
 
 class _GenresGridView extends StatelessWidget {
   const _GenresGridView({
-    super.key,
     required this.genres,
   });
 

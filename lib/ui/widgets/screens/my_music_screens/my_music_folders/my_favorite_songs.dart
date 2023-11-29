@@ -1,7 +1,4 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_bloc.dart';
-import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_event.dart';
-import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_states.dart';
 import 'package:audio_player/domain/entity/favorite_song_model.dart';
 
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
@@ -51,8 +48,9 @@ class _FavoriteSongListViewState extends State<FavoriteSongListView> {
     return BlocBuilder<FavoriteSongBloc, FavouriteSongState>(
         builder: (context, state) {
       return state.map(
-          loading: (context) => Center(child: CustomFadingCircleIndicator()),
-          noResults: (context) => NoFavouritesTextWidget(),
+          loading: (context) =>
+              const Center(child: CustomFadingCircleIndicator()),
+          noResults: (context) => const NoFavouritesTextWidget(),
           loaded: (data) => _CreateFavouritesSongListView(songs: data.data));
     });
   }
@@ -60,7 +58,7 @@ class _FavoriteSongListViewState extends State<FavoriteSongListView> {
 
 class _CreateFavouritesSongListView extends StatelessWidget {
   final List<SongModel> songs;
-  const _CreateFavouritesSongListView({super.key, required this.songs});
+  const _CreateFavouritesSongListView({required this.songs});
 
   @override
   Widget build(BuildContext context) {

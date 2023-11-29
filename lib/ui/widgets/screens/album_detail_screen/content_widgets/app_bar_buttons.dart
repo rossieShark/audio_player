@@ -1,7 +1,4 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_album_bloc/favourites_album_bloc.dart';
-import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_album_bloc/favourites_album_event.dart';
-import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_album_bloc/favourites_album_states.dart';
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
@@ -24,8 +21,7 @@ class CreatePlayButtonSection extends StatelessWidget {
       required this.songList});
 
   void playPauseMusic(BuildContext context, MusicProvider musicProvider) {
-    Provider.of<RecentlyPlayedIdProvider>(context, listen: false)
-        .setId(songList[0].id.toString());
+    context.read<RecentlyPlayedIdCubit>().setId(songList[0].id.toString());
 
     if (musicProvider.isPlaying) {
       musicProvider.pause();

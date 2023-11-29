@@ -60,8 +60,7 @@ class CreateImageSection extends StatelessWidget {
   final SongModel song;
   final double height;
   void playPauseMusic(BuildContext context, MusicProvider musicProvider) {
-    Provider.of<RecentlyPlayedIdProvider>(context, listen: false)
-        .setId(song.id.toString());
+    context.read<RecentlyPlayedIdCubit>().setId(song.id.toString());
     if (musicProvider.isCurrentlyPlaying(int.parse(song.id))) {
       if (musicProvider.isPlaying) {
         musicProvider.pause();

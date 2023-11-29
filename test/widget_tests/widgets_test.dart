@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/ui/widgets/widgets/responsive_widgets/platform_widget/extended_platform.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
