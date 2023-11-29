@@ -1,4 +1,3 @@
-export 'package:audio_player/app_logic/providers/favorite_provider.dart';
 export 'package:audio_player/app_logic/blocs/album_detail_bloc/album_detail_bloc.dart';
 export 'package:provider/provider.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';

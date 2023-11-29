@@ -3,14 +3,6 @@ import 'package:equatable/equatable.dart';
 
 import 'package:audio_player/domain/entity/models.dart';
 
-// abstract class FavoriteSongEvent {}
-
-// class ToggleFavoriteSongEvent extends FavoriteSongEvent {
-//   final SongModel songModel;
-
-//   ToggleFavoriteSongEvent(this.songModel);
-// }
-
 abstract class FavoriteSongEvent extends Equatable {
   const FavoriteSongEvent();
 }
@@ -19,7 +11,6 @@ class LoadFavouriteSongsEvent extends FavoriteSongEvent {
   const LoadFavouriteSongsEvent();
 
   @override
-  // TODO: implement props
   List<Object?> get props => [];
 }
 
@@ -53,18 +44,10 @@ class IsFavouriteSongEvent extends FavoriteSongEvent {
   @override
   List<Object> get props => [songId];
 }
-// class UpdateNotesEvent extends NotesBlocEvent {
-//   final NotesModel oldNote;
-//   final NotesModel newNote;
-//   const UpdateNotesEvent(this.oldNote, this.newNote);
-
-//   @override
-//   List<Object> get props => [newNote];
-// }
 
 class ToggleIsFavourite extends FavoriteSongEvent {
   final SongModel detailSong;
-  ToggleIsFavourite({
+  const ToggleIsFavourite({
     required this.detailSong,
   });
   @override

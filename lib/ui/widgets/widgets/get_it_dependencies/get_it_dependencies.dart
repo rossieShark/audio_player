@@ -1,4 +1,5 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_album_bloc/favourites_album_bloc.dart';
 import 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_bloc.dart';
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/services/database_service.dart';
@@ -15,9 +16,6 @@ class SetGetItDependencies {
   }
 
   void setupProviderDependencies() {
-    // GetIt.instance.registerLazySingleton<FavoriteProvider>(
-    //   () => FavoriteProvider(GetIt.instance.get()),
-    // );
     GetIt.instance.registerLazySingleton<RecentlySearchedProvider>(
       () => RecentlySearchedProvider(GetIt.instance.get()),
     );
@@ -89,6 +87,8 @@ class SetGetItDependencies {
         () => AlbumDetailBloc(GetIt.instance.get()));
     GetIt.instance.registerFactory<FavoriteSongBloc>(
         () => FavoriteSongBloc(GetIt.instance.get()));
+    GetIt.instance.registerFactory<FavoriteAlbumBloc>(
+        () => FavoriteAlbumBloc(GetIt.instance.get()));
     GetIt.instance.registerFactory<DetailMusicPageBloc>(
         () => DetailMusicPageBloc(GetIt.instance.get()));
   }

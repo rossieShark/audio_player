@@ -28,51 +28,32 @@ class LikeButtonWidget extends StatefulWidget {
 }
 
 class _LikeButtonWidgetState extends State<LikeButtonWidget> {
-// late FavoriteBloc favoriteBloc;
   bool isFavorite = false;
-  // void _toggleFavorite() {
-  //   setState(() {
-  //     isFavorite = !isFavorite;
-  //   });
-  // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-
-  //   favoriteBloc = FavoriteBloc(
-  //     Provider.of<FavoriteProvider>(context, listen: false),
-  //   );
-  // }
-
-  // @override
-  // void didChangeDependencies() {
-  //   final favoriteProvider =
-  //       Provider.of<FavoriteProvider>(context, listen: false);
-
-  //   isFavorite = favoriteProvider.isFavoriteSong(widget.id);
-
-  //   super.didChangeDependencies();
-  // }
 
   @override
   Widget build(BuildContext context) {
-    return LikeButton(
-        onPressed: () {
-          // _toggleFavorite();
-          final songInfoModel = SongModel(
-            preview: widget.preview,
-            type: "track",
-            id: widget.id,
-            artistNames: widget.artistNames,
-            title: widget.title,
-            image: widget.image,
-            isFavourite: false,
-          );
+    return BlocBuilder<FavoriteSongBloc, FavouriteSongState>(
+        builder: (context, state) {
+      if (state is LoadedFavouriteSongState) {
+        isFavorite = state.data.any((song) => song.id == widget.id);
+      } else {
+        isFavorite = false;
+      }
+      return LikeButton(
+          onPressed: () {
+            final bloc = context.read<FavoriteSongBloc>();
+            final songInfoModel = SongModel(
+                preview: widget.preview,
+                type: "track",
+                id: widget.id,
+                artistNames: widget.artistNames,
+                title: widget.title,
+                image: widget.image,
+                isFavourite: isFavorite);
 
-          final bloc = context.read<FavoriteSongBloc>();
-          bloc.add(ToggleIsFavourite(detailSong: songInfoModel));
-        },
-        isFavorite: isFavorite);
+            bloc.add(ToggleIsFavourite(detailSong: songInfoModel));
+          },
+          isFavorite: isFavorite);
+    });
   }
 }
