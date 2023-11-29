@@ -1,4 +1,6 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/my_music_folders_bloc/my_music_foldder_bloc.dart';
+import 'package:audio_player/app_logic/blocs/my_music_folders_bloc/my_music_foldder_state.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
@@ -69,12 +71,7 @@ class _MyMusicPageState extends State<MyMusicPage> {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                child: Consumer<MyMusicFoldersProvider>(
-                    builder: (context, folders, child) {
-                  return _NewFoldersList(
-                    folders: folders.folders,
-                  );
-                }),
+                child: _NewFoldersBlocBuilder(),
               ),
             ],
           ),
@@ -95,12 +92,7 @@ class _MyMusicPageState extends State<MyMusicPage> {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                child: Consumer<MyMusicFoldersProvider>(
-                    builder: (context, folders, child) {
-                  return _NewFoldersList(
-                    folders: folders.folders,
-                  );
-                }),
+                child: _NewFoldersBlocBuilder(),
               ),
             ],
           ),
@@ -195,9 +187,30 @@ List<FavoriteFolder> initializeFolders(BuildContext context) {
   ];
 }
 
-class _NewFoldersList extends StatelessWidget {
+class _NewFoldersBlocBuilder extends StatelessWidget {
+  // final List<FavoriteFolder> folders;
+  const _NewFoldersBlocBuilder();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<MyMusicFolderBlocBloc, MyMusicFolderState>(
+        builder: (context, state) {
+      return state.map(
+        empty: (context) => SizedBox(),
+        loaded: (folders) => _NewFolddersListView(
+          folders: folders.folders,
+        ),
+      );
+    });
+  }
+}
+
+class _NewFolddersListView extends StatelessWidget {
   final List<FavoriteFolder> folders;
-  const _NewFoldersList({required this.folders});
+  const _NewFolddersListView({
+    required this.folders,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

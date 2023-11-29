@@ -19,9 +19,9 @@ class SetGetItDependencies {
     GetIt.instance.registerLazySingleton<RecentlySearchedProvider>(
       () => RecentlySearchedProvider(GetIt.instance.get()),
     );
-    GetIt.instance.registerLazySingleton<MyMusicFoldersProvider>(
-      () => MyMusicFoldersProvider(GetIt.instance.get()),
-    );
+    // GetIt.instance.registerLazySingleton<MyMusicFoldersProvider>(
+    //   () => MyMusicFoldersProvider(GetIt.instance.get()),
+    // );
     GetIt.instance.registerLazySingleton<MusicProvider>(
       () => MusicProvider(GetIt.instance.get()),
     );
@@ -89,6 +89,8 @@ class SetGetItDependencies {
         () => FavoriteSongBloc(GetIt.instance.get()));
     GetIt.instance.registerFactory<FavoriteAlbumBloc>(
         () => FavoriteAlbumBloc(GetIt.instance.get()));
+    GetIt.instance.registerFactory<MyMusicFolderBlocBloc>(
+        () => MyMusicFolderBlocBloc(GetIt.instance.get()));
     GetIt.instance.registerFactory<DetailMusicPageBloc>(
         () => DetailMusicPageBloc(GetIt.instance.get()));
   }

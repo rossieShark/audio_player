@@ -1,4 +1,5 @@
 import 'package:audio_player/databases/database.dart';
+import 'package:audio_player/domain/entity/favorite_folder_model.dart';
 import 'package:audio_player/domain/entity/favorite_song_model.dart';
 
 class DatabaseService {
@@ -71,5 +72,27 @@ class DatabaseService {
         )
         .toList();
     return loadedFavoriteAlbums;
+  }
+
+  Future<List<FavoriteFolder>> returnMyMusicFolderList() async {
+    final folders = await _database.getFolders();
+    final loadedFolders = folders
+        .map(
+          (folder) => FavoriteFolder(
+            title: folder.name,
+            image: folder.image,
+          ),
+        )
+        .toList();
+    return loadedFolders;
+  }
+
+  Future<void> addToFolders(FavoriteFolder folder) async {
+    await _database.insertToMyFolders(
+      MyMusicFolder(
+        name: folder.title,
+        image: folder.image,
+      ),
+    );
   }
 }

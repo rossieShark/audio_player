@@ -4,6 +4,7 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -20,8 +21,11 @@ class _NewFolderState extends State<NewFolder> {
   @override
   void initState() {
     super.initState();
-    _newFolderTextField = TextEditingController();
+    _initialiseNewFoldderTextField();
+  }
 
+  void _initialiseNewFoldderTextField() {
+    _newFolderTextField = TextEditingController();
     _newFolderTextField.text = 'Playlist';
   }
 
@@ -33,8 +37,6 @@ class _NewFolderState extends State<NewFolder> {
 
   @override
   Widget build(BuildContext context) {
-    final folders = Provider.of<MyMusicFoldersProvider>(context);
-
     return Scaffold(
         backgroundColor: AppColors.black.color.withOpacity(0.7),
         body: SingleChildScrollView(
@@ -82,36 +84,8 @@ class _NewFolderState extends State<NewFolder> {
                               AppColors.darkAccent.color,
                             ],
                           )),
-                      child: TextButton(
-                          onPressed: () {
-                            if (_newFolderTextField.text.isNotEmpty &&
-                                !folders.doesFolderExist(
-                                    _newFolderTextField.text)) {
-                              setState(() {
-                                folders.addToFolders(FavoriteFolder(
-                                  image: imagesMap[Images.playlist]!,
-                                  title: _newFolderTextField.text,
-                                ));
-                              });
-                              print(folders.folders);
-                              context.pop();
-                            } else {
-                              showDialog(
-                                context: context,
-                                builder: (context) => SignAlert(
-                                  text: AppLocalizations.of(context)!
-                                      .folderNameMessage,
-                                ),
-                              );
-                            }
-                          },
-                          child: Text(
-                            AppLocalizations.of(context)!.createButton,
-                            style: TextStyle(
-                                color: AppColors.white.color,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400),
-                          )),
+                      child: _AddFolderButton(
+                          newFolderTextField: _newFolderTextField),
                     ),
                   ],
                 ),
@@ -119,6 +93,53 @@ class _NewFolderState extends State<NewFolder> {
             ),
           ),
         ));
+  }
+}
+
+class _AddFolderButton extends StatelessWidget {
+  const _AddFolderButton({
+    super.key,
+    required TextEditingController newFolderTextField,
+  }) : _newFolderTextField = newFolderTextField;
+
+  final TextEditingController _newFolderTextField;
+
+  @override
+  Widget build(BuildContext context) {
+    bool isFolderExist = false;
+    return BlocBuilder<MyMusicFolderBlocBloc, MyMusicFolderState>(
+        builder: (context, state) {
+      if (state is LoadedMyMusicFolderState) {
+        isFolderExist = state.folders
+            .any((folder) => folder.title == _newFolderTextField.text);
+      }
+      return TextButton(
+          onPressed: () {
+            if (_newFolderTextField.text.isNotEmpty && !isFolderExist) {
+              final folder = FavoriteFolder(
+                image: imagesMap[Images.playlist]!,
+                title: _newFolderTextField.text,
+              );
+              final bloc = context.read<MyMusicFolderBlocBloc>();
+              bloc.add(AddFolderEvent(folder));
+              context.pop();
+            } else {
+              showDialog(
+                context: context,
+                builder: (context) => SignAlert(
+                  text: AppLocalizations.of(context)!.folderNameMessage,
+                ),
+              );
+            }
+          },
+          child: Text(
+            AppLocalizations.of(context)!.createButton,
+            style: TextStyle(
+                color: AppColors.white.color,
+                fontSize: 12,
+                fontWeight: FontWeight.w400),
+          ));
+    });
   }
 }
 
