@@ -1,9 +1,5 @@
-export 'package:audio_player/services/albums_detail/album_details_service.dart';
-
-export 'package:audio_player/services/json_serializable.dart';
-
-export 'package:audio_player/services/song_detail/song_service.dart';
-export 'package:audio_player/services/home_screen_service/home_service_pagination.dart';
-export 'package:audio_player/services/genres_service/genres_service.dart';
-export 'package:audio_player/services/search_result/search_result_pagination.dart';
-export 'package:audio_player/services/app_services/firebase_service.dart';
+export 'package:audio_player/domain/repositories/album_details_repository/album_details_repository.dart';
+export 'package:audio_player/services/api_service/json_serializable.dart';
+export 'package:audio_player/domain/repositories/song_detail_repository/song_detail_repository.dart';
+export 'package:audio_player/domain/repositories/genres_repository/genres_repository.dart';
+export 'package:audio_player/services/firebase_service/firebase_service.dart';

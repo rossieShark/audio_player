@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/models.dart';
-import 'package:audio_player/services/services.dart';
+import 'package:audio_player/domain/repositories/search_result_repository/search_result_repo.dart';
 
 class SearchResultBloc extends Bloc<SearchEvent, SearchState> {
   final SearchRepository repository;

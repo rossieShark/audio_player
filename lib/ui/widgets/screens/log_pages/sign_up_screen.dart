@@ -2,7 +2,7 @@
 
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
-import 'package:audio_player/services/app_services/firebase_service.dart';
+import 'package:audio_player/services/firebase_service/firebase_service.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';

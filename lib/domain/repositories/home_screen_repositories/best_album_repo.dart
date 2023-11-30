@@ -1,6 +1,6 @@
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/domain/entity/home_screen_data/home_screen_data.dart';
-import 'package:audio_player/services/service.dart';
+import 'package:audio_player/services/api_service/service.dart';
 
 class BestAlbumRepository {
   final AudioAppDatabase _database;
@@ -8,7 +8,7 @@ class BestAlbumRepository {
 
   BestAlbumRepository(this._database, this._recentlyPlayedService);
 
-  /// Caches the provided albums into the database and returns the cached best albums.
+  /// Caches albums into the database and returns the cached best albums.
   Future<List<BestAlbum>> _cacheAlbums(List<BestAlbumsList> albums) async {
     try {
       final albumsToInsert = albums.map((album) {
@@ -26,7 +26,6 @@ class BestAlbumRepository {
 
       return albumsToInsert;
     } catch (error) {
-      // Handle the error, e.g., log it or throw a custom exception.
       print('Error caching best albums: $error');
       return [];
     }
@@ -37,7 +36,6 @@ class BestAlbumRepository {
     try {
       return await _database.getallBestAlbums();
     } catch (error) {
-      // Handle the error, e.g., log it or throw a custom exception.
       print('Error getting best albums from database: $error');
       return [];
     }
@@ -61,7 +59,6 @@ class BestAlbumRepository {
 
       return dbAlbums.sublist(startIndex, endIndex);
     } catch (error) {
-      // Handle the error, e.g., log it or throw a custom exception.
       print('Error getting best albums: $error');
       return [];
     }
@@ -75,9 +72,37 @@ class BestAlbumRepository {
       final apiAlbums = apiAlbumsResponse.body?.data as List<BestAlbumsList>;
       return await _cacheAlbums(apiAlbums);
     } catch (error) {
-      // Handle the error, e.g., log it or throw a custom exception.
       print('Error fetching and caching best albums: $error');
       return [];
+    }
+  }
+}
+
+class BestAlbumsPaginationService {
+  final BestAlbumRepository _bestAlbumsRepository;
+  BestAlbumsPaginationService(this._bestAlbumsRepository);
+  bool _isLoading = false;
+  final int _perPage = 10;
+  int _index = 0;
+  int _limit = 10;
+
+  List<BestAlbum> items = [];
+
+  bool get isLoading => _isLoading;
+
+  Future<void> loadMoreItems() async {
+    if (_isLoading) return;
+    _isLoading = true;
+
+    try {
+      final newPortion =
+          await _bestAlbumsRepository.getBestAlbums(_index, _limit);
+
+      items.addAll(newPortion);
+      _index += _perPage;
+      _limit += _perPage;
+    } finally {
+      _isLoading = false;
     }
   }
 }

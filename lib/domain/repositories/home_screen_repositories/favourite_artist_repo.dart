@@ -1,6 +1,6 @@
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/domain/entity/home_screen_data/favourite_artist_model/favourite_artist_model.dart';
-import 'package:audio_player/services/service.dart';
+import 'package:audio_player/services/api_service/service.dart';
 
 class FavoriteArtistRepository {
   final AudioAppDatabase _database;

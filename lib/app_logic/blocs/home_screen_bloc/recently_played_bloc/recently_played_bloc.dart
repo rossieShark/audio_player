@@ -1,6 +1,6 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/database.dart';
-import 'package:audio_player/services/home_screen_service/recently_played_repo.dart';
+import 'package:audio_player/domain/repositories/home_screen_repositories/recently_played_repo.dart';
 
 class RecentlyPlayedBloc
     extends Bloc<RecentlyPlayedBlocEvent, RecentlyPlayedState> {

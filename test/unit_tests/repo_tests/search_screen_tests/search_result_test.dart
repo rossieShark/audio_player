@@ -1,5 +1,5 @@
 import 'package:audio_player/domain/entity/search_result/search_result_model.dart';
-import 'package:audio_player/services/search_result/search_result_pagination.dart';
+import 'package:audio_player/services/search_result_pagination.dart';
 import 'package:audio_player/services/search_result/search_result_service.dart';
 
 import 'package:audio_player/services/service.dart';

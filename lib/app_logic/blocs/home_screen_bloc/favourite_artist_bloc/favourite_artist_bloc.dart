@@ -1,6 +1,6 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/database.dart';
-import 'package:audio_player/services/home_screen_service/favourite_artist_repo.dart';
+import 'package:audio_player/domain/repositories/home_screen_repositories/favourite_artist_repo.dart';
 
 class FavoriteArtistBloc
     extends Bloc<FavoriteArtistEvent, FavoriteArtistBlocState> {

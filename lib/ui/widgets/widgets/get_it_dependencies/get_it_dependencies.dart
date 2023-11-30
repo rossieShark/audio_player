@@ -1,12 +1,12 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/databases/database_service.dart';
-import 'package:audio_player/services/home_screen_service/best_album_repo.dart';
-import 'package:audio_player/services/home_screen_service/favourite_artist_repo.dart';
-import 'package:audio_player/services/home_screen_service/recently_played_repo.dart';
-import 'package:audio_player/services/search_result/search_result_service.dart';
+import 'package:audio_player/domain/repositories/home_screen_repositories/best_album_repo.dart';
+import 'package:audio_player/domain/repositories/home_screen_repositories/favourite_artist_repo.dart';
+import 'package:audio_player/domain/repositories/home_screen_repositories/recently_played_repo.dart';
+import 'package:audio_player/domain/repositories/search_result_repository/search_result_repo.dart';
+import 'package:audio_player/services/api_service/service.dart';
 
-import 'package:audio_player/services/service.dart';
 import 'package:audio_player/services/services.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get_it/get_it.dart';

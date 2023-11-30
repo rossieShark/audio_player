@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
-import 'package:audio_player/services/service.dart';
+import 'package:audio_player/services/api_service/service.dart';
 
 class GenresRepository {
   final AudioAppDatabase _database;
@@ -24,7 +24,6 @@ class GenresRepository {
 
       return genresToInsert;
     } catch (error) {
-      // Handle the error, e.g., log it or throw a custom exception.
       print('Error caching tracks: $error');
       return [];
     }
@@ -41,7 +40,6 @@ class GenresRepository {
         return await _database.getallGenres();
       }
     } catch (error) {
-      // Handle the error, e.g., log it or throw a custom exception.
       print('Error getting all genres: $error');
       return [];
     }
@@ -54,7 +52,6 @@ class GenresRepository {
       final items = genresList.body?.data as List<Data>;
       return items;
     } catch (error) {
-      // Handle the error, e.g., log it or throw a custom exception.
       print('Error getting genres from service: $error');
       return [];
     }
@@ -66,7 +63,6 @@ class GenresRepository {
       final dbTracks = await _database.getallGenres();
       return dbTracks.isEmpty;
     } catch (error) {
-      // Handle the error, e.g., log it or throw a custom exception.
       print('Error checking if tracks are available: $error');
       return false;
     }

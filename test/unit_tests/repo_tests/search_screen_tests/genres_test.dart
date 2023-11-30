@@ -1,6 +1,6 @@
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/domain/entity/genres_model/genres_model.dart';
-import 'package:audio_player/services/genres_service/genres_service.dart';
+import 'package:audio_player/domain/repositories/genres_repository/genres_repository.dart';
 
 import 'package:audio_player/services/service.dart';
 import 'package:chopper/chopper.dart';
