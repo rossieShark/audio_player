@@ -8,57 +8,34 @@ class SongDetailRepository {
 
   SongDetailRepository(this._database, this._songDetailsService);
 
-  /// Gets detailed song information either from the local database or the API if not cached.
   Future<DetailInfoSong?> getDetailSongInfo(String id) async {
     final int songId = int.parse(id);
-    try {
-      final detailSong = await _database.watchDetailSongById(songId).first;
-      if (detailSong == null) {
-        await _getSongsFromAPI(id);
-      }
-      return detailSong;
-    } catch (error) {
-      print('Error getting detail song information: $error');
-      return null;
-    }
-  }
 
-  /// Caches the provided song details into the database and returns the cached details.
-  Future<DetailInfoSong?> _cacheSongs(
-      SongDetailsResponce? albumAppearances, String id) async {
-    try {
-      final detailSongToInsert = DetailInfoSong(
-        type: albumAppearances?.type ?? 'track',
-        id: int.parse(id),
-        preview: albumAppearances?.preview ?? '',
-        artistNames: albumAppearances?.contributors[0].name ?? '',
-        title: albumAppearances?.title ?? '',
-        imageUrl: albumAppearances?.contributors[0].image ?? '',
-      );
+    final detailSong = await _database.watchDetailSongById(songId).first;
 
-      await _database.insertDetailSong(detailSongToInsert);
-
-      return detailSongToInsert;
-    } catch (error) {
-      print('Error caching detail song information: $error');
-      return null;
-    }
-  }
-
-  /// Gets detailed song information from the API and caches it into the database.
-  Future<DetailInfoSong?> _getSongsFromAPI(String id) async {
-    try {
+    if (detailSong == null) {
       final apiResponse = await _songDetailsService.getDetailSongs(id);
+
       if (apiResponse.isSuccessful) {
         final albumAppearances = apiResponse.body;
-        return await _cacheSongs(albumAppearances, id);
+        final detailSongToInsert = DetailInfoSong(
+          type: albumAppearances?.type ?? 'track',
+          id: int.parse(id),
+          preview: albumAppearances?.preview ?? '',
+          artistNames: albumAppearances?.contributors[0].name ?? '',
+          title: albumAppearances?.title ?? '',
+          imageUrl: albumAppearances?.contributors[0].image ?? '',
+        );
+
+        await _database.insertDetailSong(detailSongToInsert);
+
+        return detailSongToInsert;
       } else {
         print('API request failed: ${apiResponse.error}');
         return null;
       }
-    } catch (error) {
-      print('Error getting detail song information from API: $error');
-      return null;
     }
+
+    return detailSong;
   }
 }
