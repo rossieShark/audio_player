@@ -33,8 +33,10 @@ class _SearchPageState extends State<SearchPage> {
     _scrollController.addListener(() {
       if (_scrollController.offset >=
           _scrollController.position.maxScrollExtent - 200) {
-        searchBloc
-            .add(SearchEvent.loadMoreItems(text: _textFieldController.text));
+        if (searchBloc.state is LoadedSearchState) {
+          searchBloc
+              .add(SearchEvent.loadMoreItems(text: _textFieldController.text));
+        }
       }
     });
   }

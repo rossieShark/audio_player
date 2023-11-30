@@ -77,28 +77,27 @@ class _GenresGridView extends StatelessWidget {
     final crossAxisCount = width ~/ 260;
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height - 300,
-        child: GridView.count(
-          padding: const EdgeInsets.all(20),
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-          crossAxisCount: crossAxisCount,
-          scrollDirection: Axis.vertical,
-          children: genres.asMap().entries.map((entry) {
-            final index = entry.key;
-            return GestureDetector(
-              onTap: () {},
-              child: HoverableWidget(builder: (context, child, isHovered) {
-                return CreateGenresListContent(
-                  name: genres[index].name,
-                  image: genres[0].image,
-                  isHovered: isHovered,
-                );
-              }),
-            );
-          }).toList(),
-        ),
+      child: GridView.count(
+        padding: const EdgeInsets.all(20),
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        crossAxisSpacing: 16,
+        mainAxisSpacing: 16,
+        crossAxisCount: crossAxisCount,
+        scrollDirection: Axis.vertical,
+        children: genres.asMap().entries.map((entry) {
+          final index = entry.key;
+          return GestureDetector(
+            onTap: () {},
+            child: HoverableWidget(builder: (context, child, isHovered) {
+              return CreateGenresListContent(
+                name: genres[index].name,
+                image: genres[0].image,
+                isHovered: isHovered,
+              );
+            }),
+          );
+        }).toList(),
       ),
     );
   }

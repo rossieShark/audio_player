@@ -63,9 +63,6 @@ final router = GoRouter(
                 BlocProvider<GenresBloc>(
                   create: (context) => GetIt.I.get(),
                 ),
-                BlocProvider<RecentlySearchedBloc>(
-                  create: (context) => GetIt.I.get(),
-                ),
               ]),
             ),
           ),
@@ -111,9 +108,6 @@ final router = GoRouter(
           BlocProvider<AlbumDetailBloc>(
             create: (context) => GetIt.I.get(),
           ),
-          // BlocProvider<FavoriteSongBloc>(
-          //   create: (context) => GetIt.I.get(),
-          // ),
         ]),
       ),
     ),
@@ -130,9 +124,6 @@ final router = GoRouter(
               BlocProvider<DetailMusicPageBloc>(
                 create: (blocContext) => GetIt.I.get(),
               ),
-              // BlocProvider<FavoriteSongBloc>(
-              //   create: (context) => GetIt.I.get(),
-              // ),
             ]),
           );
         },
@@ -215,9 +206,6 @@ final webRouter = GoRouter(
                               BlocProvider<DetailMusicPageBloc>(
                                 create: (blocContext) => GetIt.I.get(),
                               ),
-                              // BlocProvider<FavoriteSongBloc>(
-                              //   create: (context) => GetIt.I.get(),
-                              // ),
                             ],
                           ),
                         );
@@ -237,9 +225,6 @@ final webRouter = GoRouter(
                         BlocProvider<AlbumDetailBloc>(
                           create: (context) => GetIt.I.get(),
                         ),
-                        // BlocProvider<FavoriteSongBloc>(
-                        //   create: (context) => GetIt.I.get(),
-                        // )
                       ]),
                     ),
                   ),
@@ -271,9 +256,6 @@ final webRouter = GoRouter(
                     create: (context) => GetIt.I.get(),
                   ),
                   BlocProvider<GenresBloc>(
-                    create: (context) => GetIt.I.get(),
-                  ),
-                  BlocProvider<RecentlySearchedBloc>(
                     create: (context) => GetIt.I.get(),
                   ),
                 ]),

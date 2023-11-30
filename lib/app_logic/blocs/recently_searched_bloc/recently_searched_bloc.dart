@@ -37,7 +37,11 @@ class RecentlySearchedBloc
     List<SongModel> recentlySearched = await _loadFromDatabase();
     recentlySearched.removeWhere((item) => item.id == event.song.id);
     await _databaseService.removeFromRecentlySearched(event.song);
-    emit(RecentlySearchedState.loaded(data: recentlySearched));
+    if (recentlySearched.isEmpty) {
+      emit(const RecentlySearchedState.empty());
+    } else {
+      emit(RecentlySearchedState.loaded(data: recentlySearched));
+    }
   }
 
   void _onRemoveAllRecentlySearched(
@@ -45,7 +49,7 @@ class RecentlySearchedBloc
     List<SongModel> recentlySearched = await _loadFromDatabase();
     recentlySearched.clear();
     await _databaseService.removeAllRecentlySearched();
-    emit(RecentlySearchedState.loaded(data: recentlySearched));
+    emit(const RecentlySearchedState.empty());
   }
 
   Future<List<SongModel>> _loadFromDatabase() async {

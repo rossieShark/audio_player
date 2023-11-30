@@ -9,4 +9,6 @@ class RecentlySearchedState with _$RecentlySearchedState {
   const factory RecentlySearchedState.empty() = EmptyRecentlySearchedState;
   const factory RecentlySearchedState.loaded({required List<SongModel> data}) =
       LoadedRecentlySearchedState;
+//  factory RecentlySearchedState.fromJson(Map<String, Object?> json) =>
+//       _$RecentlySearchedStateFromJson(json);
 }
