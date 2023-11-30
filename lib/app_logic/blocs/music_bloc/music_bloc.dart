@@ -48,6 +48,8 @@ class MusicBloc extends Bloc<MusicEvent, MusicState> {
       AddMultipleSongs event, Emitter<MusicState> emit) async {
     final songs = state.playlist;
     songs.addAll(event.songs);
+    add(Play(song: songs[0]));
+    print(songs.length);
     emit(state.copyWith(playlist: songs));
   }
 
@@ -75,15 +77,27 @@ class MusicBloc extends Bloc<MusicEvent, MusicState> {
   }
 
   void _onPlayNext(PlayNext event, Emitter<MusicState> emit) async {
-    final currentIndex = _calculateNextIndex();
-    _playSongByIndex(currentIndex);
-    emit(state.copyWith(currentSongIndex: currentIndex));
+    if (state.currentSongIndex < state.playlist.length - 1) {
+      final currentIndex = state.currentSongIndex + 1;
+      add(Play(song: state.playlist[currentIndex]));
+      emit(state.copyWith(currentSongIndex: currentIndex));
+    } else {
+      final currentIndex = 0;
+      add(Play(song: state.playlist[currentIndex]));
+      emit(state.copyWith(currentSongIndex: 0));
+    }
   }
 
   void _onPlayPrevious(PlayPrevious event, Emitter<MusicState> emit) async {
-    final currentIndex = _calculatePreviousIndex();
-    _playSongByIndex(currentIndex);
-    emit(state.copyWith(currentSongIndex: currentIndex));
+    if (state.currentSongIndex > 0) {
+      final currentIndex = state.currentSongIndex - 1;
+      add(Play(song: state.playlist[currentIndex]));
+      emit(state.copyWith(currentSongIndex: currentIndex));
+    } else {
+      final currentIndex = state.playlist.length - 1;
+      add(Play(song: state.playlist[currentIndex]));
+      emit(state.copyWith(currentSongIndex: currentIndex));
+    }
   }
 
   void _onPlayPause(PlayPause event, Emitter<MusicState> emit) async {
@@ -96,7 +110,7 @@ class MusicBloc extends Bloc<MusicEvent, MusicState> {
     } else {
       add(ClearPlaylist());
       add(AddSong(song: event.song));
-      add(Play(song: state.playlist[0]));
+
       emit(state.copyWith(currentSongId: event.song.id));
     }
   }
@@ -106,8 +120,6 @@ class MusicBloc extends Bloc<MusicEvent, MusicState> {
       add(Pause());
     } else {
       add(ClearPlaylist());
-      add(AddSong(song: event.song));
-      add(Play(song: state.playlist[0]));
       add(AddMultipleSongs(songs: event.songs));
     }
   }

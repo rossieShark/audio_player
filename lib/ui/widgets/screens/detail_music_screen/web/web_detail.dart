@@ -26,9 +26,23 @@ class WebDetailMusicPage extends StatelessWidget {
   }
 }
 
-class _WebDetailMusicPageContent extends StatelessWidget {
+class _WebDetailMusicPageContent extends StatefulWidget {
   final String id;
   const _WebDetailMusicPageContent({required this.id});
+
+  @override
+  State<_WebDetailMusicPageContent> createState() =>
+      _WebDetailMusicPageContentState();
+}
+
+class _WebDetailMusicPageContentState
+    extends State<_WebDetailMusicPageContent> {
+  @override
+  void didUpdateWidget(covariant _WebDetailMusicPageContent oldWidget) {
+    if (widget.id != oldWidget.id) {
+      super.didUpdateWidget(oldWidget);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +58,7 @@ class _WebDetailMusicPageContent extends StatelessWidget {
 
           return Scaffold(
             backgroundColor: AppColors.background.color,
-            body: CreateMainWebContent(param: id, songInfo: songInfo),
+            body: CreateMainWebContent(param: widget.id, songInfo: songInfo),
           );
         }
       },

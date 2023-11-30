@@ -27,8 +27,8 @@ class CreatePlayButtonSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final songs = songList
         .map((song) => PlayedSong(
-              id: songList[0].id,
-              preview: songList[0].preview,
+              id: song.id,
+              preview: song.preview,
             ))
         .toList();
     return SafeArea(
