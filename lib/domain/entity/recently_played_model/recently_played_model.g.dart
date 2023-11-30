@@ -20,7 +20,7 @@ Map<String, dynamic> _$$_RecentlyPlayedResponseToJson(
 
 _$_Tracks _$$_TracksFromJson(Map<String, dynamic> json) => _$_Tracks(
       data: (json['data'] as List<dynamic>)
-          .map((e) => Data.fromJson(e as Map<String, dynamic>))
+          .map((e) => TracksData.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -28,7 +28,8 @@ Map<String, dynamic> _$$_TracksToJson(_$_Tracks instance) => <String, dynamic>{
       'data': instance.data,
     };
 
-_$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data(
+_$_TracksData _$$_TracksDataFromJson(Map<String, dynamic> json) =>
+    _$_TracksData(
       title: json['title'] as String,
       artist: Artist.fromJson(json['artist'] as Map<String, dynamic>),
       id: json['id'] as int,
@@ -36,7 +37,8 @@ _$_Data _$$_DataFromJson(Map<String, dynamic> json) => _$_Data(
       type: json['type'] as String,
     );
 
-Map<String, dynamic> _$$_DataToJson(_$_Data instance) => <String, dynamic>{
+Map<String, dynamic> _$$_TracksDataToJson(_$_TracksData instance) =>
+    <String, dynamic>{
       'title': instance.title,
       'artist': instance.artist,
       'id': instance.id,

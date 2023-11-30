@@ -174,7 +174,7 @@ Tracks _$TracksFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Tracks {
-  List<Data> get data => throw _privateConstructorUsedError;
+  List<TracksData> get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -186,7 +186,7 @@ abstract class $TracksCopyWith<$Res> {
   factory $TracksCopyWith(Tracks value, $Res Function(Tracks) then) =
       _$TracksCopyWithImpl<$Res, Tracks>;
   @useResult
-  $Res call({List<Data> data});
+  $Res call({List<TracksData> data});
 }
 
 /// @nodoc
@@ -208,7 +208,7 @@ class _$TracksCopyWithImpl<$Res, $Val extends Tracks>
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<Data>,
+              as List<TracksData>,
     ) as $Val);
   }
 }
@@ -219,7 +219,7 @@ abstract class _$$_TracksCopyWith<$Res> implements $TracksCopyWith<$Res> {
       __$$_TracksCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Data> data});
+  $Res call({List<TracksData> data});
 }
 
 /// @nodoc
@@ -238,7 +238,7 @@ class __$$_TracksCopyWithImpl<$Res>
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<Data>,
+              as List<TracksData>,
     ));
   }
 }
@@ -246,14 +246,14 @@ class __$$_TracksCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Tracks implements _Tracks {
-  _$_Tracks({required final List<Data> data}) : _data = data;
+  _$_Tracks({required final List<TracksData> data}) : _data = data;
 
   factory _$_Tracks.fromJson(Map<String, dynamic> json) =>
       _$$_TracksFromJson(json);
 
-  final List<Data> _data;
+  final List<TracksData> _data;
   @override
-  List<Data> get data {
+  List<TracksData> get data {
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_data);
@@ -292,24 +292,24 @@ class _$_Tracks implements _Tracks {
 }
 
 abstract class _Tracks implements Tracks {
-  factory _Tracks({required final List<Data> data}) = _$_Tracks;
+  factory _Tracks({required final List<TracksData> data}) = _$_Tracks;
 
   factory _Tracks.fromJson(Map<String, dynamic> json) = _$_Tracks.fromJson;
 
   @override
-  List<Data> get data;
+  List<TracksData> get data;
   @override
   @JsonKey(ignore: true)
   _$$_TracksCopyWith<_$_Tracks> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-Data _$DataFromJson(Map<String, dynamic> json) {
-  return _Data.fromJson(json);
+TracksData _$TracksDataFromJson(Map<String, dynamic> json) {
+  return _TracksData.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Data {
+mixin _$TracksData {
   String get title => throw _privateConstructorUsedError;
   Artist get artist => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
@@ -318,13 +318,15 @@ mixin _$Data {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
+  $TracksDataCopyWith<TracksData> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DataCopyWith<$Res> {
-  factory $DataCopyWith(Data value, $Res Function(Data) then) =
-      _$DataCopyWithImpl<$Res, Data>;
+abstract class $TracksDataCopyWith<$Res> {
+  factory $TracksDataCopyWith(
+          TracksData value, $Res Function(TracksData) then) =
+      _$TracksDataCopyWithImpl<$Res, TracksData>;
   @useResult
   $Res call({String title, Artist artist, int id, String preview, String type});
 
@@ -332,9 +334,9 @@ abstract class $DataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DataCopyWithImpl<$Res, $Val extends Data>
-    implements $DataCopyWith<$Res> {
-  _$DataCopyWithImpl(this._value, this._then);
+class _$TracksDataCopyWithImpl<$Res, $Val extends TracksData>
+    implements $TracksDataCopyWith<$Res> {
+  _$TracksDataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -384,9 +386,11 @@ class _$DataCopyWithImpl<$Res, $Val extends Data>
 }
 
 /// @nodoc
-abstract class _$$_DataCopyWith<$Res> implements $DataCopyWith<$Res> {
-  factory _$$_DataCopyWith(_$_Data value, $Res Function(_$_Data) then) =
-      __$$_DataCopyWithImpl<$Res>;
+abstract class _$$_TracksDataCopyWith<$Res>
+    implements $TracksDataCopyWith<$Res> {
+  factory _$$_TracksDataCopyWith(
+          _$_TracksData value, $Res Function(_$_TracksData) then) =
+      __$$_TracksDataCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String title, Artist artist, int id, String preview, String type});
@@ -396,9 +400,11 @@ abstract class _$$_DataCopyWith<$Res> implements $DataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
-    implements _$$_DataCopyWith<$Res> {
-  __$$_DataCopyWithImpl(_$_Data _value, $Res Function(_$_Data) _then)
+class __$$_TracksDataCopyWithImpl<$Res>
+    extends _$TracksDataCopyWithImpl<$Res, _$_TracksData>
+    implements _$$_TracksDataCopyWith<$Res> {
+  __$$_TracksDataCopyWithImpl(
+      _$_TracksData _value, $Res Function(_$_TracksData) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -410,7 +416,7 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
     Object? preview = null,
     Object? type = null,
   }) {
-    return _then(_$_Data(
+    return _then(_$_TracksData(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -437,15 +443,16 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Data implements _Data {
-  _$_Data(
+class _$_TracksData implements _TracksData {
+  _$_TracksData(
       {required this.title,
       required this.artist,
       required this.id,
       required this.preview,
       required this.type});
 
-  factory _$_Data.fromJson(Map<String, dynamic> json) => _$$_DataFromJson(json);
+  factory _$_TracksData.fromJson(Map<String, dynamic> json) =>
+      _$$_TracksDataFromJson(json);
 
   @override
   final String title;
@@ -460,14 +467,14 @@ class _$_Data implements _Data {
 
   @override
   String toString() {
-    return 'Data(title: $title, artist: $artist, id: $id, preview: $preview, type: $type)';
+    return 'TracksData(title: $title, artist: $artist, id: $id, preview: $preview, type: $type)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Data &&
+            other is _$_TracksData &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.artist, artist) || other.artist == artist) &&
             (identical(other.id, id) || other.id == id) &&
@@ -483,26 +490,27 @@ class _$_Data implements _Data {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DataCopyWith<_$_Data> get copyWith =>
-      __$$_DataCopyWithImpl<_$_Data>(this, _$identity);
+  _$$_TracksDataCopyWith<_$_TracksData> get copyWith =>
+      __$$_TracksDataCopyWithImpl<_$_TracksData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DataToJson(
+    return _$$_TracksDataToJson(
       this,
     );
   }
 }
 
-abstract class _Data implements Data {
-  factory _Data(
+abstract class _TracksData implements TracksData {
+  factory _TracksData(
       {required final String title,
       required final Artist artist,
       required final int id,
       required final String preview,
-      required final String type}) = _$_Data;
+      required final String type}) = _$_TracksData;
 
-  factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
+  factory _TracksData.fromJson(Map<String, dynamic> json) =
+      _$_TracksData.fromJson;
 
   @override
   String get title;
@@ -516,7 +524,8 @@ abstract class _Data implements Data {
   String get type;
   @override
   @JsonKey(ignore: true)
-  _$$_DataCopyWith<_$_Data> get copyWith => throw _privateConstructorUsedError;
+  _$$_TracksDataCopyWith<_$_TracksData> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 Artist _$ArtistFromJson(Map<String, dynamic> json) {

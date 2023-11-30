@@ -80,7 +80,7 @@ class _GenresGridView extends StatelessWidget {
       child: GridView.count(
         padding: const EdgeInsets.all(20),
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
         crossAxisCount: crossAxisCount,

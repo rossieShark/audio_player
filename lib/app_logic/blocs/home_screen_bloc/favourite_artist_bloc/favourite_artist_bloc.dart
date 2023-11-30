@@ -1,7 +1,6 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/database.dart';
-
-import 'package:audio_player/services/home_screen_service/home_service.dart';
+import 'package:audio_player/services/home_screen_service/favourite_artist_repo.dart';
 
 class FavoriteArtistBloc
     extends Bloc<FavoriteArtistEvent, FavoriteArtistBlocState> {
@@ -28,11 +27,12 @@ class FavoriteArtistBloc
   }
 
   Future<List<FavoriteArtist>> _returnArtists() async {
-    final favoriteArtists = await repository.getTracksFromDb();
-    if (favoriteArtists.isEmpty) {
-      return await repository.getFavoriteArtists();
-    } else {
-      return favoriteArtists;
-    }
+    final favoriteArtists = await repository.getFavoriteArtists();
+    return favoriteArtists;
+    // if (favoriteArtists.isEmpty) {
+    //   return await repository.getFavoriteArtists();
+    // } else {
+    //   return favoriteArtists;
+    // }
   }
 }

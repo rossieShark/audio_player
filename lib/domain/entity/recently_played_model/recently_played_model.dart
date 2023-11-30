@@ -16,21 +16,22 @@ class RecentlyPlayedResponse with _$RecentlyPlayedResponse {
 
 @freezed
 class Tracks with _$Tracks {
-  factory Tracks({required List<Data> data}) = _Tracks;
+  factory Tracks({required List<TracksData> data}) = _Tracks;
 
   factory Tracks.fromJson(Map<String, Object?> json) => _$TracksFromJson(json);
 }
 
 @freezed
-class Data with _$Data {
-  factory Data(
+class TracksData with _$TracksData {
+  factory TracksData(
       {required String title,
       required Artist artist,
       required int id,
       required String preview,
-      required String type}) = _Data;
+      required String type}) = _TracksData;
 
-  factory Data.fromJson(Map<String, Object?> json) => _$DataFromJson(json);
+  factory TracksData.fromJson(Map<String, Object?> json) =>
+      _$TracksDataFromJson(json);
 }
 
 @freezed

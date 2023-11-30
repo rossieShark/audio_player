@@ -1,12 +1,12 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/database.dart';
-import 'package:audio_player/services/services.dart';
+import 'package:audio_player/services/home_screen_service/recently_played_repo.dart';
 
 class RecentlyPlayedBloc
     extends Bloc<RecentlyPlayedBlocEvent, RecentlyPlayedState> {
-  final RecentlyPlayedRepository repository;
+  final RecentlyPlayedRepository _repository;
 
-  RecentlyPlayedBloc(this.repository)
+  RecentlyPlayedBloc(this._repository)
       : super(const RecentlyPlayedState.loading()) {
     on<FetchRecentlyPlayedEvent>(_fetchRecentlyPlayed);
   }
@@ -27,11 +27,7 @@ class RecentlyPlayedBloc
   }
 
   Future<List<RecentlyPlayedSong>> _returnSongs() async {
-    final recentlyPlayedtList = await repository.getTracksFromDb();
-    if (recentlyPlayedtList.isEmpty) {
-      return await repository.getTracks();
-    } else {
-      return recentlyPlayedtList;
-    }
+    final recentlyPlayedtList = await _repository.getTracks();
+    return recentlyPlayedtList;
   }
 }
