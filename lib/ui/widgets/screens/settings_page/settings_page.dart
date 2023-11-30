@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/language_bloc/language_bloc.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 
@@ -108,10 +109,8 @@ class _SettingsState extends State<Settings> {
                           setState(() {
                             final newLocale = Locale.fromSubtags(
                                 languageCode: pickerData[selectedItem]);
-                            final languageProvider =
-                                Provider.of<LanguageProvider>(context,
-                                    listen: false);
-                            languageProvider.changeLocale(newLocale);
+                            final languagebloc = context.read<LanguageBloc>();
+                            languagebloc.changeLanguage(newLocale);
                           });
                         },
                         children: List<Widget>.generate(pickerData.length,

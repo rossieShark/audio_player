@@ -1,6 +1,6 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/favorite_song_model.dart';
-import 'package:audio_player/databases/database_service.dart';
+import 'package:audio_player/domain/services/database_service./database_service.dart';
 
 class FavoriteAlbumBloc extends Bloc<FavoriteAlbumEvent, FavoriteAlbumState> {
   final DatabaseService _databaseService;

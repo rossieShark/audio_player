@@ -1,6 +1,6 @@
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/domain/entity/recently_played_model/recently_played_model.dart';
-import 'package:audio_player/services/api_service/service.dart';
+import 'package:audio_player/domain/services/services.dart';
 
 class RecentlyPlayedRepository {
   final AudioAppDatabase _database;

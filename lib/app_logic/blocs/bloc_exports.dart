@@ -25,7 +25,7 @@ export 'package:audio_player/app_logic/blocs/genres_bloc/genres_event.dart';
 export 'package:audio_player/app_logic/blocs/genres_bloc/genres_state.dart';
 export 'package:audio_player/ui/widgets/screens/search_screen/bloc_loaded_state/search_result_list.dart';
 export 'package:audio_player/app_logic/blocs/recently_played_id_bloc/recently_playes_id_cubit.dart';
-export 'package:audio_player/app_logic/providers/language_provider.dart';
+
 export 'package:audio_player/app_logic/providers/audio_player_service.dart';
 export 'package:audio_player/app_logic/blocs/home_screen_bloc/favourite_artist_bloc/favourite_artist_event.dart';
 export 'package:audio_player/app_logic/blocs/home_screen_bloc/favourite_artist_bloc/favourite_artist_state.dart';

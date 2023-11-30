@@ -1,6 +1,6 @@
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/domain/entity/home_screen_data/home_screen_data.dart';
-import 'package:audio_player/services/api_service/service.dart';
+import 'package:audio_player/domain/services/services.dart';
 
 class BestAlbumRepository {
   final AudioAppDatabase _database;

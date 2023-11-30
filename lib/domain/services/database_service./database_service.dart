@@ -1,6 +1,5 @@
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
-import 'package:audio_player/domain/entity/recently_played_model/recently_played_model.dart';
 
 class DatabaseService {
   final AudioAppDatabase _database;

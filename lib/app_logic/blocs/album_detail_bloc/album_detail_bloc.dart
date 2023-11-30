@@ -1,5 +1,5 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/services/services.dart';
+import 'package:audio_player/domain/services/services.dart';
 
 class AlbumDetailBloc extends Bloc<AlbumDetailBlocEvent, AlbumDetailBlocState> {
   final AlbumDetailsRepository repository;

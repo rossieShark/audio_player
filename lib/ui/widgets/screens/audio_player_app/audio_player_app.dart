@@ -1,4 +1,5 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/language_bloc/language_bloc.dart';
 
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/ui/theme/theme.dart';
@@ -26,7 +27,6 @@ class _AudioPlayerAppState extends State<AudioPlayerApp> {
 
   @override
   Widget build(BuildContext context) {
-    final languageProvider = Provider.of<LanguageProvider>(context);
     return MultiProvider(
       providers: [
         BlocProvider<FavoriteSongBloc>(
@@ -36,58 +36,59 @@ class _AudioPlayerAppState extends State<AudioPlayerApp> {
           create: (context) => GetIt.I.get(),
         ),
         BlocProvider<MyMusicFolderBlocBloc>(
-          create: (context) => GetIt.I.get()..add(const LoadMyMusicFoldersEvent()),
+          create: (context) =>
+              GetIt.I.get()..add(const LoadMyMusicFoldersEvent()),
         ),
         BlocProvider<RecentlyPlayedIdCubit>(
           create: (context) => GetIt.I.get(),
         ),
         BlocProvider<RecentlySearchedBloc>(
-          create: (context) => GetIt.I.get()..add(const LoadRecentlySearchedEvent()),
+          create: (context) =>
+              GetIt.I.get()..add(const LoadRecentlySearchedEvent()),
         ),
         ChangeNotifierProvider<MusicProvider>(
             create: (context) => GetIt.I.get()),
       ],
-      child: MaterialApp.router(
-        routerConfig: widget.router,
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        locale: languageProvider.appLocale,
-        supportedLocales: const [
-          Locale('en'),
-          Locale('ru'),
-          Locale('de'),
-        ],
-        theme: ThemeData(
-            splashColor: Colors.transparent,
-            textTheme: TextTheme(
-              titleLarge: TextStyle(
-                  color: AppColors.white.color,
-                  fontSize: 30,
-                  fontFamily: AppFonts.lusitana.font,
-                  fontWeight: FontWeight.w400),
-              titleMedium: TextStyle(
-                  color: AppColors.white.color,
-                  fontSize: 25,
-                  fontFamily: AppFonts.lusitana.font,
-                  fontWeight: FontWeight.w400),
-              titleSmall: TextStyle(
-                  color: AppColors.white.color,
-                  fontSize: 22,
-                  fontFamily: AppFonts.lusitana.font,
-                  fontWeight: FontWeight.w500),
-            ),
-            navigationRailTheme: AppThemeData().createNavBarTheme(),
-            bottomNavigationBarTheme:
-                AppThemeData().createBottomNavigationBarTheme(),
-            primarySwatch: Colors.pink,
-            highlightColor: Colors.transparent,
-            splashFactory: NoSplash.splashFactory,
-            hoverColor: Colors.transparent),
-      ),
+      child: BlocBuilder<LanguageBloc, Locale?>(builder: (context, state) {
+        return MaterialApp.router(
+          routerConfig: widget.router,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          locale: state,
+          supportedLocales:
+              BlocProvider.of<LanguageBloc>(context).supportedLocales,
+          theme: ThemeData(
+              splashColor: Colors.transparent,
+              textTheme: TextTheme(
+                titleLarge: TextStyle(
+                    color: AppColors.white.color,
+                    fontSize: 30,
+                    fontFamily: AppFonts.lusitana.font,
+                    fontWeight: FontWeight.w400),
+                titleMedium: TextStyle(
+                    color: AppColors.white.color,
+                    fontSize: 25,
+                    fontFamily: AppFonts.lusitana.font,
+                    fontWeight: FontWeight.w400),
+                titleSmall: TextStyle(
+                    color: AppColors.white.color,
+                    fontSize: 22,
+                    fontFamily: AppFonts.lusitana.font,
+                    fontWeight: FontWeight.w500),
+              ),
+              navigationRailTheme: AppThemeData().createNavBarTheme(),
+              bottomNavigationBarTheme:
+                  AppThemeData().createBottomNavigationBarTheme(),
+              primarySwatch: Colors.pink,
+              highlightColor: Colors.transparent,
+              splashFactory: NoSplash.splashFactory,
+              hoverColor: Colors.transparent),
+        );
+      }),
     );
   }
 }

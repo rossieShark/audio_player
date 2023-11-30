@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
-import 'package:audio_player/services/api_service/service.dart';
+import 'package:audio_player/domain/services/services.dart';
 
 class GenresRepository {
   final AudioAppDatabase _database;

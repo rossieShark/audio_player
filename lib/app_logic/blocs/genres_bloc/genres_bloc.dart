@@ -1,5 +1,5 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/services/services.dart';
+import 'package:audio_player/domain/services/services.dart';
 
 class GenresBloc extends Bloc<GenresEvent, GenresBlocState> {
   final GenresRepository repository;

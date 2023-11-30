@@ -1,3 +1,4 @@
+import 'package:audio_player/app_logic/blocs/language_bloc/language_bloc.dart';
 import 'package:audio_player/firebase_options.dart';
 import 'package:audio_player/ui/navigation/go_router.dart';
 
@@ -16,20 +17,24 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider<TabBarBloc>(create: (context) => GetIt.I()),
+        BlocProvider<LanguageBloc>(
+          create: (context) {
+            final languageBloc = LanguageBloc(GetIt.I());
+            languageBloc.loadSavedLanguage();
+            return languageBloc;
+          },
+        ),
       ],
-      child: ChangeNotifierProvider<LanguageProvider>(
-        create: (context) => LanguageProvider(),
-        child: PlatformBuilder(
-            web: AudioPlayerApp(
-              router: webRouter,
-            ),
-            other: AudioPlayerApp(
-              router: router,
-            ),
-            builder: (context, child, widget) {
-              return widget;
-            }),
-      ),
+      child: PlatformBuilder(
+          web: AudioPlayerApp(
+            router: webRouter,
+          ),
+          other: AudioPlayerApp(
+            router: router,
+          ),
+          builder: (context, child, widget) {
+            return widget;
+          }),
     ),
   );
 }
