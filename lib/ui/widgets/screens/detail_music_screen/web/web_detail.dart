@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 class WebDetailMusicPage extends StatelessWidget {
-  const WebDetailMusicPage({super.key});
+  const WebDetailMusicPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +19,9 @@ class WebDetailMusicPage extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           child: const InactiveWebDetailPage());
     } else {
-      return BlocProvider<DetailMusicPageBloc>(
-        create: (context) => GetIt.I.get(),
-        child: _WebDetailMusicPageContent(id: id),
-      );
+      BlocProvider.of<DetailMusicPageBloc>(context)
+          .add(FetchSongDetailEvent(id));
+      return _WebDetailMusicPageContent(id: id);
     }
   }
 }
@@ -33,10 +32,7 @@ class _WebDetailMusicPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<DetailMusicPageBloc>(context).add(
-      FetchSongDetailEvent(id),
-    );
-
+    // Use BlocProvider.of to get the existing bloc
     return BlocBuilder<DetailMusicPageBloc, DetailMusicPageState>(
       builder: (context, state) {
         if (state.songDetail == null) {

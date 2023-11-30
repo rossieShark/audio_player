@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
@@ -33,16 +34,9 @@ class _CreateSliderSectionState extends State<CreateSliderSection> {
     durationSubscription?.cancel();
     positionSubscription?.cancel();
 
-    final musicProvider = Provider.of<MusicProvider>(context, listen: false);
-    // durationSubscription =
-    //     musicProvider.audioPlayer.onDurationChanged.listen((newDuration) {
-    //   setState(() {
-    //     duration = newDuration;
-    //   });
-    // });
-
+    final bloc = context.read<MusicBloc>();
     positionSubscription =
-        musicProvider.audioPlayer.onPositionChanged.listen((newPosition) {
+        bloc.audioPlayer.onPositionChanged.listen((newPosition) {
       setState(() {
         position = newPosition;
       });
@@ -58,7 +52,6 @@ class _CreateSliderSectionState extends State<CreateSliderSection> {
 
   @override
   Widget build(BuildContext context) {
-    final musicProvider = Provider.of<MusicProvider>(context, listen: false);
     final maxDuration = duration.inSeconds.toDouble();
     final currentPosition = position.inSeconds.toDouble();
     return Row(
@@ -84,8 +77,9 @@ class _CreateSliderSectionState extends State<CreateSliderSection> {
               setState(() {
                 position = newPosition;
               });
-              musicProvider.audioPlayer.seek(newPosition);
-              musicProvider.audioPlayer.resume();
+              final bloc = context.read<MusicBloc>();
+              bloc.audioPlayer.seek(newPosition);
+              bloc.audioPlayer.resume();
             },
             onChangeEnd: (newValue) {},
           ),

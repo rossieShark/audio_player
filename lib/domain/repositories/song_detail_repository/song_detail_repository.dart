@@ -10,9 +10,9 @@ class SongDetailRepository {
 
   /// Gets detailed song information either from the local database or the API if not cached.
   Future<DetailInfoSong?> getDetailSongInfo(String id) async {
+    final int songId = int.parse(id);
     try {
-      final detailSong = await _getSongsFromDB(int.parse(id));
-
+      final detailSong = await _database.watchDetailSongById(songId).first;
       if (detailSong == null) {
         await _getSongsFromAPI(id);
       }
@@ -41,16 +41,6 @@ class SongDetailRepository {
       return detailSongToInsert;
     } catch (error) {
       print('Error caching detail song information: $error');
-      return null;
-    }
-  }
-
-  /// Gets detailed song information from the local database.
-  Future<DetailInfoSong?> _getSongsFromDB(int songId) async {
-    try {
-      return await _database.watchDetailSongById(songId).first;
-    } catch (error) {
-      print('Error getting detail song information from database: $error');
       return null;
     }
   }

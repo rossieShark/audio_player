@@ -1,9 +1,10 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/app_logic/blocs/language_bloc/language_bloc.dart';
+import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
 
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/databases/language_storage/language_storage.dart';
-import 'package:audio_player/domain/services/database_service./database_service.dart';
+import 'package:audio_player/domain/services/database_service/database_service.dart';
 import 'package:audio_player/domain/services/services.dart';
 
 import 'package:audio_player/domain/repositories/home_screen_repositories/best_album_repo.dart';
@@ -21,10 +22,6 @@ class SetGetItDependencies {
   }
 
   void setupProviderDependencies() {
-    GetIt.instance.registerLazySingleton<MusicProvider>(
-      () => MusicProvider(GetIt.instance.get()),
-    );
-
     GetIt.instance.registerLazySingleton<AudioPlayer>(
       () => AudioPlayer(),
     );
@@ -92,6 +89,8 @@ class SetGetItDependencies {
         () => DetailMusicPageBloc(GetIt.instance.get()));
     GetIt.instance.registerFactory<LanguageBloc>(
         () => LanguageBloc(GetIt.instance.get()));
+    GetIt.instance
+        .registerFactory<MusicBloc>(() => MusicBloc(GetIt.instance.get()));
     GetIt.instance
         .registerFactory<RecentlyPlayedIdCubit>(() => RecentlyPlayedIdCubit());
   }

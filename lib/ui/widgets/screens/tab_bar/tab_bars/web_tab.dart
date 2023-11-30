@@ -51,9 +51,6 @@ class WebTabBarState extends State<WebTabBar>
               BlocProvider<DetailMusicPageBloc>(
                 create: (blocContext) => GetIt.I.get(),
               ),
-              // BlocProvider<FavoriteBloc>(
-              //   create: (context) => GetIt.I.get(),
-              // ),
             ])),
       ]),
     );

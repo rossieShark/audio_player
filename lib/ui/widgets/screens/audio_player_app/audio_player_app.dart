@@ -1,5 +1,6 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/app_logic/blocs/language_bloc/language_bloc.dart';
+import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
 
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/ui/theme/theme.dart';
@@ -46,8 +47,9 @@ class _AudioPlayerAppState extends State<AudioPlayerApp> {
           create: (context) =>
               GetIt.I.get()..add(const LoadRecentlySearchedEvent()),
         ),
-        ChangeNotifierProvider<MusicProvider>(
-            create: (context) => GetIt.I.get()),
+        BlocProvider<MusicBloc>(
+          create: (context) => GetIt.I(),
+        ),
       ],
       child: BlocBuilder<LanguageBloc, Locale?>(builder: (context, state) {
         return MaterialApp.router(

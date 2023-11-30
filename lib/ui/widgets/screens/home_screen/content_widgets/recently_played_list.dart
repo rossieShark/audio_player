@@ -1,4 +1,7 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
+import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_event.dart';
+import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_state.dart';
 
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
@@ -182,27 +185,9 @@ class RecentlyPlayedPageContent extends StatelessWidget {
       required this.isHovered,
       required this.artistName});
 
-  void playPauseMusic(BuildContext context, MusicProvider musicProvider) {
-    context.read<RecentlyPlayedIdCubit>().setId(id.toString());
-    if (musicProvider.isCurrentlyPlaying(id)) {
-      if (musicProvider.isPlaying) {
-        musicProvider.pause();
-      } else {
-        musicProvider.play(musicProvider.playlist[0].preview);
-      }
-    } else {
-      musicProvider.clearPlaylist();
-
-      musicProvider.addSong(PlayedSong(id: id, preview: preview));
-      musicProvider.play(preview);
-      musicProvider.currentSongId = id;
-    }
-    musicProvider.musicCompleted();
-  }
-
   @override
   Widget build(BuildContext context) {
-    final musicProvider = Provider.of<MusicProvider>(context, listen: false);
+    final song = PlayedSong(id: id, preview: preview);
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 5, 16, 8),
@@ -230,34 +215,20 @@ class RecentlyPlayedPageContent extends StatelessWidget {
               right: 8,
               child: PlatformBuilder(
                   web: isHovered
-                      ? CreatePlayButton(
-                          onPressed: () {
-                            playPauseMusic(context, musicProvider);
-                          },
-                          size: 45,
-                          icon: (musicProvider.isPlaying &&
-                                  musicProvider.isSongInPlaylist(id))
-                              ? Icon(Icons.pause, color: AppColors.black.color)
-                              : Icon(Icons.play_arrow,
-                                  color: AppColors.black.color),
-                          containerColor: AppColors.accent.color,
+                      ? _CreatePlayButton(
+                          id: id.toString(),
+                          playedSong: song,
                         )
                       : Container(),
-                  other: CreatePlayButton(
-                    onPressed: () {
-                      GoRouter.of(context).push(Uri(
-                              path:
-                                  '/${routeNameMap[RouteName.detailMusic]!}$id')
-                          .toString());
-                      playPauseMusic(context, musicProvider);
-                    },
-                    size: 40,
-                    icon: (musicProvider.isPlaying &&
-                            musicProvider.isSongInPlaylist(id))
-                        ? Icon(Icons.pause, color: AppColors.white.color)
-                        : Icon(Icons.play_arrow, color: AppColors.white.color),
-                    containerColor: AppColors.accent.color.withOpacity(0.8),
-                  ),
+                  other: _CreatePlayButton(
+                      id: id.toString(),
+                      playedSong: song,
+                      onPressed: () {
+                        GoRouter.of(context).push(Uri(
+                                path:
+                                    '/${routeNameMap[RouteName.detailMusic]!}$id')
+                            .toString());
+                      }),
                   builder: (context, child, widget) {
                     return widget;
                   }),
@@ -282,5 +253,38 @@ class RecentlyPlayedPageContent extends StatelessWidget {
             }),
       ]),
     );
+  }
+}
+
+class _CreatePlayButton extends StatelessWidget {
+  final PlayedSong playedSong;
+  final VoidCallback? onPressed;
+  final String id;
+  const _CreatePlayButton(
+      {super.key, required this.playedSong, this.onPressed, required this.id});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<MusicBloc, MusicState>(builder: (context, state) {
+      bool isSongPlay = state.playlist.any((song) => song.id == playedSong.id);
+      return CreatePlayButton(
+        onPressed: () {
+          context.read<RecentlyPlayedIdCubit>().setId(id);
+          onPressed ?? () {};
+          _playPauseMusic(context);
+        },
+        size: 40,
+        icon: (state.isPlaying && isSongPlay)
+            ? Icon(Icons.pause, color: AppColors.white.color)
+            : Icon(Icons.play_arrow, color: AppColors.white.color),
+        containerColor: AppColors.accent.color.withOpacity(0.8),
+      );
+    });
+  }
+
+  void _playPauseMusic(BuildContext context) {
+    final musicBloc = context.read<MusicBloc>();
+
+    musicBloc.add(PlayPause(song: playedSong));
   }
 }

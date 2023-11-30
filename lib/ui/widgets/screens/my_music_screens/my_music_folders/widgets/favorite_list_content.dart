@@ -1,4 +1,7 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
+import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_event.dart';
+import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_state.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
@@ -59,28 +62,9 @@ class CreateImageSection extends StatelessWidget {
 
   final SongModel song;
   final double height;
-  void playPauseMusic(BuildContext context, MusicProvider musicProvider) {
-    context.read<RecentlyPlayedIdCubit>().setId(song.id.toString());
-    if (musicProvider.isCurrentlyPlaying(int.parse(song.id))) {
-      if (musicProvider.isPlaying) {
-        musicProvider.pause();
-      } else {
-        musicProvider.play(musicProvider.playlist[0].preview);
-      }
-    } else {
-      musicProvider.clearPlaylist();
-
-      musicProvider
-          .addSong(PlayedSong(id: int.parse(song.id), preview: song.preview));
-      musicProvider.play(musicProvider.playlist[0].preview);
-      musicProvider.currentSongId = int.parse(song.id);
-    }
-    musicProvider.musicCompleted();
-  }
 
   @override
   Widget build(BuildContext context) {
-    final musicProvider = Provider.of<MusicProvider>(context, listen: false);
     return HoverableWidget(builder: (context, child, isHovered) {
       return Stack(
         children: [
@@ -103,27 +87,47 @@ class CreateImageSection extends StatelessWidget {
               bottom: 0,
               right: 16,
               child: (isHovered && song.type == 'track')
-                  ? ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Container(
-                          color: AppColors.black.color.withOpacity(0.5),
-                          child: CreatePlayButton(
-                              onPressed: () {
-                                playPauseMusic(context, musicProvider);
-                              },
-                              icon: (musicProvider.isPlaying &&
-                                      musicProvider.isCurrentlyPlaying(
-                                          int.parse(song.id)))
-                                  ? Icon(Icons.pause,
-                                      color: AppColors.white.color)
-                                  : Icon(Icons.play_arrow,
-                                      color: AppColors.white.color),
-                              size: 30,
-                              containerColor: Colors.transparent)),
-                    )
+                  ? _CreatePlayMusicButton(playedSong: song)
                   : Container())
         ],
       );
     });
+  }
+}
+
+class _CreatePlayMusicButton extends StatelessWidget {
+  final SongModel playedSong;
+  const _CreatePlayMusicButton({
+    super.key,
+    required this.playedSong,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<MusicBloc, MusicState>(builder: (context, state) {
+      bool isSongPlay =
+          state.playlist.any((song) => song.id == int.parse(playedSong.id));
+      return ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Container(
+            color: AppColors.black.color.withOpacity(0.5),
+            child: CreatePlayButton(
+              onPressed: () => _playPauseMusic(context),
+              size: 35,
+              icon: (state.isPlaying && isSongPlay)
+                  ? Icon(Icons.pause, color: AppColors.black.color)
+                  : Icon(Icons.play_arrow, color: AppColors.black.color),
+              containerColor: AppColors.accent.color,
+            ),
+          ));
+    });
+  }
+
+  void _playPauseMusic(BuildContext context) {
+    context.read<RecentlyPlayedIdCubit>().setId(playedSong.id);
+    final musicBloc = context.read<MusicBloc>();
+    final song =
+        PlayedSong(id: int.parse(playedSong.id), preview: playedSong.preview);
+    musicBloc.add(PlayPause(song: song));
   }
 }

@@ -1,4 +1,7 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
+import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_event.dart';
+import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_state.dart';
 import 'package:audio_player/domain/entity/models.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
@@ -113,30 +116,18 @@ class _CreateImageSection extends StatelessWidget {
   final double listHeight;
   final List<SearchData> searchResult;
   final int index;
-  void playPauseMusic(BuildContext context, MusicProvider musicProvider) {
-    context
-        .read<RecentlyPlayedIdCubit>()
-        .setId(searchResult[index].id.toString());
-    if (musicProvider.isCurrentlyPlaying(searchResult[index].id)) {
-      if (musicProvider.isPlaying) {
-        musicProvider.pause();
-      } else {
-        musicProvider.play(musicProvider.playlist[0].preview);
-      }
-    } else {
-      musicProvider.clearPlaylist();
-
-      musicProvider.addSong(PlayedSong(
-          id: searchResult[index].id, preview: searchResult[index].preview));
-      musicProvider.play(musicProvider.playlist[0].preview);
-      musicProvider.currentSongId = searchResult[index].id;
-    }
-    musicProvider.musicCompleted();
-  }
+  // void playPauseMusic(BuildContext context) {
+  //   context
+  //       .read<RecentlyPlayedIdCubit>()
+  //       .setId(searchResult[index].id.toString());
+  //   final musicBloc = context.read<MusicBloc>();
+  //   final song = PlayedSong(
+  //       id: searchResult[index].id, preview: searchResult[index].preview);
+  //   musicBloc.add(PlayPause(song: song));
+  // }
 
   @override
   Widget build(BuildContext context) {
-    final musicProvider = Provider.of<MusicProvider>(context, listen: false);
     return Stack(
       children: [
         ImageinAlbum(
@@ -152,43 +143,61 @@ class _CreateImageSection extends StatelessWidget {
             right: 16,
             child: HoverableWidget(builder: (context, child, isHovered) {
               return isHovered
-                  ? ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Container(
-                          width: listHeight,
-                          height: listHeight,
-                          color: AppColors.black.color.withOpacity(0.5),
-                          child: CreatePlayButton(
-                              size: 30,
-                              icon: (musicProvider.isPlaying &&
-                                      musicProvider.isSongInPlaylist(
-                                          searchResult[index].id))
-                                  ? Icon(Icons.pause,
-                                      color: AppColors.white.color)
-                                  : Icon(Icons.play_arrow,
-                                      color: AppColors.white.color),
-                              onPressed: () {
-                                final bloc =
-                                    context.read<RecentlySearchedBloc>();
-                                bloc.add(AddToRecentlySearchedEvent(
-                                  SongModel(
-                                    preview: searchResult[index].preview,
-                                    type: searchResult[index].type,
-                                    id: searchResult[index].id.toString(),
-                                    artistNames:
-                                        searchResult[index].artist.name,
-                                    title: searchResult[index].title,
-                                    image: searchResult[index].artist.image,
-                                    isFavourite: false,
-                                  ),
-                                ));
-                                playPauseMusic(context, musicProvider);
-                              },
-                              containerColor: Colors.transparent)),
+                  ? _CreatePlayButton(
+                      playerSong: searchResult[index],
+                      listHeight: listHeight,
                     )
                   : Container();
             }))
       ],
     );
+  }
+}
+
+class _CreatePlayButton extends StatelessWidget {
+  final SearchData playerSong;
+  final double listHeight;
+  const _CreatePlayButton(
+      {super.key, required this.playerSong, required this.listHeight});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<MusicBloc, MusicState>(builder: (context, state) {
+      bool isSongPlay = state.playlist.any((song) => song.id == playerSong.id);
+      return ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Container(
+              width: listHeight,
+              height: listHeight,
+              color: AppColors.black.color.withOpacity(0.5),
+              child: CreatePlayButton(
+                  size: 30,
+                  icon: (state.isPlaying && isSongPlay)
+                      ? Icon(Icons.pause, color: AppColors.white.color)
+                      : Icon(Icons.play_arrow, color: AppColors.white.color),
+                  onPressed: () {
+                    final bloc = context.read<RecentlySearchedBloc>();
+                    bloc.add(AddToRecentlySearchedEvent(
+                      SongModel(
+                        preview: playerSong.preview,
+                        type: playerSong.type,
+                        id: playerSong.id.toString(),
+                        artistNames: playerSong.artist.name,
+                        title: playerSong.title,
+                        image: playerSong.artist.image,
+                        isFavourite: false,
+                      ),
+                    ));
+                    _playPauseMusic(context);
+                  },
+                  containerColor: Colors.transparent)));
+    });
+  }
+
+  void _playPauseMusic(BuildContext context) {
+    context.read<RecentlyPlayedIdCubit>().setId(playerSong.id.toString());
+    final musicBloc = context.read<MusicBloc>();
+    final song = PlayedSong(id: playerSong.id, preview: playerSong.preview);
+    musicBloc.add(PlayPause(song: song));
   }
 }
