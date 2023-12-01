@@ -1,5 +1,6 @@
+import 'package:audio_player/databases/app_database/tables.dart';
 import 'package:audio_player/databases/connection/connection.dart' as impl;
-import 'package:audio_player/databases/tables.dart';
+
 import 'package:drift/drift.dart';
 
 part 'database.g.dart';

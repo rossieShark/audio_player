@@ -1,5 +1,5 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/databases/database.dart';
+import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/ui/widgets/screens/detail_music_screen/detail_music_index.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';

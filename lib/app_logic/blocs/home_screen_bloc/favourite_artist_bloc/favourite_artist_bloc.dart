@@ -1,5 +1,5 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/databases/database.dart';
+import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/repositories/home_screen_repositories/favourite_artist_repo.dart';
 
 class FavoriteArtistBloc

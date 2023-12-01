@@ -1,4 +1,4 @@
-import 'package:audio_player/databases/database.dart';
+import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/home_screen_data/home_screen_data.dart';
 import 'package:audio_player/domain/services/services.dart';
 

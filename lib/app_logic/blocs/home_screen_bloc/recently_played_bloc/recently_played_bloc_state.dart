@@ -1,4 +1,4 @@
-import 'package:audio_player/databases/database.dart';
+import 'package:audio_player/databases/app_database/database.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'recently_played_bloc_state.freezed.dart';

@@ -1,4 +1,4 @@
-import 'package:audio_player/databases/database.dart';
+import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/genres_model/genres_model.dart';
 import 'package:audio_player/domain/repositories/genres_repository/genres_repository.dart';
 

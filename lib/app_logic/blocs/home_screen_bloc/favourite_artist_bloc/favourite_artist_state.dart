@@ -1,4 +1,4 @@
-import 'package:audio_player/databases/database.dart';
+import 'package:audio_player/databases/app_database/database.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'favourite_artist_state.freezed.dart';
