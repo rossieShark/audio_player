@@ -77,27 +77,15 @@ class MusicBloc extends Bloc<MusicEvent, MusicState> {
   }
 
   void _onPlayNext(PlayNext event, Emitter<MusicState> emit) async {
-    if (state.currentSongIndex < state.playlist.length - 1) {
-      final currentIndex = state.currentSongIndex + 1;
-      add(Play(song: state.playlist[currentIndex]));
-      emit(state.copyWith(currentSongIndex: currentIndex));
-    } else {
-      final currentIndex = 0;
-      add(Play(song: state.playlist[currentIndex]));
-      emit(state.copyWith(currentSongIndex: 0));
-    }
+    final currentIndex = _calculateNextIndex();
+    _playSongByIndex(currentIndex);
+    emit(state.copyWith(currentSongIndex: currentIndex));
   }
 
   void _onPlayPrevious(PlayPrevious event, Emitter<MusicState> emit) async {
-    if (state.currentSongIndex > 0) {
-      final currentIndex = state.currentSongIndex - 1;
-      add(Play(song: state.playlist[currentIndex]));
-      emit(state.copyWith(currentSongIndex: currentIndex));
-    } else {
-      final currentIndex = state.playlist.length - 1;
-      add(Play(song: state.playlist[currentIndex]));
-      emit(state.copyWith(currentSongIndex: currentIndex));
-    }
+    final currentIndex = _calculatePreviousIndex();
+    _playSongByIndex(currentIndex);
+    emit(state.copyWith(currentSongIndex: currentIndex));
   }
 
   void _onPlayPause(PlayPause event, Emitter<MusicState> emit) async {
