@@ -1,52 +1,47 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
+import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_state.dart';
 
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/ui/widgets/screens/detail_music_screen/detail_music_index.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 
-class WebDetailMusicPage extends StatelessWidget {
+class WebDetailMusicPage extends StatefulWidget {
   const WebDetailMusicPage({Key? key});
 
   @override
-  Widget build(BuildContext context) {
-    final id = context.watch<RecentlyPlayedIdCubit>().state;
+  State<WebDetailMusicPage> createState() => _WebDetailMusicPageState();
+}
 
-    if (id == null) {
-      return SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: const InactiveWebDetailPage());
-    } else {
-      BlocProvider.of<DetailMusicPageBloc>(context)
-          .add(FetchSongDetailEvent(id));
-      return _WebDetailMusicPageContent(id: id);
-    }
+class _WebDetailMusicPageState extends State<WebDetailMusicPage> {
+  @override
+  Widget build(BuildContext context) {
+    // final id = context.watch<RecentlyPlayedIdCubit>().state;
+
+    // if (id == null) {
+    return BlocBuilder<MusicBloc, MusicState?>(builder: (context, state) {
+      if (state?.currentSongId == null || state?.currentSongId == -1) {
+        return SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: const InactiveWebDetailPage());
+      } else {
+        return _WebDetailMusicPageContent(id: state!.currentSongId.toString());
+      }
+    });
   }
 }
 
-class _WebDetailMusicPageContent extends StatefulWidget {
+class _WebDetailMusicPageContent extends StatelessWidget {
   final String id;
   const _WebDetailMusicPageContent({required this.id});
 
   @override
-  State<_WebDetailMusicPageContent> createState() =>
-      _WebDetailMusicPageContentState();
-}
-
-class _WebDetailMusicPageContentState
-    extends State<_WebDetailMusicPageContent> {
-  @override
-  void didUpdateWidget(covariant _WebDetailMusicPageContent oldWidget) {
-    if (widget.id != oldWidget.id) {
-      super.didUpdateWidget(oldWidget);
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    // Use BlocProvider.of to get the existing bloc
+    BlocProvider.of<DetailMusicPageBloc>(context).add(
+      FetchSongDetailEvent(id),
+    );
     return BlocBuilder<DetailMusicPageBloc, DetailMusicPageState>(
       builder: (context, state) {
         if (state.songDetail == null) {
@@ -58,7 +53,7 @@ class _WebDetailMusicPageContentState
 
           return Scaffold(
             backgroundColor: AppColors.background.color,
-            body: CreateMainWebContent(param: widget.id, songInfo: songInfo),
+            body: CreateMainWebContent(param: id, songInfo: songInfo),
           );
         }
       },

@@ -29,7 +29,7 @@ class MusicBloc extends Bloc<MusicEvent, MusicState> {
     _audioPlayer.onPlayerStateChanged.listen((audioState) {
       if (audioState == PlayerState.completed) {
         if (state.playlist.length == 1 || state.playlist.isEmpty) {
-          _audioPlayer.stop();
+          add(Stop());
         } else {
           add(PlayNext());
         }
