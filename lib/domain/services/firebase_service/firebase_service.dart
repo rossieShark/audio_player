@@ -55,6 +55,34 @@ class FireBaseFunctions {
     }
   }
 
+  Future<void> signUp(
+      BuildContext context, String email, String password) async {
+    bool success = await FireBaseFunctions().register(email, password);
+    if (success) {
+      return context.go(routeNameMap[RouteName.home]!);
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) =>
+            SignAlert(text: AppLocalizations.of(context)!.invalidEmailPassword),
+      );
+    }
+  }
+
+  Future<void> signIn(
+      BuildContext context, String email, String password) async {
+    bool success = await _signIn(email, password);
+    if (success) {
+      return context.go(routeNameMap[RouteName.home]!);
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) =>
+            SignAlert(text: AppLocalizations.of(context)!.invalidEmailPassword),
+      );
+    }
+  }
+
   void resetPassword(BuildContext context, TextEditingController controller) {
     showCupertinoDialog<void>(
       context: context,
@@ -88,7 +116,7 @@ class FireBaseFunctions {
     );
   }
 
-  Future<bool> signIn(String email, String password) async {
+  Future<bool> _signIn(String email, String password) async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,

@@ -1,6 +1,7 @@
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
+import 'package:audio_player/ui/widgets/widgets/app_logo.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
@@ -66,24 +67,10 @@ class _CreateAppInformationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
       children: [
-        _CreateAppImage(),
+        CreateAppImage(),
         _CreateAppTitle(),
         _CreateAppDescription(),
       ],
-    );
-  }
-}
-
-class _CreateAppImage extends StatelessWidget {
-  const _CreateAppImage();
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height / 2.5,
-      child: Image.asset(
-        AppImages.soundLogo,
-      ),
     );
   }
 }

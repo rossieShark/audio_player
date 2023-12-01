@@ -2,8 +2,8 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 import 'package:audio_player/ui/widgets/screens/index.dart';
-import 'package:audio_player/ui/widgets/screens/log_pages/sign_in_page.dart';
-import 'package:audio_player/ui/widgets/screens/log_pages/sign_up_screen.dart';
+import 'package:audio_player/ui/widgets/screens/log_pages/sign_in/sign_in_page.dart';
+import 'package:audio_player/ui/widgets/screens/log_pages/sign_up/sign_up_screen.dart';
 import 'package:audio_player/ui/widgets/screens/log_pages/start_page.dart';
 import 'package:audio_player/ui/widgets/screens/settings_page/settings_page.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';

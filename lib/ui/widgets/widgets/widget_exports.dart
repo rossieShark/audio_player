@@ -18,7 +18,7 @@ export 'package:audio_player/ui/widgets/widgets/custom_buttons/custom_like_butto
 export 'package:audio_player/ui/widgets/widgets/custom_list_view.dart';
 export 'package:audio_player/ui/widgets/widgets/custom_containers_widgets/animated_container.dart';
 export 'package:audio_player/ui/widgets/screens/log_pages/widgets/sign_methods.dart';
-export 'package:audio_player/ui/widgets/screens/log_pages/widgets/text_field.dart';
+export 'package:audio_player/ui/widgets/widgets/text_field.dart';
 export 'package:audio_player/ui/widgets/widgets/app_alert.dart';
 export 'package:audio_player/ui/widgets/widgets/user_info_widget.dart';
 export 'package:audio_player/ui/widgets/widgets/image_widget.dart';
