@@ -23,7 +23,7 @@ export 'package:audio_player/app_logic/blocs/recently_searched_bloc/recently_sea
 export 'package:audio_player/app_logic/blocs/search_screen_bloc/serch_event.dart';
 export 'package:audio_player/app_logic/blocs/genres_bloc/genres_event.dart';
 export 'package:audio_player/app_logic/blocs/genres_bloc/genres_state.dart';
-export 'package:audio_player/ui/widgets/screens/search_screen/bloc_loaded_state/search_result_list.dart';
+export 'package:audio_player/app_logic/blocs/language_bloc/language_bloc.dart';
 export 'package:audio_player/app_logic/blocs/recently_played_id_bloc/recently_playes_id_cubit.dart';
 export 'package:audio_player/app_logic/blocs/home_screen_bloc/favourite_artist_bloc/favourite_artist_event.dart';
 export 'package:audio_player/app_logic/blocs/home_screen_bloc/favourite_artist_bloc/favourite_artist_state.dart';
@@ -36,3 +36,6 @@ export 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_album_blo
 export 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_album_bloc/favourites_album_states.dart';
 export 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_event.dart';
 export 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc/favourites_song_states.dart';
+export 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
+export 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_event.dart';
+export 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_state.dart';

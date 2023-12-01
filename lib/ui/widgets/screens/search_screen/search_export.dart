@@ -1,4 +1,3 @@
-export 'package:audio_player/ui/widgets/screens/search_screen/bloc_no_results_state/no_results_widget.dart';
 export 'package:audio_player/ui/widgets/screens/search_screen/bloc_empty_state/mobile/recently_searched_section.dart';
 export 'package:audio_player/ui/widgets/screens/search_screen/bloc_empty_state/web/bloc_empty_state.dart';
 export 'package:audio_player/ui/widgets/screens/search_screen/bloc_loaded_state/search_section.dart';

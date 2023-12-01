@@ -1,6 +1,4 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
-import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_state.dart';
 
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/resources/resources.dart';
@@ -19,9 +17,6 @@ class WebDetailMusicPage extends StatefulWidget {
 class _WebDetailMusicPageState extends State<WebDetailMusicPage> {
   @override
   Widget build(BuildContext context) {
-    // final id = context.watch<RecentlyPlayedIdCubit>().state;
-
-    // if (id == null) {
     return BlocBuilder<MusicBloc, MusicState?>(builder: (context, state) {
       if (state?.currentSongId == null || state?.currentSongId == -1) {
         return SizedBox(

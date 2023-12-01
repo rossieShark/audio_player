@@ -159,7 +159,7 @@ class _FavouritefoldersCard extends StatelessWidget {
               ),
               Text(
                 folders[index].title,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white,
                     fontFamily: FontFamily.lusitana,
                     fontSize: 13,

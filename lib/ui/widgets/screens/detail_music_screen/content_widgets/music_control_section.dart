@@ -1,7 +1,4 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
-import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_event.dart';
-import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_state.dart';
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/domain/entity/played_song_model.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
@@ -75,7 +72,7 @@ class _CreatMusicControlSectionState extends State<CreatMusicControlSection> {
 
 class _CreatePlayPauseButton extends StatelessWidget {
   final PlayedSong playedSong;
-  const _CreatePlayPauseButton({super.key, required this.playedSong});
+  const _CreatePlayPauseButton({required this.playedSong});
 
   @override
   Widget build(BuildContext context) {

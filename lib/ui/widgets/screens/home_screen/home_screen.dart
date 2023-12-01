@@ -2,11 +2,9 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 import 'package:audio_player/ui/widgets/screens/home_screen/home_screen_index.dart';
-import 'package:audio_player/ui/widgets/screens/search_screen/bloc_no_results_state/no_results_widget.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
@@ -55,11 +53,12 @@ class _BuildMainSection extends StatefulWidget {
 }
 
 class _BuildMainSectionState extends State<_BuildMainSection> {
-  final ScrollController _scrollController = ScrollController();
+  late ScrollController _scrollController;
 
   @override
   void initState() {
     super.initState();
+    _scrollController = ScrollController();
     _scrollController.addListener(() {
       _scrollListener();
     });
@@ -76,48 +75,46 @@ class _BuildMainSectionState extends State<_BuildMainSection> {
   @override
   void dispose() {
     _scrollController.dispose();
-
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      controller: _scrollController,
-      child: PlatformBuilder(
-          web: Column(
-            children: [
-              const UserInfoWidget(),
-              Container(
-                height: 10,
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(color: AppColors.accent.color, width: 1),
-                  ),
+    return PlatformBuilder(
+        web: ListView(
+          controller: _scrollController,
+          children: [
+            const UserInfoWidget(),
+            Container(
+              height: 10,
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: AppColors.accent.color, width: 1),
                 ),
               ),
-              _BuildRecentlyPlayedSection(),
-              _BuildFavoriteArtistSection(),
-              const SizedBox(
-                height: 15,
-              ),
-              _BuildBestAlbumsSection(),
-            ],
-          ),
-          other: Column(
-            children: [
-              _BuildRecentlyPlayedSection(),
-              _BuildFavoriteArtistSection(),
-              const SizedBox(
-                height: 15,
-              ),
-              _BuildBestAlbumsSection(),
-            ],
-          ),
-          builder: (context, child, widget) {
-            return widget;
-          }),
-    );
+            ),
+            _BuildRecentlyPlayedSection(),
+            _BuildFavoriteArtistSection(),
+            const SizedBox(
+              height: 15,
+            ),
+            _BuildBestAlbumsSection(),
+          ],
+        ),
+        other: ListView(
+          controller: _scrollController,
+          children: [
+            _BuildRecentlyPlayedSection(),
+            _BuildFavoriteArtistSection(),
+            const SizedBox(
+              height: 15,
+            ),
+            _BuildBestAlbumsSection(),
+          ],
+        ),
+        builder: (context, child, widget) {
+          return widget;
+        });
   }
 }
 
@@ -178,19 +175,7 @@ class _BuildFavoriteArtistSection extends StatelessWidget {
   }
 }
 
-class _BuildBestAlbumsSection extends StatefulWidget {
-  @override
-  State<_BuildBestAlbumsSection> createState() =>
-      _BuildBestAlbumsSectionState();
-}
-
-class _BuildBestAlbumsSectionState extends State<_BuildBestAlbumsSection> {
-  @override
-  void initState() {
-    super.initState();
-    BlocProvider.of<AlbumBloc>(context).add(FetchAlbumsEvent());
-  }
-
+class _BuildBestAlbumsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -201,15 +186,7 @@ class _BuildBestAlbumsSectionState extends State<_BuildBestAlbumsSection> {
           child: Text(AppLocalizations.of(context)!.bestAlbums,
               style: Theme.of(context).textTheme.titleMedium),
         ),
-        BlocBuilder<AlbumBloc, AlbumBlocState>(builder: (context, state) {
-          return state.map(
-            error: (context) => const NoResultsWidget(),
-            loading: (context) => const Center(
-              child: CustomFadingCircleIndicator(),
-            ),
-            loaded: (data) => BestAlbumList(bestAlbumList: data.data),
-          );
-        })
+        const BestAlbumList(),
       ],
     );
   }

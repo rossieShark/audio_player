@@ -1,37 +1,21 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
-import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_event.dart';
-import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_state.dart';
-
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
-import 'package:audio_player/ui/widgets/screens/search_screen/bloc_no_results_state/no_results_widget.dart';
-
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:infinite_carousel/infinite_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class RecentlyPlayedList extends StatefulWidget {
+class RecentlyPlayedList extends StatelessWidget {
   const RecentlyPlayedList({
     super.key,
   });
 
   @override
-  State<RecentlyPlayedList> createState() => _RecentlyPlayedListState();
-}
-
-class _RecentlyPlayedListState extends State<RecentlyPlayedList> {
-  @override
-  initState() {
-    super.initState();
-    BlocProvider.of<RecentlyPlayedBloc>(context)
-        .add(FetchRecentlyPlayedEvent());
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final favoriteBloc = BlocProvider.of<RecentlyPlayedBloc>(context);
+    favoriteBloc.add(FetchRecentlyPlayedEvent());
     return BlocBuilder<RecentlyPlayedBloc, RecentlyPlayedState>(
         builder: (context, state) {
       return state.map(
@@ -62,7 +46,7 @@ class ImageListView extends StatefulWidget {
 }
 
 class _ImageListViewState extends State<ImageListView> {
-  final ScrollController _horizontalScroll = ScrollController();
+  late ScrollController _horizontalScroll;
 
   bool _canScrollBack = false;
   bool _canScrollForward = true;
@@ -70,7 +54,7 @@ class _ImageListViewState extends State<ImageListView> {
   @override
   void initState() {
     super.initState();
-
+    _horizontalScroll = ScrollController();
     _horizontalScroll.addListener(() {
       setState(() {
         _canScrollBack = _horizontalScroll.position.pixels > 0;
@@ -194,45 +178,8 @@ class RecentlyPlayedPageContent extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Stack(
           children: [
-            ResponsiveBuilder(
-              narrow: 190.0,
-              medium: 200.0,
-              large: 235.0,
-              builder: (context, child, height) {
-                return ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: SizedBox(
-                    height: height,
-                    width: height,
-                    child: child,
-                  ),
-                );
-              },
-              child: Image.network(image, fit: BoxFit.cover),
-            ),
-            Positioned(
-              bottom: 8,
-              right: 8,
-              child: PlatformBuilder(
-                  web: isHovered
-                      ? _CreatePlayButton(
-                          id: id.toString(),
-                          playedSong: song,
-                        )
-                      : Container(),
-                  other: _CreatePlayButton(
-                      id: id.toString(),
-                      playedSong: song,
-                      onPressed: () {
-                        GoRouter.of(context).push(Uri(
-                                path:
-                                    '/${routeNameMap[RouteName.detailMusic]!}$id')
-                            .toString());
-                      }),
-                  builder: (context, child, widget) {
-                    return widget;
-                  }),
-            ),
+            _CreateRecentlyPlayedImage(image: image),
+            _CreatePlayButton(isHovered: isHovered, id: id, song: song),
           ],
         ),
         const SizedBox(
@@ -257,34 +204,67 @@ class RecentlyPlayedPageContent extends StatelessWidget {
 }
 
 class _CreatePlayButton extends StatelessWidget {
-  final PlayedSong playedSong;
-  final VoidCallback? onPressed;
-  final String id;
-  const _CreatePlayButton(
-      {super.key, required this.playedSong, this.onPressed, required this.id});
+  const _CreatePlayButton({
+    required this.isHovered,
+    required this.id,
+    required this.song,
+  });
+
+  final bool isHovered;
+  final int id;
+  final PlayedSong song;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MusicBloc, MusicState>(builder: (context, state) {
-      bool isSongPlay = state.playlist.any((song) => song.id == playedSong.id);
-      return CreatePlayButton(
-        onPressed: () {
-          // context.read<RecentlyPlayedIdCubit>().setId(id);
-          onPressed ?? () {};
-          _playPauseMusic(context);
-        },
-        size: 40,
-        icon: (state.isPlaying && isSongPlay)
-            ? Icon(Icons.pause, color: AppColors.white.color)
-            : Icon(Icons.play_arrow, color: AppColors.white.color),
-        containerColor: AppColors.accent.color.withOpacity(0.8),
-      );
-    });
+    return Positioned(
+      bottom: 8,
+      right: 8,
+      child: PlatformBuilder(
+          web: isHovered
+              ? CreatePlayPauseButton(
+                  id: id.toString(),
+                  playedSong: song,
+                )
+              : const SizedBox(),
+          other: CreatePlayPauseButton(
+              id: id.toString(),
+              playedSong: song,
+              onPressed: () => _onMobiePressed(context)),
+          builder: (context, child, widget) {
+            return widget;
+          }),
+    );
   }
 
-  void _playPauseMusic(BuildContext context) {
-    final musicBloc = context.read<MusicBloc>();
+  void _onMobiePressed(BuildContext context) {
+    GoRouter.of(context).push(
+        Uri(path: '/${routeNameMap[RouteName.detailMusic]!}$id').toString());
+  }
+}
 
-    musicBloc.add(PlayPause(song: playedSong));
+class _CreateRecentlyPlayedImage extends StatelessWidget {
+  const _CreateRecentlyPlayedImage({
+    required this.image,
+  });
+  final String image;
+
+  @override
+  Widget build(BuildContext context) {
+    return ResponsiveBuilder(
+      narrow: 190.0,
+      medium: 200.0,
+      large: 235.0,
+      builder: (context, child, height) {
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: SizedBox(
+            height: height,
+            width: height,
+            child: child,
+          ),
+        );
+      },
+      child: Image.network(image, fit: BoxFit.cover),
+    );
   }
 }

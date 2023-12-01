@@ -1,7 +1,4 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
-import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_event.dart';
-import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_state.dart';
 import 'package:audio_player/domain/entity/models.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
@@ -157,8 +154,7 @@ class _CreateImageSection extends StatelessWidget {
 class _CreatePlayButton extends StatelessWidget {
   final SearchData playerSong;
   final double listHeight;
-  const _CreatePlayButton(
-      {super.key, required this.playerSong, required this.listHeight});
+  const _CreatePlayButton({required this.playerSong, required this.listHeight});
 
   @override
   Widget build(BuildContext context) {

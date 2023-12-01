@@ -25,7 +25,7 @@ class StartPage extends StatelessWidget {
                   AppImages.soundLogo,
                 ),
               ),
-              Text('Louder',
+              const Text('Louder',
                   style: TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.w600,

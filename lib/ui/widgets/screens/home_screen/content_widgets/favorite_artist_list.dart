@@ -2,29 +2,18 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/resources/resources.dart';
-import 'package:audio_player/ui/widgets/screens/index.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
-class FavoriteArtistList extends StatefulWidget {
+class FavoriteArtistList extends StatelessWidget {
   const FavoriteArtistList({
     super.key,
   });
 
   @override
-  State<FavoriteArtistList> createState() => _FavoriteArtistListState();
-}
-
-class _FavoriteArtistListState extends State<FavoriteArtistList> {
-  @override
-  initState() {
-    super.initState();
-    BlocProvider.of<FavoriteArtistBloc>(context)
-        .add(FetchFavoriteArtistsEvent());
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final favoriteBloc = BlocProvider.of<FavoriteArtistBloc>(context);
+    favoriteBloc.add(FetchFavoriteArtistsEvent());
     return BlocBuilder<FavoriteArtistBloc, FavoriteArtistBlocState>(
         builder: (context, state) {
       return state.map(

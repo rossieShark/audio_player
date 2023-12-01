@@ -1,5 +1,3 @@
-import 'package:audio_player/app_logic/blocs/language_bloc/language_bloc.dart';
-import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
 import 'package:audio_player/firebase_options.dart';
 import 'package:audio_player/ui/navigation/go_router.dart';
 

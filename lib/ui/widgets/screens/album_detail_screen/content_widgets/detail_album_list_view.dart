@@ -1,7 +1,4 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
-import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_event.dart';
-import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_state.dart';
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/domain/entity/played_song_model.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
@@ -133,10 +130,7 @@ class _CreatePlayPauseButton extends StatelessWidget {
   final String image;
 
   const _CreatePlayPauseButton(
-      {super.key,
-      required this.isHovered,
-      required this.playedSong,
-      required this.image});
+      {required this.isHovered, required this.playedSong, required this.image});
 
   @override
   Widget build(BuildContext context) {

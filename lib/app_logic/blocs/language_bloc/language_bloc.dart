@@ -4,8 +4,8 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/language_storage/language_storage.dart';
 
 class LanguageBloc extends Cubit<Locale?> {
-  LanguageStorage _storage;
-  LanguageBloc(this._storage) : super(Locale('en'));
+  final LanguageStorage _storage;
+  LanguageBloc(this._storage) : super(const Locale('en'));
 
   void changeLanguage(Locale newLocale) async {
     await _storage.changeLocale(newLocale);

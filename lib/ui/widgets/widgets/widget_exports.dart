@@ -10,7 +10,7 @@ export 'package:audio_player/ui/widgets/widgets/get_it_dependencies/get_it_depen
 export 'package:audio_player/ui/widgets/widgets/provider_extention.dart';
 export 'package:audio_player/ui/widgets/widgets/navigation_destination_extension.dart';
 export 'package:audio_player/ui/widgets/widgets/responsive_widgets/platform_widget/platform_widget.dart';
-export 'package:audio_player/ui/widgets/widgets/custom_buttons/play_button.dart';
+export 'package:audio_player/ui/widgets/widgets/custom_buttons/custom_play_button.dart';
 export 'package:audio_player/ui/widgets/widgets/create_scroll_buttons.dart';
 export 'package:audio_player/ui/widgets/widgets/songs_title_widget.dart';
 export 'package:audio_player/ui/widgets/widgets/custom_buttons/like_buton_widget.dart';
@@ -23,3 +23,5 @@ export 'package:audio_player/ui/widgets/widgets/app_alert.dart';
 export 'package:audio_player/ui/widgets/widgets/user_info_widget.dart';
 export 'package:audio_player/ui/widgets/widgets/image_widget.dart';
 export 'package:audio_player/ui/widgets/widgets/custom_buttons/app_main_custom_button.dart';
+export 'package:audio_player/ui/widgets/widgets/custom_buttons/play_pause_button.dart';
+export 'package:audio_player/ui/widgets/widgets/no_results_widget.dart';
