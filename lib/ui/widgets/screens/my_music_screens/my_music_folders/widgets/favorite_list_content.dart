@@ -107,13 +107,15 @@ class _CreatePlayMusicButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           child: Container(
             color: AppColors.black.color.withOpacity(0.5),
-            child: CreatePlayButton(
-              onPressed: () => _playPauseMusic(context),
-              size: 35,
-              icon: (state.isPlaying && isSongPlay)
-                  ? Icon(Icons.pause, color: AppColors.black.color)
-                  : Icon(Icons.play_arrow, color: AppColors.black.color),
-              containerColor: AppColors.accent.color,
+            child: Center(
+              child: CreatePlayButton(
+                onPressed: () => _playPauseMusic(context),
+                size: 45,
+                icon: (state.isPlaying && isSongPlay)
+                    ? Icon(Icons.pause, color: AppColors.white.color)
+                    : Icon(Icons.play_arrow, color: AppColors.white.color),
+                containerColor: AppColors.accent.color,
+              ),
             ),
           ));
     });

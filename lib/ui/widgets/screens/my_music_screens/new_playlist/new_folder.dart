@@ -2,37 +2,30 @@ import 'dart:ui';
 
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:audio_player/domain/entity/models.dart';
-import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class NewFolder extends StatefulWidget {
-  const NewFolder({super.key});
+class AddNewPlaylist extends StatefulWidget {
+  const AddNewPlaylist({super.key});
 
   @override
-  State<NewFolder> createState() => _NewFolderState();
+  State<AddNewPlaylist> createState() => _AddNewPlaylistState();
 }
 
-class _NewFolderState extends State<NewFolder> {
-  late TextEditingController _newFolderTextField;
+class _AddNewPlaylistState extends State<AddNewPlaylist> {
+  late TextEditingController _newPlaylistTextController;
   @override
   void initState() {
     super.initState();
-    _initialiseNewFoldderTextField();
-  }
-
-  void _initialiseNewFoldderTextField() {
-    _newFolderTextField = TextEditingController();
-    _newFolderTextField.text = 'Playlist';
+    _newPlaylistTextController = TextEditingController(text: 'Playlist');
   }
 
   @override
   void dispose() {
-    _newFolderTextField.dispose();
+    _newPlaylistTextController.dispose();
     super.dispose();
   }
 
@@ -40,8 +33,8 @@ class _NewFolderState extends State<NewFolder> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.black.color.withOpacity(0.7),
-        body: SingleChildScrollView(
-          child: Padding(
+        body: ListView(children: [
+          Padding(
             padding: const EdgeInsets.all(16.0),
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 7, sigmaY: 7),
@@ -66,8 +59,8 @@ class _NewFolderState extends State<NewFolder> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: _CreateChangeNameTextField(
-                          userNameTextController: _newFolderTextField),
+                      child: _NewPlaylistTextField(
+                          userNameTextController: _newPlaylistTextController),
                     ),
                     const SizedBox(
                       height: 20,
@@ -85,53 +78,32 @@ class _NewFolderState extends State<NewFolder> {
                               AppColors.darkAccent.color,
                             ],
                           )),
-                      child: _AddFolderButton(
-                          newFolderTextField: _newFolderTextField),
+                      child: _AddNewPlaylistButton(
+                          newPlaylistTextController:
+                              _newPlaylistTextController),
                     ),
                   ],
                 ),
               ),
             ),
           ),
-        ));
+        ]));
   }
 }
 
-class _AddFolderButton extends StatelessWidget {
-  const _AddFolderButton({
-    required TextEditingController newFolderTextField,
-  }) : _newFolderTextField = newFolderTextField;
+class _AddNewPlaylistButton extends StatelessWidget {
+  const _AddNewPlaylistButton({
+    required this.newPlaylistTextController,
+  });
 
-  final TextEditingController _newFolderTextField;
+  final TextEditingController newPlaylistTextController;
 
   @override
   Widget build(BuildContext context) {
-    bool isFolderExist = false;
     return BlocBuilder<MyMusicFolderBlocBloc, MyMusicFolderState>(
         builder: (context, state) {
-      if (state is LoadedMyMusicFolderState) {
-        isFolderExist = state.folders
-            .any((folder) => folder.title == _newFolderTextField.text);
-      }
       return TextButton(
-          onPressed: () {
-            if (_newFolderTextField.text.isNotEmpty && !isFolderExist) {
-              final folder = FavoriteFolder(
-                image: AppImages.playlist,
-                title: _newFolderTextField.text,
-              );
-              final bloc = context.read<MyMusicFolderBlocBloc>();
-              bloc.add(AddFolderEvent(folder));
-              context.pop();
-            } else {
-              showDialog(
-                context: context,
-                builder: (context) => SignAlert(
-                  text: AppLocalizations.of(context)!.folderNameMessage,
-                ),
-              );
-            }
-          },
+          onPressed: () => _handleButtonPress(context, state),
           child: Text(
             AppLocalizations.of(context)!.createButton,
             style: TextStyle(
@@ -141,10 +113,40 @@ class _AddFolderButton extends StatelessWidget {
           ));
     });
   }
+
+  void _handleButtonPress(BuildContext context, MyMusicFolderState state) {
+    bool isFolderExist = _checkIfFolderExists(state);
+    if (newPlaylistTextController.text.isNotEmpty && !isFolderExist) {
+      context
+          .read<MyMusicFolderBlocBloc>()
+          .add(AddFolderEvent(newPlaylistTextController.text));
+      context.pop();
+    } else {
+      _showFolderNameErrorMessage(context);
+    }
+  }
+
+  bool _checkIfFolderExists(MyMusicFolderState state) {
+    if (state is LoadedMyMusicFolderState) {
+      print(newPlaylistTextController.text);
+      return state.folders
+          .any((folder) => folder.title == newPlaylistTextController.text);
+    }
+    return false;
+  }
+
+  void _showFolderNameErrorMessage(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => SignAlert(
+        text: AppLocalizations.of(context)!.folderNameMessage,
+      ),
+    );
+  }
 }
 
-class _CreateChangeNameTextField extends StatelessWidget {
-  const _CreateChangeNameTextField({
+class _NewPlaylistTextField extends StatelessWidget {
+  const _NewPlaylistTextField({
     required TextEditingController userNameTextController,
   }) : _userNameTextController = userNameTextController;
 

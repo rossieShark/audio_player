@@ -13,9 +13,9 @@ class LoadMyMusicFoldersEvent extends MyMusicBlocEvent {
 }
 
 class AddFolderEvent extends MyMusicBlocEvent {
-  final FavoriteFolder folder;
-  const AddFolderEvent(this.folder);
+  final String folderName;
+  const AddFolderEvent(this.folderName);
 
   @override
-  List<Object> get props => [folder];
+  List<Object> get props => [folderName];
 }

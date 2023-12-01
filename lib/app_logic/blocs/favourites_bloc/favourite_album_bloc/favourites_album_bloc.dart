@@ -49,7 +49,11 @@ class FavoriteAlbumBloc extends Bloc<FavoriteAlbumEvent, FavoriteAlbumState> {
     List<SongModel> albums = await _returnFavouriteAlbumsList();
     albums.removeWhere((item) => item.id == event.album.id);
     await _databaseService.removeFromFavoritesAlbum(event.album);
-    emit(FavoriteAlbumState.loaded(data: albums));
+    if (albums.isEmpty) {
+      emit(const FavoriteAlbumState.noResults());
+    } else {
+      emit(FavoriteAlbumState.loaded(data: albums));
+    }
   }
 
   void _onSortingAlbum(

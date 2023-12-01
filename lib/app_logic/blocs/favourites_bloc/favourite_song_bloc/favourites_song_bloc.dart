@@ -48,8 +48,13 @@ class FavoriteSongBloc extends Bloc<FavoriteSongEvent, FavouriteSongState> {
       RemoveSongsEvent event, Emitter<FavouriteSongState> emit) async {
     List<SongModel> songs = await _returnFavouriteSongsList();
     songs.removeWhere((item) => item.id == event.detailSong.id);
+    print(songs.length);
     await _databaseService.removeSongFromDatabase(event.detailSong);
-    emit(FavouriteSongState.loaded(data: songs));
+    if (songs.isEmpty) {
+      emit(const FavouriteSongState.noResults());
+    } else {
+      emit(FavouriteSongState.loaded(data: songs));
+    }
   }
 
   void _onSorting(

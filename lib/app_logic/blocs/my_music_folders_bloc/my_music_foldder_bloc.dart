@@ -1,6 +1,7 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/favorite_folder_model.dart';
 import 'package:audio_player/domain/services/database_service/database_service.dart';
+import 'package:audio_player/resources/resources.dart';
 
 class MyMusicFolderBlocBloc extends Bloc<MyMusicBlocEvent, MyMusicFolderState> {
   final DatabaseService _databaseService;
@@ -16,9 +17,10 @@ class MyMusicFolderBlocBloc extends Bloc<MyMusicBlocEvent, MyMusicFolderState> {
   void _onAddFolder(
       AddFolderEvent event, Emitter<MyMusicFolderState> emit) async {
     List<FavoriteFolder> folders = await _returnMyFolderList();
-
-    folders.add(event.folder);
-    await _databaseService.addToFolders(event.folder);
+    final folder =
+        FavoriteFolder(image: AppImages.playlist, title: event.folderName);
+    folders.add(folder);
+    await _databaseService.addToFolders(folder);
 
     emit(MyMusicFolderState.loaded(folders: folders));
   }
