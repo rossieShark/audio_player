@@ -1,6 +1,7 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/database.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/widgets/screens/index.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class CreateGenresSection extends StatelessWidget {
           child: Text(
             AppLocalizations.of(context)!.browseAll,
             style: TextStyle(
-                fontFamily: AppFonts.lusitana.font,
+                fontFamily: FontFamily.lusitana,
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
                 color: Colors.white),
@@ -148,7 +149,7 @@ class CreateGenresListContent extends StatelessWidget {
               child: Text(
                 name,
                 style: TextStyle(
-                    fontFamily: AppFonts.colombia.font,
+                    fontFamily: FontFamily.poiretOne,
                     fontSize: 18,
                     fontWeight: FontWeight.w900,
                     color: Colors.white),

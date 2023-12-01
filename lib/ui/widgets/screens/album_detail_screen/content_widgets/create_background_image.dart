@@ -1,3 +1,4 @@
+import 'package:audio_player/resources/resources.dart';
 import 'package:flutter/material.dart';
 
 class CreateBackgroundImage extends StatelessWidget {
@@ -15,7 +16,7 @@ class CreateBackgroundImage extends StatelessWidget {
     return Stack(
       children: [
         Image.asset(
-          'assets/images/black.jpg',
+          AppImages.black,
           fit: BoxFit.fill,
           width: double.infinity,
           height: height,

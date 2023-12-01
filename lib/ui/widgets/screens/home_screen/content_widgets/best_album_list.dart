@@ -1,4 +1,5 @@
 import 'package:audio_player/databases/database.dart';
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
@@ -131,7 +132,7 @@ class BestAlbumsContent extends StatelessWidget {
                         style: TextStyle(
                             color: AppColors.white.color,
                             fontSize: 30,
-                            fontFamily: AppFonts.lusitana.font,
+                            fontFamily: FontFamily.lusitana,
                             fontWeight: FontWeight.w600),
                         maxFontSize: 15,
                         overflow: TextOverflow.ellipsis,
@@ -139,8 +140,8 @@ class BestAlbumsContent extends StatelessWidget {
                       ),
                       Text(
                         TextModifierService().removeTextAfter(title),
-                        style: TextStyle(
-                            fontFamily: AppFonts.colombia.font,
+                        style: const TextStyle(
+                            fontFamily: FontFamily.poiretOne,
                             fontSize: 24,
                             fontWeight: FontWeight.w600,
                             color: Colors.white),

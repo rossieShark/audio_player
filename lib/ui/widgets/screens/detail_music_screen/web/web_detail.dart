@@ -3,13 +3,14 @@ import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
 import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_state.dart';
 
 import 'package:audio_player/databases/database.dart';
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/widgets/screens/detail_music_screen/detail_music_index.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
 class WebDetailMusicPage extends StatefulWidget {
-  const WebDetailMusicPage({Key? key});
+  const WebDetailMusicPage({super.key});
 
   @override
   State<WebDetailMusicPage> createState() => _WebDetailMusicPageState();
@@ -204,14 +205,19 @@ class _CreateImageSection extends StatelessWidget {
       child: ClipRRect(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         child: SizedBox(
-          height: 60,
-          width: 60,
-          child: Image.network(
-            songInfo?.imageUrl ?? imagesMap[Images.defaultImage]!,
-            fit: BoxFit.cover,
-            alignment: Alignment.topCenter,
-          ),
-        ),
+            height: 60,
+            width: 60,
+            child: songInfo?.imageUrl != null
+                ? Image.network(
+                    songInfo!.imageUrl,
+                    fit: BoxFit.cover,
+                    alignment: Alignment.topCenter,
+                  )
+                : Image.asset(
+                    AppImages.black,
+                    fit: BoxFit.cover,
+                    alignment: Alignment.topCenter,
+                  )),
       ),
     );
   }

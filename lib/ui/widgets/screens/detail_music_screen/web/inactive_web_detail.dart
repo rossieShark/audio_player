@@ -1,3 +1,4 @@
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
@@ -67,9 +68,9 @@ class InactiveWebDetailPage extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Text('-:--',
+                    const Text('-:--',
                         style: TextStyle(
-                            fontFamily: AppFonts.colombia.font,
+                            fontFamily: FontFamily.poiretOne,
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
                             color: Colors.grey)),
@@ -83,9 +84,9 @@ class InactiveWebDetailPage extends StatelessWidget {
                         onChanged: null,
                       ),
                     ),
-                    Text('-:--',
+                    const Text('-:--',
                         style: TextStyle(
-                            fontFamily: AppFonts.colombia.font,
+                            fontFamily: FontFamily.poiretOne,
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
                             color: Colors.grey)),

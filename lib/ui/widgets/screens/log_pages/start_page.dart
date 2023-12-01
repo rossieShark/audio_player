@@ -1,4 +1,5 @@
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
@@ -21,14 +22,14 @@ class StartPage extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height / 2.5,
                 child: Image.asset(
-                  imagesMap[Images.appIcon]!,
+                  AppImages.soundLogo,
                 ),
               ),
               Text('Louder',
                   style: TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.w600,
-                    fontFamily: AppFonts.colombia.font,
+                    fontFamily: FontFamily.poiretOne,
                     color: Colors.white,
                   )),
               const Padding(

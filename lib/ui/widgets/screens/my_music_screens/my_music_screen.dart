@@ -1,6 +1,7 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/domain/entity/models.dart';
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 import 'package:audio_player/ui/widgets/screens/my_music_screens/my_music_index.dart';
 
@@ -160,7 +161,7 @@ class _FavouritefoldersCard extends StatelessWidget {
                 folders[index].title,
                 style: TextStyle(
                     color: Colors.white,
-                    fontFamily: AppFonts.lusitana.font,
+                    fontFamily: FontFamily.lusitana,
                     fontSize: 13,
                     fontWeight: FontWeight.w500),
               ),
@@ -175,11 +176,11 @@ class _FavouritefoldersCard extends StatelessWidget {
 List<FavoriteFolder> initializeFolders(BuildContext context) {
   return [
     FavoriteFolder(
-      image: imagesMap[Images.album]!,
+      image: AppImages.album,
       title: AppLocalizations.of(context)!.albumsFolder,
     ),
     FavoriteFolder(
-      image: imagesMap[Images.track]!,
+      image: AppImages.track,
       title: AppLocalizations.of(context)!.tracksFolder,
     ),
   ];

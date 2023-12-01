@@ -269,7 +269,7 @@ class _CreatePlayButton extends StatelessWidget {
       bool isSongPlay = state.playlist.any((song) => song.id == playedSong.id);
       return CreatePlayButton(
         onPressed: () {
-          context.read<RecentlyPlayedIdCubit>().setId(id);
+          // context.read<RecentlyPlayedIdCubit>().setId(id);
           onPressed ?? () {};
           _playPauseMusic(context);
         },

@@ -3,6 +3,7 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/app_logic/blocs/language_bloc/language_bloc.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 
 import 'package:audio_player/ui/widgets/screens/settings_page/settings_index.dart';
@@ -89,8 +90,8 @@ class _SettingsState extends State<Settings> {
             SettingsSection(
               title: Text(
                 AppLocalizations.of(context)!.settingPageCommon,
-                style: TextStyle(
-                    fontFamily: AppFonts.lusitana.font,
+                style: const TextStyle(
+                    fontFamily: FontFamily.lusitana,
                     fontSize: 16,
                     fontWeight: FontWeight.w500),
               ),
@@ -123,7 +124,7 @@ class _SettingsState extends State<Settings> {
                   title: Text(
                     AppLocalizations.of(context)!.settingPageCommonLanguage,
                     style: TextStyle(
-                        fontFamily: AppFonts.colombia.font,
+                        fontFamily: FontFamily.poiretOne,
                         fontSize: 15,
                         color: AppColors.white.color,
                         fontWeight: FontWeight.w500),
@@ -136,7 +137,7 @@ class _SettingsState extends State<Settings> {
                     AppLocalizations.of(context)!
                         .settingPageCommonSubscriptionPlan,
                     style: TextStyle(
-                        fontFamily: AppFonts.colombia.font,
+                        fontFamily: FontFamily.poiretOne,
                         fontSize: 15,
                         color: AppColors.white.color,
                         fontWeight: FontWeight.w500),
@@ -147,7 +148,7 @@ class _SettingsState extends State<Settings> {
                   title: Text(
                     AppLocalizations.of(context)!.settingPageCommonDevices,
                     style: TextStyle(
-                        fontFamily: AppFonts.colombia.font,
+                        fontFamily: FontFamily.poiretOne,
                         fontSize: 15,
                         color: AppColors.white.color,
                         fontWeight: FontWeight.w500),
@@ -158,8 +159,8 @@ class _SettingsState extends State<Settings> {
             SettingsSection(
                 title: Text(
                   AppLocalizations.of(context)!.settingPageAccount,
-                  style: TextStyle(
-                      fontFamily: AppFonts.lusitana.font,
+                  style: const TextStyle(
+                      fontFamily: FontFamily.lusitana,
                       fontSize: 16,
                       fontWeight: FontWeight.w500),
                 ),
@@ -169,7 +170,7 @@ class _SettingsState extends State<Settings> {
                     title: Text(
                       AppLocalizations.of(context)!.settingPageAccount,
                       style: TextStyle(
-                          fontFamily: AppFonts.colombia.font,
+                          fontFamily: FontFamily.poiretOne,
                           fontSize: 15,
                           color: AppColors.white.color,
                           fontWeight: FontWeight.w500),
@@ -196,7 +197,7 @@ class _SettingsState extends State<Settings> {
                     title: Text(
                       AppLocalizations.of(context)!.settingPageAccountPassword,
                       style: TextStyle(
-                          fontFamily: AppFonts.colombia.font,
+                          fontFamily: FontFamily.poiretOne,
                           fontSize: 15,
                           color: AppColors.white.color,
                           fontWeight: FontWeight.w500),
@@ -207,7 +208,7 @@ class _SettingsState extends State<Settings> {
                     title: Text(
                       AppLocalizations.of(context)!.settingPageAccountPayment,
                       style: TextStyle(
-                          fontFamily: AppFonts.colombia.font,
+                          fontFamily: FontFamily.poiretOne,
                           fontSize: 15,
                           color: AppColors.white.color,
                           fontWeight: FontWeight.w500),
@@ -231,7 +232,7 @@ class _SettingsState extends State<Settings> {
                     title: Text(
                       AppLocalizations.of(context)!.settingPageAccountDelete,
                       style: TextStyle(
-                          fontFamily: AppFonts.colombia.font,
+                          fontFamily: FontFamily.poiretOne,
                           fontSize: 15,
                           color: AppColors.white.color,
                           fontWeight: FontWeight.w500),
@@ -249,7 +250,7 @@ class _SettingsState extends State<Settings> {
                     AppLocalizations.of(context)!.settingPageLogOut,
                     style: TextStyle(
                         color: AppColors.accent.color,
-                        fontFamily: AppFonts.lusitana.font,
+                        fontFamily: FontFamily.lusitana,
                         fontSize: 16,
                         fontWeight: FontWeight.w500),
                   ),

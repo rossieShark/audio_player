@@ -1,6 +1,7 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/domain/entity/favorite_song_model.dart';
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
@@ -19,7 +20,8 @@ class RecentlySearchedList extends StatelessWidget {
     return BlocBuilder<RecentlySearchedBloc, RecentlySearchedState>(
         builder: (context, state) {
       return state.map(
-        loading: (context) => const Center(child: CustomFadingCircleIndicator()),
+        loading: (context) =>
+            const Center(child: CustomFadingCircleIndicator()),
         empty: (context) => _CreateListEmptyState(width: width),
         loaded: (data) =>
             _CreateListView(width: width, recentlySearched: data.data),
@@ -136,7 +138,7 @@ class _CreateListEmptyState extends StatelessWidget {
               AppLocalizations.of(context)!.searchHistoryResultText,
               style: TextStyle(
                   color: Colors.white,
-                  fontFamily: AppFonts.lusitana.font,
+                  fontFamily: FontFamily.lusitana,
                   fontSize: size,
                   fontWeight: FontWeight.w500),
               textAlign: TextAlign.center,

@@ -1,4 +1,5 @@
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/widgets/screens/settings_page/change_profile/platform_image/image_picker.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
@@ -93,8 +94,8 @@ class _ChangeUserinfoState extends State<ChangeUserinfo> {
                               fit: BoxFit.cover,
                             )
                           : _user?.photoURL == null
-                              ? Image.network(
-                                  imagesMap[Images.userPhoto]!,
+                              ? Image.asset(
+                                  AppImages.user,
                                   fit: BoxFit.cover,
                                 )
                               : Image.network(_user!.photoURL!,

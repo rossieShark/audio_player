@@ -1,4 +1,5 @@
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class _CreateSongTitleState extends State<CreateSongTitle> {
             style: TextStyle(
                 color: AppColors.white.color,
                 fontSize: widget.fontSize,
-                fontFamily: AppFonts.lusitana.font,
+                fontFamily: FontFamily.lusitana,
                 fontWeight: FontWeight.w600),
             maxFontSize: widget.minFontSize,
             overflow: TextOverflow.ellipsis,
@@ -52,7 +53,7 @@ class _CreateSongTitleState extends State<CreateSongTitle> {
             TextModifierService().removeTextAfter(
                 widget.songTitle ?? AppLocalizations.of(context)!.noName),
             style: TextStyle(
-                fontFamily: AppFonts.colombia.font,
+                fontFamily: FontFamily.poiretOne,
                 fontSize: widget.fontSize,
                 fontWeight: FontWeight.w600,
                 color: Colors.white),

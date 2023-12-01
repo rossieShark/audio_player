@@ -1,6 +1,7 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 
 import 'package:audio_player/databases/database.dart';
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/widgets/screens/detail_music_screen/detail_music_index.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
@@ -72,14 +73,19 @@ class _CreatMainContent extends StatelessWidget {
             bottomRight: Radius.circular(maxWidth / 2),
           ),
           child: SizedBox(
-            height: maxHeight / 2,
-            width: maxWidth - maxWidth * 0.2,
-            child: Image.network(
-              songInfo?.imageUrl ?? imagesMap[Images.defaultImage]!,
-              fit: BoxFit.cover,
-              alignment: Alignment.topCenter,
-            ),
-          ),
+              height: maxHeight / 2,
+              width: maxWidth - maxWidth * 0.2,
+              child: songInfo?.imageUrl != null
+                  ? Image.network(
+                      songInfo!.imageUrl,
+                      fit: BoxFit.cover,
+                      alignment: Alignment.topCenter,
+                    )
+                  : Image.asset(
+                      AppImages.black,
+                      fit: BoxFit.cover,
+                      alignment: Alignment.topCenter,
+                    )),
         ),
         SizedBox(
           height: maxHeight / 2 - 20,

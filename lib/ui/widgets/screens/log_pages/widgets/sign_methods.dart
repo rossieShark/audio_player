@@ -1,3 +1,4 @@
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -18,7 +19,7 @@ class SignMethods extends StatelessWidget {
                 width: 18,
                 height: 18,
                 child: Image.asset(
-                  imagesMap[Images.googleIcon]!,
+                  AppImages.google,
                   fit: BoxFit.cover,
                 )),
           ),
@@ -29,7 +30,7 @@ class SignMethods extends StatelessWidget {
               width: 20,
               height: 20,
               child: Image.asset(
-                imagesMap[Images.facebookIcon]!,
+                AppImages.facebook,
                 fit: BoxFit.cover,
               )),
           const SizedBox(
@@ -39,7 +40,7 @@ class SignMethods extends StatelessWidget {
             width: 20,
             height: 20,
             child: Image.asset(
-              imagesMap[Images.appleIcon]!,
+              AppImages.facebook,
               color: AppColors.white.color,
               fit: BoxFit.cover,
             ),

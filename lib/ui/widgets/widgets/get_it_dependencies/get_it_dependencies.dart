@@ -91,8 +91,8 @@ class SetGetItDependencies {
         () => LanguageBloc(GetIt.instance.get()));
     GetIt.instance
         .registerFactory<MusicBloc>(() => MusicBloc(GetIt.instance.get()));
-    GetIt.instance
-        .registerFactory<RecentlyPlayedIdCubit>(() => RecentlyPlayedIdCubit());
+    // GetIt.instance
+    //     .registerFactory<RecentlyPlayedIdCubit>(() => RecentlyPlayedIdCubit());
   }
 
   void setupServiceDependencies() {

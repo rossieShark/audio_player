@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/domain/entity/models.dart';
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -116,7 +117,7 @@ class _AddFolderButton extends StatelessWidget {
           onPressed: () {
             if (_newFolderTextField.text.isNotEmpty && !isFolderExist) {
               final folder = FavoriteFolder(
-                image: imagesMap[Images.playlist]!,
+                image: AppImages.playlist,
                 title: _newFolderTextField.text,
               );
               final bloc = context.read<MyMusicFolderBlocBloc>();

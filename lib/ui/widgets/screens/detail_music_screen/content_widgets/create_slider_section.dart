@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
@@ -58,8 +59,8 @@ class _CreateSliderSectionState extends State<CreateSliderSection> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(formatTime(position.inSeconds),
-            style: TextStyle(
-                fontFamily: AppFonts.lusitana.font,
+            style: const TextStyle(
+                fontFamily: FontFamily.lusitana,
                 fontSize: 13,
                 fontWeight: FontWeight.w100,
                 color: Colors.white)),
@@ -85,8 +86,8 @@ class _CreateSliderSectionState extends State<CreateSliderSection> {
           ),
         ),
         Text(formatTime((duration - position).inSeconds),
-            style: TextStyle(
-                fontFamily: AppFonts.lusitana.font,
+            style: const TextStyle(
+                fontFamily: FontFamily.lusitana,
                 fontSize: 13,
                 fontWeight: FontWeight.w100,
                 color: Colors.white))

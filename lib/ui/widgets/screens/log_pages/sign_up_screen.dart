@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 import 'package:audio_player/domain/services/services.dart';
 
@@ -78,7 +79,7 @@ class _SignInPageState extends State<SignUpPage> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 2.5,
                   child: Image.asset(
-                    imagesMap[Images.appIcon]!,
+                    AppImages.soundLogo,
                   ),
                 ),
                 Padding(

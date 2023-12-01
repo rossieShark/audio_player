@@ -1,5 +1,6 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/widgets/screens/search_screen/search_export.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
@@ -135,8 +136,8 @@ class _SearchTextField extends StatelessWidget {
         hintText: focusNode.hasFocus
             ? ''
             : AppLocalizations.of(context)!.searchTextFieldHintText,
-        hintStyle: TextStyle(
-            fontFamily: AppFonts.colombia.font,
+        hintStyle: const TextStyle(
+            fontFamily: FontFamily.poiretOne,
             fontSize: 12,
             fontWeight: FontWeight.w600,
             color: Colors.grey),
@@ -160,8 +161,8 @@ class _SearchTextField extends StatelessWidget {
               )
             : null,
       ),
-      style: TextStyle(
-          fontFamily: AppFonts.colombia.font,
+      style: const TextStyle(
+          fontFamily: FontFamily.poiretOne,
           fontSize: 13,
           fontWeight: FontWeight.w600,
           color: Colors.white),

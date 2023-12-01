@@ -1,4 +1,5 @@
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -18,17 +19,20 @@ class UserInfoWidget extends StatelessWidget {
             child: Row(
               children: [
                 ClipRRect(
-                    borderRadius: BorderRadius.circular(100 / 2),
-                    child: Container(
-                        width: 70,
-                        height: 70,
-                        decoration:
-                            BoxDecoration(color: AppColors.background.color),
-                        child: Image.network(
-                          snapshot.data?.photoURL ??
-                              imagesMap[Images.userPhoto]!,
-                          fit: BoxFit.cover,
-                        ))),
+                  borderRadius: BorderRadius.circular(100 / 2),
+                  child: Container(
+                    width: 70,
+                    height: 70,
+                    decoration:
+                        BoxDecoration(color: AppColors.background.color),
+                    child: snapshot.data?.photoURL == null
+                        ? Image.asset(AppImages.user)
+                        : Image.network(
+                            snapshot.data!.photoURL!,
+                            fit: BoxFit.cover,
+                          ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(8, 8, 16, 0),
                   child: Column(

@@ -93,7 +93,7 @@ class _CreatePlayPauseButton extends StatelessWidget {
   }
 
   void _playPauseMusic(BuildContext context) {
-    context.read<RecentlyPlayedIdCubit>().setId(playedSong.id.toString());
+    // context.read<RecentlyPlayedIdCubit>().setId(playedSong.id.toString());
     final musicBloc = context.read<MusicBloc>();
     final song = PlayedSong(id: playedSong.id, preview: playedSong.preview);
     musicBloc.add(PlayPause(song: song));

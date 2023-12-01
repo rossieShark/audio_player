@@ -3,6 +3,7 @@ import 'package:audio_player/app_logic/blocs/language_bloc/language_bloc.dart';
 import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
 
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/theme/theme.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
@@ -40,9 +41,9 @@ class _AudioPlayerAppState extends State<AudioPlayerApp> {
           create: (context) =>
               GetIt.I.get()..add(const LoadMyMusicFoldersEvent()),
         ),
-        BlocProvider<RecentlyPlayedIdCubit>(
-          create: (context) => GetIt.I.get(),
-        ),
+        // BlocProvider<RecentlyPlayedIdCubit>(
+        //   create: (context) => GetIt.I.get(),
+        // ),
         BlocProvider<RecentlySearchedBloc>(
           create: (context) =>
               GetIt.I.get()..add(const LoadRecentlySearchedEvent()),
@@ -69,17 +70,17 @@ class _AudioPlayerAppState extends State<AudioPlayerApp> {
                 titleLarge: TextStyle(
                     color: AppColors.white.color,
                     fontSize: 30,
-                    fontFamily: AppFonts.lusitana.font,
+                    fontFamily: FontFamily.lusitana,
                     fontWeight: FontWeight.w400),
                 titleMedium: TextStyle(
                     color: AppColors.white.color,
                     fontSize: 25,
-                    fontFamily: AppFonts.lusitana.font,
+                    fontFamily: FontFamily.lusitana,
                     fontWeight: FontWeight.w400),
                 titleSmall: TextStyle(
                     color: AppColors.white.color,
                     fontSize: 22,
-                    fontFamily: AppFonts.lusitana.font,
+                    fontFamily: FontFamily.lusitana,
                     fontWeight: FontWeight.w500),
               ),
               navigationRailTheme: AppThemeData().createNavBarTheme(),
