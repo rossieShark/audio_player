@@ -147,6 +147,7 @@ class _CreateAlbumTitle extends StatelessWidget {
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
                   color: Colors.white),
+              textAlign: TextAlign.center,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
             ),
