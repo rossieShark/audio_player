@@ -1,5 +1,4 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/app_logic/blocs/passwords_bloc/passwords_bloc.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/theme/theme.dart';
@@ -47,6 +46,9 @@ class _AudioPlayerAppState extends State<AudioPlayerApp> {
               GetIt.I.get()..add(const LoadRecentlySearchedEvent()),
         ),
         BlocProvider<MusicBloc>(
+          create: (context) => GetIt.I(),
+        ),
+        BlocProvider<ImageBloc>(
           create: (context) => GetIt.I(),
         ),
       ],

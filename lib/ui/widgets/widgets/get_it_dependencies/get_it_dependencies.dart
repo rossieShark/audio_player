@@ -2,6 +2,7 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/databases/language_storage/language_storage.dart';
 import 'package:audio_player/domain/repositories/index.dart';
+
 import 'package:audio_player/domain/services/services.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get_it/get_it.dart';
@@ -82,14 +83,19 @@ class SetGetItDependencies {
         () => LanguageBloc(GetIt.instance.get()));
     GetIt.instance
         .registerFactory<MusicBloc>(() => MusicBloc(GetIt.instance.get()));
-    // GetIt.instance
-    //     .registerFactory<RecentlyPlayedIdCubit>(() => RecentlyPlayedIdCubit());
+    GetIt.instance
+        .registerFactory<ImageBloc>(() => ImageBloc(GetIt.instance.get()));
+    GetIt.instance.registerFactory<PasswordMissmatchCubit>(
+        () => PasswordMissmatchCubit());
   }
 
   void setupServiceDependencies() {
     GetIt.instance.registerLazySingleton(() => AudioPlayerService.create());
+
     GetIt.instance.registerFactory<DatabaseService>(
         () => DatabaseService(GetIt.instance.get()));
+    GetIt.instance
+        .registerLazySingleton<ImagePickerService>(() => ImagePickerService());
     GetIt.instance.registerFactory<BestAlbumsPaginationService>(
         () => BestAlbumsPaginationService(GetIt.instance.get()));
 

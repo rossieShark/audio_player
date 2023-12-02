@@ -84,7 +84,6 @@ class _CreateFavouritesSongListView extends StatelessWidget {
 
 class _MobileFavouriteListViewBody extends StatelessWidget {
   const _MobileFavouriteListViewBody({
-    super.key,
     required this.song,
   });
 
@@ -125,7 +124,6 @@ class _MobileFavouriteListViewBody extends StatelessWidget {
 
 class _WebFavouriteListViewBody extends StatelessWidget {
   const _WebFavouriteListViewBody({
-    super.key,
     required this.song,
   });
 

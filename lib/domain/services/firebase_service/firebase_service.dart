@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/app_logic/blocs/passwords_bloc/passwords_bloc.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 
@@ -14,7 +13,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class FireBaseFunctions {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  User? user;
+  final User? _user = FirebaseAuth.instance.currentUser;
   Future<bool> signInWithGoogle() async {
     try {
       await FirebaseAuth.instance.signOut();
@@ -88,11 +87,11 @@ class FireBaseFunctions {
   }
 
   Future<void> deleteAccount() async {
-    final User? user = _auth.currentUser;
+    // final User? user = _auth.currentUser;
 
-    if (user != null) {
+    if (_user != null) {
       try {
-        await user.delete();
+        await _user!.delete();
         print('User account deleted');
       } catch (e) {
         print('Error deleting account: $e');
@@ -149,7 +148,7 @@ class FireBaseFunctions {
     BuildContext context,
   ) async {
     if (password == newPassword) {
-      await user?.updatePassword(password);
+      await _user?.updatePassword(password);
       context.pop();
     } else {
       context.read<PasswordMissmatchCubit>().passwordMissmatchText(
@@ -180,6 +179,15 @@ class FireBaseFunctions {
     } catch (e) {
       print('Error signing up: $e');
       return false;
+    }
+  }
+
+  Future<void> changeUserInfo(String? image, String userName) async {
+    if (image == null) return;
+    await _user?.updatePhotoURL(image);
+
+    if (userName.isNotEmpty) {
+      await _user?.updateDisplayName(userName);
     }
   }
 }

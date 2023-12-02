@@ -25,3 +25,4 @@ export 'package:audio_player/ui/widgets/widgets/image_widget.dart';
 export 'package:audio_player/ui/widgets/widgets/custom_buttons/app_main_custom_button.dart';
 export 'package:audio_player/ui/widgets/widgets/custom_buttons/play_pause_button.dart';
 export 'package:audio_player/ui/widgets/widgets/no_results_widget.dart';
+export 'package:audio_player/ui/widgets/widgets/password_text_field.dart';

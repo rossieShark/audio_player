@@ -39,3 +39,7 @@ export 'package:audio_player/app_logic/blocs/favourites_bloc/favourite_song_bloc
 export 'package:audio_player/app_logic/blocs/music_bloc/music_bloc.dart';
 export 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_event.dart';
 export 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_state.dart';
+export 'package:audio_player/app_logic/blocs/image_bloc/image_bloc.dart';
+export 'package:audio_player/app_logic/blocs/image_bloc/image_bloc_state.dart';
+export 'package:audio_player/app_logic/blocs/image_bloc/image_bloc_event.dart';
+export 'package:audio_player/app_logic/blocs/passwords_bloc/passwords_bloc.dart';

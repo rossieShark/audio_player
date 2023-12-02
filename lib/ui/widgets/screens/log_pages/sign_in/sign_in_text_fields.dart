@@ -1,6 +1,5 @@
 import 'package:audio_player/domain/services/services.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:audio_player/ui/widgets/widgets/password_text_field.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +24,7 @@ class SignInWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Container(
+      child: SizedBox(
         width: 400,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
