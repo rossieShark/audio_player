@@ -56,3 +56,23 @@ class SignAlert extends StatelessWidget {
     );
   }
 }
+
+class ShowAlert {
+  void showDialog(Widget child, BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => Container(
+        height: 200,
+        padding: const EdgeInsets.only(top: 0.0),
+        margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        color: CupertinoColors.systemBackground.resolveFrom(context),
+        child: SafeArea(
+          top: false,
+          child: child,
+        ),
+      ),
+    );
+  }
+}

@@ -1,4 +1,3 @@
-import 'package:audio_player/domain/entity/favorite_folder_model.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class MyMusicBlocEvent extends Equatable {

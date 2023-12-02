@@ -11,6 +11,8 @@ import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class FireBaseFunctions {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  User? user;
   Future<bool> signInWithGoogle() async {
     try {
       await FirebaseAuth.instance.signOut();
@@ -80,6 +82,29 @@ class FireBaseFunctions {
         builder: (context) =>
             SignAlert(text: AppLocalizations.of(context)!.invalidEmailPassword),
       );
+    }
+  }
+
+  Future<void> deleteAccount() async {
+    final User? user = _auth.currentUser;
+
+    if (user != null) {
+      try {
+        await user.delete();
+        print('User account deleted');
+      } catch (e) {
+        print('Error deleting account: $e');
+      }
+    }
+  }
+
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+
+      print('User signed out');
+    } catch (e) {
+      print('Error signing out: $e');
     }
   }
 
