@@ -18,33 +18,31 @@ class SignUpWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return ListView(
       padding: const EdgeInsets.all(16.0),
-      child: SizedBox(
-        width: 400,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
-              child: CustomTextField(
-                obscureText: false,
-                focusNode: emailFocusNode,
-                controller: signUpTextController,
-                hintText: AppLocalizations.of(context)!.enterEmail,
-              ),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      children: [
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+            child: CustomTextField(
+              obscureText: false,
+              focusNode: emailFocusNode,
+              controller: signUpTextController,
+              hintText: AppLocalizations.of(context)!.enterEmail,
             ),
-            CreatePasswordTextField(
-              focusNode: passwordFocusNode,
-              passwordController: passwordTextController,
-              hintText: AppLocalizations.of(context)!.enterPassword,
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-          ],
+          ),
         ),
-      ),
+        CreatePasswordTextField(
+          focusNode: passwordFocusNode,
+          passwordController: passwordTextController,
+          hintText: AppLocalizations.of(context)!.enterPassword,
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+      ],
     );
   }
 }

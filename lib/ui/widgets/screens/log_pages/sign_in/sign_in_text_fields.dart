@@ -22,34 +22,32 @@ class SignInWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return ListView(
       padding: const EdgeInsets.all(16.0),
-      child: SizedBox(
-        width: 400,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
-              child: CustomTextField(
-                obscureText: false,
-                focusNode: _emailFocusNode,
-                controller: _loginTextController,
-                hintText: AppLocalizations.of(context)!.enterEmail,
-              ),
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      children: [
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+            child: CustomTextField(
+              obscureText: false,
+              focusNode: _emailFocusNode,
+              controller: _loginTextController,
+              hintText: AppLocalizations.of(context)!.enterEmail,
             ),
-            CreatePasswordTextField(
-              focusNode: _passwordFocusNode,
-              passwordController: _passwordTextController,
-              hintText: AppLocalizations.of(context)!.enterPassword,
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            _CreateForgetPasswordWidget()
-          ],
+          ),
         ),
-      ),
+        CreatePasswordTextField(
+          focusNode: _passwordFocusNode,
+          passwordController: _passwordTextController,
+          hintText: AppLocalizations.of(context)!.enterPassword,
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        _CreateForgetPasswordWidget()
+      ],
     );
   }
 }
@@ -67,15 +65,17 @@ class _CreateForgetPasswordWidget extends StatelessWidget {
         FireBaseFunctions()
             .resetPassword(context, _resetPasswordTextController);
       },
-      child: SizedBox(
-        width: 400,
-        child: Align(
-            alignment: Alignment.bottomRight,
-            child: Text(AppLocalizations.of(context)!.forgotPassword,
-                style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400))),
+      child: Center(
+        child: SizedBox(
+          width: 400,
+          child: Align(
+              alignment: Alignment.bottomRight,
+              child: Text(AppLocalizations.of(context)!.forgotPassword,
+                  style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400))),
+        ),
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'package:audio_player/ui/widgets/screens/log_pages/start_page.dart';
+import 'package:audio_player/ui/widgets/screens/log_pages/start_page/start_page.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 
 import 'package:flutter/material.dart';

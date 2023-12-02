@@ -75,30 +75,28 @@ class _SignInPageState extends State<SignInPage> {
           const SizedBox(
             height: 50,
           ),
-          Column(
-            children: [
-              CustomButton(
-                  onPressed: () => FireBaseFunctions().signIn(
-                        context,
-                        _loginTextController.text,
-                        _passwordTextController.text,
-                      ),
-                  buttonText: AppLocalizations.of(context)!.signInButton),
-              const SizedBox(
-                height: 10,
-              ),
-              CreateOtherSignMethods(
-                signMethodsText: AppLocalizations.of(context)!.signInMethods,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              CreateRegisterWidget(
-                text: AppLocalizations.of(context)!.noAccount,
-                onTap: () => context.go(routeNameMap[RouteName.signUp]!),
-                buttonNext: AppLocalizations.of(context)!.signUpButton,
-              ),
-            ],
+          Center(
+            child: CustomButton(
+                onPressed: () => FireBaseFunctions().signIn(
+                      context,
+                      _loginTextController.text,
+                      _passwordTextController.text,
+                    ),
+                buttonText: AppLocalizations.of(context)!.signInButton),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          CreateOtherSignMethods(
+            signMethodsText: AppLocalizations.of(context)!.signInMethods,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          CreateRegisterWidget(
+            text: AppLocalizations.of(context)!.noAccount,
+            onTap: () => context.go(routeNameMap[RouteName.signUp]!),
+            buttonNext: AppLocalizations.of(context)!.signUpButton,
           ),
           const SizedBox(
             height: 30,
