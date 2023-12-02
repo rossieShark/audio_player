@@ -1,3 +1,5 @@
+import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/passwords_bloc/passwords_bloc.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
@@ -22,36 +24,42 @@ class _CreatePasswordTextFieldState extends State<CreatePasswordTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-              padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-              child: CustomTextField(
-                width: 400 - 40,
-                obscureText: obscureText,
-                focusNode: widget.focusNode,
-                controller: widget.passwordController,
-                hintText: widget.hintText,
-              )),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                obscureText = !obscureText;
-              });
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: Icon(
-                  color: AppColors.white.color,
-                  !obscureText ? Icons.visibility : Icons.visibility_off),
+    return Center(
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+                padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                child: CustomTextField(
+                    width: 400 - 40,
+                    obscureText: obscureText,
+                    focusNode: widget.focusNode,
+                    controller: widget.passwordController,
+                    hintText: widget.hintText,
+                    onChanged: (text) {
+                      context
+                          .read<PasswordMissmatchCubit>()
+                          .passwordMissmatchText('');
+                    })),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  obscureText = !obscureText;
+                });
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8),
+                child: Icon(
+                    color: AppColors.white.color,
+                    !obscureText ? Icons.visibility : Icons.visibility_off),
+              ),
             ),
-          ),
-          const SizedBox(
-            width: 4,
-          )
-        ]);
+            const SizedBox(
+              width: 4,
+            )
+          ]),
+    );
   }
 }

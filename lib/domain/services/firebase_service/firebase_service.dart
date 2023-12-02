@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/passwords_bloc/passwords_bloc.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 
@@ -139,6 +141,20 @@ class FireBaseFunctions {
         ],
       ),
     );
+  }
+
+  Future<void> changePassword(
+    String password,
+    String newPassword,
+    BuildContext context,
+  ) async {
+    if (password == newPassword) {
+      await user?.updatePassword(password);
+      context.pop();
+    } else {
+      context.read<PasswordMissmatchCubit>().passwordMissmatchText(
+          AppLocalizations.of(context)!.passwordMissmatch);
+    }
   }
 
   Future<bool> _signIn(String email, String password) async {
