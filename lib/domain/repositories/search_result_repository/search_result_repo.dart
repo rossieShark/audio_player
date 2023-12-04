@@ -4,7 +4,7 @@ import 'package:audio_player/domain/services/services.dart';
 class SearchResultRepository {
   final AudioPlayerService _searchResultService;
   SearchResultRepository(this._searchResultService);
-//Get search result songs from API
+
   Future<List<SearchData>> getSearchResults(
     int index,
     int limit,
@@ -12,6 +12,42 @@ class SearchResultRepository {
   ) async {
     final apiResult =
         await _searchResultService.getSearchResult(q, index, limit);
+
+    final apiResultResponse = apiResult.body?.data as List<SearchData>;
+
+    return apiResultResponse;
+  }
+
+  Future<List<SearchData>> getSearchAlbumResults(
+    int index,
+    int limit,
+    String q,
+  ) async {
+    final apiResult =
+        await _searchResultService.getSearchAlbumResult(q, index, limit);
+    print(apiResult);
+    final apiResultResponse = apiResult.body?.data as List<BestAlbumsList>;
+    final List<SearchData> searchResult = apiResultResponse.map((album) {
+      return SearchData(
+        artist:
+            SearchDataArtist(image: album.coverImage, name: album.artist.name),
+        id: album.id,
+        title: album.title,
+        type: 'album',
+        preview: '',
+      );
+    }).toList();
+
+    return searchResult;
+  }
+
+  Future<List<SearchData>> getSearchTrackResults(
+    int index,
+    int limit,
+    String q,
+  ) async {
+    final apiResult =
+        await _searchResultService.getSearchTrackResult(q, index, limit);
 
     final apiResultResponse = apiResult.body?.data as List<SearchData>;
 
@@ -29,27 +65,39 @@ class SearchResultPaginationService {
   int _index = 0;
   int _limit = 10;
   String _q = '';
+  String _filter = 'All';
 
   List<SearchData> items = [];
   bool get isLoading => _isLoading;
 
-  Future<void> loadMoreItems(String q) async {
+  Future<void> loadMoreItems(String q, String? filter) async {
     if (q.isEmpty) {
       items.clear();
       return;
     }
-    if (_q != q) {
+    if (_q != q || _filter != filter) {
       _index = 0;
       _limit = _perPage;
       items.clear();
     }
     _q = q;
     _isLoading = true;
-
-    final newPortion =
-        await _searchResultRepository.getSearchResults(_index, _limit, _q);
-
-    items.addAll(newPortion);
+    if (filter == null || filter == 'All') {
+      final newPortion =
+          await _searchResultRepository.getSearchResults(_index, _limit, _q);
+      items.addAll(newPortion);
+      items.addAll(newPortion);
+    } else if (filter == 'track') {
+      final newPortion = await _searchResultRepository.getSearchTrackResults(
+          _index, _limit, _q);
+      items.addAll(newPortion);
+      items.addAll(newPortion);
+    } else if (filter == 'album') {
+      final newPortion = await _searchResultRepository.getSearchAlbumResults(
+          _index, _limit, _q);
+      items.addAll(newPortion);
+      items.addAll(newPortion);
+    }
 
     _isLoading = false;
     _index += _perPage;

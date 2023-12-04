@@ -1,4 +1,5 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/filter_bloc.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/resources/resources.dart';
@@ -80,20 +81,17 @@ class _CreateSearchSectionState extends State<CreateSearchSection> {
                                       ),
                                       child: TextButton(
                                         onPressed: () {
-                                          setState(() {
-                                            if (searchFilters[index] == 'All') {
-                                              filter = '';
-                                            } else {
-                                              filter = searchFilters[index];
-                                            }
-                                          });
+                                          final filter =
+                                              context.read<SearchFilterBloc>();
+                                          filter.setNewFilter(
+                                              searchFilters[index]);
                                           final albumBloc =
                                               BlocProvider.of<SearchResultBloc>(
                                                   context);
                                           albumBloc.add(SearchEvent.textChanged(
-                                              newText:
-                                                  // ignore: unnecessary_brace_in_string_interps
-                                                  '${filter}:"${widget.textFieldController.text}"'));
+                                              newText: widget
+                                                  .textFieldController.text,
+                                              filter: filter.state));
                                         },
                                         child: Text(
                                           searchFilters[index],

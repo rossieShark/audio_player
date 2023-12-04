@@ -66,8 +66,7 @@ class _MusicControlSection extends StatelessWidget {
         const SizedBox(
           width: 10,
         ),
-        CreatePlayPauseButton(
-            playedSong: song, id: widget.songInfo.id.toString()),
+        CreatePlayPauseButton(playedSong: song, type: widget.songInfo.type),
         const SizedBox(
           width: 10,
         ),

@@ -99,7 +99,7 @@ class MusicBloc extends Bloc<MusicEvent, MusicState> {
       if (state.isPlaying) {
         add(Pause());
       } else {
-        add(Play(song: state.playlist[0]));
+        add(Resume());
       }
     } else {
       add(ClearPlaylist());
@@ -110,7 +110,7 @@ class MusicBloc extends Bloc<MusicEvent, MusicState> {
   }
 
   void _onPlayPlaylist(PlayPlaylist event, Emitter<MusicState> emit) async {
-    if (state.playlist.any((song) => event.songs.contains(song))) {
+    if (state.playlist.any((song) => song.id == event.songs[0].id)) {
       if (state.isPlaying) {
         add(Pause());
       } else {

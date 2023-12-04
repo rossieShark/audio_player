@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/filter_bloc.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/widgets/screens/search_screen/search_export.dart';
@@ -22,21 +25,34 @@ class _SearchPageState extends State<SearchPage> {
   @override
   void initState() {
     super.initState();
+    _setupFocusNodeListener();
+    _setupTextFieldListener();
+    _setupScrollControllerListener();
+  }
+
+  void _setupFocusNodeListener() {
     _focusNode.addListener(() {
       setState(() {});
     });
+  }
 
+  void _setupTextFieldListener() {
     _textFieldController.addListener(() {
-      searchBloc
-          .add(SearchEvent.textChanged(newText: _textFieldController.text));
+      final filter = context.read<SearchFilterBloc>().state;
+      print(filter);
+      searchBloc.add(SearchEvent.textChanged(
+          newText: _textFieldController.text, filter: filter));
     });
+  }
 
+  void _setupScrollControllerListener() {
     _scrollController.addListener(() {
       if (_scrollController.offset >=
           _scrollController.position.maxScrollExtent - 200) {
         if (searchBloc.state is LoadedSearchState) {
-          searchBloc
-              .add(SearchEvent.loadMoreItems(text: _textFieldController.text));
+          final filter = context.read<SearchFilterBloc>().state;
+          searchBloc.add(SearchEvent.loadMoreItems(
+              text: _textFieldController.text, filter: filter));
         }
       }
     });
@@ -70,8 +86,9 @@ class _SearchPageState extends State<SearchPage> {
                       controller: _textFieldController,
                       focusNode: _focusNode,
                       onPressed: () {
-                        setState(() {
-                          _textFieldController.clear();
+                        _textFieldController.clear();
+                        Future.delayed(const Duration(milliseconds: 500), () {
+                          _scrollController.jumpTo(0.0);
                         });
                       },
                     ),

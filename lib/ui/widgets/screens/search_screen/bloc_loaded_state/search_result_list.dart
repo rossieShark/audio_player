@@ -1,8 +1,10 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/models.dart';
+import 'package:audio_player/ui/navigation/navigation_routes.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SearchListView extends StatefulWidget {
   const SearchListView({
@@ -62,22 +64,27 @@ class _SearchListViewState extends State<SearchListView> {
                       //     isHovered) {
                       //   null;
                       // } else {
-                      //   GoRouter.of(context).push(Uri(
-                      //           path:
-                      //               '/${routeNameMap[RouteName.albumDetail]!}$id')
-                      //       .toString());
-                      //   final bloc = context.read<RecentlySearchedBloc>();
-                      //   bloc.add(AddToRecentlySearchedEvent(
-                      //     SongModel(
-                      //       preview: widget.searchResult[index].preview,
-                      //       type: widget.searchResult[index].type,
-                      //       id: id.toString(),
-                      //       artistNames: widget.searchResult[index].artist.name,
-                      //       title: widget.searchResult[index].title,
-                      //       image: widget.searchResult[index].artist.image,
-                      //       isFavourite: false,
-                      //     ),
-                      //   ));
+                      int id = widget.searchResult[index].id;
+                      GoRouter.of(context).push(Uri(
+                        path: '/${routeNameMap[RouteName.albumDetail]!}$id',
+                        queryParameters: {
+                          'image': widget.searchResult[index].artist.image,
+                          'title': widget.searchResult[index].title,
+                          'artist': widget.searchResult[index].artist.name
+                        },
+                      ).toString());
+                      final bloc = context.read<RecentlySearchedBloc>();
+                      bloc.add(AddToRecentlySearchedEvent(
+                        SongModel(
+                          preview: widget.searchResult[index].preview,
+                          type: widget.searchResult[index].type,
+                          id: id.toString(),
+                          artistNames: widget.searchResult[index].artist.name,
+                          title: widget.searchResult[index].title,
+                          image: widget.searchResult[index].artist.image,
+                          isFavourite: false,
+                        ),
+                      ));
                       // }
                     },
                     child: Padding(
@@ -113,15 +120,6 @@ class _CreateImageSection extends StatelessWidget {
   final double listHeight;
   final List<SearchData> searchResult;
   final int index;
-  // void playPauseMusic(BuildContext context) {
-  //   context
-  //       .read<RecentlyPlayedIdCubit>()
-  //       .setId(searchResult[index].id.toString());
-  //   final musicBloc = context.read<MusicBloc>();
-  //   final song = PlayedSong(
-  //       id: searchResult[index].id, preview: searchResult[index].preview);
-  //   musicBloc.add(PlayPause(song: song));
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +137,7 @@ class _CreateImageSection extends StatelessWidget {
             top: 0,
             right: 16,
             child: HoverableWidget(builder: (context, child, isHovered) {
-              return isHovered
+              return (isHovered && searchResult[index].type == 'track')
                   ? _CreatePlayButton(
                       playerSong: searchResult[index],
                       listHeight: listHeight,

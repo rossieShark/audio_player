@@ -16,8 +16,9 @@ class SearchResultBloc extends Bloc<SearchEvent, SearchState> {
   Future<void> onSearchTextChanged(
       TextChangedSearchEvent event, Emitter<SearchState> emit) async {
     loadResultsTimer?.cancel();
-    loadResultsTimer = Timer(const Duration(seconds: 1), () {
-      add(SearchEvent.loadSearchResults(newText: event.newText));
+    loadResultsTimer = Timer(const Duration(milliseconds: 500), () {
+      add(SearchEvent.loadSearchResults(
+          newText: event.newText, filter: event.filter));
     });
   }
 
@@ -28,7 +29,8 @@ class SearchResultBloc extends Bloc<SearchEvent, SearchState> {
       return;
     }
     emit(const SearchState.loading());
-    final albumDetails = await repository.getSearchResult(event.newText);
+    final albumDetails =
+        await repository.getSearchResult(event.newText, event.filter);
     if (albumDetails.isEmpty) {
       emit(const SearchState.noResults());
       return;
@@ -38,16 +40,23 @@ class SearchResultBloc extends Bloc<SearchEvent, SearchState> {
 
   Future<void> _onSearchLoadMoreItems(
       LoadMoreItemsSearchEvent event, Emitter<SearchState> emit) async {
-    final albumDetails = await repository.getSearchResult(event.text);
+    final albumDetails =
+        await repository.getSearchResult(event.text, event.filter);
     emit(SearchState.loaded(data: albumDetails));
   }
+
+  //  Future<void> _onFilterFetchResult(
+  //     LoadMoreItemsSearchEvent event, Emitter<SearchState> emit) async {
+  //   final albumDetails = await repository.getSearchResult(event.text);
+  //   emit(SearchState.loaded(data: albumDetails));
+  // }
 }
 
 class SearchRepository {
   final SearchResultPaginationService _service;
   SearchRepository(this._service);
-  Future<List<SearchData>> getSearchResult(String q) async {
-    await _service.loadMoreItems(q);
+  Future<List<SearchData>> getSearchResult(String q, String? filter) async {
+    await _service.loadMoreItems(q, filter);
     return _service.items;
   }
 }

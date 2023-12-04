@@ -36,6 +36,18 @@ abstract class AudioPlayerService extends ChopperService {
     @Query('index') int index,
     @Query('limit') int limit,
   );
+  @Get(path: '/search/album?')
+  Future<Response<BestAlbumsResponse>> getSearchAlbumResult(
+    @Query('q') String query,
+    @Query('index') int index,
+    @Query('limit') int limit,
+  );
+  @Get(path: '/search/track?')
+  Future<Response<SearchResultResponce>> getSearchTrackResult(
+    @Query('q') String query,
+    @Query('index') int index,
+    @Query('limit') int limit,
+  );
   @Get(path: '/track/{id}')
   Future<Response<SongDetailsResponce>> getDetailSongs(@Path('id') String id);
 }

@@ -1,7 +1,10 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+
 import 'package:audio_player/domain/entity/models.dart';
+import 'package:audio_player/ui/navigation/navigation_routes.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CreateResentlySearchedListView extends StatelessWidget {
   final double width;
@@ -77,7 +80,20 @@ class _CreateResentlySearchedListViewState
                 itemBuilder: (context, index) {
                   final song = widget.recentlySearched[index];
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: song.type == 'album'
+                        ? () {
+                            String id = song.id;
+                            GoRouter.of(context).push(Uri(
+                              path:
+                                  '/${routeNameMap[RouteName.albumDetail]!}$id',
+                              queryParameters: {
+                                'image': song.image,
+                                'title': song.title,
+                                'artist': song.artistNames
+                              },
+                            ).toString());
+                          }
+                        : null,
                     child: _CreateListViewContent(
                       listHeight: listHeight,
                       song: song,
@@ -150,7 +166,9 @@ class _CreateSongInfoLayer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: song.type == 'album'
+                  ? BorderRadius.circular(60)
+                  : BorderRadius.circular(8),
               child: SizedBox(
                 width: 120,
                 height: 120,
@@ -209,28 +227,61 @@ class _CreatePlayMusicButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MusicBloc, MusicState>(builder: (context, state) {
-      bool isSongPlay =
-          state.playlist.any((song) => song.id == int.parse(playedSong.id));
-      return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: CreatePlayButton(
-          onPressed: () => _playPauseMusic(context),
-          size: 35,
-          icon: (state.isPlaying && isSongPlay)
-              ? Icon(Icons.pause, color: AppColors.black.color)
-              : Icon(Icons.play_arrow, color: AppColors.black.color),
-          containerColor: AppColors.accent.color,
-        ),
-      );
+    return Consumer<AlbumDetailBloc>(builder: (context, albumBloc, child) {
+      final song =
+          PlayedSong(id: int.parse(playedSong.id), preview: playedSong.preview);
+
+      // bool isSongPlay = musicBloc.state.playlist
+      //     .any((song) => song.id == int.parse(playedSong.id));
+      return CreatePlayPauseButton(
+          playedSong: song,
+          type: playedSong.type,
+          playedSongs: _returnAlbumSongs(albumBloc.state));
+      //   Padding(
+      //     padding: const EdgeInsets.all(8.0),
+      //     child: CreatePlayButton(
+      //       onPressed: () => _playPauseMusic(context, albumBloc.state),
+      //       size: 35,
+      //       icon: (musicBloc.state.isPlaying && isSongPlay)
+      //           ? Icon(Icons.pause, color: AppColors.black.color)
+      //           : Icon(Icons.play_arrow, color: AppColors.black.color),
+      //       containerColor: AppColors.accent.color,
+      //     ),
+      //   );
+      // });
     });
+
+    // void _playPauseMusic(BuildContext context, AlbumDetailBlocState state) {
+    //   // context.read<RecentlyPlayedIdCubit>().setId(playedSong.id);
+    //   final musicBloc = context.read<MusicBloc>();
+    //   if (playedSong.type == 'track') {
+    //     final song =
+    //         PlayedSong(id: int.parse(playedSong.id), preview: playedSong.preview);
+    //     musicBloc.add(PlayPause(song: song));
+    //   } else {
+    //     if (state is LoadedAlbumDetailBlocState) {
+    //       final songs = state.albumDetailList
+    //           .map((song) => PlayedSong(
+    //                 id: song.id,
+    //                 preview: song.preview,
+    //               ))
+    //           .toList();
+    //       musicBloc.add(PlayPlaylist(songs: songs, song: songs[0]));
+    //     }
+    //   }
   }
 
-  void _playPauseMusic(BuildContext context) {
-    // context.read<RecentlyPlayedIdCubit>().setId(playedSong.id);
-    final musicBloc = context.read<MusicBloc>();
-    final song =
-        PlayedSong(id: int.parse(playedSong.id), preview: playedSong.preview);
-    musicBloc.add(PlayPause(song: song));
+  List<PlayedSong> _returnAlbumSongs(AlbumDetailBlocState state) {
+    if (state is LoadedAlbumDetailBlocState) {
+      final songs = state.albumDetailList
+          .map((song) => PlayedSong(
+                id: song.id,
+                preview: song.preview,
+              ))
+          .toList();
+      return songs;
+    } else {
+      return [];
+    }
   }
 }

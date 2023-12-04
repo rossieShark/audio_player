@@ -103,6 +103,48 @@ class _$AudioPlayerService extends AudioPlayerService {
   }
 
   @override
+  Future<Response<BestAlbumsResponse>> getSearchAlbumResult(
+    String query,
+    int index,
+    int limit,
+  ) {
+    final Uri $url = Uri.parse('https://api.deezer.com/search/album?');
+    final Map<String, dynamic> $params = <String, dynamic>{
+      'q': query,
+      'index': index,
+      'limit': limit,
+    };
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      parameters: $params,
+    );
+    return client.send<BestAlbumsResponse, BestAlbumsResponse>($request);
+  }
+
+  @override
+  Future<Response<SearchResultResponce>> getSearchTrackResult(
+    String query,
+    int index,
+    int limit,
+  ) {
+    final Uri $url = Uri.parse('https://api.deezer.com/search/track?');
+    final Map<String, dynamic> $params = <String, dynamic>{
+      'q': query,
+      'index': index,
+      'limit': limit,
+    };
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      parameters: $params,
+    );
+    return client.send<SearchResultResponce, SearchResultResponce>($request);
+  }
+
+  @override
   Future<Response<SongDetailsResponce>> getDetailSongs(String id) {
     final Uri $url = Uri.parse('https://api.deezer.com/track/${id}');
     final Request $request = Request(

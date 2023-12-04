@@ -1,4 +1,5 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/filter_bloc.dart';
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/databases/language_storage/language_storage.dart';
 import 'package:audio_player/domain/repositories/index.dart';
@@ -87,6 +88,7 @@ class SetGetItDependencies {
         .registerFactory<ImageBloc>(() => ImageBloc(GetIt.instance.get()));
     GetIt.instance.registerFactory<PasswordMissmatchCubit>(
         () => PasswordMissmatchCubit());
+    GetIt.instance.registerFactory<SearchFilterBloc>(() => SearchFilterBloc());
   }
 
   void setupServiceDependencies() {

@@ -1,4 +1,5 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app_logic/blocs/filter_bloc.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/theme/theme.dart';
@@ -28,10 +29,16 @@ class _AudioPlayerAppState extends State<AudioPlayerApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        BlocProvider<AlbumDetailBloc>(
+          create: (context) => GetIt.I.get(),
+        ),
         BlocProvider<FavoriteSongBloc>(
           create: (context) => GetIt.I.get(),
         ),
         BlocProvider<FavoriteAlbumBloc>(
+          create: (context) => GetIt.I.get(),
+        ),
+        BlocProvider<SearchFilterBloc>(
           create: (context) => GetIt.I.get(),
         ),
         BlocProvider<MyMusicFolderBlocBloc>(

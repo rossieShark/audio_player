@@ -104,11 +104,7 @@ final router = GoRouter(
           image: state.uri.queryParameters['image'] ?? '',
           title: state.uri.queryParameters['title'] ?? '',
           artist: state.uri.queryParameters['artist'] ?? '',
-        ).createWithMultiProviders([
-          BlocProvider<AlbumDetailBloc>(
-            create: (context) => GetIt.I.get(),
-          ),
-        ]),
+        ).createWithMultiProviders([]),
       ),
     ),
     GoRoute(
@@ -215,18 +211,13 @@ final webRouter = GoRouter(
                   GoRoute(
                     path: '${routeNameMap[RouteName.albumDetail]!}:id',
                     pageBuilder: (context, state) => CupertinoPage(
-                      key: state.pageKey,
-                      child: AlbumDetailPage(
-                        param: state.pathParameters['id'] ?? '',
-                        image: state.uri.queryParameters['image'] ?? '',
-                        title: state.uri.queryParameters['title'] ?? '',
-                        artist: state.uri.queryParameters['artist'] ?? '',
-                      ).createWithMultiProviders([
-                        BlocProvider<AlbumDetailBloc>(
-                          create: (context) => GetIt.I.get(),
-                        ),
-                      ]),
-                    ),
+                        key: state.pageKey,
+                        child: AlbumDetailPage(
+                          param: state.pathParameters['id'] ?? '',
+                          image: state.uri.queryParameters['image'] ?? '',
+                          title: state.uri.queryParameters['title'] ?? '',
+                          artist: state.uri.queryParameters['artist'] ?? '',
+                        )),
                   ),
                   GoRoute(
                     path: routeNameMap[RouteName.favoriteTracks]!,

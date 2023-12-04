@@ -22,6 +22,8 @@ SearchEvent _$SearchEventFromJson(Map<String, dynamic> json) {
       return LoadSearchEvent.fromJson(json);
     case 'loadMoreItems':
       return LoadMoreItemsSearchEvent.fromJson(json);
+    case 'filterFetchResult':
+      return FilterFetchResultSearchEvent.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'SearchEvent',
@@ -31,25 +33,29 @@ SearchEvent _$SearchEventFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SearchEvent {
+  String get filter => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String newText) textChanged,
-    required TResult Function(String newText) loadSearchResults,
-    required TResult Function(String text) loadMoreItems,
+    required TResult Function(String newText, String filter) textChanged,
+    required TResult Function(String newText, String filter) loadSearchResults,
+    required TResult Function(String text, String filter) loadMoreItems,
+    required TResult Function(String text, String filter) filterFetchResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String newText)? textChanged,
-    TResult? Function(String newText)? loadSearchResults,
-    TResult? Function(String text)? loadMoreItems,
+    TResult? Function(String newText, String filter)? textChanged,
+    TResult? Function(String newText, String filter)? loadSearchResults,
+    TResult? Function(String text, String filter)? loadMoreItems,
+    TResult? Function(String text, String filter)? filterFetchResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String newText)? textChanged,
-    TResult Function(String newText)? loadSearchResults,
-    TResult Function(String text)? loadMoreItems,
+    TResult Function(String newText, String filter)? textChanged,
+    TResult Function(String newText, String filter)? loadSearchResults,
+    TResult Function(String text, String filter)? loadMoreItems,
+    TResult Function(String text, String filter)? filterFetchResult,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -58,6 +64,8 @@ mixin _$SearchEvent {
     required TResult Function(TextChangedSearchEvent value) textChanged,
     required TResult Function(LoadSearchEvent value) loadSearchResults,
     required TResult Function(LoadMoreItemsSearchEvent value) loadMoreItems,
+    required TResult Function(FilterFetchResultSearchEvent value)
+        filterFetchResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +73,7 @@ mixin _$SearchEvent {
     TResult? Function(TextChangedSearchEvent value)? textChanged,
     TResult? Function(LoadSearchEvent value)? loadSearchResults,
     TResult? Function(LoadMoreItemsSearchEvent value)? loadMoreItems,
+    TResult? Function(FilterFetchResultSearchEvent value)? filterFetchResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,10 +81,14 @@ mixin _$SearchEvent {
     TResult Function(TextChangedSearchEvent value)? textChanged,
     TResult Function(LoadSearchEvent value)? loadSearchResults,
     TResult Function(LoadMoreItemsSearchEvent value)? loadMoreItems,
+    TResult Function(FilterFetchResultSearchEvent value)? filterFetchResult,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SearchEventCopyWith<SearchEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -83,6 +96,8 @@ abstract class $SearchEventCopyWith<$Res> {
   factory $SearchEventCopyWith(
           SearchEvent value, $Res Function(SearchEvent) then) =
       _$SearchEventCopyWithImpl<$Res, SearchEvent>;
+  @useResult
+  $Res call({String filter});
 }
 
 /// @nodoc
@@ -94,15 +109,30 @@ class _$SearchEventCopyWithImpl<$Res, $Val extends SearchEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = null,
+  }) {
+    return _then(_value.copyWith(
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$TextChangedSearchEventCopyWith<$Res> {
+abstract class _$$TextChangedSearchEventCopyWith<$Res>
+    implements $SearchEventCopyWith<$Res> {
   factory _$$TextChangedSearchEventCopyWith(_$TextChangedSearchEvent value,
           $Res Function(_$TextChangedSearchEvent) then) =
       __$$TextChangedSearchEventCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({String newText});
+  $Res call({String newText, String filter});
 }
 
 /// @nodoc
@@ -117,11 +147,16 @@ class __$$TextChangedSearchEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object? newText = null,
+    Object? filter = null,
   }) {
     return _then(_$TextChangedSearchEvent(
       newText: null == newText
           ? _value.newText
           : newText // ignore: cast_nullable_to_non_nullable
+              as String,
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -130,7 +165,8 @@ class __$$TextChangedSearchEventCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$TextChangedSearchEvent implements TextChangedSearchEvent {
-  const _$TextChangedSearchEvent({required this.newText, final String? $type})
+  const _$TextChangedSearchEvent(
+      {required this.newText, required this.filter, final String? $type})
       : $type = $type ?? 'textChanged';
 
   factory _$TextChangedSearchEvent.fromJson(Map<String, dynamic> json) =>
@@ -138,13 +174,15 @@ class _$TextChangedSearchEvent implements TextChangedSearchEvent {
 
   @override
   final String newText;
+  @override
+  final String filter;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'SearchEvent.textChanged(newText: $newText)';
+    return 'SearchEvent.textChanged(newText: $newText, filter: $filter)';
   }
 
   @override
@@ -152,12 +190,13 @@ class _$TextChangedSearchEvent implements TextChangedSearchEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TextChangedSearchEvent &&
-            (identical(other.newText, newText) || other.newText == newText));
+            (identical(other.newText, newText) || other.newText == newText) &&
+            (identical(other.filter, filter) || other.filter == filter));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, newText);
+  int get hashCode => Object.hash(runtimeType, newText, filter);
 
   @JsonKey(ignore: true)
   @override
@@ -169,33 +208,36 @@ class _$TextChangedSearchEvent implements TextChangedSearchEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String newText) textChanged,
-    required TResult Function(String newText) loadSearchResults,
-    required TResult Function(String text) loadMoreItems,
+    required TResult Function(String newText, String filter) textChanged,
+    required TResult Function(String newText, String filter) loadSearchResults,
+    required TResult Function(String text, String filter) loadMoreItems,
+    required TResult Function(String text, String filter) filterFetchResult,
   }) {
-    return textChanged(newText);
+    return textChanged(newText, filter);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String newText)? textChanged,
-    TResult? Function(String newText)? loadSearchResults,
-    TResult? Function(String text)? loadMoreItems,
+    TResult? Function(String newText, String filter)? textChanged,
+    TResult? Function(String newText, String filter)? loadSearchResults,
+    TResult? Function(String text, String filter)? loadMoreItems,
+    TResult? Function(String text, String filter)? filterFetchResult,
   }) {
-    return textChanged?.call(newText);
+    return textChanged?.call(newText, filter);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String newText)? textChanged,
-    TResult Function(String newText)? loadSearchResults,
-    TResult Function(String text)? loadMoreItems,
+    TResult Function(String newText, String filter)? textChanged,
+    TResult Function(String newText, String filter)? loadSearchResults,
+    TResult Function(String text, String filter)? loadMoreItems,
+    TResult Function(String text, String filter)? filterFetchResult,
     required TResult orElse(),
   }) {
     if (textChanged != null) {
-      return textChanged(newText);
+      return textChanged(newText, filter);
     }
     return orElse();
   }
@@ -206,6 +248,8 @@ class _$TextChangedSearchEvent implements TextChangedSearchEvent {
     required TResult Function(TextChangedSearchEvent value) textChanged,
     required TResult Function(LoadSearchEvent value) loadSearchResults,
     required TResult Function(LoadMoreItemsSearchEvent value) loadMoreItems,
+    required TResult Function(FilterFetchResultSearchEvent value)
+        filterFetchResult,
   }) {
     return textChanged(this);
   }
@@ -216,6 +260,7 @@ class _$TextChangedSearchEvent implements TextChangedSearchEvent {
     TResult? Function(TextChangedSearchEvent value)? textChanged,
     TResult? Function(LoadSearchEvent value)? loadSearchResults,
     TResult? Function(LoadMoreItemsSearchEvent value)? loadMoreItems,
+    TResult? Function(FilterFetchResultSearchEvent value)? filterFetchResult,
   }) {
     return textChanged?.call(this);
   }
@@ -226,6 +271,7 @@ class _$TextChangedSearchEvent implements TextChangedSearchEvent {
     TResult Function(TextChangedSearchEvent value)? textChanged,
     TResult Function(LoadSearchEvent value)? loadSearchResults,
     TResult Function(LoadMoreItemsSearchEvent value)? loadMoreItems,
+    TResult Function(FilterFetchResultSearchEvent value)? filterFetchResult,
     required TResult orElse(),
   }) {
     if (textChanged != null) {
@@ -243,25 +289,31 @@ class _$TextChangedSearchEvent implements TextChangedSearchEvent {
 }
 
 abstract class TextChangedSearchEvent implements SearchEvent {
-  const factory TextChangedSearchEvent({required final String newText}) =
-      _$TextChangedSearchEvent;
+  const factory TextChangedSearchEvent(
+      {required final String newText,
+      required final String filter}) = _$TextChangedSearchEvent;
 
   factory TextChangedSearchEvent.fromJson(Map<String, dynamic> json) =
       _$TextChangedSearchEvent.fromJson;
 
   String get newText;
+  @override
+  String get filter;
+  @override
   @JsonKey(ignore: true)
   _$$TextChangedSearchEventCopyWith<_$TextChangedSearchEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadSearchEventCopyWith<$Res> {
+abstract class _$$LoadSearchEventCopyWith<$Res>
+    implements $SearchEventCopyWith<$Res> {
   factory _$$LoadSearchEventCopyWith(
           _$LoadSearchEvent value, $Res Function(_$LoadSearchEvent) then) =
       __$$LoadSearchEventCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({String newText});
+  $Res call({String newText, String filter});
 }
 
 /// @nodoc
@@ -276,11 +328,16 @@ class __$$LoadSearchEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object? newText = null,
+    Object? filter = null,
   }) {
     return _then(_$LoadSearchEvent(
       newText: null == newText
           ? _value.newText
           : newText // ignore: cast_nullable_to_non_nullable
+              as String,
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -289,7 +346,8 @@ class __$$LoadSearchEventCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LoadSearchEvent implements LoadSearchEvent {
-  const _$LoadSearchEvent({required this.newText, final String? $type})
+  const _$LoadSearchEvent(
+      {required this.newText, required this.filter, final String? $type})
       : $type = $type ?? 'loadSearchResults';
 
   factory _$LoadSearchEvent.fromJson(Map<String, dynamic> json) =>
@@ -297,13 +355,15 @@ class _$LoadSearchEvent implements LoadSearchEvent {
 
   @override
   final String newText;
+  @override
+  final String filter;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'SearchEvent.loadSearchResults(newText: $newText)';
+    return 'SearchEvent.loadSearchResults(newText: $newText, filter: $filter)';
   }
 
   @override
@@ -311,12 +371,13 @@ class _$LoadSearchEvent implements LoadSearchEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadSearchEvent &&
-            (identical(other.newText, newText) || other.newText == newText));
+            (identical(other.newText, newText) || other.newText == newText) &&
+            (identical(other.filter, filter) || other.filter == filter));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, newText);
+  int get hashCode => Object.hash(runtimeType, newText, filter);
 
   @JsonKey(ignore: true)
   @override
@@ -327,33 +388,36 @@ class _$LoadSearchEvent implements LoadSearchEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String newText) textChanged,
-    required TResult Function(String newText) loadSearchResults,
-    required TResult Function(String text) loadMoreItems,
+    required TResult Function(String newText, String filter) textChanged,
+    required TResult Function(String newText, String filter) loadSearchResults,
+    required TResult Function(String text, String filter) loadMoreItems,
+    required TResult Function(String text, String filter) filterFetchResult,
   }) {
-    return loadSearchResults(newText);
+    return loadSearchResults(newText, filter);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String newText)? textChanged,
-    TResult? Function(String newText)? loadSearchResults,
-    TResult? Function(String text)? loadMoreItems,
+    TResult? Function(String newText, String filter)? textChanged,
+    TResult? Function(String newText, String filter)? loadSearchResults,
+    TResult? Function(String text, String filter)? loadMoreItems,
+    TResult? Function(String text, String filter)? filterFetchResult,
   }) {
-    return loadSearchResults?.call(newText);
+    return loadSearchResults?.call(newText, filter);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String newText)? textChanged,
-    TResult Function(String newText)? loadSearchResults,
-    TResult Function(String text)? loadMoreItems,
+    TResult Function(String newText, String filter)? textChanged,
+    TResult Function(String newText, String filter)? loadSearchResults,
+    TResult Function(String text, String filter)? loadMoreItems,
+    TResult Function(String text, String filter)? filterFetchResult,
     required TResult orElse(),
   }) {
     if (loadSearchResults != null) {
-      return loadSearchResults(newText);
+      return loadSearchResults(newText, filter);
     }
     return orElse();
   }
@@ -364,6 +428,8 @@ class _$LoadSearchEvent implements LoadSearchEvent {
     required TResult Function(TextChangedSearchEvent value) textChanged,
     required TResult Function(LoadSearchEvent value) loadSearchResults,
     required TResult Function(LoadMoreItemsSearchEvent value) loadMoreItems,
+    required TResult Function(FilterFetchResultSearchEvent value)
+        filterFetchResult,
   }) {
     return loadSearchResults(this);
   }
@@ -374,6 +440,7 @@ class _$LoadSearchEvent implements LoadSearchEvent {
     TResult? Function(TextChangedSearchEvent value)? textChanged,
     TResult? Function(LoadSearchEvent value)? loadSearchResults,
     TResult? Function(LoadMoreItemsSearchEvent value)? loadMoreItems,
+    TResult? Function(FilterFetchResultSearchEvent value)? filterFetchResult,
   }) {
     return loadSearchResults?.call(this);
   }
@@ -384,6 +451,7 @@ class _$LoadSearchEvent implements LoadSearchEvent {
     TResult Function(TextChangedSearchEvent value)? textChanged,
     TResult Function(LoadSearchEvent value)? loadSearchResults,
     TResult Function(LoadMoreItemsSearchEvent value)? loadMoreItems,
+    TResult Function(FilterFetchResultSearchEvent value)? filterFetchResult,
     required TResult orElse(),
   }) {
     if (loadSearchResults != null) {
@@ -401,25 +469,31 @@ class _$LoadSearchEvent implements LoadSearchEvent {
 }
 
 abstract class LoadSearchEvent implements SearchEvent {
-  const factory LoadSearchEvent({required final String newText}) =
-      _$LoadSearchEvent;
+  const factory LoadSearchEvent(
+      {required final String newText,
+      required final String filter}) = _$LoadSearchEvent;
 
   factory LoadSearchEvent.fromJson(Map<String, dynamic> json) =
       _$LoadSearchEvent.fromJson;
 
   String get newText;
+  @override
+  String get filter;
+  @override
   @JsonKey(ignore: true)
   _$$LoadSearchEventCopyWith<_$LoadSearchEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadMoreItemsSearchEventCopyWith<$Res> {
+abstract class _$$LoadMoreItemsSearchEventCopyWith<$Res>
+    implements $SearchEventCopyWith<$Res> {
   factory _$$LoadMoreItemsSearchEventCopyWith(_$LoadMoreItemsSearchEvent value,
           $Res Function(_$LoadMoreItemsSearchEvent) then) =
       __$$LoadMoreItemsSearchEventCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({String text});
+  $Res call({String text, String filter});
 }
 
 /// @nodoc
@@ -434,11 +508,16 @@ class __$$LoadMoreItemsSearchEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object? text = null,
+    Object? filter = null,
   }) {
     return _then(_$LoadMoreItemsSearchEvent(
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -447,7 +526,8 @@ class __$$LoadMoreItemsSearchEventCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LoadMoreItemsSearchEvent implements LoadMoreItemsSearchEvent {
-  const _$LoadMoreItemsSearchEvent({required this.text, final String? $type})
+  const _$LoadMoreItemsSearchEvent(
+      {required this.text, required this.filter, final String? $type})
       : $type = $type ?? 'loadMoreItems';
 
   factory _$LoadMoreItemsSearchEvent.fromJson(Map<String, dynamic> json) =>
@@ -455,13 +535,15 @@ class _$LoadMoreItemsSearchEvent implements LoadMoreItemsSearchEvent {
 
   @override
   final String text;
+  @override
+  final String filter;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'SearchEvent.loadMoreItems(text: $text)';
+    return 'SearchEvent.loadMoreItems(text: $text, filter: $filter)';
   }
 
   @override
@@ -469,12 +551,13 @@ class _$LoadMoreItemsSearchEvent implements LoadMoreItemsSearchEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadMoreItemsSearchEvent &&
-            (identical(other.text, text) || other.text == text));
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.filter, filter) || other.filter == filter));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, text);
+  int get hashCode => Object.hash(runtimeType, text, filter);
 
   @JsonKey(ignore: true)
   @override
@@ -487,33 +570,36 @@ class _$LoadMoreItemsSearchEvent implements LoadMoreItemsSearchEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String newText) textChanged,
-    required TResult Function(String newText) loadSearchResults,
-    required TResult Function(String text) loadMoreItems,
+    required TResult Function(String newText, String filter) textChanged,
+    required TResult Function(String newText, String filter) loadSearchResults,
+    required TResult Function(String text, String filter) loadMoreItems,
+    required TResult Function(String text, String filter) filterFetchResult,
   }) {
-    return loadMoreItems(text);
+    return loadMoreItems(text, filter);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String newText)? textChanged,
-    TResult? Function(String newText)? loadSearchResults,
-    TResult? Function(String text)? loadMoreItems,
+    TResult? Function(String newText, String filter)? textChanged,
+    TResult? Function(String newText, String filter)? loadSearchResults,
+    TResult? Function(String text, String filter)? loadMoreItems,
+    TResult? Function(String text, String filter)? filterFetchResult,
   }) {
-    return loadMoreItems?.call(text);
+    return loadMoreItems?.call(text, filter);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String newText)? textChanged,
-    TResult Function(String newText)? loadSearchResults,
-    TResult Function(String text)? loadMoreItems,
+    TResult Function(String newText, String filter)? textChanged,
+    TResult Function(String newText, String filter)? loadSearchResults,
+    TResult Function(String text, String filter)? loadMoreItems,
+    TResult Function(String text, String filter)? filterFetchResult,
     required TResult orElse(),
   }) {
     if (loadMoreItems != null) {
-      return loadMoreItems(text);
+      return loadMoreItems(text, filter);
     }
     return orElse();
   }
@@ -524,6 +610,8 @@ class _$LoadMoreItemsSearchEvent implements LoadMoreItemsSearchEvent {
     required TResult Function(TextChangedSearchEvent value) textChanged,
     required TResult Function(LoadSearchEvent value) loadSearchResults,
     required TResult Function(LoadMoreItemsSearchEvent value) loadMoreItems,
+    required TResult Function(FilterFetchResultSearchEvent value)
+        filterFetchResult,
   }) {
     return loadMoreItems(this);
   }
@@ -534,6 +622,7 @@ class _$LoadMoreItemsSearchEvent implements LoadMoreItemsSearchEvent {
     TResult? Function(TextChangedSearchEvent value)? textChanged,
     TResult? Function(LoadSearchEvent value)? loadSearchResults,
     TResult? Function(LoadMoreItemsSearchEvent value)? loadMoreItems,
+    TResult? Function(FilterFetchResultSearchEvent value)? filterFetchResult,
   }) {
     return loadMoreItems?.call(this);
   }
@@ -544,6 +633,7 @@ class _$LoadMoreItemsSearchEvent implements LoadMoreItemsSearchEvent {
     TResult Function(TextChangedSearchEvent value)? textChanged,
     TResult Function(LoadSearchEvent value)? loadSearchResults,
     TResult Function(LoadMoreItemsSearchEvent value)? loadMoreItems,
+    TResult Function(FilterFetchResultSearchEvent value)? filterFetchResult,
     required TResult orElse(),
   }) {
     if (loadMoreItems != null) {
@@ -561,14 +651,201 @@ class _$LoadMoreItemsSearchEvent implements LoadMoreItemsSearchEvent {
 }
 
 abstract class LoadMoreItemsSearchEvent implements SearchEvent {
-  const factory LoadMoreItemsSearchEvent({required final String text}) =
-      _$LoadMoreItemsSearchEvent;
+  const factory LoadMoreItemsSearchEvent(
+      {required final String text,
+      required final String filter}) = _$LoadMoreItemsSearchEvent;
 
   factory LoadMoreItemsSearchEvent.fromJson(Map<String, dynamic> json) =
       _$LoadMoreItemsSearchEvent.fromJson;
 
   String get text;
+  @override
+  String get filter;
+  @override
   @JsonKey(ignore: true)
   _$$LoadMoreItemsSearchEventCopyWith<_$LoadMoreItemsSearchEvent>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FilterFetchResultSearchEventCopyWith<$Res>
+    implements $SearchEventCopyWith<$Res> {
+  factory _$$FilterFetchResultSearchEventCopyWith(
+          _$FilterFetchResultSearchEvent value,
+          $Res Function(_$FilterFetchResultSearchEvent) then) =
+      __$$FilterFetchResultSearchEventCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String text, String filter});
+}
+
+/// @nodoc
+class __$$FilterFetchResultSearchEventCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$FilterFetchResultSearchEvent>
+    implements _$$FilterFetchResultSearchEventCopyWith<$Res> {
+  __$$FilterFetchResultSearchEventCopyWithImpl(
+      _$FilterFetchResultSearchEvent _value,
+      $Res Function(_$FilterFetchResultSearchEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? text = null,
+    Object? filter = null,
+  }) {
+    return _then(_$FilterFetchResultSearchEvent(
+      text: null == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$FilterFetchResultSearchEvent implements FilterFetchResultSearchEvent {
+  const _$FilterFetchResultSearchEvent(
+      {required this.text, required this.filter, final String? $type})
+      : $type = $type ?? 'filterFetchResult';
+
+  factory _$FilterFetchResultSearchEvent.fromJson(Map<String, dynamic> json) =>
+      _$$FilterFetchResultSearchEventFromJson(json);
+
+  @override
+  final String text;
+  @override
+  final String filter;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'SearchEvent.filterFetchResult(text: $text, filter: $filter)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FilterFetchResultSearchEvent &&
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.filter, filter) || other.filter == filter));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, text, filter);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FilterFetchResultSearchEventCopyWith<_$FilterFetchResultSearchEvent>
+      get copyWith => __$$FilterFetchResultSearchEventCopyWithImpl<
+          _$FilterFetchResultSearchEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String newText, String filter) textChanged,
+    required TResult Function(String newText, String filter) loadSearchResults,
+    required TResult Function(String text, String filter) loadMoreItems,
+    required TResult Function(String text, String filter) filterFetchResult,
+  }) {
+    return filterFetchResult(text, filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String newText, String filter)? textChanged,
+    TResult? Function(String newText, String filter)? loadSearchResults,
+    TResult? Function(String text, String filter)? loadMoreItems,
+    TResult? Function(String text, String filter)? filterFetchResult,
+  }) {
+    return filterFetchResult?.call(text, filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String newText, String filter)? textChanged,
+    TResult Function(String newText, String filter)? loadSearchResults,
+    TResult Function(String text, String filter)? loadMoreItems,
+    TResult Function(String text, String filter)? filterFetchResult,
+    required TResult orElse(),
+  }) {
+    if (filterFetchResult != null) {
+      return filterFetchResult(text, filter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TextChangedSearchEvent value) textChanged,
+    required TResult Function(LoadSearchEvent value) loadSearchResults,
+    required TResult Function(LoadMoreItemsSearchEvent value) loadMoreItems,
+    required TResult Function(FilterFetchResultSearchEvent value)
+        filterFetchResult,
+  }) {
+    return filterFetchResult(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TextChangedSearchEvent value)? textChanged,
+    TResult? Function(LoadSearchEvent value)? loadSearchResults,
+    TResult? Function(LoadMoreItemsSearchEvent value)? loadMoreItems,
+    TResult? Function(FilterFetchResultSearchEvent value)? filterFetchResult,
+  }) {
+    return filterFetchResult?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TextChangedSearchEvent value)? textChanged,
+    TResult Function(LoadSearchEvent value)? loadSearchResults,
+    TResult Function(LoadMoreItemsSearchEvent value)? loadMoreItems,
+    TResult Function(FilterFetchResultSearchEvent value)? filterFetchResult,
+    required TResult orElse(),
+  }) {
+    if (filterFetchResult != null) {
+      return filterFetchResult(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$FilterFetchResultSearchEventToJson(
+      this,
+    );
+  }
+}
+
+abstract class FilterFetchResultSearchEvent implements SearchEvent {
+  const factory FilterFetchResultSearchEvent(
+      {required final String text,
+      required final String filter}) = _$FilterFetchResultSearchEvent;
+
+  factory FilterFetchResultSearchEvent.fromJson(Map<String, dynamic> json) =
+      _$FilterFetchResultSearchEvent.fromJson;
+
+  String get text;
+  @override
+  String get filter;
+  @override
+  @JsonKey(ignore: true)
+  _$$FilterFetchResultSearchEventCopyWith<_$FilterFetchResultSearchEvent>
       get copyWith => throw _privateConstructorUsedError;
 }
