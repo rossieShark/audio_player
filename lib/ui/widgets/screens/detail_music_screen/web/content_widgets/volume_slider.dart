@@ -1,40 +1,8 @@
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
-// import 'package:volume_controller/volume_controller.dart';
 
-class CreateVolumeSlider extends StatefulWidget {
+class CreateVolumeSlider extends StatelessWidget {
   const CreateVolumeSlider({super.key});
-
-  @override
-  State<CreateVolumeSlider> createState() => _CreateVolumeSliderState();
-}
-
-class _CreateVolumeSliderState extends State<CreateVolumeSlider> {
-  // double _volumeListenerValue = 0;
-  // double _getVolume = 0;
-  // double _setVolumeValue = 0;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // Listen to system volume change
-  //   VolumeController().listener((volume) {
-  //     setState(() => _volumeListenerValue = volume);
-  //   });
-
-  //   // Get the initial volume level
-  //   VolumeController().getVolume().then((volume) {
-  //     setState(() {
-  //       _setVolumeValue = volume;
-  //     });
-  //   });
-  // }
-
-  // @override
-  // void dispose() {
-  //   VolumeController().removeListener();
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -54,12 +22,7 @@ class _CreateVolumeSliderState extends State<CreateVolumeSlider> {
             thumbColor: AppColors.accent.color,
             min: 0.0,
             max: 1.0,
-            onChanged: (double value) async {
-              // setState(() {
-              //   _setVolumeValue = value;
-              //   VolumeController().setVolume(_setVolumeValue);
-              // });
-            },
+            onChanged: (double value) async {},
             value: 0.5,
           ),
         ),

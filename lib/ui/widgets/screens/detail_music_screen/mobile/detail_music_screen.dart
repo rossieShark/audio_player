@@ -67,26 +67,8 @@ class _CreatMainContent extends StatelessWidget {
     final maxHeight = MediaQuery.of(context).size.height;
     return Column(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(maxWidth / 2),
-            bottomRight: Radius.circular(maxWidth / 2),
-          ),
-          child: SizedBox(
-              height: maxHeight / 2,
-              width: maxWidth - maxWidth * 0.2,
-              child: songInfo?.imageUrl != null
-                  ? Image.network(
-                      songInfo!.imageUrl,
-                      fit: BoxFit.cover,
-                      alignment: Alignment.topCenter,
-                    )
-                  : Image.asset(
-                      AppImages.black,
-                      fit: BoxFit.cover,
-                      alignment: Alignment.topCenter,
-                    )),
-        ),
+        _BackgroundImage(
+            maxWidth: maxWidth, maxHeight: maxHeight, songInfo: songInfo),
         SizedBox(
           height: maxHeight / 2 - 20,
           child: Column(
@@ -109,6 +91,43 @@ class _CreatMainContent extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class _BackgroundImage extends StatelessWidget {
+  const _BackgroundImage({
+    super.key,
+    required this.maxWidth,
+    required this.maxHeight,
+    required this.songInfo,
+  });
+
+  final double maxWidth;
+  final double maxHeight;
+  final DetailInfoSong? songInfo;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.only(
+        bottomLeft: Radius.circular(maxWidth / 2),
+        bottomRight: Radius.circular(maxWidth / 2),
+      ),
+      child: SizedBox(
+          height: maxHeight / 2,
+          width: maxWidth - maxWidth * 0.2,
+          child: songInfo?.imageUrl != null
+              ? Image.network(
+                  songInfo!.imageUrl,
+                  fit: BoxFit.cover,
+                  alignment: Alignment.topCenter,
+                )
+              : Image.asset(
+                  AppImages.black,
+                  fit: BoxFit.cover,
+                  alignment: Alignment.topCenter,
+                )),
     );
   }
 }

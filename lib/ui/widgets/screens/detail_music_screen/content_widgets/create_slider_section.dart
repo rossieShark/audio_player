@@ -19,13 +19,6 @@ class _CreateSliderSectionState extends State<CreateSliderSection> {
   Duration position = Duration.zero;
   StreamSubscription<Duration>? durationSubscription;
   StreamSubscription<Duration>? positionSubscription;
-  String formatTime(int seconds) {
-    final int minutes = (seconds / 60).floor();
-    final int remainingSeconds = seconds % 60;
-    final String formattedMinutes = minutes.toString().padLeft(2, '0');
-    final String formattedSeconds = remainingSeconds.toString().padLeft(2, '0');
-    return '$formattedMinutes:$formattedSeconds';
-  }
 
   @override
   void didChangeDependencies() {
@@ -37,6 +30,7 @@ class _CreateSliderSectionState extends State<CreateSliderSection> {
     final bloc = context.read<MusicBloc>();
     positionSubscription =
         bloc.audioPlayer.onPositionChanged.listen((newPosition) {
+      position = newPosition;
       setState(() {
         position = newPosition;
       });
@@ -72,15 +66,7 @@ class _CreateSliderSectionState extends State<CreateSliderSection> {
             value: currentPosition,
             min: 0.0,
             max: maxDuration,
-            onChanged: (value) {
-              final newPosition = Duration(seconds: value.toInt());
-              setState(() {
-                position = newPosition;
-              });
-              final bloc = context.read<MusicBloc>();
-              bloc.audioPlayer.seek(newPosition);
-              bloc.audioPlayer.resume();
-            },
+            onChanged: (value) => _onChanged(value),
             onChangeEnd: (newValue) {},
           ),
         ),
@@ -92,5 +78,23 @@ class _CreateSliderSectionState extends State<CreateSliderSection> {
                 color: Colors.white))
       ],
     );
+  }
+
+  void _onChanged(double value) {
+    final newPosition = Duration(seconds: value.toInt());
+    setState(() {
+      position = newPosition;
+    });
+    final bloc = context.read<MusicBloc>();
+    bloc.audioPlayer.seek(newPosition);
+    bloc.audioPlayer.resume();
+  }
+
+  String formatTime(int seconds) {
+    final int minutes = (seconds / 60).floor();
+    final int remainingSeconds = seconds % 60;
+    final String formattedMinutes = minutes.toString().padLeft(2, '0');
+    final String formattedSeconds = remainingSeconds.toString().padLeft(2, '0');
+    return '$formattedMinutes:$formattedSeconds';
   }
 }

@@ -27,40 +27,7 @@ class _CreatMusicControlSectionState extends State<CreatMusicControlSection> {
             size: 20,
             color: AppColors.accent.color,
             onPressed: () {}),
-        Row(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: IconButtonWidget(
-                  iconData: Icons.fast_rewind,
-                  size: 20,
-                  color: AppColors.white.color,
-                  onPressed: () {
-                    final musicBloc = context.read<MusicBloc>();
-                    musicBloc.add(PlayPrevious());
-                  }),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            CreatePlayPauseButton(
-                playedSong: song, id: widget.songInfo.id.toString()),
-            const SizedBox(
-              width: 10,
-            ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: IconButtonWidget(
-                  iconData: Icons.fast_forward,
-                  size: 20,
-                  color: AppColors.white.color,
-                  onPressed: () {
-                    final musicBloc = context.read<MusicBloc>();
-                    musicBloc.add(PlayNext());
-                  }),
-            ),
-          ],
-        ),
+        _MusicControlSection(song: song, widget: widget),
         IconButtonWidget(
             iconData: Icons.shuffle,
             size: 20,
@@ -71,29 +38,51 @@ class _CreatMusicControlSectionState extends State<CreatMusicControlSection> {
   }
 }
 
-// class _CreatePlayPauseButton extends StatelessWidget {
-//   final PlayedSong playedSong;
-//   const _CreatePlayPauseButton({required this.playedSong});
+class _MusicControlSection extends StatelessWidget {
+  const _MusicControlSection({
+    super.key,
+    required this.song,
+    required this.widget,
+  });
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return BlocBuilder<MusicBloc, MusicState>(builder: (context, state) {
-//       bool isSongPlay = state.playlist.any((song) => song.id == playedSong.id);
-//       return CreatePlayButton(
-//         size: 40,
-//         containerColor: AppColors.accent.color,
-//         icon: state.isPlaying && isSongPlay
-//             ? Icon(Icons.pause, color: AppColors.white.color)
-//             : Icon(Icons.play_arrow, color: AppColors.white.color),
-//         onPressed: () => _playPauseMusic(context),
-//       );
-//     });
-//   }
+  final PlayedSong song;
+  final CreatMusicControlSection widget;
 
-//   void _playPauseMusic(BuildContext context) {
-//     // context.read<RecentlyPlayedIdCubit>().setId(playedSong.id.toString());
-//     final musicBloc = context.read<MusicBloc>();
-//     final song = PlayedSong(id: playedSong.id, preview: playedSong.preview);
-//     musicBloc.add(PlayPause(song: song));
-//   }
-//}
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: IconButtonWidget(
+              iconData: Icons.fast_rewind,
+              size: 20,
+              color: AppColors.white.color,
+              onPressed: () {
+                final musicBloc = context.read<MusicBloc>();
+                musicBloc.add(PlayPrevious());
+              }),
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        CreatePlayPauseButton(
+            playedSong: song, id: widget.songInfo.id.toString()),
+        const SizedBox(
+          width: 10,
+        ),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: IconButtonWidget(
+              iconData: Icons.fast_forward,
+              size: 20,
+              color: AppColors.white.color,
+              onPressed: () {
+                final musicBloc = context.read<MusicBloc>();
+                musicBloc.add(PlayNext());
+              }),
+        ),
+      ],
+    );
+  }
+}
