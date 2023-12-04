@@ -1,5 +1,6 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/models.dart';
+import 'package:audio_player/ui/widgets/screens/index.dart';
 import 'package:audio_player/ui/widgets/widgets/custom_buttons/custom_like_button.dart';
 
 import 'package:flutter/material.dart';
@@ -33,15 +34,13 @@ class _LikeButtonWidgetState extends State<LikeButtonWidget> {
         builder: (context, state) {
       if (state is LoadedFavouriteSongState) {
         isFavorite = state.data.any((song) => song.id == widget.id);
-      } else {
-        isFavorite = false;
       }
       return LikeButton(
           onPressed: () {
             final bloc = context.read<FavoriteSongBloc>();
             final songInfoModel = SongModel(
                 preview: widget.preview,
-                type: "track",
+                type: SearchFilters.track,
                 id: widget.id,
                 artistNames: widget.artistNames,
                 title: widget.title,

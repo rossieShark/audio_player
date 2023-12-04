@@ -1,3 +1,4 @@
+import 'package:audio_player/ui/widgets/screens/search_screen/bloc_loaded_state/search_section.dart';
 import 'package:flutter/widgets.dart';
 
 class ImageinAlbum extends StatelessWidget {
@@ -8,7 +9,7 @@ class ImageinAlbum extends StatelessWidget {
       {super.key, required this.size, required this.type, required this.image});
   @override
   Widget build(BuildContext context) {
-    if (type == 'track') {
+    if (type == SearchFilters.track) {
       return Padding(
         padding: const EdgeInsets.fromLTRB(8, 0, 16, 0),
         child: ClipRRect(

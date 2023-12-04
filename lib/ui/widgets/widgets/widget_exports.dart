@@ -6,7 +6,7 @@ export 'package:audio_player/ui/widgets/widgets/size_text_modifiers.dart';
 export 'package:audio_player/ui/widgets/widgets/page_animation.dart';
 export 'package:audio_player/ui/widgets/widgets/responsive_widgets/responsive_widget.dart';
 export 'package:audio_player/ui/widgets/widgets/responsive_widgets/hovered_widget.dart';
-export 'package:audio_player/ui/widgets/widgets/get_it_dependencies/get_it_dependencies.dart';
+
 export 'package:audio_player/ui/widgets/widgets/provider_extention.dart';
 export 'package:audio_player/ui/widgets/widgets/navigation_destination_extension.dart';
 export 'package:audio_player/ui/widgets/widgets/responsive_widgets/platform_widget/platform_widget.dart';

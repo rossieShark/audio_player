@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/app_logic/blocs/filter_bloc.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:audio_player/resources/resources.dart';
+
 import 'package:audio_player/ui/widgets/screens/search_screen/search_export.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
@@ -85,12 +85,13 @@ class _SearchPageState extends State<SearchPage> {
                     child: _SearchTextField(
                       controller: _textFieldController,
                       focusNode: _focusNode,
-                      onPressed: () {
-                        _textFieldController.clear();
-                        Future.delayed(const Duration(milliseconds: 500), () {
-                          _scrollController.jumpTo(0.0);
-                        });
-                      },
+                      scrollController: _scrollController,
+                      // onPressed: () {
+                      //   // _textFieldController.clear();
+                      //   Future.delayed(const Duration(milliseconds: 500), () {
+                      //     _scrollController.jumpTo(0.0);
+                      //   });
+                      // },
                     ),
                   ),
                 ),
@@ -131,58 +132,76 @@ class _SearchPageState extends State<SearchPage> {
 class _SearchTextField extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode focusNode;
-
-  final VoidCallback onPressed;
+  final ScrollController scrollController;
+  // final VoidCallback onPressed;
 
   const _SearchTextField({
     Key? key,
     required this.controller,
     required this.focusNode,
-    required this.onPressed,
+    required this.scrollController,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      cursorColor: AppColors.accent.color,
-      focusNode: focusNode,
-      decoration: InputDecoration(
-        contentPadding: const EdgeInsets.symmetric(vertical: 6.0),
-        prefixIcon: const Icon(Icons.search, color: Colors.grey),
+    return CustomTextField(
+        controller: controller,
+        obscureText: false,
         hintText: focusNode.hasFocus
             ? ''
             : AppLocalizations.of(context)!.searchTextFieldHintText,
-        hintStyle: const TextStyle(
-            fontFamily: FontFamily.poiretOne,
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            color: Colors.grey),
-        labelStyle: TextStyle(color: AppColors.white.color),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30.0),
-          borderSide: BorderSide(
-            color: focusNode.hasFocus
-                ? AppColors.white.color
-                : AppColors.accent.color,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30.0),
-            borderSide: BorderSide(color: AppColors.white.color)),
-        suffixIcon: controller.text.isNotEmpty
-            ? IconButtonWidget(
-                iconData: Icons.clear,
-                color: AppColors.accent.color,
-                onPressed: onPressed,
-              )
-            : null,
-      ),
-      style: const TextStyle(
-          fontFamily: FontFamily.poiretOne,
-          fontSize: 13,
-          fontWeight: FontWeight.w600,
-          color: Colors.white),
-    );
+        focusNode: focusNode,
+        width: MediaQuery.of(context).size.width - 32,
+        prefixIcon: const Icon(Icons.search, color: Colors.grey),
+        textFieldColor: Colors.transparent,
+        textColor: AppColors.white.color,
+        showSuffixIcon: controller.text.isNotEmpty,
+        onPressed: () {
+          Future.delayed(const Duration(milliseconds: 500), () {
+            scrollController.jumpTo(0.0);
+          });
+        });
+
+    // TextField(
+    //   controller: controller,
+    //   cursorColor: AppColors.accent.color,
+    //   focusNode: focusNode,
+    //   decoration: InputDecoration(
+    //     contentPadding: const EdgeInsets.symmetric(vertical: 6.0),
+    //     prefixIcon: const Icon(Icons.search, color: Colors.grey),
+    //     hintText: focusNode.hasFocus
+    //         ? ''
+    //         : AppLocalizations.of(context)!.searchTextFieldHintText,
+    //     hintStyle: const TextStyle(
+    //         fontFamily: FontFamily.poiretOne,
+    //         fontSize: 12,
+    //         fontWeight: FontWeight.w600,
+    //         color: Colors.grey),
+    //     labelStyle: TextStyle(color: AppColors.white.color),
+    //     enabledBorder: OutlineInputBorder(
+    //       borderRadius: BorderRadius.circular(30.0),
+    //       borderSide: BorderSide(
+    //         color: focusNode.hasFocus
+    //             ? AppColors.white.color
+    //             : AppColors.accent.color,
+    //       ),
+    //     ),
+    //     focusedBorder: OutlineInputBorder(
+    //         borderRadius: BorderRadius.circular(30.0),
+    //         borderSide: BorderSide(color: AppColors.white.color)),
+    //     suffixIcon: controller.text.isNotEmpty
+    //         ? IconButtonWidget(
+    //             iconData: Icons.clear,
+    //             color: AppColors.accent.color,
+    //             onPressed: onPressed,
+    //           )
+    //         : null,
+    //   ),
+    //   style: const TextStyle(
+    //       fontFamily: FontFamily.poiretOne,
+    //       fontSize: 13,
+    //       fontWeight: FontWeight.w600,
+    //       color: Colors.white),
+    // );
   }
 }

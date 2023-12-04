@@ -1,5 +1,6 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/played_song_model.dart';
+import 'package:audio_player/ui/widgets/screens/search_screen/search_export.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
@@ -21,10 +22,9 @@ class CreatePlayPauseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MusicBloc, MusicState>(builder: (context, state) {
-      // bool isSongPlay = state.playlist.any((song) => song.id == playedSong.id);
       return CreatePlayButton(
         onPressed: () {
-          onPressed ?? () {};
+          onPressed == null ? null : onPressed!();
           _playPauseMusic(context);
         },
         size: 40,
@@ -39,7 +39,7 @@ class CreatePlayPauseButton extends StatelessWidget {
 
   void _playPauseMusic(BuildContext context) {
     final musicBloc = context.read<MusicBloc>();
-    if (type == 'track') {
+    if (type == SearchFilters.track) {
       musicBloc.add(PlayPause(song: playedSong));
     } else {
       if (playedSongs != null) {
@@ -49,7 +49,7 @@ class CreatePlayPauseButton extends StatelessWidget {
   }
 
   bool isSongPlay(MusicState state) {
-    if (type == 'track') {
+    if (type == SearchFilters.track) {
       return state.playlist.any((song) => song.id == playedSong.id);
     } else {
       final isSongplay =

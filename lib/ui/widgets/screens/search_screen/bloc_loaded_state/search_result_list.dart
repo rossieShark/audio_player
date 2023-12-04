@@ -58,29 +58,27 @@ class SearchListView extends StatelessWidget {
   }
 
   void _onTap(BuildContext context, SearchData searchSong) {
-    () {
-      int id = searchSong.id;
-      GoRouter.of(context).push(Uri(
-        path: '/${routeNameMap[RouteName.albumDetail]!}$id',
-        queryParameters: {
-          'image': searchSong.artist.image,
-          'title': searchSong.title,
-          'artist': searchSong.artist.name
-        },
-      ).toString());
-      final bloc = context.read<RecentlySearchedBloc>();
-      bloc.add(AddToRecentlySearchedEvent(
-        SongModel(
-          preview: searchSong.preview,
-          type: searchSong.type,
-          id: id.toString(),
-          artistNames: searchSong.artist.name,
-          title: searchSong.title,
-          image: searchSong.artist.image,
-          isFavourite: false,
-        ),
-      ));
-    };
+    int id = searchSong.id;
+    GoRouter.of(context).push(Uri(
+      path: '/${routeNameMap[RouteName.albumDetail]!}$id',
+      queryParameters: {
+        'image': searchSong.artist.image,
+        'title': searchSong.title,
+        'artist': searchSong.artist.name
+      },
+    ).toString());
+    final bloc = context.read<RecentlySearchedBloc>();
+    bloc.add(AddToRecentlySearchedEvent(
+      SongModel(
+        preview: searchSong.preview,
+        type: searchSong.type,
+        id: id.toString(),
+        artistNames: searchSong.artist.name,
+        title: searchSong.title,
+        image: searchSong.artist.image,
+        isFavourite: false,
+      ),
+    ));
   }
 }
 
@@ -135,6 +133,7 @@ class _CreatePlayButton extends StatelessWidget {
         height: listHeight,
         color: AppColors.black.color.withOpacity(0.5),
         child: CreatePlayPauseButton(
+          type: SearchFilters.track,
           playedSong: song,
           containerColor: Colors.transparent,
           onPressed: () => _addToRecentlySearched(context),

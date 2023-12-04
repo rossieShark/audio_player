@@ -249,10 +249,13 @@ class _CreatePlayMusicButton extends StatelessWidget {
     return Consumer<AlbumDetailBloc>(builder: (context, albumBloc, child) {
       final song =
           PlayedSong(id: int.parse(playedSong.id), preview: playedSong.preview);
-      return CreatePlayPauseButton(
-          playedSong: song,
-          type: playedSong.type,
-          playedSongs: _returnAlbumSongs(albumBloc.state));
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: CreatePlayPauseButton(
+            playedSong: song,
+            type: playedSong.type,
+            playedSongs: _returnAlbumSongs(albumBloc.state)),
+      );
     });
   }
 
