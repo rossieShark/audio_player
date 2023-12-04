@@ -7,7 +7,7 @@ import 'package:audio_player/ui/widgets/screens/search_screen/search_export.dart
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
-class CreateSearchSection extends StatefulWidget {
+class CreateSearchSection extends StatelessWidget {
   final TextEditingController textFieldController;
   final List<SearchData> searchResult;
   final ScrollController scrollController;
@@ -19,102 +19,150 @@ class CreateSearchSection extends StatefulWidget {
       required this.scrollController});
 
   @override
-  State<CreateSearchSection> createState() => _CreateSearchSectionState();
-}
-
-class _CreateSearchSectionState extends State<CreateSearchSection> {
-  String filter = '';
-  @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: ResponsiveWidget(
-        narrow: (context) => Column(children: [
-          SizedBox(
-            height: 60,
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  AppLocalizations.of(context)!.searchResult,
-                  style: const TextStyle(
-                      fontFamily: FontFamily.lusitana,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white),
-                ),
-              ),
+        narrow: (context) => NarrowSearchSection(searchResult: searchResult),
+        other: (context) => WideSearchSection(
+            textFieldController: textFieldController,
+            searchResult: searchResult),
+      ),
+    );
+  }
+}
+
+class WideSearchSection extends StatelessWidget {
+  const WideSearchSection({
+    super.key,
+    required this.textFieldController,
+    required this.searchResult,
+  });
+
+  final TextEditingController textFieldController;
+  final List<SearchData> searchResult;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        _SearchFilterWidget(textFieldController: textFieldController),
+        SearchListView(
+          searchResult: searchResult,
+        ),
+      ],
+    );
+  }
+}
+
+class NarrowSearchSection extends StatelessWidget {
+  const NarrowSearchSection({
+    super.key,
+    required this.searchResult,
+  });
+
+  final List<SearchData> searchResult;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      SizedBox(
+        height: 60,
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              AppLocalizations.of(context)!.searchResult,
+              style: const TextStyle(
+                  fontFamily: FontFamily.lusitana,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white),
             ),
           ),
-          SearchListView(
-            searchResult: widget.searchResult,
+        ),
+      ),
+      SearchListView(
+        searchResult: searchResult,
+      ),
+    ]);
+  }
+}
+
+class _SearchFilterWidget extends StatelessWidget {
+  const _SearchFilterWidget({
+    super.key,
+    required this.textFieldController,
+  });
+
+  final TextEditingController textFieldController;
+
+  @override
+  Widget build(BuildContext context) {
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(60),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              for (int index = 0; index < searchFilters.length; index++)
+                Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
+                    child: FilterButtonCard(
+                      filter: searchFilters[index],
+                      textFieldController: textFieldController,
+                    ))
+            ],
           ),
-        ]),
-        other: (context) => Column(
-          children: [
-            PreferredSize(
-              preferredSize: const Size.fromHeight(60),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      for (int index = 0; index < searchFilters.length; index++)
-                        GestureDetector(
-                            onTap: () {},
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
-                              child: Container(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50),
-                                    color: Colors.grey.withOpacity(0.1)),
-                                child: Align(
-                                  alignment: Alignment.topRight,
-                                  child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 25,
-                                      ),
-                                      child: TextButton(
-                                        onPressed: () {
-                                          final filter =
-                                              context.read<SearchFilterBloc>();
-                                          filter.setNewFilter(
-                                              searchFilters[index]);
-                                          final albumBloc =
-                                              BlocProvider.of<SearchResultBloc>(
-                                                  context);
-                                          albumBloc.add(SearchEvent.textChanged(
-                                              newText: widget
-                                                  .textFieldController.text,
-                                              filter: filter.state));
-                                        },
-                                        child: Text(
-                                          searchFilters[index],
-                                          style: TextStyle(
-                                            color: AppColors.accent.color,
-                                          ),
-                                        ),
-                                      )),
-                                ),
-                              ),
-                            ))
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            SearchListView(
-              searchResult: widget.searchResult,
-            ),
-          ],
         ),
       ),
     );
+  }
+}
+
+class FilterButtonCard extends StatelessWidget {
+  final String filter;
+  final TextEditingController textFieldController;
+  const FilterButtonCard(
+      {super.key, required this.filter, required this.textFieldController});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50),
+          color: Colors.grey.withOpacity(0.1)),
+      child: Align(
+        alignment: Alignment.topRight,
+        child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 25,
+            ),
+            child: TextButton(
+              onPressed: () => _onFilterPressed(context),
+              child: Text(
+                filter,
+                style: TextStyle(
+                  color: AppColors.accent.color,
+                ),
+              ),
+            )),
+      ),
+    );
+  }
+
+  void _onFilterPressed(BuildContext context) {
+    final filterBloc = context.read<SearchFilterBloc>();
+    filterBloc.setNewFilter(filter);
+    final albumBloc = BlocProvider.of<SearchResultBloc>(context);
+    albumBloc.add(SearchEvent.textChanged(
+        newText: textFieldController.text, filter: filterBloc.state));
   }
 }
 

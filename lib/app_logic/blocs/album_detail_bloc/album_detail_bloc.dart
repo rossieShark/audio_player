@@ -4,7 +4,8 @@ import 'package:audio_player/domain/repositories/index.dart';
 class AlbumDetailBloc extends Bloc<AlbumDetailBlocEvent, AlbumDetailBlocState> {
   final AlbumDetailsRepository repository;
 
-  AlbumDetailBloc(this.repository) : super(AlbumDetailBlocState.loading()) {
+  AlbumDetailBloc(this.repository)
+      : super(const AlbumDetailBlocState.loading()) {
     on<FetchAlbumDetailBlocEvent>(_fetchAlbumDetail);
   }
 
@@ -13,7 +14,7 @@ class AlbumDetailBloc extends Bloc<AlbumDetailBlocEvent, AlbumDetailBlocState> {
     try {
       final albumDetail = await repository.getDetailAlbums(event.id);
       if (albumDetail.isEmpty) {
-        emit(AlbumDetailBlocState.empty());
+        emit(const AlbumDetailBlocState.empty());
       } else {
         emit(AlbumDetailBlocState.loaded(albumDetailList: albumDetail));
         print('Emitted album detail state');

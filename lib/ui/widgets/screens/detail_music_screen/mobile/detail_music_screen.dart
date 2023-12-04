@@ -97,7 +97,6 @@ class _CreatMainContent extends StatelessWidget {
 
 class _BackgroundImage extends StatelessWidget {
   const _BackgroundImage({
-    super.key,
     required this.maxWidth,
     required this.maxHeight,
     required this.songInfo,

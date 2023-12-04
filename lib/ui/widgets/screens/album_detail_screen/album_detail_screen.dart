@@ -62,7 +62,6 @@ class _AlbumDetailPageState extends State<AlbumDetailPage> {
 
 class _AlbumDetailScreenBody extends StatelessWidget {
   const _AlbumDetailScreenBody({
-    super.key,
     required this.songList,
     required this.widget,
   });

@@ -40,7 +40,6 @@ class _CreatMusicControlSectionState extends State<CreatMusicControlSection> {
 
 class _MusicControlSection extends StatelessWidget {
   const _MusicControlSection({
-    super.key,
     required this.song,
     required this.widget,
   });
