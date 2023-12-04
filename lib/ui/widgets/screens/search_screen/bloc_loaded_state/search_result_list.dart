@@ -32,12 +32,13 @@ class SearchListView extends StatelessWidget {
       },
       child: ListView(
         scrollDirection: Axis.vertical,
+        padding: EdgeInsets.only(top: 10),
         physics: const NeverScrollableScrollPhysics(),
         children: List.generate(searchResult.length, (index) {
           return HoverableWidget(builder: (context, child, isHovered) {
             final searchSong = searchResult[index];
             return GestureDetector(
-              onTap: () => _onTap(context, searchSong),
+              onTap: () => _onTap(context, searchSong, isHovered),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                 child: CustomListViewContent(
@@ -57,28 +58,46 @@ class SearchListView extends StatelessWidget {
     );
   }
 
-  void _onTap(BuildContext context, SearchData searchSong) {
+  void _onTap(BuildContext context, SearchData searchSong, bool isHovered) {
     int id = searchSong.id;
-    GoRouter.of(context).push(Uri(
-      path: '/${routeNameMap[RouteName.albumDetail]!}$id',
-      queryParameters: {
-        'image': searchSong.artist.image,
-        'title': searchSong.title,
-        'artist': searchSong.artist.name
-      },
-    ).toString());
     final bloc = context.read<RecentlySearchedBloc>();
-    bloc.add(AddToRecentlySearchedEvent(
-      SongModel(
-        preview: searchSong.preview,
-        type: searchSong.type,
-        id: id.toString(),
-        artistNames: searchSong.artist.name,
-        title: searchSong.title,
-        image: searchSong.artist.image,
-        isFavourite: false,
-      ),
-    ));
+    if ((searchSong.type == SearchFilters.track) && !isHovered) {
+      GoRouter.of(context).push(
+          Uri(path: '/${routeNameMap[RouteName.detailMusic]!}$id').toString());
+
+      bloc.add(AddToRecentlySearchedEvent(
+        SongModel(
+            type: searchSong.type,
+            id: id.toString(),
+            preview: searchSong.preview,
+            artistNames: searchSong.artist.name,
+            title: searchSong.title,
+            image: searchSong.artist.image,
+            isFavourite: false),
+      ));
+    } else {
+      int id = searchSong.id;
+      GoRouter.of(context).push(Uri(
+        path: '/${routeNameMap[RouteName.albumDetail]!}$id',
+        queryParameters: {
+          'image': searchSong.artist.image,
+          'title': searchSong.title,
+          'artist': searchSong.artist.name
+        },
+      ).toString());
+
+      bloc.add(AddToRecentlySearchedEvent(
+        SongModel(
+          preview: searchSong.preview,
+          type: searchSong.type,
+          id: id.toString(),
+          artistNames: searchSong.artist.name,
+          title: searchSong.title,
+          image: searchSong.artist.image,
+          isFavourite: false,
+        ),
+      ));
+    }
   }
 }
 

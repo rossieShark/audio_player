@@ -1,5 +1,6 @@
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/domain/services/services.dart';
+import 'package:audio_player/ui/widgets/screens/index.dart';
 
 class SearchResultRepository {
   final AudioPlayerService _searchResultService;
@@ -33,7 +34,7 @@ class SearchResultRepository {
             SearchDataArtist(image: album.coverImage, name: album.artist.name),
         id: album.id,
         title: album.title,
-        type: 'album',
+        type: SearchFilters.album,
         preview: '',
       );
     }).toList();
@@ -65,7 +66,7 @@ class SearchResultPaginationService {
   int _index = 0;
   int _limit = 10;
   String _q = '';
-  String _filter = 'All';
+  String _filter = SearchFilters.all;
 
   List<SearchData> items = [];
   bool get isLoading => _isLoading;
@@ -87,12 +88,12 @@ class SearchResultPaginationService {
           await _searchResultRepository.getSearchResults(_index, _limit, _q);
       items.addAll(newPortion);
       items.addAll(newPortion);
-    } else if (filter == 'track') {
+    } else if (filter == SearchFilters.track) {
       final newPortion = await _searchResultRepository.getSearchTrackResults(
           _index, _limit, _q);
       items.addAll(newPortion);
       items.addAll(newPortion);
-    } else if (filter == 'album') {
+    } else if (filter == SearchFilters.track) {
       final newPortion = await _searchResultRepository.getSearchAlbumResults(
           _index, _limit, _q);
       items.addAll(newPortion);

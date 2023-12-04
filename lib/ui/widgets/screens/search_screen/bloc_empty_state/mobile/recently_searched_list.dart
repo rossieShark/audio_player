@@ -51,6 +51,8 @@ class _CreateListView extends StatelessWidget {
             height:
                 recentlySearched.length.toDouble() * listHeight + padding * 6,
             child: ListView.separated(
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(0),
                 itemCount: recentlySearched.length,
                 separatorBuilder: (context, index) => const Divider(),
                 itemBuilder: (context, index) {

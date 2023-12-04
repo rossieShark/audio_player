@@ -87,8 +87,6 @@ class FireBaseFunctions {
   }
 
   Future<void> deleteAccount() async {
-    // final User? user = _auth.currentUser;
-
     if (_user != null) {
       try {
         await _user!.delete();

@@ -8,29 +8,6 @@ import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-// class MyFavoriteAlbum extends StatefulWidget {
-//   const MyFavoriteAlbum({super.key});
-
-//   @override
-//   State<MyFavoriteAlbum> createState() => _MyFavoriteAlbumState();
-// }
-
-// class _MyFavoriteAlbumState extends State<MyFavoriteAlbum> {
-//   @override
-//   void initState() {
-//     super.initState();
-//     final bloc = context.read<FavoriteAlbumBloc>();
-//     bloc.add(const LoadFavoriteAlbumEvent());
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const FavoritePageStructure(
-//       child: FavoriteAlbumListView(),
-//     );
-//   }
-// }
-
 class MyFavoriteAlbum extends StatelessWidget {
   const MyFavoriteAlbum({
     super.key,

@@ -44,12 +44,6 @@ class SearchResultBloc extends Bloc<SearchEvent, SearchState> {
         await repository.getSearchResult(event.text, event.filter);
     emit(SearchState.loaded(data: albumDetails));
   }
-
-  //  Future<void> _onFilterFetchResult(
-  //     LoadMoreItemsSearchEvent event, Emitter<SearchState> emit) async {
-  //   final albumDetails = await repository.getSearchResult(event.text);
-  //   emit(SearchState.loaded(data: albumDetails));
-  // }
 }
 
 class SearchRepository {

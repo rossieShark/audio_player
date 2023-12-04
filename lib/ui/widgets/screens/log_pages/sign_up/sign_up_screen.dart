@@ -112,29 +112,3 @@ class _SignInPageState extends State<SignUpPage> {
     );
   }
 }
-
-// class _CreateLoginWidget extends StatelessWidget {
-//   const _CreateLoginWidget();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       crossAxisAlignment: CrossAxisAlignment.center,
-//       children: [
-//         Text(
-//           AppLocalizations.of(context)!.alreadyHaveAnAccount,
-//           style: TextStyle(color: AppColors.white.color),
-//         ),
-//         GestureDetector(
-//             onTap: () {
-//               context.go(routeNameMap[RouteName.sigIn]!);
-//             },
-//             child: Text(
-//               AppLocalizations.of(context)!.signInButton,
-//               style: TextStyle(color: AppColors.accent.color),
-//             )),
-//       ],
-//     );
-//   }
-// }

@@ -31,16 +31,22 @@ class _CreatePasswordTextFieldState extends State<CreatePasswordTextField> {
           children: [
             Padding(
                 padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                child: CustomTextField(
-                    width: 400 - 40,
-                    obscureText: obscureText,
-                    focusNode: widget.focusNode,
-                    controller: widget.passwordController,
-                    hintText: widget.hintText,
-                    onChanged: (text) {
-                      context
-                          .read<PasswordMissmatchCubit>()
-                          .passwordMissmatchText('');
+                child: ResponsiveBuilder(
+                    narrow: MediaQuery.of(context).size.width - 70,
+                    medium: 400.0 - 40,
+                    large: 400.0 - 40,
+                    builder: (context, child, width) {
+                      return CustomTextField(
+                          width: width,
+                          obscureText: obscureText,
+                          focusNode: widget.focusNode,
+                          controller: widget.passwordController,
+                          hintText: widget.hintText,
+                          onChanged: (text) {
+                            context
+                                .read<PasswordMissmatchCubit>()
+                                .passwordMissmatchText('');
+                          });
                     })),
             GestureDetector(
               onTap: () {

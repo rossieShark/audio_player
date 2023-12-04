@@ -17,8 +17,15 @@ class RecentlySearchedBloc
   void _onAddRecentlySearched(AddToRecentlySearchedEvent event,
       Emitter<RecentlySearchedState> emit) async {
     List<SongModel> recentlySearched = await _loadFromDatabase();
-    recentlySearched.add(event.songModel);
-    await _databaseService.addToRecentlySearched(event.songModel);
+
+    bool isUnique =
+        recentlySearched.every((song) => song.id != event.songModel.id);
+
+    if (isUnique) {
+      recentlySearched.add(event.songModel);
+      await _databaseService.addToRecentlySearched(event.songModel);
+    }
+
     emit(RecentlySearchedState.loaded(data: recentlySearched));
   }
 

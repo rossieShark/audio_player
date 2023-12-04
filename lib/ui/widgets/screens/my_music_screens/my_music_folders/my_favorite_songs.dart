@@ -10,29 +10,6 @@ import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-// class MyFavoriteSongs extends StatefulWidget {
-//   const MyFavoriteSongs({super.key});
-
-//   @override
-//   State<MyFavoriteSongs> createState() => _MyFavoriteSongsState();
-// }
-
-// class _MyFavoriteSongsState extends State<MyFavoriteSongs> {
-//   @override
-//   void initState() {
-//     super.initState();
-//     final bloc = context.read<FavoriteSongBloc>();
-//     bloc.add(const LoadFavouriteSongsEvent());
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const FavoritePageStructure(
-//       child: MyFavoriteSongs(),
-//     );
-//   }
-// }
-
 class MyFavoriteSongs extends StatelessWidget {
   const MyFavoriteSongs({
     super.key,
@@ -72,7 +49,7 @@ class _CreateFavouritesSongListView extends StatelessWidget {
           other: _MobileFavouriteListViewBody(song: song),
           builder: (context, child, widget) {
             return KeyedSubtree(
-              key: Key(song.id), // or use a unique identifier
+              key: Key(song.id),
               child: widget,
             );
           },

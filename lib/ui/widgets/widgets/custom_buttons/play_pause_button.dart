@@ -10,13 +10,13 @@ class CreatePlayPauseButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final Color? containerColor;
 
-  final String? type;
+  final String type;
   const CreatePlayPauseButton(
       {super.key,
       required this.playedSong,
       this.onPressed,
       this.playedSongs,
-      this.type,
+      required this.type,
       this.containerColor});
 
   @override
@@ -49,6 +49,7 @@ class CreatePlayPauseButton extends StatelessWidget {
   }
 
   bool isSongPlay(MusicState state) {
+    print(type);
     if (type == SearchFilters.track) {
       return state.playlist.any((song) => song.id == playedSong.id);
     } else {

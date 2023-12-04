@@ -1,6 +1,7 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
+import 'package:audio_player/ui/widgets/screens/search_screen/bloc_loaded_state/search_section.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -78,7 +79,6 @@ class _CreatePlayPauseButton extends StatelessWidget {
   }
 
   void _playPauseMusic(BuildContext context) {
-    //context.read<RecentlyPlayedIdCubit>().setId(songs[0].id.toString());
     final musicBloc = context.read<MusicBloc>();
     musicBloc.add(PlayPlaylist(songs: songs, song: songs[0]));
   }
@@ -156,7 +156,7 @@ class _LikeButtonWidgetState extends State<_LikeButtonWidget> {
     final bloc = context.read<FavoriteAlbumBloc>();
     final album = SongModel(
       preview: songs[0].preview,
-      type: 'album',
+      type: SearchFilters.album,
       id: widget.param,
       artistNames: songs[0].title,
       title: songs[0].artistNames,

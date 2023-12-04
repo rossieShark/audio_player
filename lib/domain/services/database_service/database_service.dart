@@ -139,41 +139,4 @@ class DatabaseService {
   Future<void> removeAllRecentlySearched() async {
     await _database.clearAll();
   }
-
-// //GENRES  ----------------------------------------
-//   Future<List<MusicGenre>> getAllGenres() async {
-//     return await _database.getallGenres();
-//   }
-
-//   Future<List<MusicGenre>> cacheGenres(List<Data> tracks) async {
-//     final genresToInsert = tracks.map((item) {
-//       return MusicGenre(
-//         id: item.id.toString(),
-//         name: item.name,
-//         image: item.image,
-//       );
-//     }).toList();
-
-//     await _database.addManyGenres(genresToInsert);
-
-//     return genresToInsert;
-//   }
-
-//   //RECENTLY PLAYED SONGS  ----------------------------------------
-//   Future<List<RecentlyPlayedSong>> cacheTracks(List<TracksData> tracks) async {
-//     final songsToInsert = tracks.map((track) {
-//       return RecentlyPlayedSong(
-//         type: track.type,
-//         artistNames: track.artist.name,
-//         title: track.title,
-//         headerImageUrl: track.artist.image,
-//         preview: track.preview,
-//         id: track.id,
-//       );
-//     }).toList();
-
-//     await _database.addManySongs(songsToInsert);
-
-//     return songsToInsert;
-//   }
 }

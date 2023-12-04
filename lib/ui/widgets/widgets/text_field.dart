@@ -14,6 +14,7 @@ class CustomTextField extends StatelessWidget {
   final Color? textFieldColor;
   final Color? textColor;
   final bool? showSuffixIcon;
+  final Color? borderColor;
 
   const CustomTextField(
       {Key? key,
@@ -27,6 +28,7 @@ class CustomTextField extends StatelessWidget {
       this.onPressed,
       this.textFieldColor,
       this.showSuffixIcon,
+      this.borderColor,
       this.textColor})
       : super(key: key);
 
@@ -61,7 +63,7 @@ class CustomTextField extends StatelessWidget {
                 borderSide: BorderSide(
                   color: controller.text.isNotEmpty
                       ? AppColors.white.color
-                      : AppColors.accent.color,
+                      : borderColor ?? Colors.transparent,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
@@ -80,9 +82,9 @@ class CustomTextField extends StatelessWidget {
                     )
                   : null),
           style: TextStyle(
-              fontSize: 15,
+              fontSize: 14,
               fontFamily: FontFamily.poiretOne,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
               color: textColor ?? AppColors.black.color),
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/played_song_model.dart';
+import 'package:audio_player/ui/widgets/screens/index.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 
 import 'package:flutter/material.dart';
@@ -49,6 +50,7 @@ class _MusicControlSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.songInfo.type);
     return Row(
       children: [
         ClipRRect(
@@ -65,7 +67,7 @@ class _MusicControlSection extends StatelessWidget {
         const SizedBox(
           width: 10,
         ),
-        CreatePlayPauseButton(playedSong: song, type: widget.songInfo.type),
+        CreatePlayPauseButton(playedSong: song, type: SearchFilters.track),
         const SizedBox(
           width: 10,
         ),

@@ -33,10 +33,12 @@ class _SettingsState extends State<Settings> {
       body: Padding(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
         child: SettingsList(
+          physics: NeverScrollableScrollPhysics(),
           lightTheme: SettingsThemeData(
             settingsListBackground: AppColors.background.color,
             trailingTextColor: Colors.grey,
             settingsSectionBackground: AppColors.background.color,
+            tileHighlightColor: Colors.transparent,
             dividerColor: AppColors.background.color,
             titleTextColor: AppColors.white.color,
             inactiveTitleColor: AppColors.white.color,
@@ -127,7 +129,7 @@ class _SignOutSettingTile extends SettingsTile {
       : super.navigation(
           onPressed: (context) {
             FireBaseFunctions().signOut();
-            context.pushReplacement(routeNameMap[RouteName.start]!);
+            context.go(routeNameMap[RouteName.start]!);
           },
           title: Center(
             child: Builder(builder: (context) {

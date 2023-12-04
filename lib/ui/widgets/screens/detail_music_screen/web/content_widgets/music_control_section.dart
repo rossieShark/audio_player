@@ -4,6 +4,7 @@ import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
 
 import 'package:audio_player/ui/widgets/screens/detail_music_screen/detail_music_index.dart';
+import 'package:audio_player/ui/widgets/screens/index.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
@@ -101,7 +102,7 @@ class _LikeButtonWidgetState extends State<_LikeButtonWidget> {
             final bloc = context.read<FavoriteSongBloc>();
             final songInfoModel = SongModel(
                 preview: widget.preview,
-                type: "track",
+                type: SearchFilters.track,
                 id: widget.id,
                 artistNames: widget.artistNames,
                 title: widget.title,

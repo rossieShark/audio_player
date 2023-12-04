@@ -104,7 +104,7 @@ final router = GoRouter(
           image: state.uri.queryParameters['image'] ?? '',
           title: state.uri.queryParameters['title'] ?? '',
           artist: state.uri.queryParameters['artist'] ?? '',
-        ).createWithMultiProviders([]),
+        ),
       ),
     ),
     GoRoute(

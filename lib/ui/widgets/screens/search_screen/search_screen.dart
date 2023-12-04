@@ -80,19 +80,10 @@ class _SearchPageState extends State<SearchPage> {
                 SliverAppBar(
                   pinned: true,
                   backgroundColor: AppColors.background.color,
-                  title: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: _SearchTextField(
-                      controller: _textFieldController,
-                      focusNode: _focusNode,
-                      scrollController: _scrollController,
-                      // onPressed: () {
-                      //   // _textFieldController.clear();
-                      //   Future.delayed(const Duration(milliseconds: 500), () {
-                      //     _scrollController.jumpTo(0.0);
-                      //   });
-                      // },
-                    ),
+                  title: _SearchTextField(
+                    controller: _textFieldController,
+                    focusNode: _focusNode,
+                    scrollController: _scrollController,
                   ),
                 ),
                 PlatformBuilder(
@@ -133,7 +124,6 @@ class _SearchTextField extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode focusNode;
   final ScrollController scrollController;
-  // final VoidCallback onPressed;
 
   const _SearchTextField({
     Key? key,
@@ -155,53 +145,12 @@ class _SearchTextField extends StatelessWidget {
         prefixIcon: const Icon(Icons.search, color: Colors.grey),
         textFieldColor: Colors.transparent,
         textColor: AppColors.white.color,
+        borderColor: AppColors.accent.color,
         showSuffixIcon: controller.text.isNotEmpty,
         onPressed: () {
           Future.delayed(const Duration(milliseconds: 500), () {
             scrollController.jumpTo(0.0);
           });
         });
-
-    // TextField(
-    //   controller: controller,
-    //   cursorColor: AppColors.accent.color,
-    //   focusNode: focusNode,
-    //   decoration: InputDecoration(
-    //     contentPadding: const EdgeInsets.symmetric(vertical: 6.0),
-    //     prefixIcon: const Icon(Icons.search, color: Colors.grey),
-    //     hintText: focusNode.hasFocus
-    //         ? ''
-    //         : AppLocalizations.of(context)!.searchTextFieldHintText,
-    //     hintStyle: const TextStyle(
-    //         fontFamily: FontFamily.poiretOne,
-    //         fontSize: 12,
-    //         fontWeight: FontWeight.w600,
-    //         color: Colors.grey),
-    //     labelStyle: TextStyle(color: AppColors.white.color),
-    //     enabledBorder: OutlineInputBorder(
-    //       borderRadius: BorderRadius.circular(30.0),
-    //       borderSide: BorderSide(
-    //         color: focusNode.hasFocus
-    //             ? AppColors.white.color
-    //             : AppColors.accent.color,
-    //       ),
-    //     ),
-    //     focusedBorder: OutlineInputBorder(
-    //         borderRadius: BorderRadius.circular(30.0),
-    //         borderSide: BorderSide(color: AppColors.white.color)),
-    //     suffixIcon: controller.text.isNotEmpty
-    //         ? IconButtonWidget(
-    //             iconData: Icons.clear,
-    //             color: AppColors.accent.color,
-    //             onPressed: onPressed,
-    //           )
-    //         : null,
-    //   ),
-    //   style: const TextStyle(
-    //       fontFamily: FontFamily.poiretOne,
-    //       fontSize: 13,
-    //       fontWeight: FontWeight.w600,
-    //       color: Colors.white),
-    // );
   }
 }
