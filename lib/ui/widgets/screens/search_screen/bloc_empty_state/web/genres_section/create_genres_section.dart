@@ -121,45 +121,87 @@ class CreateGenresListContent extends StatelessWidget {
       scale: isHovered ? 1.1 : 1.0,
       duration: const Duration(milliseconds: 200),
       child: Stack(children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: SizedBox(
-            height: 300,
-            child: Image.network(
-              image,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Positioned.fill(
-          child: Container(
-            decoration: BoxDecoration(
-              color: isHovered
-                  ? AppColors.accent.color.withOpacity(0.3)
-                  : AppColors.accent.color.withOpacity(0.6),
-              borderRadius: BorderRadius.circular(20),
-            ),
-          ),
-        ),
-        Positioned.fill(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-              child: Text(
-                name,
-                style: const TextStyle(
-                    fontFamily: FontFamily.poiretOne,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white),
-                textAlign: TextAlign.center,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-          ),
-        ),
+        _CreateImageSection(image: image),
+        _CreateFilterLayer(isHovered: isHovered),
+        _CreateTitle(name: name),
       ]),
+    );
+  }
+}
+
+class _CreateTitle extends StatelessWidget {
+  const _CreateTitle({
+    super.key,
+    required this.name,
+  });
+
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned.fill(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: Text(
+            name,
+            style: const TextStyle(
+                fontFamily: FontFamily.poiretOne,
+                fontSize: 18,
+                fontWeight: FontWeight.w900,
+                color: Colors.white),
+            textAlign: TextAlign.center,
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _CreateFilterLayer extends StatelessWidget {
+  const _CreateFilterLayer({
+    super.key,
+    required this.isHovered,
+  });
+
+  final bool isHovered;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned.fill(
+      child: Container(
+        decoration: BoxDecoration(
+          color: isHovered
+              ? AppColors.accent.color.withOpacity(0.3)
+              : AppColors.accent.color.withOpacity(0.6),
+          borderRadius: BorderRadius.circular(20),
+        ),
+      ),
+    );
+  }
+}
+
+class _CreateImageSection extends StatelessWidget {
+  const _CreateImageSection({
+    super.key,
+    required this.image,
+  });
+
+  final String image;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: SizedBox(
+        height: 300,
+        child: Image.network(
+          image,
+          fit: BoxFit.cover,
+        ),
+      ),
     );
   }
 }

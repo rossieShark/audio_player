@@ -110,11 +110,13 @@ class _SearchFilterWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             mainAxisSize: MainAxisSize.max,
             children: [
-              for (int index = 0; index < searchFilters.length; index++)
+              for (int index = 0;
+                  index < SearchFilters.searchFilters.length;
+                  index++)
                 Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
                     child: FilterButtonCard(
-                      filter: searchFilters[index],
+                      filter: SearchFilters.searchFilters[index],
                       textFieldController: textFieldController,
                     ))
             ],
@@ -166,4 +168,10 @@ class FilterButtonCard extends StatelessWidget {
   }
 }
 
-List<String> searchFilters = ['All', 'track', 'album'];
+class SearchFilters {
+  static const String all = 'All';
+  static const String track = 'track';
+  static const String album = 'album';
+
+  static const List<String> searchFilters = [all, track, album];
+}

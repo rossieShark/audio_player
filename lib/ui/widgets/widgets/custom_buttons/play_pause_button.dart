@@ -7,6 +7,7 @@ class CreatePlayPauseButton extends StatelessWidget {
   final PlayedSong playedSong;
   final List<PlayedSong>? playedSongs;
   final VoidCallback? onPressed;
+  final Color? containerColor;
 
   final String? type;
   const CreatePlayPauseButton(
@@ -14,7 +15,8 @@ class CreatePlayPauseButton extends StatelessWidget {
       required this.playedSong,
       this.onPressed,
       this.playedSongs,
-      this.type});
+      this.type,
+      this.containerColor});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,8 @@ class CreatePlayPauseButton extends StatelessWidget {
         icon: (state.isPlaying && isSongPlay(state))
             ? Icon(Icons.pause, color: AppColors.white.color)
             : Icon(Icons.play_arrow, color: AppColors.white.color),
-        containerColor: AppColors.accent.color.withOpacity(0.8),
+        containerColor:
+            containerColor ?? AppColors.accent.color.withOpacity(0.8),
       );
     });
   }

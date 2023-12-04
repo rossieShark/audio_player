@@ -2,6 +2,7 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
+import 'package:audio_player/ui/widgets/screens/index.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -67,39 +68,15 @@ class _CreateResentlySearchedListViewState
 
   @override
   Widget build(BuildContext context) {
-    const double listHeight = 70;
     return HoverableWidget(builder: (context, child, isHovered) {
       return Stack(
         children: [
           SizedBox(
             height: 200,
-            child: ListView.builder(
-                itemCount: widget.recentlySearched.length,
-                scrollDirection: Axis.horizontal,
-                controller: _horizontalScroll,
-                itemBuilder: (context, index) {
-                  final song = widget.recentlySearched[index];
-                  return GestureDetector(
-                    onTap: song.type == 'album'
-                        ? () {
-                            String id = song.id;
-                            GoRouter.of(context).push(Uri(
-                              path:
-                                  '/${routeNameMap[RouteName.albumDetail]!}$id',
-                              queryParameters: {
-                                'image': song.image,
-                                'title': song.title,
-                                'artist': song.artistNames
-                              },
-                            ).toString());
-                          }
-                        : null,
-                    child: _CreateListViewContent(
-                      listHeight: listHeight,
-                      song: song,
-                    ),
-                  );
-                }),
+            child: RecentlySearchedListView(
+              recentlySearched: widget.recentlySearched,
+              horizontalScroll: _horizontalScroll,
+            ),
           ),
           Positioned(
             top: 0,
@@ -115,6 +92,48 @@ class _CreateResentlySearchedListViewState
         ],
       );
     });
+  }
+}
+
+class RecentlySearchedListView extends StatelessWidget {
+  const RecentlySearchedListView({
+    super.key,
+    required this.recentlySearched,
+    required ScrollController horizontalScroll,
+  }) : _horizontalScroll = horizontalScroll;
+
+  final ScrollController _horizontalScroll;
+  final List<SongModel> recentlySearched;
+
+  @override
+  Widget build(BuildContext context) {
+    const double listHeight = 70;
+    return ListView.builder(
+        itemCount: recentlySearched.length,
+        scrollDirection: Axis.horizontal,
+        controller: _horizontalScroll,
+        itemBuilder: (context, index) {
+          final song = recentlySearched[index];
+          return GestureDetector(
+            onTap: song.type == SearchFilters.album
+                ? () {
+                    String id = song.id;
+                    GoRouter.of(context).push(Uri(
+                      path: '/${routeNameMap[RouteName.albumDetail]!}$id',
+                      queryParameters: {
+                        'image': song.image,
+                        'title': song.title,
+                        'artist': song.artistNames
+                      },
+                    ).toString());
+                  }
+                : null,
+            child: _CreateListViewContent(
+              listHeight: listHeight,
+              song: song,
+            ),
+          );
+        });
   }
 }
 
@@ -166,7 +185,7 @@ class _CreateSongInfoLayer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ClipRRect(
-              borderRadius: song.type == 'album'
+              borderRadius: song.type == SearchFilters.album
                   ? BorderRadius.circular(60)
                   : BorderRadius.circular(8),
               child: SizedBox(
@@ -230,45 +249,11 @@ class _CreatePlayMusicButton extends StatelessWidget {
     return Consumer<AlbumDetailBloc>(builder: (context, albumBloc, child) {
       final song =
           PlayedSong(id: int.parse(playedSong.id), preview: playedSong.preview);
-
-      // bool isSongPlay = musicBloc.state.playlist
-      //     .any((song) => song.id == int.parse(playedSong.id));
       return CreatePlayPauseButton(
           playedSong: song,
           type: playedSong.type,
           playedSongs: _returnAlbumSongs(albumBloc.state));
-      //   Padding(
-      //     padding: const EdgeInsets.all(8.0),
-      //     child: CreatePlayButton(
-      //       onPressed: () => _playPauseMusic(context, albumBloc.state),
-      //       size: 35,
-      //       icon: (musicBloc.state.isPlaying && isSongPlay)
-      //           ? Icon(Icons.pause, color: AppColors.black.color)
-      //           : Icon(Icons.play_arrow, color: AppColors.black.color),
-      //       containerColor: AppColors.accent.color,
-      //     ),
-      //   );
-      // });
     });
-
-    // void _playPauseMusic(BuildContext context, AlbumDetailBlocState state) {
-    //   // context.read<RecentlyPlayedIdCubit>().setId(playedSong.id);
-    //   final musicBloc = context.read<MusicBloc>();
-    //   if (playedSong.type == 'track') {
-    //     final song =
-    //         PlayedSong(id: int.parse(playedSong.id), preview: playedSong.preview);
-    //     musicBloc.add(PlayPause(song: song));
-    //   } else {
-    //     if (state is LoadedAlbumDetailBlocState) {
-    //       final songs = state.albumDetailList
-    //           .map((song) => PlayedSong(
-    //                 id: song.id,
-    //                 preview: song.preview,
-    //               ))
-    //           .toList();
-    //       musicBloc.add(PlayPlaylist(songs: songs, song: songs[0]));
-    //     }
-    //   }
   }
 
   List<PlayedSong> _returnAlbumSongs(AlbumDetailBlocState state) {
