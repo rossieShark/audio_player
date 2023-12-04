@@ -14,21 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-RecentlyPlayedState _$RecentlyPlayedStateFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType']) {
-    case 'error':
-      return ErrorRecentlyPlayedState.fromJson(json);
-    case 'loading':
-      return LoadingRecentlyPlayedState.fromJson(json);
-    case 'loaded':
-      return LoadedRecentlyPlayedState.fromJson(json);
-
-    default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'RecentlyPlayedState',
-          'Invalid union type "${json['runtimeType']}"!');
-  }
-}
-
 /// @nodoc
 mixin _$RecentlyPlayedState {
   @optionalTypeArgs
@@ -75,7 +60,6 @@ mixin _$RecentlyPlayedState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -113,16 +97,9 @@ class __$$ErrorRecentlyPlayedStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$ErrorRecentlyPlayedState implements ErrorRecentlyPlayedState {
-  const _$ErrorRecentlyPlayedState({final String? $type})
-      : $type = $type ?? 'error';
-
-  factory _$ErrorRecentlyPlayedState.fromJson(Map<String, dynamic> json) =>
-      _$$ErrorRecentlyPlayedStateFromJson(json);
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
+  const _$ErrorRecentlyPlayedState();
 
   @override
   String toString() {
@@ -196,20 +173,10 @@ class _$ErrorRecentlyPlayedState implements ErrorRecentlyPlayedState {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ErrorRecentlyPlayedStateToJson(
-      this,
-    );
-  }
 }
 
 abstract class ErrorRecentlyPlayedState implements RecentlyPlayedState {
   const factory ErrorRecentlyPlayedState() = _$ErrorRecentlyPlayedState;
-
-  factory ErrorRecentlyPlayedState.fromJson(Map<String, dynamic> json) =
-      _$ErrorRecentlyPlayedState.fromJson;
 }
 
 /// @nodoc
@@ -232,16 +199,9 @@ class __$$LoadingRecentlyPlayedStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$LoadingRecentlyPlayedState implements LoadingRecentlyPlayedState {
-  const _$LoadingRecentlyPlayedState({final String? $type})
-      : $type = $type ?? 'loading';
-
-  factory _$LoadingRecentlyPlayedState.fromJson(Map<String, dynamic> json) =>
-      _$$LoadingRecentlyPlayedStateFromJson(json);
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
+  const _$LoadingRecentlyPlayedState();
 
   @override
   String toString() {
@@ -315,20 +275,10 @@ class _$LoadingRecentlyPlayedState implements LoadingRecentlyPlayedState {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LoadingRecentlyPlayedStateToJson(
-      this,
-    );
-  }
 }
 
 abstract class LoadingRecentlyPlayedState implements RecentlyPlayedState {
   const factory LoadingRecentlyPlayedState() = _$LoadingRecentlyPlayedState;
-
-  factory LoadingRecentlyPlayedState.fromJson(Map<String, dynamic> json) =
-      _$LoadingRecentlyPlayedState.fromJson;
 }
 
 /// @nodoc
@@ -364,15 +314,11 @@ class __$$LoadedRecentlyPlayedStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$LoadedRecentlyPlayedState implements LoadedRecentlyPlayedState {
   const _$LoadedRecentlyPlayedState(
-      {required final List<RecentlyPlayedSong> data, final String? $type})
-      : _data = data,
-        $type = $type ?? 'loaded';
-
-  factory _$LoadedRecentlyPlayedState.fromJson(Map<String, dynamic> json) =>
-      _$$LoadedRecentlyPlayedStateFromJson(json);
+      {required final List<RecentlyPlayedSong> data})
+      : _data = data;
 
   final List<RecentlyPlayedSong> _data;
   @override
@@ -381,9 +327,6 @@ class _$LoadedRecentlyPlayedState implements LoadedRecentlyPlayedState {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_data);
   }
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
 
   @override
   String toString() {
@@ -464,22 +407,12 @@ class _$LoadedRecentlyPlayedState implements LoadedRecentlyPlayedState {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LoadedRecentlyPlayedStateToJson(
-      this,
-    );
-  }
 }
 
 abstract class LoadedRecentlyPlayedState implements RecentlyPlayedState {
   const factory LoadedRecentlyPlayedState(
           {required final List<RecentlyPlayedSong> data}) =
       _$LoadedRecentlyPlayedState;
-
-  factory LoadedRecentlyPlayedState.fromJson(Map<String, dynamic> json) =
-      _$LoadedRecentlyPlayedState.fromJson;
 
   List<RecentlyPlayedSong> get data;
   @JsonKey(ignore: true)

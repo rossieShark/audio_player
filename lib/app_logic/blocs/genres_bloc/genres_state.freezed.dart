@@ -14,21 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-GenresBlocState _$GenresBlocStateFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType']) {
-    case 'error':
-      return ErrorGenresBlocState.fromJson(json);
-    case 'loading':
-      return LoadingGenresBlocState.fromJson(json);
-    case 'loaded':
-      return LoadedGenresBlocState.fromJson(json);
-
-    default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'GenresBlocState',
-          'Invalid union type "${json['runtimeType']}"!');
-  }
-}
-
 /// @nodoc
 mixin _$GenresBlocState {
   @optionalTypeArgs
@@ -75,7 +60,6 @@ mixin _$GenresBlocState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -113,16 +97,9 @@ class __$$ErrorGenresBlocStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$ErrorGenresBlocState implements ErrorGenresBlocState {
-  const _$ErrorGenresBlocState({final String? $type})
-      : $type = $type ?? 'error';
-
-  factory _$ErrorGenresBlocState.fromJson(Map<String, dynamic> json) =>
-      _$$ErrorGenresBlocStateFromJson(json);
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
+  const _$ErrorGenresBlocState();
 
   @override
   String toString() {
@@ -196,20 +173,10 @@ class _$ErrorGenresBlocState implements ErrorGenresBlocState {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ErrorGenresBlocStateToJson(
-      this,
-    );
-  }
 }
 
 abstract class ErrorGenresBlocState implements GenresBlocState {
   const factory ErrorGenresBlocState() = _$ErrorGenresBlocState;
-
-  factory ErrorGenresBlocState.fromJson(Map<String, dynamic> json) =
-      _$ErrorGenresBlocState.fromJson;
 }
 
 /// @nodoc
@@ -229,16 +196,9 @@ class __$$LoadingGenresBlocStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$LoadingGenresBlocState implements LoadingGenresBlocState {
-  const _$LoadingGenresBlocState({final String? $type})
-      : $type = $type ?? 'loading';
-
-  factory _$LoadingGenresBlocState.fromJson(Map<String, dynamic> json) =>
-      _$$LoadingGenresBlocStateFromJson(json);
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
+  const _$LoadingGenresBlocState();
 
   @override
   String toString() {
@@ -312,20 +272,10 @@ class _$LoadingGenresBlocState implements LoadingGenresBlocState {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LoadingGenresBlocStateToJson(
-      this,
-    );
-  }
 }
 
 abstract class LoadingGenresBlocState implements GenresBlocState {
   const factory LoadingGenresBlocState() = _$LoadingGenresBlocState;
-
-  factory LoadingGenresBlocState.fromJson(Map<String, dynamic> json) =
-      _$LoadingGenresBlocState.fromJson;
 }
 
 /// @nodoc
@@ -360,15 +310,10 @@ class __$$LoadedGenresBlocStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$LoadedGenresBlocState implements LoadedGenresBlocState {
-  const _$LoadedGenresBlocState(
-      {required final List<MusicGenre> data, final String? $type})
-      : _data = data,
-        $type = $type ?? 'loaded';
 
-  factory _$LoadedGenresBlocState.fromJson(Map<String, dynamic> json) =>
-      _$$LoadedGenresBlocStateFromJson(json);
+class _$LoadedGenresBlocState implements LoadedGenresBlocState {
+  const _$LoadedGenresBlocState({required final List<MusicGenre> data})
+      : _data = data;
 
   final List<MusicGenre> _data;
   @override
@@ -377,9 +322,6 @@ class _$LoadedGenresBlocState implements LoadedGenresBlocState {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_data);
   }
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
 
   @override
   String toString() {
@@ -460,21 +402,11 @@ class _$LoadedGenresBlocState implements LoadedGenresBlocState {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LoadedGenresBlocStateToJson(
-      this,
-    );
-  }
 }
 
 abstract class LoadedGenresBlocState implements GenresBlocState {
   const factory LoadedGenresBlocState({required final List<MusicGenre> data}) =
       _$LoadedGenresBlocState;
-
-  factory LoadedGenresBlocState.fromJson(Map<String, dynamic> json) =
-      _$LoadedGenresBlocState.fromJson;
 
   List<MusicGenre> get data;
   @JsonKey(ignore: true)

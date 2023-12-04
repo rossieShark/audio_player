@@ -1,7 +1,7 @@
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'genres_state.freezed.dart';
-part 'genres_state.g.dart';
+//part 'genres_state.g.dart';
 
 @Freezed(equal: false)
 class GenresBlocState with _$GenresBlocState {
@@ -9,6 +9,6 @@ class GenresBlocState with _$GenresBlocState {
   const factory GenresBlocState.loading() = LoadingGenresBlocState;
   const factory GenresBlocState.loaded({required List<MusicGenre> data}) =
       LoadedGenresBlocState;
-  factory GenresBlocState.fromJson(Map<String, Object?> json) =>
-      _$GenresBlocStateFromJson(json);
+  // factory GenresBlocState.fromJson(Map<String, Object?> json) =>
+  //     _$GenresBlocStateFromJson(json);
 }

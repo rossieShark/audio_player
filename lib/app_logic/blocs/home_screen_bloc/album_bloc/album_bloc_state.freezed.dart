@@ -14,21 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-AlbumBlocState _$AlbumBlocStateFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType']) {
-    case 'error':
-      return ErrorAlbumBlocState.fromJson(json);
-    case 'loading':
-      return LoadingAlbumBlocState.fromJson(json);
-    case 'loaded':
-      return LoadedAlbumBlocState.fromJson(json);
-
-    default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'AlbumBlocState',
-          'Invalid union type "${json['runtimeType']}"!');
-  }
-}
-
 /// @nodoc
 mixin _$AlbumBlocState {
   @optionalTypeArgs
@@ -75,7 +60,6 @@ mixin _$AlbumBlocState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -113,15 +97,9 @@ class __$$ErrorAlbumBlocStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$ErrorAlbumBlocState implements ErrorAlbumBlocState {
-  const _$ErrorAlbumBlocState({final String? $type}) : $type = $type ?? 'error';
-
-  factory _$ErrorAlbumBlocState.fromJson(Map<String, dynamic> json) =>
-      _$$ErrorAlbumBlocStateFromJson(json);
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
+  const _$ErrorAlbumBlocState();
 
   @override
   String toString() {
@@ -195,20 +173,10 @@ class _$ErrorAlbumBlocState implements ErrorAlbumBlocState {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ErrorAlbumBlocStateToJson(
-      this,
-    );
-  }
 }
 
 abstract class ErrorAlbumBlocState implements AlbumBlocState {
   const factory ErrorAlbumBlocState() = _$ErrorAlbumBlocState;
-
-  factory ErrorAlbumBlocState.fromJson(Map<String, dynamic> json) =
-      _$ErrorAlbumBlocState.fromJson;
 }
 
 /// @nodoc
@@ -228,16 +196,9 @@ class __$$LoadingAlbumBlocStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$LoadingAlbumBlocState implements LoadingAlbumBlocState {
-  const _$LoadingAlbumBlocState({final String? $type})
-      : $type = $type ?? 'loading';
-
-  factory _$LoadingAlbumBlocState.fromJson(Map<String, dynamic> json) =>
-      _$$LoadingAlbumBlocStateFromJson(json);
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
+  const _$LoadingAlbumBlocState();
 
   @override
   String toString() {
@@ -311,20 +272,10 @@ class _$LoadingAlbumBlocState implements LoadingAlbumBlocState {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LoadingAlbumBlocStateToJson(
-      this,
-    );
-  }
 }
 
 abstract class LoadingAlbumBlocState implements AlbumBlocState {
   const factory LoadingAlbumBlocState() = _$LoadingAlbumBlocState;
-
-  factory LoadingAlbumBlocState.fromJson(Map<String, dynamic> json) =
-      _$LoadingAlbumBlocState.fromJson;
 }
 
 /// @nodoc
@@ -359,15 +310,10 @@ class __$$LoadedAlbumBlocStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$LoadedAlbumBlocState implements LoadedAlbumBlocState {
-  const _$LoadedAlbumBlocState(
-      {required final List<BestAlbum> data, final String? $type})
-      : _data = data,
-        $type = $type ?? 'loaded';
 
-  factory _$LoadedAlbumBlocState.fromJson(Map<String, dynamic> json) =>
-      _$$LoadedAlbumBlocStateFromJson(json);
+class _$LoadedAlbumBlocState implements LoadedAlbumBlocState {
+  const _$LoadedAlbumBlocState({required final List<BestAlbum> data})
+      : _data = data;
 
   final List<BestAlbum> _data;
   @override
@@ -376,9 +322,6 @@ class _$LoadedAlbumBlocState implements LoadedAlbumBlocState {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_data);
   }
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
 
   @override
   String toString() {
@@ -459,21 +402,11 @@ class _$LoadedAlbumBlocState implements LoadedAlbumBlocState {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LoadedAlbumBlocStateToJson(
-      this,
-    );
-  }
 }
 
 abstract class LoadedAlbumBlocState implements AlbumBlocState {
   const factory LoadedAlbumBlocState({required final List<BestAlbum> data}) =
       _$LoadedAlbumBlocState;
-
-  factory LoadedAlbumBlocState.fromJson(Map<String, dynamic> json) =
-      _$LoadedAlbumBlocState.fromJson;
 
   List<BestAlbum> get data;
   @JsonKey(ignore: true)

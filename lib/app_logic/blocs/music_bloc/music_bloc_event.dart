@@ -28,6 +28,8 @@ class Play extends MusicEvent {
 
 class Pause extends MusicEvent {}
 
+class Resume extends MusicEvent {}
+
 class PlayPause extends MusicEvent {
   final PlayedSong song;
   PlayPause({

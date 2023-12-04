@@ -14,25 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-FavoriteArtistBlocState _$FavoriteArtistBlocStateFromJson(
-    Map<String, dynamic> json) {
-  switch (json['runtimeType']) {
-    case 'error':
-      return ErrorFavoriteArtistBlocState.fromJson(json);
-    case 'loading':
-      return LoadingFavoriteArtistBlocState.fromJson(json);
-    case 'loaded':
-      return LoadedFavoriteArtistBlocState.fromJson(json);
-
-    default:
-      throw CheckedFromJsonException(
-          json,
-          'runtimeType',
-          'FavoriteArtistBlocState',
-          'Invalid union type "${json['runtimeType']}"!');
-  }
-}
-
 /// @nodoc
 mixin _$FavoriteArtistBlocState {
   @optionalTypeArgs
@@ -79,7 +60,6 @@ mixin _$FavoriteArtistBlocState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -121,16 +101,9 @@ class __$$ErrorFavoriteArtistBlocStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$ErrorFavoriteArtistBlocState implements ErrorFavoriteArtistBlocState {
-  const _$ErrorFavoriteArtistBlocState({final String? $type})
-      : $type = $type ?? 'error';
-
-  factory _$ErrorFavoriteArtistBlocState.fromJson(Map<String, dynamic> json) =>
-      _$$ErrorFavoriteArtistBlocStateFromJson(json);
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
+  const _$ErrorFavoriteArtistBlocState();
 
   @override
   String toString() {
@@ -204,20 +177,10 @@ class _$ErrorFavoriteArtistBlocState implements ErrorFavoriteArtistBlocState {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ErrorFavoriteArtistBlocStateToJson(
-      this,
-    );
-  }
 }
 
 abstract class ErrorFavoriteArtistBlocState implements FavoriteArtistBlocState {
   const factory ErrorFavoriteArtistBlocState() = _$ErrorFavoriteArtistBlocState;
-
-  factory ErrorFavoriteArtistBlocState.fromJson(Map<String, dynamic> json) =
-      _$ErrorFavoriteArtistBlocState.fromJson;
 }
 
 /// @nodoc
@@ -240,18 +203,10 @@ class __$$LoadingFavoriteArtistBlocStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$LoadingFavoriteArtistBlocState
     implements LoadingFavoriteArtistBlocState {
-  const _$LoadingFavoriteArtistBlocState({final String? $type})
-      : $type = $type ?? 'loading';
-
-  factory _$LoadingFavoriteArtistBlocState.fromJson(
-          Map<String, dynamic> json) =>
-      _$$LoadingFavoriteArtistBlocStateFromJson(json);
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
+  const _$LoadingFavoriteArtistBlocState();
 
   @override
   String toString() {
@@ -325,22 +280,12 @@ class _$LoadingFavoriteArtistBlocState
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LoadingFavoriteArtistBlocStateToJson(
-      this,
-    );
-  }
 }
 
 abstract class LoadingFavoriteArtistBlocState
     implements FavoriteArtistBlocState {
   const factory LoadingFavoriteArtistBlocState() =
       _$LoadingFavoriteArtistBlocState;
-
-  factory LoadingFavoriteArtistBlocState.fromJson(Map<String, dynamic> json) =
-      _$LoadingFavoriteArtistBlocState.fromJson;
 }
 
 /// @nodoc
@@ -378,15 +323,11 @@ class __$$LoadedFavoriteArtistBlocStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$LoadedFavoriteArtistBlocState implements LoadedFavoriteArtistBlocState {
   const _$LoadedFavoriteArtistBlocState(
-      {required final List<FavoriteArtist> data, final String? $type})
-      : _data = data,
-        $type = $type ?? 'loaded';
-
-  factory _$LoadedFavoriteArtistBlocState.fromJson(Map<String, dynamic> json) =>
-      _$$LoadedFavoriteArtistBlocStateFromJson(json);
+      {required final List<FavoriteArtist> data})
+      : _data = data;
 
   final List<FavoriteArtist> _data;
   @override
@@ -395,9 +336,6 @@ class _$LoadedFavoriteArtistBlocState implements LoadedFavoriteArtistBlocState {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_data);
   }
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
 
   @override
   String toString() {
@@ -478,13 +416,6 @@ class _$LoadedFavoriteArtistBlocState implements LoadedFavoriteArtistBlocState {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LoadedFavoriteArtistBlocStateToJson(
-      this,
-    );
-  }
 }
 
 abstract class LoadedFavoriteArtistBlocState
@@ -492,9 +423,6 @@ abstract class LoadedFavoriteArtistBlocState
   const factory LoadedFavoriteArtistBlocState(
           {required final List<FavoriteArtist> data}) =
       _$LoadedFavoriteArtistBlocState;
-
-  factory LoadedFavoriteArtistBlocState.fromJson(Map<String, dynamic> json) =
-      _$LoadedFavoriteArtistBlocState.fromJson;
 
   List<FavoriteArtist> get data;
   @JsonKey(ignore: true)

@@ -2,7 +2,6 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -105,15 +104,11 @@ class _CreateAppBarButtons extends StatelessWidget {
         PlatformBuilder(
             iOS: ResponsiveButton(
                 iconData: Icons.arrow_back_ios,
-                onPressed: () {
-                  GoRouter.of(context).pop();
-                },
+                onPressed: () => GoRouter.of(context).pop(),
                 color: AppColors.white.color),
             other: ResponsiveButton(
                 iconData: Icons.arrow_back,
-                onPressed: () {
-                  GoRouter.of(context).pop();
-                },
+                onPressed: () => GoRouter.of(context).pop(),
                 color: AppColors.white.color),
             builder: (context, child, data) {
               return IconButtonWidget(
@@ -141,31 +136,8 @@ class _LikeButtonWidget extends StatefulWidget {
 class _LikeButtonWidgetState extends State<_LikeButtonWidget> {
   bool isFavorite = false;
 
-  // void _toggleFavorite() {
-  //   setState(() {
-  //     isFavorite = !isFavorite;
-  //   });
-  // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   // favoriteBloc = FavoriteBloc(
-  //   //   Provider.of<FavoriteProvider>(context, listen: false),
-  //   // );
-  // }
-
-  // @override
-  // void didChangeDependencies() {
-  //   // final favoriteProvider =
-  //   //     Provider.of<FavoriteProvider>(context, listen: false);
-  //   // isFavorite = favoriteProvider.isFavoriteAlbum(widget.param);
-  //   super.didChangeDependencies();
-  // }
-
   @override
   Widget build(BuildContext context) {
-    final List<DetailAlbum> songs = widget.songList;
     return BlocBuilder<FavoriteAlbumBloc, FavoriteAlbumState>(
       builder: (context, state) {
         if (state is LoadedFavoriteAlbumState) {
@@ -174,22 +146,24 @@ class _LikeButtonWidgetState extends State<_LikeButtonWidget> {
           isFavorite = false;
         }
         return LikeButton(
-            onPressed: () {
-              final bloc = context.read<FavoriteAlbumBloc>();
-              final album = SongModel(
-                preview: songs[0].preview,
-                type: 'album',
-                id: widget.param,
-                artistNames: songs[0].title,
-                title: songs[0].artistNames,
-                image: widget.image,
-                isFavourite: isFavorite,
-              );
-
-              bloc.add(ToggleIsFavouriteAlbum(album: album));
-            },
-            isFavorite: isFavorite);
+            onPressed: () => _onPressed(context), isFavorite: isFavorite);
       },
     );
+  }
+
+  void _onPressed(BuildContext context) {
+    final List<DetailAlbum> songs = widget.songList;
+    final bloc = context.read<FavoriteAlbumBloc>();
+    final album = SongModel(
+      preview: songs[0].preview,
+      type: 'album',
+      id: widget.param,
+      artistNames: songs[0].title,
+      title: songs[0].artistNames,
+      image: widget.image,
+      isFavourite: isFavorite,
+    );
+
+    bloc.add(ToggleIsFavouriteAlbum(album: album));
   }
 }

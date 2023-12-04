@@ -43,7 +43,8 @@ class _CreatMusicControlSectionState extends State<CreatMusicControlSection> {
             const SizedBox(
               width: 10,
             ),
-            _CreatePlayPauseButton(playedSong: song),
+            CreatePlayPauseButton(
+                playedSong: song, id: widget.songInfo.id.toString()),
             const SizedBox(
               width: 10,
             ),
@@ -70,29 +71,29 @@ class _CreatMusicControlSectionState extends State<CreatMusicControlSection> {
   }
 }
 
-class _CreatePlayPauseButton extends StatelessWidget {
-  final PlayedSong playedSong;
-  const _CreatePlayPauseButton({required this.playedSong});
+// class _CreatePlayPauseButton extends StatelessWidget {
+//   final PlayedSong playedSong;
+//   const _CreatePlayPauseButton({required this.playedSong});
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<MusicBloc, MusicState>(builder: (context, state) {
-      bool isSongPlay = state.playlist.any((song) => song.id == playedSong.id);
-      return CreatePlayButton(
-        size: 40,
-        containerColor: AppColors.accent.color,
-        icon: state.isPlaying && isSongPlay
-            ? Icon(Icons.pause, color: AppColors.white.color)
-            : Icon(Icons.play_arrow, color: AppColors.white.color),
-        onPressed: () => _playPauseMusic(context),
-      );
-    });
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<MusicBloc, MusicState>(builder: (context, state) {
+//       bool isSongPlay = state.playlist.any((song) => song.id == playedSong.id);
+//       return CreatePlayButton(
+//         size: 40,
+//         containerColor: AppColors.accent.color,
+//         icon: state.isPlaying && isSongPlay
+//             ? Icon(Icons.pause, color: AppColors.white.color)
+//             : Icon(Icons.play_arrow, color: AppColors.white.color),
+//         onPressed: () => _playPauseMusic(context),
+//       );
+//     });
+//   }
 
-  void _playPauseMusic(BuildContext context) {
-    // context.read<RecentlyPlayedIdCubit>().setId(playedSong.id.toString());
-    final musicBloc = context.read<MusicBloc>();
-    final song = PlayedSong(id: playedSong.id, preview: playedSong.preview);
-    musicBloc.add(PlayPause(song: song));
-  }
-}
+//   void _playPauseMusic(BuildContext context) {
+//     // context.read<RecentlyPlayedIdCubit>().setId(playedSong.id.toString());
+//     final musicBloc = context.read<MusicBloc>();
+//     final song = PlayedSong(id: playedSong.id, preview: playedSong.preview);
+//     musicBloc.add(PlayPause(song: song));
+//   }
+//}

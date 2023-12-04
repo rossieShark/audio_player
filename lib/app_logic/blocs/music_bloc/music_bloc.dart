@@ -22,6 +22,7 @@ class MusicBloc extends Bloc<MusicEvent, MusicState> {
     on<PlayPrevious>(_onPlayPrevious);
     on<PlayPause>(_onPlayPause);
     on<PlayPlaylist>(_onPlayPlaylist);
+    on<Resume>(_onResume);
     _setupMusicCompletedSubscription();
   }
   AudioPlayer get audioPlayer => _audioPlayer;
@@ -71,6 +72,11 @@ class MusicBloc extends Bloc<MusicEvent, MusicState> {
     emit(state.copyWith(isPlaying: false));
   }
 
+  void _onResume(Resume event, Emitter<MusicState> emit) async {
+    await _audioPlayer.resume();
+    emit(state.copyWith(isPlaying: true));
+  }
+
   void _onStop(Stop event, Emitter<MusicState> emit) async {
     await _audioPlayer.stop();
     emit(state.copyWith(isPlaying: false));
@@ -104,8 +110,12 @@ class MusicBloc extends Bloc<MusicEvent, MusicState> {
   }
 
   void _onPlayPlaylist(PlayPlaylist event, Emitter<MusicState> emit) async {
-    if (state.isPlaying) {
-      add(Pause());
+    if (state.playlist.any((song) => event.songs.contains(song))) {
+      if (state.isPlaying) {
+        add(Pause());
+      } else {
+        add(Resume());
+      }
     } else {
       add(ClearPlaylist());
       add(AddMultipleSongs(songs: event.songs));

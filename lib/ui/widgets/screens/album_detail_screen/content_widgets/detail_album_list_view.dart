@@ -6,7 +6,7 @@ import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class DetailAlbumListView extends StatefulWidget {
+class DetailAlbumListView extends StatelessWidget {
   const DetailAlbumListView({
     super.key,
     required this.songList,
@@ -17,109 +17,71 @@ class DetailAlbumListView extends StatefulWidget {
   final List<DetailAlbum> songList;
 
   @override
-  State<DetailAlbumListView> createState() => _DetailAlbumListViewState();
-}
-
-class _DetailAlbumListViewState extends State<DetailAlbumListView> {
-  @override
   Widget build(BuildContext context) {
+    final maxWidth = MediaQuery.of(context).size.width;
     return ListView(
       scrollDirection: Axis.vertical,
-      children: List.generate(widget.songList.length, (index) {
+      children: List.generate(songList.length, (index) {
+        final song = songList[index];
+        final playedSong = PlayedSong(id: song.id, preview: song.preview);
         return HoverableWidget(builder: (context, child, isHovered) {
-          return _CreateListViewContent(
-            preview: widget.songList[index].preview,
-            image: widget.image,
-            songList: widget.songList,
-            index: index,
-            isHovered: isHovered,
-            artist: widget.songList[index].artistNames,
-            id: widget.songList[index].id,
-            title: widget.songList[index].title,
+          return ResponsiveBuilder(
+            narrow: 40.0,
+            medium: 60.0,
+            large: 60.0,
+            builder: (context, child, height) {
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: SizedBox(
+                  height: height,
+                  child: child,
+                ),
+              );
+            },
+            child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ResponsiveBuilder(
+                    narrow: maxWidth / 2.8,
+                    medium: maxWidth / 2.3,
+                    large: maxWidth / 2,
+                    builder: (context, child, size) {
+                      return SizedBox(
+                        width: size,
+                        child: child,
+                      );
+                    },
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 60,
+                            height: 60,
+                            child: Center(
+                                child: _CreatePlayPauseButton(
+                              image: image,
+                              playedSong: playedSong,
+                              isHovered: isHovered,
+                            )),
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Expanded(
+                              child: CreateSongTitle(
+                            artistName: song.artistNames,
+                            songTitle: song.title,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          )),
+                        ]),
+                  ),
+                  _CreateManageButtons(
+                      songList: songList, image: image, index: index),
+                ]),
           );
         });
       }),
-    );
-  }
-}
-
-class _CreateListViewContent extends StatelessWidget {
-  const _CreateListViewContent(
-      {required this.index,
-      required this.isHovered,
-      required this.image,
-      required this.preview,
-      required this.songList,
-      required this.artist,
-      required this.title,
-      required this.id});
-
-  final List<DetailAlbum> songList;
-  final String image;
-  final String artist;
-  final String title;
-  final String preview;
-  final int id;
-  final int index;
-  final bool isHovered;
-
-  @override
-  Widget build(BuildContext context) {
-    final maxWidth = MediaQuery.of(context).size.width;
-    final song = PlayedSong(id: id, preview: preview);
-    return ResponsiveBuilder(
-      narrow: 40.0,
-      medium: 60.0,
-      large: 60.0,
-      builder: (context, child, height) {
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SizedBox(
-            height: height,
-            child: child,
-          ),
-        );
-      },
-      child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ResponsiveBuilder(
-              narrow: maxWidth / 2.8,
-              medium: maxWidth / 2.3,
-              large: maxWidth / 2,
-              builder: (context, child, size) {
-                return SizedBox(
-                  width: size,
-                  child: child,
-                );
-              },
-              child:
-                  Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                SizedBox(
-                  width: 60,
-                  height: 60,
-                  child: Center(
-                      child: _CreatePlayPauseButton(
-                    image: image,
-                    playedSong: song,
-                    isHovered: isHovered,
-                  )),
-                ),
-                const SizedBox(
-                  width: 15,
-                ),
-                Expanded(
-                    child: CreateSongTitle(
-                  artistName: artist,
-                  songTitle: title,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                )),
-              ]),
-            ),
-            _CreateManageButtons(
-                songList: songList, image: image, index: index),
-          ]),
     );
   }
 }
@@ -135,7 +97,7 @@ class _CreatePlayPauseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MusicBloc, MusicState>(builder: (context, state) {
-      bool isSongPlay = state.playlist.any((song) => song.id == playedSong.id);
+      bool isSongPlay = state.currentSongId == playedSong.id;
       return PlatformBuilder(
           web: !isHovered
               ? ClipRRect(
@@ -153,7 +115,6 @@ class _CreatePlayPauseButton extends StatelessWidget {
                   containerColor: Colors.transparent,
                   onPressed: () {
                     _playPauseMusic(context);
-                    // musicProvider.musicCompleted();
                   },
                 ),
           other: IconButtonWidget(
