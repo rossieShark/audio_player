@@ -1,12 +1,12 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/favorite_song_model.dart';
-import 'package:audio_player/domain/services/database_service/database_service.dart';
+import 'package:audio_player/domain/repositories/favourites_repository.dart/favourite_song_repository.dart';
 
 class FavoriteSongBloc extends Bloc<FavoriteSongEvent, FavouriteSongState> {
-  final DatabaseService _databaseService;
+  final FavouriteSongRepository _repository;
 
   FavoriteSongBloc(
-    this._databaseService,
+    this._repository,
   ) : super(const FavouriteSongState.loading()) {
     on<AddSongsEvent>(_onAddSongs);
     on<LoadFavouriteSongsEvent>(_onLoadSongs);
@@ -19,7 +19,7 @@ class FavoriteSongBloc extends Bloc<FavoriteSongEvent, FavouriteSongState> {
       AddSongsEvent event, Emitter<FavouriteSongState> emit) async {
     List<SongModel> songs = await _returnFavouriteSongsList();
     songs.add(event.song);
-    await _databaseService.addToFavorites(event.song);
+    await _repository.addToFavorites(event.song);
     emit(FavouriteSongState.loaded(data: songs));
   }
 
@@ -48,8 +48,7 @@ class FavoriteSongBloc extends Bloc<FavoriteSongEvent, FavouriteSongState> {
       RemoveSongsEvent event, Emitter<FavouriteSongState> emit) async {
     List<SongModel> songs = await _returnFavouriteSongsList();
     songs.removeWhere((item) => item.id == event.detailSong.id);
-    print(songs.length);
-    await _databaseService.removeSongFromDatabase(event.detailSong);
+    await _repository.removeSongFromDatabase(event.detailSong);
     if (songs.isEmpty) {
       emit(const FavouriteSongState.noResults());
     } else {
@@ -76,6 +75,6 @@ class FavoriteSongBloc extends Bloc<FavoriteSongEvent, FavouriteSongState> {
   }
 
   Future<List<SongModel>> _returnFavouriteSongsList() async {
-    return await _databaseService.loadSongs();
+    return await _repository.loadSongs();
   }
 }

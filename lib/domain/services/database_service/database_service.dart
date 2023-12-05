@@ -6,39 +6,39 @@ class DatabaseService {
   DatabaseService(this._database);
 
   //FAVOURITESONG ----------------------------------------
-  Future<void> addToFavorites(SongModel detailSong) async {
-    await _database.insertFavoriteSong(
-      FavoriteSong(
-          preview: detailSong.preview,
-          type: detailSong.type,
-          id: int.parse(detailSong.id),
-          title: detailSong.title,
-          artist: detailSong.artistNames,
-          songImage: detailSong.image,
-          isFavourite: detailSong.isFavourite),
-    );
-  }
+  // Future<void> addToFavorites(SongModel detailSong) async {
+  //   await _database.insertFavoriteSong(
+  //     FavoriteSong(
+  //         preview: detailSong.preview,
+  //         type: detailSong.type,
+  //         id: int.parse(detailSong.id),
+  //         title: detailSong.title,
+  //         artist: detailSong.artistNames,
+  //         songImage: detailSong.image,
+  //         isFavourite: detailSong.isFavourite),
+  //   );
+  // }
 
-  Future<List<SongModel>> loadSongs() async {
-    final favoriteSongs = await _database.getFavoriteSongs();
-    final loadedFavoriteSongs = favoriteSongs
-        .map(
-          (favoriteSong) => SongModel(
-              preview: favoriteSong.preview,
-              type: favoriteSong.type,
-              id: favoriteSong.id.toString(),
-              title: favoriteSong.title,
-              artistNames: favoriteSong.artist,
-              image: favoriteSong.songImage,
-              isFavourite: favoriteSong.isFavourite),
-        )
-        .toList();
-    return loadedFavoriteSongs;
-  }
+  // Future<List<SongModel>> loadSongs() async {
+  //   final favoriteSongs = await _database.getFavoriteSongs();
+  //   final loadedFavoriteSongs = favoriteSongs
+  //       .map(
+  //         (favoriteSong) => SongModel(
+  //             preview: favoriteSong.preview,
+  //             type: favoriteSong.type,
+  //             id: favoriteSong.id.toString(),
+  //             title: favoriteSong.title,
+  //             artistNames: favoriteSong.artist,
+  //             image: favoriteSong.songImage,
+  //             isFavourite: favoriteSong.isFavourite),
+  //       )
+  //       .toList();
+  //   return loadedFavoriteSongs;
+  // }
 
-  Future<void> removeSongFromDatabase(SongModel detailSong) async {
-    await _database.deleteFavoriteSong(int.parse(detailSong.id));
-  }
+  // Future<void> removeSongFromDatabase(SongModel detailSong) async {
+  //   await _database.deleteFavoriteSong(int.parse(detailSong.id));
+  // }
 
 //FAVOURITE ALBUM ----------------------------------------
   Future<void> addToFavoritesAlbum(SongModel detailSong) async {
