@@ -20,6 +20,7 @@ mixin _$AlbumDetailBlocState {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function() loading,
+    required TResult Function() error,
     required TResult Function(List<DetailAlbum> albumDetailList) loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -27,6 +28,7 @@ mixin _$AlbumDetailBlocState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? loading,
+    TResult? Function()? error,
     TResult? Function(List<DetailAlbum> albumDetailList)? loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -34,6 +36,7 @@ mixin _$AlbumDetailBlocState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
+    TResult Function()? error,
     TResult Function(List<DetailAlbum> albumDetailList)? loaded,
     required TResult orElse(),
   }) =>
@@ -42,6 +45,7 @@ mixin _$AlbumDetailBlocState {
   TResult map<TResult extends Object?>({
     required TResult Function(EmptyAlbumDetailBlocState value) empty,
     required TResult Function(LoadingAlbumDetailBlocState value) loading,
+    required TResult Function(ErrorAlbumDetailBlocState value) error,
     required TResult Function(LoadedAlbumDetailBlocState value) loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +53,7 @@ mixin _$AlbumDetailBlocState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(EmptyAlbumDetailBlocState value)? empty,
     TResult? Function(LoadingAlbumDetailBlocState value)? loading,
+    TResult? Function(ErrorAlbumDetailBlocState value)? error,
     TResult? Function(LoadedAlbumDetailBlocState value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +61,7 @@ mixin _$AlbumDetailBlocState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EmptyAlbumDetailBlocState value)? empty,
     TResult Function(LoadingAlbumDetailBlocState value)? loading,
+    TResult Function(ErrorAlbumDetailBlocState value)? error,
     TResult Function(LoadedAlbumDetailBlocState value)? loaded,
     required TResult orElse(),
   }) =>
@@ -114,6 +120,7 @@ class _$EmptyAlbumDetailBlocState implements EmptyAlbumDetailBlocState {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function() loading,
+    required TResult Function() error,
     required TResult Function(List<DetailAlbum> albumDetailList) loaded,
   }) {
     return empty();
@@ -124,6 +131,7 @@ class _$EmptyAlbumDetailBlocState implements EmptyAlbumDetailBlocState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? loading,
+    TResult? Function()? error,
     TResult? Function(List<DetailAlbum> albumDetailList)? loaded,
   }) {
     return empty?.call();
@@ -134,6 +142,7 @@ class _$EmptyAlbumDetailBlocState implements EmptyAlbumDetailBlocState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
+    TResult Function()? error,
     TResult Function(List<DetailAlbum> albumDetailList)? loaded,
     required TResult orElse(),
   }) {
@@ -148,6 +157,7 @@ class _$EmptyAlbumDetailBlocState implements EmptyAlbumDetailBlocState {
   TResult map<TResult extends Object?>({
     required TResult Function(EmptyAlbumDetailBlocState value) empty,
     required TResult Function(LoadingAlbumDetailBlocState value) loading,
+    required TResult Function(ErrorAlbumDetailBlocState value) error,
     required TResult Function(LoadedAlbumDetailBlocState value) loaded,
   }) {
     return empty(this);
@@ -158,6 +168,7 @@ class _$EmptyAlbumDetailBlocState implements EmptyAlbumDetailBlocState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(EmptyAlbumDetailBlocState value)? empty,
     TResult? Function(LoadingAlbumDetailBlocState value)? loading,
+    TResult? Function(ErrorAlbumDetailBlocState value)? error,
     TResult? Function(LoadedAlbumDetailBlocState value)? loaded,
   }) {
     return empty?.call(this);
@@ -168,6 +179,7 @@ class _$EmptyAlbumDetailBlocState implements EmptyAlbumDetailBlocState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EmptyAlbumDetailBlocState value)? empty,
     TResult Function(LoadingAlbumDetailBlocState value)? loading,
+    TResult Function(ErrorAlbumDetailBlocState value)? error,
     TResult Function(LoadedAlbumDetailBlocState value)? loaded,
     required TResult orElse(),
   }) {
@@ -216,6 +228,7 @@ class _$LoadingAlbumDetailBlocState implements LoadingAlbumDetailBlocState {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function() loading,
+    required TResult Function() error,
     required TResult Function(List<DetailAlbum> albumDetailList) loaded,
   }) {
     return loading();
@@ -226,6 +239,7 @@ class _$LoadingAlbumDetailBlocState implements LoadingAlbumDetailBlocState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? loading,
+    TResult? Function()? error,
     TResult? Function(List<DetailAlbum> albumDetailList)? loaded,
   }) {
     return loading?.call();
@@ -236,6 +250,7 @@ class _$LoadingAlbumDetailBlocState implements LoadingAlbumDetailBlocState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
+    TResult Function()? error,
     TResult Function(List<DetailAlbum> albumDetailList)? loaded,
     required TResult orElse(),
   }) {
@@ -250,6 +265,7 @@ class _$LoadingAlbumDetailBlocState implements LoadingAlbumDetailBlocState {
   TResult map<TResult extends Object?>({
     required TResult Function(EmptyAlbumDetailBlocState value) empty,
     required TResult Function(LoadingAlbumDetailBlocState value) loading,
+    required TResult Function(ErrorAlbumDetailBlocState value) error,
     required TResult Function(LoadedAlbumDetailBlocState value) loaded,
   }) {
     return loading(this);
@@ -260,6 +276,7 @@ class _$LoadingAlbumDetailBlocState implements LoadingAlbumDetailBlocState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(EmptyAlbumDetailBlocState value)? empty,
     TResult? Function(LoadingAlbumDetailBlocState value)? loading,
+    TResult? Function(ErrorAlbumDetailBlocState value)? error,
     TResult? Function(LoadedAlbumDetailBlocState value)? loaded,
   }) {
     return loading?.call(this);
@@ -270,6 +287,7 @@ class _$LoadingAlbumDetailBlocState implements LoadingAlbumDetailBlocState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EmptyAlbumDetailBlocState value)? empty,
     TResult Function(LoadingAlbumDetailBlocState value)? loading,
+    TResult Function(ErrorAlbumDetailBlocState value)? error,
     TResult Function(LoadedAlbumDetailBlocState value)? loaded,
     required TResult orElse(),
   }) {
@@ -282,6 +300,113 @@ class _$LoadingAlbumDetailBlocState implements LoadingAlbumDetailBlocState {
 
 abstract class LoadingAlbumDetailBlocState implements AlbumDetailBlocState {
   const factory LoadingAlbumDetailBlocState() = _$LoadingAlbumDetailBlocState;
+}
+
+/// @nodoc
+abstract class _$$ErrorAlbumDetailBlocStateCopyWith<$Res> {
+  factory _$$ErrorAlbumDetailBlocStateCopyWith(
+          _$ErrorAlbumDetailBlocState value,
+          $Res Function(_$ErrorAlbumDetailBlocState) then) =
+      __$$ErrorAlbumDetailBlocStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ErrorAlbumDetailBlocStateCopyWithImpl<$Res>
+    extends _$AlbumDetailBlocStateCopyWithImpl<$Res,
+        _$ErrorAlbumDetailBlocState>
+    implements _$$ErrorAlbumDetailBlocStateCopyWith<$Res> {
+  __$$ErrorAlbumDetailBlocStateCopyWithImpl(_$ErrorAlbumDetailBlocState _value,
+      $Res Function(_$ErrorAlbumDetailBlocState) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ErrorAlbumDetailBlocState implements ErrorAlbumDetailBlocState {
+  const _$ErrorAlbumDetailBlocState();
+
+  @override
+  String toString() {
+    return 'AlbumDetailBlocState.error()';
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function() loading,
+    required TResult Function() error,
+    required TResult Function(List<DetailAlbum> albumDetailList) loaded,
+  }) {
+    return error();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function(List<DetailAlbum> albumDetailList)? loaded,
+  }) {
+    return error?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? loading,
+    TResult Function()? error,
+    TResult Function(List<DetailAlbum> albumDetailList)? loaded,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmptyAlbumDetailBlocState value) empty,
+    required TResult Function(LoadingAlbumDetailBlocState value) loading,
+    required TResult Function(ErrorAlbumDetailBlocState value) error,
+    required TResult Function(LoadedAlbumDetailBlocState value) loaded,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EmptyAlbumDetailBlocState value)? empty,
+    TResult? Function(LoadingAlbumDetailBlocState value)? loading,
+    TResult? Function(ErrorAlbumDetailBlocState value)? error,
+    TResult? Function(LoadedAlbumDetailBlocState value)? loaded,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmptyAlbumDetailBlocState value)? empty,
+    TResult Function(LoadingAlbumDetailBlocState value)? loading,
+    TResult Function(ErrorAlbumDetailBlocState value)? error,
+    TResult Function(LoadedAlbumDetailBlocState value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ErrorAlbumDetailBlocState implements AlbumDetailBlocState {
+  const factory ErrorAlbumDetailBlocState() = _$ErrorAlbumDetailBlocState;
 }
 
 /// @nodoc
@@ -350,6 +475,7 @@ class _$LoadedAlbumDetailBlocState implements LoadedAlbumDetailBlocState {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function() loading,
+    required TResult Function() error,
     required TResult Function(List<DetailAlbum> albumDetailList) loaded,
   }) {
     return loaded(albumDetailList);
@@ -360,6 +486,7 @@ class _$LoadedAlbumDetailBlocState implements LoadedAlbumDetailBlocState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function()? loading,
+    TResult? Function()? error,
     TResult? Function(List<DetailAlbum> albumDetailList)? loaded,
   }) {
     return loaded?.call(albumDetailList);
@@ -370,6 +497,7 @@ class _$LoadedAlbumDetailBlocState implements LoadedAlbumDetailBlocState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function()? loading,
+    TResult Function()? error,
     TResult Function(List<DetailAlbum> albumDetailList)? loaded,
     required TResult orElse(),
   }) {
@@ -384,6 +512,7 @@ class _$LoadedAlbumDetailBlocState implements LoadedAlbumDetailBlocState {
   TResult map<TResult extends Object?>({
     required TResult Function(EmptyAlbumDetailBlocState value) empty,
     required TResult Function(LoadingAlbumDetailBlocState value) loading,
+    required TResult Function(ErrorAlbumDetailBlocState value) error,
     required TResult Function(LoadedAlbumDetailBlocState value) loaded,
   }) {
     return loaded(this);
@@ -394,6 +523,7 @@ class _$LoadedAlbumDetailBlocState implements LoadedAlbumDetailBlocState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(EmptyAlbumDetailBlocState value)? empty,
     TResult? Function(LoadingAlbumDetailBlocState value)? loading,
+    TResult? Function(ErrorAlbumDetailBlocState value)? error,
     TResult? Function(LoadedAlbumDetailBlocState value)? loaded,
   }) {
     return loaded?.call(this);
@@ -404,6 +534,7 @@ class _$LoadedAlbumDetailBlocState implements LoadedAlbumDetailBlocState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(EmptyAlbumDetailBlocState value)? empty,
     TResult Function(LoadingAlbumDetailBlocState value)? loading,
+    TResult Function(ErrorAlbumDetailBlocState value)? error,
     TResult Function(LoadedAlbumDetailBlocState value)? loaded,
     required TResult orElse(),
   }) {

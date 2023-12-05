@@ -51,6 +51,7 @@ class _AlbumDetailPageState extends State<AlbumDetailPage> {
           child: CustomFadingCircleIndicator(),
         ),
         empty: (_) => const NoDataWidget(),
+        error: (_) => const NoDataWidget(),
         loaded: (data) => _AlbumDetailScreenBody(
           songList: data.albumDetailList,
           widget: widget,

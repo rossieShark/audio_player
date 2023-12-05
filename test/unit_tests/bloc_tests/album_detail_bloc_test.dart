@@ -31,7 +31,33 @@ void main() {
       },
       act: (bloc) => bloc.add(FetchAlbumDetailBlocEvent('1')),
       expect: () => [
-        isA<AlbumDetailBlocState>(),
+        isA<LoadedAlbumDetailBlocState>(),
+      ],
+    );
+
+    blocTest<AlbumDetailBloc, AlbumDetailBlocState>(
+      'emits AlbumDetailBlocState when FetchAlbumDetailBlocEvent is added',
+      build: () {
+        when(() => repository.getDetailAlbums(any()))
+            .thenAnswer((_) async => []);
+        return albumDetailBloc;
+      },
+      act: (bloc) => bloc.add(FetchAlbumDetailBlocEvent('1')),
+      expect: () => [
+        isA<EmptyAlbumDetailBlocState>(),
+      ],
+    );
+    blocTest<AlbumDetailBloc, AlbumDetailBlocState>(
+      'emits ErrorState when an error occurs',
+      build: () {
+        // Mock your repository or service to throw an error
+        when(() => repository.getDetailAlbums('1'))
+            .thenThrow(Exception('Test Error'));
+        return albumDetailBloc;
+      },
+      act: (bloc) => bloc.add(FetchAlbumDetailBlocEvent('1')),
+      expect: () => [
+        isA<ErrorAlbumDetailBlocState>(),
       ],
     );
   });

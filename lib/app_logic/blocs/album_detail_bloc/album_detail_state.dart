@@ -7,6 +7,7 @@ part 'album_detail_state.freezed.dart';
 class AlbumDetailBlocState with _$AlbumDetailBlocState {
   const factory AlbumDetailBlocState.empty() = EmptyAlbumDetailBlocState;
   const factory AlbumDetailBlocState.loading() = LoadingAlbumDetailBlocState;
+  const factory AlbumDetailBlocState.error() = ErrorAlbumDetailBlocState;
   const factory AlbumDetailBlocState.loaded(
           {required List<DetailAlbum> albumDetailList}) =
       LoadedAlbumDetailBlocState;
