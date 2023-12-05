@@ -14,7 +14,7 @@ class FavoriteAlbumBloc extends Bloc<FavoriteAlbumEvent, FavoriteAlbumState> {
     on<RemoveAlbumsEvent>(_onRemoveAlbum);
     on<SortAlbumsEvent>(_onSortingAlbum);
   }
-
+  bool _isSorted = false;
   void _onAddAlbums(
       AddAlbumEvent event, Emitter<FavoriteAlbumState> emit) async {
     List<SongModel> albums = await _returnFavouriteAlbumsList();
@@ -59,8 +59,17 @@ class FavoriteAlbumBloc extends Bloc<FavoriteAlbumEvent, FavoriteAlbumState> {
   void _onSortingAlbum(
       SortAlbumsEvent event, Emitter<FavoriteAlbumState> emit) async {
     List<SongModel> albums = await _returnFavouriteAlbumsList();
-    albums.sort((a, b) => a.artistNames.compareTo(b.artistNames));
-    emit(FavoriteAlbumState.loaded(data: albums));
+    if (_isSorted) {
+      // If already sorted, return the original list
+      emit(FavoriteAlbumState.loaded(data: albums));
+    } else {
+      // Sort the list
+      albums.sort((a, b) => a.artistNames.compareTo(b.artistNames));
+      emit(FavoriteAlbumState.loaded(data: albums));
+    }
+
+    // Toggle the sorting state
+    _isSorted = !_isSorted;
   }
 
   Future<List<SongModel>> _returnFavouriteAlbumsList() async {
