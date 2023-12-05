@@ -25,7 +25,8 @@ class RecentlySearchedBloc
       recentlySearched.add(event.songModel);
       await _repository.addToRecentlySearched(event.songModel);
     }
-
+    print(
+        'State emitted: ${RecentlySearchedState.loaded(data: recentlySearched)}');
     emit(RecentlySearchedState.loaded(data: recentlySearched));
   }
 
@@ -42,8 +43,8 @@ class RecentlySearchedBloc
   void _onRemoveRecentlySearched(RemoveFromRecentlySearchedEvent event,
       Emitter<RecentlySearchedState> emit) async {
     List<SongModel> recentlySearched = await _loadFromDatabase();
-    recentlySearched.removeWhere((item) => item.id == event.song.id);
     await _repository.removeFromRecentlySearched(event.song);
+    recentlySearched.removeWhere((item) => item.id == event.song.id);
     if (recentlySearched.isEmpty) {
       emit(const RecentlySearchedState.empty());
     } else {
