@@ -66,7 +66,6 @@ class FavoriteSongBloc extends Bloc<FavoriteSongEvent, FavouriteSongState> {
     } else {
       // Sort the list
       songs.sort((a, b) => a.artistNames.compareTo(b.artistNames));
-      print(songs[0].artistNames);
       emit(FavouriteSongState.loaded(data: songs));
     }
 

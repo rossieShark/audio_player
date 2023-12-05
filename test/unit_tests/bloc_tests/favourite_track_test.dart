@@ -1,148 +1,219 @@
+import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/favorite_song_model.dart';
+import 'package:audio_player/domain/repositories/favourites_repository.dart/favourite_song_repository.dart';
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:mocktail/mocktail.dart';
 
-class MockFavoriteProvider extends Mock implements FavoriteProvider {}
+class MockFavouriteSongRepository extends Mock
+    implements FavouriteSongRepository {}
 
 void main() {
-  late FavoriteBloc favoriteBloc;
-  late MockFavoriteProvider mockFavoriteProvider;
-  setUpAll(() {
-    registerFallbackValue(SongModel(
-      id: 'defaultId',
-      title: 'defaultTitle',
-      artistNames: 'defaultArtistNames',
-      image: 'defaultImage',
-      type: 'defaultType',
-      preview: 'defaultPreview',
-    ));
-  });
+  late FavoriteSongBloc favoriteBloc;
+  late MockFavouriteSongRepository repository;
 
   setUp(() {
-    mockFavoriteProvider = MockFavoriteProvider();
-    favoriteBloc = FavoriteBloc(mockFavoriteProvider);
+    repository = MockFavouriteSongRepository();
+    favoriteBloc = FavoriteSongBloc(repository);
   });
 
   tearDown(() {
     favoriteBloc.close();
   });
 
-  blocTest<FavoriteBloc, FavoriteState>(
-    'emits FavoriteSongUpdatedState when ToggleFavoriteSongEvent is added',
-    build: () {
-      when(() => mockFavoriteProvider.isFavoriteSong('songId'))
-          .thenReturn(false);
-      when(() => mockFavoriteProvider.addToFavorites(any()))
-          .thenAnswer((_) async {
-            return null;
-          });
-      when(() => mockFavoriteProvider.removeFromFavorites(any()))
-          .thenAnswer((_) async {
-            return null;
-          });
-      return favoriteBloc;
-    },
-    act: (bloc) => bloc.add(ToggleFavoriteSongEvent(createSong())),
-    expect: () => [
-      isA<FavoriteSongUpdatedState>(),
-    ],
-    verify: (_) {
-      verify(() => mockFavoriteProvider.isFavoriteSong('songId')).called(1);
-      verify(() => mockFavoriteProvider.addToFavorites(any())).called(1);
-      verifyNever(() => mockFavoriteProvider.removeFromFavorites(any()));
-    },
-  );
+  group('FavoriteSongBloc', () {
+    final songModelToAdd = SongModel(
+        artistNames: 'A',
+        id: '1',
+        image: 'image',
+        preview: 'preview',
+        title: 'title',
+        type: 'type',
+        isFavourite: true);
 
-  blocTest<FavoriteBloc, FavoriteState>(
-    'emits FavoriteSongUpdatedState when ToggleFavoriteSongEvent is added',
-    build: () {
-      when(() => mockFavoriteProvider.isFavoriteSong('songId'))
-          .thenReturn(true);
-      when(() => mockFavoriteProvider.addToFavorites(any()))
-          .thenAnswer((_) async {
-            return null;
-          });
-      when(() => mockFavoriteProvider.removeFromFavorites(any()))
-          .thenAnswer((_) async {
-            return null;
-          });
-      return favoriteBloc;
-    },
-    act: (bloc) => bloc.add(ToggleFavoriteSongEvent(createSong())),
-    expect: () => [
-      isA<FavoriteSongUpdatedState>(),
-    ],
-    verify: (_) {
-      verify(() => mockFavoriteProvider.isFavoriteSong('songId')).called(1);
-      verify(() => mockFavoriteProvider.removeFromFavorites(any())).called(1);
-      verifyNever(() => mockFavoriteProvider.addToFavorites(any()));
-    },
-  );
+    final existingSongModel = SongModel(
+        artistNames: 'B',
+        id: '2',
+        image: 'image2',
+        preview: 'preview2',
+        title: 'title2',
+        type: 'type2',
+        isFavourite: false);
 
-  blocTest<FavoriteBloc, FavoriteState>(
-    'emits FavoriteSongUpdatedState when ToggleFavoriteSongEvent is added',
-    build: () {
-      when(() => mockFavoriteProvider.isFavoriteAlbum('songId'))
-          .thenReturn(false);
-      when(() => mockFavoriteProvider.addToFavoritesAlbum(any()))
-          .thenAnswer((_) async {
-            return null;
-          });
-      when(() => mockFavoriteProvider.removeFromFavoritesAlbum(any()))
-          .thenAnswer((_) async {
-            return null;
-          });
-      return favoriteBloc;
-    },
-    act: (bloc) => bloc.add(ToggleFavoriteAlbumEvent(createSong())),
-    expect: () => [
-      isA<FavoriteAlbumUpdatedState>(),
-    ],
-    verify: (_) {
-      verify(() => mockFavoriteProvider.isFavoriteAlbum('songId')).called(1);
-      verify(() => mockFavoriteProvider.addToFavoritesAlbum(any())).called(1);
-      verifyNever(() => mockFavoriteProvider.removeFromFavoritesAlbum(any()));
-    },
-  );
+    blocTest<FavoriteSongBloc, FavouriteSongState>(
+      'emits LoadedFavouriteSongState when LoadFavouriteSongsEvent is added',
+      build: () {
+        when(() => repository.loadSongs())
+            .thenAnswer((_) async => [songModelToAdd]);
+        return favoriteBloc;
+      },
+      act: (bloc) => bloc.add(const LoadFavouriteSongsEvent()),
+      expect: () => [
+        isA<LoadedFavouriteSongState>().having(
+          (state) => state.data,
+          'favouriteSongBloc',
+          contains(songModelToAdd),
+        ),
+      ],
+      verify: (_) {
+        // Verify that loadFromDatabase was called
+        verify(() => repository.loadSongs()).called(1);
+      },
+    );
 
-  blocTest<FavoriteBloc, FavoriteState>(
-    'emits FavoriteSongUpdatedState when ToggleFavoriteAlbumEvent is added',
-    build: () {
-      when(() => mockFavoriteProvider.isFavoriteAlbum('songId'))
-          .thenReturn(true);
-      when(() => mockFavoriteProvider.addToFavoritesAlbum(any()))
-          .thenAnswer((_) async {
-            return null;
-          });
-      when(() => mockFavoriteProvider.removeFromFavoritesAlbum(any()))
-          .thenAnswer((_) async {
-            return null;
-          });
-      return favoriteBloc;
-    },
-    act: (bloc) => bloc.add(ToggleFavoriteAlbumEvent(createSong())),
-    expect: () => [
-      isA<FavoriteAlbumUpdatedState>(),
-    ],
-    verify: (_) {
-      verify(() => mockFavoriteProvider.isFavoriteAlbum('songId')).called(1);
-      verify(() => mockFavoriteProvider.removeFromFavoritesAlbum(any()))
-          .called(1);
-      verifyNever(() => mockFavoriteProvider.addToFavoritesAlbum(any()));
-    },
-  );
-}
+    blocTest<FavoriteSongBloc, FavouriteSongState>(
+      'emits NoResultsFavouriteSongState when LoadFavouriteSongsEvent is added',
+      build: () {
+        when(() => repository.loadSongs()).thenAnswer((_) async => []);
+        return favoriteBloc;
+      },
+      act: (bloc) => bloc.add(const LoadFavouriteSongsEvent()),
+      expect: () => [
+        isA<NoResultsFavouriteSongState>(),
+      ],
+      verify: (_) {
+        // Verify that loadFromDatabase was called
+        verify(() => repository.loadSongs()).called(1);
+      },
+    );
+    blocTest<FavoriteSongBloc, FavouriteSongState>(
+      'emits LoadedFavouriteSongState when AddSongsEvent is added ',
+      build: () {
+        when(() => repository.loadSongs())
+            .thenAnswer((_) async => [existingSongModel]);
+        when(() => repository.addToFavorites(songModelToAdd))
+            .thenAnswer((_) async => Future<void>);
+        return favoriteBloc;
+      },
+      act: (bloc) => bloc.add(AddSongsEvent(songModelToAdd)),
+      expect: () => [
+        isA<LoadedFavouriteSongState>().having(
+          (state) => state.data,
+          'favouriteSongBloc',
+          [existingSongModel, songModelToAdd],
+        ),
+      ],
+      verify: (_) {
+        // Verify that loadFromDatabase was called
+        verify(() => repository.loadSongs()).called(1);
+        // Verify that addToRecentlySearched was called
+        verify(() => repository.addToFavorites(songModelToAdd)).called(1);
+      },
+    );
 
-SongModel createSong() {
-  return SongModel(
-    id: "songId",
-    title: "title",
-    artistNames: "artistNames",
-    image: "image",
-    type: "track",
-    preview: "preview",
-  );
+    blocTest<FavoriteSongBloc, FavouriteSongState>(
+      'emits LoadedFavouriteSongState when RemoveSongsEvent is added ',
+      build: () {
+        when(() => repository.loadSongs())
+            .thenAnswer((_) async => [existingSongModel, songModelToAdd]);
+        when(() => repository.removeSongFromDatabase(songModelToAdd))
+            .thenAnswer((_) async => Future<void>);
+        return favoriteBloc;
+      },
+      act: (bloc) => bloc.add(RemoveSongsEvent(songModelToAdd)),
+      expect: () => [
+        isA<LoadedFavouriteSongState>().having(
+          (state) => state.data,
+          'favouriteSongBloc',
+          [existingSongModel],
+        ),
+      ],
+      verify: (_) {
+        // Verify that loadFromDatabase was called
+        verify(() => repository.loadSongs()).called(1);
+        // Verify that addToRecentlySearched was called
+        verify(() => repository.removeSongFromDatabase(songModelToAdd))
+            .called(1);
+      },
+    );
+
+    blocTest<FavoriteSongBloc, FavouriteSongState>(
+      'emits NoResults when RemoveSongsEvent is added ',
+      build: () {
+        when(() => repository.loadSongs())
+            .thenAnswer((_) async => [songModelToAdd]);
+        when(() => repository.removeSongFromDatabase(songModelToAdd))
+            .thenAnswer((_) async => Future<void>);
+        return favoriteBloc;
+      },
+      act: (bloc) => bloc.add(RemoveSongsEvent(songModelToAdd)),
+      expect: () => [isA<NoResultsFavouriteSongState>()],
+      verify: (_) {
+        // Verify that loadFromDatabase was called
+        verify(() => repository.loadSongs()).called(1);
+        // Verify that addToRecentlySearched was called
+        verify(() => repository.removeSongFromDatabase(songModelToAdd))
+            .called(1);
+      },
+    );
+
+    blocTest<FavoriteSongBloc, FavouriteSongState>(
+      'emits the correct states when ToggleIsFavourite event is added',
+      build: () {
+        when(() => repository.loadSongs())
+            .thenAnswer((_) async => [songModelToAdd]);
+        when(() => repository.removeSongFromDatabase(songModelToAdd))
+            .thenAnswer((_) async => Future<void>);
+        return favoriteBloc;
+      },
+      act: (bloc) => bloc.add(ToggleIsFavourite(detailSong: songModelToAdd)),
+      expect: () => [
+        isA<NoResultsFavouriteSongState>(), // The state after the toggle, you need to adjust this based on your expected logic
+      ],
+      verify: (_) {
+        verify(() => repository.removeSongFromDatabase(songModelToAdd))
+            .called(1);
+        verifyNever(() => repository.addToFavorites(songModelToAdd)).called(0);
+        // Add additional verifications based on your expected behavior
+      },
+    );
+
+    blocTest<FavoriteSongBloc, FavouriteSongState>(
+      'emits the correct states when ToggleIsFavourite event is added',
+      build: () {
+        when(() => repository.loadSongs())
+            .thenAnswer((_) async => [songModelToAdd]);
+        when(() => repository.addToFavorites(existingSongModel))
+            .thenAnswer((_) async => Future<void>);
+        return favoriteBloc;
+      },
+      act: (bloc) => bloc.add(ToggleIsFavourite(detailSong: existingSongModel)),
+      expect: () => [
+        isA<LoadedFavouriteSongState>().having(
+          (state) => state.data,
+          'favouriteSongBloc',
+          [songModelToAdd, existingSongModel],
+        ),
+      ],
+      verify: (_) {
+        verify(() => repository.addToFavorites(existingSongModel)).called(1);
+        verifyNever(() => repository.removeSongFromDatabase(existingSongModel))
+            .called(0);
+        // Add additional verifications based on your expected behavior
+      },
+    );
+
+    blocTest<FavoriteSongBloc, FavouriteSongState>(
+      'return sortedList when SortSongsEvent event is added',
+      build: () {
+        when(() => repository.loadSongs())
+            .thenAnswer((_) async => [existingSongModel, songModelToAdd]);
+
+        return favoriteBloc;
+      },
+      act: (bloc) => bloc.add(const SortSongsEvent()),
+      expect: () => [
+        isA<LoadedFavouriteSongState>().having(
+          (state) => state.data,
+          'favouriteSongBloc',
+          [songModelToAdd, existingSongModel],
+        ),
+      ],
+      verify: (_) {
+        verify(() => repository.loadSongs()).called(1);
+      },
+    );
+  });
 }
