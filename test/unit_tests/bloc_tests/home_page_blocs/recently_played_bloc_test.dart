@@ -1,10 +1,13 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/app_database/database.dart';
+import 'package:audio_player/domain/repositories/index.dart';
 
-import 'package:audio_player/services/services.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+
+class MockRecentlyPlayedRepository extends Mock
+    implements RecentlyPlayedRepository {}
 
 void main() {
   group('FavoriteArtistBloc', () {
@@ -16,11 +19,11 @@ void main() {
       recentlyPlayedBloc = RecentlyPlayedBloc(repository);
     });
 
-    blocTest<RecentlyPlayedBloc, RecentlyPlayedBlocState>(
+    blocTest<RecentlyPlayedBloc, RecentlyPlayedState>(
       'emits FavoriteArtistBloc when FetchFavoriteArtistsEvent is added',
       build: () {
         // Mock the scenario where getTracksFromDb returns non-empty data
-        when(() => repository.getTracksFromDb()).thenAnswer((_) async => [
+        when(() => repository.getTracks()).thenAnswer((_) async => [
               const RecentlyPlayedSong(
                   artistNames: 'artist',
                   headerImageUrl: 'image',
@@ -34,8 +37,8 @@ void main() {
       act: (bloc) => bloc.add(FetchRecentlyPlayedEvent()),
       expect: () => [
         // Check that the bloc emits a FavoriteArtistState with data from getTracksFromDb
-        isA<RecentlyPlayedBlocState>().having(
-          (state) => state.recentlyPlayedtList,
+        isA<LoadedRecentlyPlayedState>().having(
+          (state) => state.data,
           'recentlyPlayed',
           contains(
             const RecentlyPlayedSong(
@@ -50,42 +53,18 @@ void main() {
       ],
     );
 
-    blocTest<RecentlyPlayedBloc, RecentlyPlayedBlocState>(
+    blocTest<RecentlyPlayedBloc, RecentlyPlayedState>(
       'emits FavoriteArtistBloc when FetchFavoriteArtistsEvent is added with empty tracks',
       build: () {
         // Mock the scenario where getTracksFromDb returns an empty list
-        when(() => repository.getTracksFromDb()).thenAnswer((_) async => []);
-        // Mock the scenario where getFavoriteArtists returns some artists
-        when(() => repository.getTracks()).thenAnswer((_) async => [
-              const RecentlyPlayedSong(
-                  artistNames: 'artist',
-                  headerImageUrl: 'image',
-                  id: 2,
-                  preview: 'preview',
-                  title: 'track2',
-                  type: 'track'),
-            ]);
+        when(() => repository.getTracks()).thenAnswer((_) async => []);
         return recentlyPlayedBloc;
       },
       act: (bloc) => bloc.add(FetchRecentlyPlayedEvent()),
       expect: () => [
         // Check that the bloc emits a FavoriteArtistState with data from getFavoriteArtists
-        isA<RecentlyPlayedBlocState>().having(
-            (state) => state.recentlyPlayedtList,
-            'recentlyPlayed',
-            contains(
-              const RecentlyPlayedSong(
-                  artistNames: 'artist',
-                  headerImageUrl: 'image',
-                  id: 2,
-                  preview: 'preview',
-                  title: 'track2',
-                  type: 'track'),
-            )),
+        isA<LoadingRecentlyPlayedState>()
       ],
     );
   });
 }
-
-class MockRecentlyPlayedRepository extends Mock
-    implements RecentlyPlayedRepository {}
