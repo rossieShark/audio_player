@@ -18,7 +18,9 @@ void main() {
       repository = MockFavoriteArtistRepository();
       favoriteArtistBloc = FavoriteArtistBloc(repository);
     });
-
+    tearDown(() {
+      favoriteArtistBloc.close();
+    });
     blocTest<FavoriteArtistBloc, FavoriteArtistBlocState>(
       'emits FavoriteArtistBloc when FetchFavoriteArtistsEvent is added',
       build: () {

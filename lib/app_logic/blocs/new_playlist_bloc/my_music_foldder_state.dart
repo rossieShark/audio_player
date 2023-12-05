@@ -5,10 +5,10 @@ part 'my_music_foldder_state.freezed.dart';
 // part 'my_music_foldder_state.g.dart';
 
 @Freezed(equal: false)
-class MyMusicFolderState with _$MyMusicFolderState {
-  const factory MyMusicFolderState.empty() = EmptyMyMusicFolderState;
-  const factory MyMusicFolderState.loaded(
-      {required List<FavoriteFolder> folders}) = LoadedMyMusicFolderState;
+class NewPlaylistState with _$NewPlaylistState {
+  const factory NewPlaylistState.empty() = EmptyNewPlaylistState;
+  const factory NewPlaylistState.loaded(
+      {required List<FavoriteFolder> folders}) = LoadedNewPlaylistState;
 
   // factory MyMusicFolderState.fromJson(Map<String, Object?> json) =>
   //     _$MyMusicFolderStateFromJson(json);

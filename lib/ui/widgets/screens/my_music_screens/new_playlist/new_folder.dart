@@ -100,7 +100,7 @@ class _AddNewPlaylistButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MyMusicFolderBlocBloc, MyMusicFolderState>(
+    return BlocBuilder<NewPlaylistBloc, NewPlaylistState>(
         builder: (context, state) {
       return TextButton(
           onPressed: () => _handleButtonPress(context, state),
@@ -114,20 +114,20 @@ class _AddNewPlaylistButton extends StatelessWidget {
     });
   }
 
-  void _handleButtonPress(BuildContext context, MyMusicFolderState state) {
+  void _handleButtonPress(BuildContext context, NewPlaylistState state) {
     bool isFolderExist = _checkIfFolderExists(state);
     if (newPlaylistTextController.text.isNotEmpty && !isFolderExist) {
       context
-          .read<MyMusicFolderBlocBloc>()
-          .add(AddFolderEvent(newPlaylistTextController.text));
+          .read<NewPlaylistBloc>()
+          .add(AddNewPlaylistEvent(newPlaylistTextController.text));
       context.pop();
     } else {
       _showFolderNameErrorMessage(context);
     }
   }
 
-  bool _checkIfFolderExists(MyMusicFolderState state) {
-    if (state is LoadedMyMusicFolderState) {
+  bool _checkIfFolderExists(NewPlaylistState state) {
+    if (state is LoadedNewPlaylistState) {
       print(newPlaylistTextController.text);
       return state.folders
           .any((folder) => folder.title == newPlaylistTextController.text);

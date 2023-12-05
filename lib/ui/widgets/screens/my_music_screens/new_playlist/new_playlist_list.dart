@@ -10,7 +10,7 @@ class NewFoldersBlocBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MyMusicFolderBlocBloc, MyMusicFolderState>(
+    return BlocBuilder<NewPlaylistBloc, NewPlaylistState>(
         builder: (context, state) {
       return state.map(
         empty: (context) => const SizedBox(),

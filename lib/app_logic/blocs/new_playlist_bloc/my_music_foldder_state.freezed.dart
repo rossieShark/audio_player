@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$MyMusicFolderState {
+mixin _$NewPlaylistState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
@@ -37,36 +37,36 @@ mixin _$MyMusicFolderState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(EmptyMyMusicFolderState value) empty,
-    required TResult Function(LoadedMyMusicFolderState value) loaded,
+    required TResult Function(EmptyNewPlaylistState value) empty,
+    required TResult Function(LoadedNewPlaylistState value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(EmptyMyMusicFolderState value)? empty,
-    TResult? Function(LoadedMyMusicFolderState value)? loaded,
+    TResult? Function(EmptyNewPlaylistState value)? empty,
+    TResult? Function(LoadedNewPlaylistState value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(EmptyMyMusicFolderState value)? empty,
-    TResult Function(LoadedMyMusicFolderState value)? loaded,
+    TResult Function(EmptyNewPlaylistState value)? empty,
+    TResult Function(LoadedNewPlaylistState value)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MyMusicFolderStateCopyWith<$Res> {
-  factory $MyMusicFolderStateCopyWith(
-          MyMusicFolderState value, $Res Function(MyMusicFolderState) then) =
-      _$MyMusicFolderStateCopyWithImpl<$Res, MyMusicFolderState>;
+abstract class $NewPlaylistStateCopyWith<$Res> {
+  factory $NewPlaylistStateCopyWith(
+          NewPlaylistState value, $Res Function(NewPlaylistState) then) =
+      _$NewPlaylistStateCopyWithImpl<$Res, NewPlaylistState>;
 }
 
 /// @nodoc
-class _$MyMusicFolderStateCopyWithImpl<$Res, $Val extends MyMusicFolderState>
-    implements $MyMusicFolderStateCopyWith<$Res> {
-  _$MyMusicFolderStateCopyWithImpl(this._value, this._then);
+class _$NewPlaylistStateCopyWithImpl<$Res, $Val extends NewPlaylistState>
+    implements $NewPlaylistStateCopyWith<$Res> {
+  _$NewPlaylistStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -75,29 +75,29 @@ class _$MyMusicFolderStateCopyWithImpl<$Res, $Val extends MyMusicFolderState>
 }
 
 /// @nodoc
-abstract class _$$EmptyMyMusicFolderStateCopyWith<$Res> {
-  factory _$$EmptyMyMusicFolderStateCopyWith(_$EmptyMyMusicFolderState value,
-          $Res Function(_$EmptyMyMusicFolderState) then) =
-      __$$EmptyMyMusicFolderStateCopyWithImpl<$Res>;
+abstract class _$$EmptyNewPlaylistStateCopyWith<$Res> {
+  factory _$$EmptyNewPlaylistStateCopyWith(_$EmptyNewPlaylistState value,
+          $Res Function(_$EmptyNewPlaylistState) then) =
+      __$$EmptyNewPlaylistStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$EmptyMyMusicFolderStateCopyWithImpl<$Res>
-    extends _$MyMusicFolderStateCopyWithImpl<$Res, _$EmptyMyMusicFolderState>
-    implements _$$EmptyMyMusicFolderStateCopyWith<$Res> {
-  __$$EmptyMyMusicFolderStateCopyWithImpl(_$EmptyMyMusicFolderState _value,
-      $Res Function(_$EmptyMyMusicFolderState) _then)
+class __$$EmptyNewPlaylistStateCopyWithImpl<$Res>
+    extends _$NewPlaylistStateCopyWithImpl<$Res, _$EmptyNewPlaylistState>
+    implements _$$EmptyNewPlaylistStateCopyWith<$Res> {
+  __$$EmptyNewPlaylistStateCopyWithImpl(_$EmptyNewPlaylistState _value,
+      $Res Function(_$EmptyNewPlaylistState) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$EmptyMyMusicFolderState implements EmptyMyMusicFolderState {
-  const _$EmptyMyMusicFolderState();
+class _$EmptyNewPlaylistState implements EmptyNewPlaylistState {
+  const _$EmptyNewPlaylistState();
 
   @override
   String toString() {
-    return 'MyMusicFolderState.empty()';
+    return 'NewPlaylistState.empty()';
   }
 
   @override
@@ -134,8 +134,8 @@ class _$EmptyMyMusicFolderState implements EmptyMyMusicFolderState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(EmptyMyMusicFolderState value) empty,
-    required TResult Function(LoadedMyMusicFolderState value) loaded,
+    required TResult Function(EmptyNewPlaylistState value) empty,
+    required TResult Function(LoadedNewPlaylistState value) loaded,
   }) {
     return empty(this);
   }
@@ -143,8 +143,8 @@ class _$EmptyMyMusicFolderState implements EmptyMyMusicFolderState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(EmptyMyMusicFolderState value)? empty,
-    TResult? Function(LoadedMyMusicFolderState value)? loaded,
+    TResult? Function(EmptyNewPlaylistState value)? empty,
+    TResult? Function(LoadedNewPlaylistState value)? loaded,
   }) {
     return empty?.call(this);
   }
@@ -152,8 +152,8 @@ class _$EmptyMyMusicFolderState implements EmptyMyMusicFolderState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(EmptyMyMusicFolderState value)? empty,
-    TResult Function(LoadedMyMusicFolderState value)? loaded,
+    TResult Function(EmptyNewPlaylistState value)? empty,
+    TResult Function(LoadedNewPlaylistState value)? loaded,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -163,25 +163,25 @@ class _$EmptyMyMusicFolderState implements EmptyMyMusicFolderState {
   }
 }
 
-abstract class EmptyMyMusicFolderState implements MyMusicFolderState {
-  const factory EmptyMyMusicFolderState() = _$EmptyMyMusicFolderState;
+abstract class EmptyNewPlaylistState implements NewPlaylistState {
+  const factory EmptyNewPlaylistState() = _$EmptyNewPlaylistState;
 }
 
 /// @nodoc
-abstract class _$$LoadedMyMusicFolderStateCopyWith<$Res> {
-  factory _$$LoadedMyMusicFolderStateCopyWith(_$LoadedMyMusicFolderState value,
-          $Res Function(_$LoadedMyMusicFolderState) then) =
-      __$$LoadedMyMusicFolderStateCopyWithImpl<$Res>;
+abstract class _$$LoadedNewPlaylistStateCopyWith<$Res> {
+  factory _$$LoadedNewPlaylistStateCopyWith(_$LoadedNewPlaylistState value,
+          $Res Function(_$LoadedNewPlaylistState) then) =
+      __$$LoadedNewPlaylistStateCopyWithImpl<$Res>;
   @useResult
   $Res call({List<FavoriteFolder> folders});
 }
 
 /// @nodoc
-class __$$LoadedMyMusicFolderStateCopyWithImpl<$Res>
-    extends _$MyMusicFolderStateCopyWithImpl<$Res, _$LoadedMyMusicFolderState>
-    implements _$$LoadedMyMusicFolderStateCopyWith<$Res> {
-  __$$LoadedMyMusicFolderStateCopyWithImpl(_$LoadedMyMusicFolderState _value,
-      $Res Function(_$LoadedMyMusicFolderState) _then)
+class __$$LoadedNewPlaylistStateCopyWithImpl<$Res>
+    extends _$NewPlaylistStateCopyWithImpl<$Res, _$LoadedNewPlaylistState>
+    implements _$$LoadedNewPlaylistStateCopyWith<$Res> {
+  __$$LoadedNewPlaylistStateCopyWithImpl(_$LoadedNewPlaylistState _value,
+      $Res Function(_$LoadedNewPlaylistState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -189,7 +189,7 @@ class __$$LoadedMyMusicFolderStateCopyWithImpl<$Res>
   $Res call({
     Object? folders = null,
   }) {
-    return _then(_$LoadedMyMusicFolderState(
+    return _then(_$LoadedNewPlaylistState(
       folders: null == folders
           ? _value._folders
           : folders // ignore: cast_nullable_to_non_nullable
@@ -200,9 +200,8 @@ class __$$LoadedMyMusicFolderStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedMyMusicFolderState implements LoadedMyMusicFolderState {
-  const _$LoadedMyMusicFolderState(
-      {required final List<FavoriteFolder> folders})
+class _$LoadedNewPlaylistState implements LoadedNewPlaylistState {
+  const _$LoadedNewPlaylistState({required final List<FavoriteFolder> folders})
       : _folders = folders;
 
   final List<FavoriteFolder> _folders;
@@ -215,16 +214,15 @@ class _$LoadedMyMusicFolderState implements LoadedMyMusicFolderState {
 
   @override
   String toString() {
-    return 'MyMusicFolderState.loaded(folders: $folders)';
+    return 'NewPlaylistState.loaded(folders: $folders)';
   }
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedMyMusicFolderStateCopyWith<_$LoadedMyMusicFolderState>
-      get copyWith =>
-          __$$LoadedMyMusicFolderStateCopyWithImpl<_$LoadedMyMusicFolderState>(
-              this, _$identity);
+  _$$LoadedNewPlaylistStateCopyWith<_$LoadedNewPlaylistState> get copyWith =>
+      __$$LoadedNewPlaylistStateCopyWithImpl<_$LoadedNewPlaylistState>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -260,8 +258,8 @@ class _$LoadedMyMusicFolderState implements LoadedMyMusicFolderState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(EmptyMyMusicFolderState value) empty,
-    required TResult Function(LoadedMyMusicFolderState value) loaded,
+    required TResult Function(EmptyNewPlaylistState value) empty,
+    required TResult Function(LoadedNewPlaylistState value) loaded,
   }) {
     return loaded(this);
   }
@@ -269,8 +267,8 @@ class _$LoadedMyMusicFolderState implements LoadedMyMusicFolderState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(EmptyMyMusicFolderState value)? empty,
-    TResult? Function(LoadedMyMusicFolderState value)? loaded,
+    TResult? Function(EmptyNewPlaylistState value)? empty,
+    TResult? Function(LoadedNewPlaylistState value)? loaded,
   }) {
     return loaded?.call(this);
   }
@@ -278,8 +276,8 @@ class _$LoadedMyMusicFolderState implements LoadedMyMusicFolderState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(EmptyMyMusicFolderState value)? empty,
-    TResult Function(LoadedMyMusicFolderState value)? loaded,
+    TResult Function(EmptyNewPlaylistState value)? empty,
+    TResult Function(LoadedNewPlaylistState value)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -289,13 +287,12 @@ class _$LoadedMyMusicFolderState implements LoadedMyMusicFolderState {
   }
 }
 
-abstract class LoadedMyMusicFolderState implements MyMusicFolderState {
-  const factory LoadedMyMusicFolderState(
-          {required final List<FavoriteFolder> folders}) =
-      _$LoadedMyMusicFolderState;
+abstract class LoadedNewPlaylistState implements NewPlaylistState {
+  const factory LoadedNewPlaylistState(
+      {required final List<FavoriteFolder> folders}) = _$LoadedNewPlaylistState;
 
   List<FavoriteFolder> get folders;
   @JsonKey(ignore: true)
-  _$$LoadedMyMusicFolderStateCopyWith<_$LoadedMyMusicFolderState>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$LoadedNewPlaylistStateCopyWith<_$LoadedNewPlaylistState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -80,8 +80,8 @@ class SetGetItDependencies {
         () => FavoriteSongBloc(GetIt.instance.get()));
     GetIt.instance.registerFactory<FavoriteAlbumBloc>(
         () => FavoriteAlbumBloc(GetIt.instance.get()));
-    GetIt.instance.registerFactory<MyMusicFolderBlocBloc>(
-        () => MyMusicFolderBlocBloc(GetIt.instance.get()));
+    GetIt.instance.registerFactory<NewPlaylistBloc>(
+        () => NewPlaylistBloc(GetIt.instance.get()));
     GetIt.instance.registerFactory<DetailMusicPageBloc>(
         () => DetailMusicPageBloc(GetIt.instance.get()));
     GetIt.instance.registerFactory<LanguageBloc>(
@@ -98,8 +98,6 @@ class SetGetItDependencies {
   void setupServiceDependencies() {
     GetIt.instance.registerLazySingleton(() => AudioPlayerService.create());
 
-    GetIt.instance.registerFactory<DatabaseService>(
-        () => DatabaseService(GetIt.instance.get()));
     GetIt.instance
         .registerLazySingleton<ImagePickerService>(() => ImagePickerService());
     GetIt.instance.registerFactory<BestAlbumsPaginationService>(

@@ -41,9 +41,8 @@ class _AudioPlayerAppState extends State<AudioPlayerApp> {
         BlocProvider<SearchFilterBloc>(
           create: (context) => GetIt.I.get(),
         ),
-        BlocProvider<MyMusicFolderBlocBloc>(
-          create: (context) =>
-              GetIt.I.get()..add(const LoadMyMusicFoldersEvent()),
+        BlocProvider<NewPlaylistBloc>(
+          create: (context) => GetIt.I.get()..add(const LoadNewPlaylistEvent()),
         ),
         BlocProvider<PasswordMissmatchCubit>(
           create: (context) => PasswordMissmatchCubit(),
