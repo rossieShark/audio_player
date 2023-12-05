@@ -1,10 +1,12 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/app_database/database.dart';
+import 'package:audio_player/domain/repositories/index.dart';
 
-import 'package:audio_player/services/services.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+
+class MockGenresRepository extends Mock implements GenresRepository {}
 
 void main() {
   group('DetailMusicPageBloc', () {
@@ -16,7 +18,7 @@ void main() {
       genresBloc = GenresBloc(repository);
     });
 
-    blocTest<GenresBloc, GenresState>(
+    blocTest<GenresBloc, GenresBlocState>(
       'emits GenresState when FetchGenresEvent is added',
       build: () {
         when(() => repository.getAllGenres()).thenAnswer((_) async =>
@@ -25,10 +27,35 @@ void main() {
       },
       act: (bloc) => bloc.add(FetchGenresEvent()),
       expect: () => [
-        isA<GenresState>(),
+        isA<LoadedGenresBlocState>().having(
+          (state) => state.data,
+          'genres',
+          contains(
+            const MusicGenre(id: '1', image: 'image', name: 'name'),
+          ),
+        ),
+      ],
+    );
+
+    blocTest<GenresBloc, GenresBlocState>(
+      'emits GenresState when FetchGenresEvent is added with empty genres',
+      build: () {
+        when(() => repository.getAllGenres()).thenAnswer((_) async => []);
+        return genresBloc;
+      },
+      act: (bloc) => bloc.add(FetchGenresEvent()),
+      expect: () => [isA<LoadingGenresBlocState>()],
+    );
+    blocTest<GenresBloc, GenresBlocState>(
+      'emits GenresState when FetchGenresEvent throws an exception',
+      build: () {
+        when(() => repository.getAllGenres()).thenThrow(Exception());
+        return genresBloc;
+      },
+      act: (bloc) => bloc.add(FetchGenresEvent()),
+      expect: () => [
+        isA<ErrorGenresBlocState>(),
       ],
     );
   });
 }
-
-class MockGenresRepository extends Mock implements GenresRepository {}
