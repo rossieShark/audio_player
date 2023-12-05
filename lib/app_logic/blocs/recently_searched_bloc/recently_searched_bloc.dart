@@ -1,12 +1,12 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/favorite_song_model.dart';
-import 'package:audio_player/domain/services/database_service/database_service.dart';
+import 'package:audio_player/domain/repositories/recently_searched_repository/recently_searched_repository.dart';
 
 class RecentlySearchedBloc
     extends Bloc<RecentlySearchedEvent, RecentlySearchedState> {
-  final DatabaseService _databaseService;
+  final RecentlySearchedRepository _repository;
 
-  RecentlySearchedBloc(this._databaseService)
+  RecentlySearchedBloc(this._repository)
       : super(const RecentlySearchedState.loading()) {
     on<AddToRecentlySearchedEvent>(_onAddRecentlySearched);
     on<LoadRecentlySearchedEvent>(_onLoadRecentlySearched);
@@ -23,7 +23,7 @@ class RecentlySearchedBloc
 
     if (isUnique) {
       recentlySearched.add(event.songModel);
-      await _databaseService.addToRecentlySearched(event.songModel);
+      await _repository.addToRecentlySearched(event.songModel);
     }
 
     emit(RecentlySearchedState.loaded(data: recentlySearched));
@@ -43,7 +43,7 @@ class RecentlySearchedBloc
       Emitter<RecentlySearchedState> emit) async {
     List<SongModel> recentlySearched = await _loadFromDatabase();
     recentlySearched.removeWhere((item) => item.id == event.song.id);
-    await _databaseService.removeFromRecentlySearched(event.song);
+    await _repository.removeFromRecentlySearched(event.song);
     if (recentlySearched.isEmpty) {
       emit(const RecentlySearchedState.empty());
     } else {
@@ -53,13 +53,11 @@ class RecentlySearchedBloc
 
   void _onRemoveAllRecentlySearched(
       RemoveAllEvent event, Emitter<RecentlySearchedState> emit) async {
-    List<SongModel> recentlySearched = await _loadFromDatabase();
-    recentlySearched.clear();
-    await _databaseService.removeAllRecentlySearched();
+    await _repository.removeAllRecentlySearched();
     emit(const RecentlySearchedState.empty());
   }
 
   Future<List<SongModel>> _loadFromDatabase() async {
-    return await _databaseService.loadRecentlySearched();
+    return await _repository.loadFromDatabase();
   }
 }
