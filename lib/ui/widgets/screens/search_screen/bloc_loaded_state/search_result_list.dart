@@ -32,7 +32,7 @@ class SearchListView extends StatelessWidget {
       },
       child: ListView(
         scrollDirection: Axis.vertical,
-        padding: EdgeInsets.only(top: 10),
+        padding: const EdgeInsets.only(top: 10),
         physics: const NeverScrollableScrollPhysics(),
         children: List.generate(searchResult.length, (index) {
           return HoverableWidget(builder: (context, child, isHovered) {

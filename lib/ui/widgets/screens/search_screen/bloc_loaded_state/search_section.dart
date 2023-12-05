@@ -91,7 +91,6 @@ class NarrowSearchSection extends StatelessWidget {
 
 class _SearchFilterWidget extends StatelessWidget {
   const _SearchFilterWidget({
-    super.key,
     required this.textFieldController,
   });
 

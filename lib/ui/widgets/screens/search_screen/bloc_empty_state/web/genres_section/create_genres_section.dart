@@ -131,7 +131,6 @@ class CreateGenresListContent extends StatelessWidget {
 
 class _CreateTitle extends StatelessWidget {
   const _CreateTitle({
-    super.key,
     required this.name,
   });
 
@@ -162,7 +161,6 @@ class _CreateTitle extends StatelessWidget {
 
 class _CreateFilterLayer extends StatelessWidget {
   const _CreateFilterLayer({
-    super.key,
     required this.isHovered,
   });
 
@@ -185,7 +183,6 @@ class _CreateFilterLayer extends StatelessWidget {
 
 class _CreateImageSection extends StatelessWidget {
   const _CreateImageSection({
-    super.key,
     required this.image,
   });
 
