@@ -52,5 +52,16 @@ void main() {
         isA<LoadingFavoriteArtistBlocState>()
       ],
     );
+    blocTest<FavoriteArtistBloc, FavoriteArtistBlocState>(
+      'emits FavoriteArtistBloc when FetchFavoriteArtistsEvent throws an exception',
+      build: () {
+        when(() => repository.getFavoriteArtists()).thenThrow(Exception());
+        return favoriteArtistBloc;
+      },
+      act: (bloc) => bloc.add(FetchFavoriteArtistsEvent()),
+      expect: () => [
+        isA<ErrorFavoriteArtistBlocState>(),
+      ],
+    );
   });
 }
