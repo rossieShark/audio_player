@@ -1,10 +1,12 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/app_database/database.dart';
+import 'package:audio_player/domain/repositories/index.dart';
 
-import 'package:audio_player/services/services.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+
+class MockSongDetailRepository extends Mock implements SongDetailRepository {}
 
 void main() {
   group('DetailMusicPageBloc', () {
@@ -36,5 +38,3 @@ void main() {
     );
   });
 }
-
-class MockSongDetailRepository extends Mock implements SongDetailRepository {}
