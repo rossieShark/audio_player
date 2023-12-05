@@ -6,7 +6,7 @@ class SearchResultRepository {
   final AudioPlayerService _searchResultService;
   SearchResultRepository(this._searchResultService);
 
-  Future<List<SearchData>> getSearchResults(
+  Future<List<SearchData>> getSearchAllResults(
     int index,
     int limit,
     String q,
@@ -54,6 +54,18 @@ class SearchResultRepository {
 
     return apiResultResponse;
   }
+
+  Future<List<SearchData>> getSearchResult(
+      int index, int limit, String q, String filter) async {
+    switch (filter) {
+      case SearchFilters.track:
+        return await getSearchTrackResults(index, limit, q);
+      case SearchFilters.album:
+        return await getSearchAlbumResults(index, limit, q);
+      default:
+        return await getSearchAllResults(index, limit, q);
+    }
+  }
 }
 
 class SearchResultPaginationService {
@@ -82,23 +94,12 @@ class SearchResultPaginationService {
       items.clear();
     }
     _q = q;
+    _filter = filter ?? SearchFilters.all;
     _isLoading = true;
-    if (filter == null || filter == 'All') {
-      final newPortion =
-          await _searchResultRepository.getSearchResults(_index, _limit, _q);
-      items.addAll(newPortion);
-      items.addAll(newPortion);
-    } else if (filter == SearchFilters.track) {
-      final newPortion = await _searchResultRepository.getSearchTrackResults(
-          _index, _limit, _q);
-      items.addAll(newPortion);
-      items.addAll(newPortion);
-    } else if (filter == SearchFilters.track) {
-      final newPortion = await _searchResultRepository.getSearchAlbumResults(
-          _index, _limit, _q);
-      items.addAll(newPortion);
-      items.addAll(newPortion);
-    }
+
+    final newPortion = await _searchResultRepository.getSearchResult(
+        _index, _limit, _q, _filter);
+    items.addAll(newPortion);
 
     _isLoading = false;
     _index += _perPage;

@@ -25,28 +25,28 @@ void main() {
     blocTest<LanguageBloc, Locale?>(
       'emits new state, when language was changed',
       build: () {
-        when(() => storage.changeLocale(Locale('ru')))
+        when(() => storage.changeLocale(const Locale('ru')))
             .thenAnswer((_) async => Future<void>.value());
         when(() => storage.loadSavedLocale()).thenAnswer((_) async => 'ru');
         return bloc;
       },
-      act: (bloc) => bloc.changeLanguage(Locale('ru')),
+      act: (bloc) => bloc.changeLanguage(const Locale('ru')),
       verify: (_) {
-        expect(bloc.state, Locale('ru'));
+        expect(bloc.state, const Locale('ru'));
       },
     );
 
     blocTest<LanguageBloc, Locale?>(
       'emits new state, when language was changed and loadSavedLocale returns null',
       build: () {
-        when(() => storage.changeLocale(Locale('ru')))
+        when(() => storage.changeLocale(const Locale('ru')))
             .thenAnswer((_) async => Future<void>);
         when(() => storage.loadSavedLocale()).thenAnswer((_) async => null);
         return bloc;
       },
-      act: (bloc) => bloc.changeLanguage(Locale('ru')),
+      act: (bloc) => bloc.changeLanguage(const Locale('ru')),
       verify: (_) {
-        expect(bloc.state, Locale('en'));
+        expect(bloc.state, const Locale('en'));
       },
     );
 
@@ -58,7 +58,7 @@ void main() {
       },
       act: (bloc) => bloc.loadSavedLanguage(),
       verify: (_) {
-        expect(bloc.state, Locale('de'));
+        expect(bloc.state, const Locale('de'));
       },
     );
 
@@ -69,9 +69,9 @@ void main() {
       },
       verify: (_) {
         expect(bloc.supportedLocales, [
-          Locale('en'),
-          Locale('ru'),
-          Locale('de'),
+          const Locale('en'),
+          const Locale('ru'),
+          const Locale('de'),
         ]);
       },
     );

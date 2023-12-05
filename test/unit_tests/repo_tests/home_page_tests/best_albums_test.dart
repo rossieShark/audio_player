@@ -1,122 +1,127 @@
 import 'package:audio_player/databases/app_database/database.dart';
 
 import 'package:audio_player/domain/entity/models.dart';
+import 'package:audio_player/domain/repositories/index.dart';
+import 'package:audio_player/domain/services/services.dart';
 
-import 'package:audio_player/services/home_screen_service/home_service.dart';
-import 'package:audio_player/services/service.dart';
 import 'package:chopper/chopper.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 void main() {
-  final audioDatabase = AudioDatabaseMock();
-  final audioPlayerServiceMock = AudioPlayerServiceMock();
-  final bestAlbumRepository =
-      BestAlbumRepository(audioDatabase, audioPlayerServiceMock);
+  group('BestAlbumRepository tests', () {
+    late AudioDatabaseMock audioDatabase;
+    late AudioPlayerServiceMock audioPlayerServiceMock;
+    late BestAlbumRepository bestAlbumRepository;
+    setUp(() {
+      audioDatabase = AudioDatabaseMock();
+      audioPlayerServiceMock = AudioPlayerServiceMock();
+      bestAlbumRepository =
+          BestAlbumRepository(audioDatabase, audioPlayerServiceMock);
+    });
+    test('getBestAlbums should return tracks from the database', () async {
+      // Arrange
+      when(() => audioDatabase.getallBestAlbums())
+          .thenAnswer((_) => Future.value(createTestAlbum()));
 
-  group('BestAlbumRepository', () {
-    group('cacheAlbums', () {
-      test('should cache albums in the database', () async {
-        // Arrange
-        final albums = [
-          BestAlbumsList(
-            coverImage: 'image',
-            id: 1,
-            artist: AlbumArtist(name: 'name', id: 1),
-            title: 'title',
-            type: 'type',
-          )
-        ];
+      // Act
+      final result = await bestAlbumRepository.getBestAlbums(0, 2);
 
-        // Act
-        final result = await bestAlbumRepository.cacheAlbums(albums);
-
-        // Assert
-        expect(result, isNotNull);
-        expect(result.length, 1);
-        expect(result[0].title, 'title');
-      });
+      // Assert
+      expect(result, isNotNull);
+      expect(result.length, 2);
+      expect(result[0].artist, 'artist');
+      verifyNever(() => audioPlayerServiceMock.getBestAlbums(0, 2));
     });
 
-    group('getAlbumsFromDb', () {
-      test('should return a list of BestAlbum from the database', () async {
-        // Arrange
-        when(() => audioDatabase.getallBestAlbums())
-            .thenAnswer((_) => Future.value([
-                  createTestAlbum(),
-                ]));
+    test('getBestAlbums should return track from the API', () async {
+      // Arrange
+      final songsListResponse = createTestAlbumsResponse();
+      final response = createTestResponse(songsListResponse);
 
-        // Act
-        final result = await bestAlbumRepository.getAlbumsFromDb();
+      when(() => audioDatabase.getallBestAlbums())
+          .thenAnswer((_) => Future.value([]));
+      when(() => audioPlayerServiceMock.getBestAlbums(0, 2))
+          .thenAnswer((_) => Future.value(response));
 
-        // Assert
-        expect(result, isNotNull);
-        expect(result.length, 1);
-        expect(result[0].image, 'image');
-      });
+      // Act
+      final result = await bestAlbumRepository.getBestAlbums(0, 2);
+
+      // Assert
+      expect(result, isNotNull);
+      expect(result.length, 2);
+      expect(result[0].artist, 'artist');
+      verify(() => audioPlayerServiceMock.getBestAlbums(0, 2)).called(1);
     });
 
-    group('getBestAlbums', () {
-      test('should return albums from the database when available', () async {
-        // Arrange
-        when(() => audioDatabase.getallBestAlbums())
-            .thenAnswer((_) => Future.value([
-                  createTestAlbum(),
-                ]));
+    test('getBestAlbums should return track from the API', () async {
+      // Arrange
+      final songsListResponse = createTestAlbumsResponse();
+      final response = createTestResponse(songsListResponse);
 
-        // Act
-        final result = await bestAlbumRepository.getBestAlbums(0, 1);
+      when(() => audioDatabase.getallBestAlbums())
+          .thenAnswer((_) => Future.value(createTestAlbumWith1Value()));
+      when(() => audioPlayerServiceMock.getBestAlbums(1, 3))
+          .thenAnswer((_) => Future.value(response));
 
-        // Assert
-        expect(result, isNotNull);
-        expect(result.length, 1);
-        expect(result[0].image, 'image');
-        verifyNever(() => bestAlbumRepository.fetchAndCacheBestAlbums(0, 1));
-      });
+      // Act
+      final result = await bestAlbumRepository.getBestAlbums(1, 3);
 
-      test('should return albums from the service when limit is exceeded',
-          () async {
-        // Arrange
-        when(() => audioDatabase.getallBestAlbums())
-            .thenAnswer((_) => Future.value([]));
+      // Assert
+      expect(result, isNotNull);
+      expect(result.length, 2);
+      expect(result[0].artist, 'artist');
+      verify(() => audioPlayerServiceMock.getBestAlbums(1, 3)).called(1);
+    });
+    test('getTracks should return emptyList', () async {
+      // Arrange
+      when(() => audioDatabase.getallBestAlbums())
+          .thenThrow(Exception('Test Error'));
+      when(() => audioPlayerServiceMock.getBestAlbums(0, 2))
+          .thenThrow(Exception('Test Error'));
+      // Act
+      final result = await bestAlbumRepository.getBestAlbums(0, 2);
 
-        when(() => bestAlbumRepository.fetchAndCacheBestAlbums(0, 1))
-            .thenAnswer((_) => Future.value([
-                  createTestAlbum(),
-                  createTestAlbum(),
-                ]));
-
-        final albumsResponse = createTestAlbumsResponse();
-        final response = createTestResponse(albumsResponse);
-
-        when(() => audioPlayerServiceMock.getBestAlbums(0, 2))
-            .thenAnswer((_) => Future.value(response));
-
-        // Act
-        final result = await bestAlbumRepository.getBestAlbums(0, 2);
-
-        // Assert
-        expect(result, isNotNull);
-        expect(result[0].image, 'image');
-        expect(result.length, 2);
-        verify(() => bestAlbumRepository.fetchAndCacheBestAlbums(0, 2))
-            .called(1);
-      });
+      // Assert
+      expect(result, isEmpty);
     });
   });
 }
 
 // Helper methods to create test data
-BestAlbum createTestAlbum() {
-  return const BestAlbum(
-    artist: 'artist',
-    detailAlbum: 1,
-    id: 1,
-    image: 'image',
-    title: 'title',
-    type: 'type',
-  );
+List<BestAlbum> createTestAlbum() {
+  return const [
+    BestAlbum(
+      artist: 'artist',
+      detailAlbum: 1,
+      id: 1,
+      image: 'image',
+      title: 'title',
+      type: 'type',
+    ),
+    BestAlbum(
+      artist: 'artist',
+      detailAlbum: 2,
+      id: 2,
+      image: 'image',
+      title: 'title',
+      type: 'type',
+    )
+  ];
+}
+
+List<BestAlbum> createTestAlbumWith1Value() {
+  return const [
+    BestAlbum(
+      artist: 'artist',
+      detailAlbum: 1,
+      id: 1,
+      image: 'image',
+      title: 'title',
+      type: 'type',
+    ),
+  ];
 }
 
 BestAlbumsResponse createTestAlbumsResponse() {
@@ -129,7 +134,7 @@ BestAlbumsResponse createTestAlbumsResponse() {
       type: 'album',
     ),
     BestAlbumsList(
-      artist: AlbumArtist(name: 'artist', id: 1),
+      artist: AlbumArtist(name: 'artist', id: 2),
       coverImage: 'image',
       id: 2,
       title: 'title',

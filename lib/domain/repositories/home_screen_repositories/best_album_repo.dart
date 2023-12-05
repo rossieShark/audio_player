@@ -47,14 +47,16 @@ class BestAlbumRepository {
       final dbAlbums = await _getAlbumsFromDb();
 
       if (dbAlbums.length < limit) {
-        return await _fetchAndCacheBestAlbums(index, limit);
+        final albums = await _fetchAndCacheBestAlbums(index, limit);
+        return await _cacheAlbums(albums);
       }
 
       final startIndex = index;
       final endIndex = limit;
 
       if (endIndex > dbAlbums.length) {
-        return await _fetchAndCacheBestAlbums(index, limit);
+        final albums = await _fetchAndCacheBestAlbums(index, limit);
+        return await _cacheAlbums(albums);
       }
 
       return dbAlbums.sublist(startIndex, endIndex);
@@ -65,12 +67,13 @@ class BestAlbumRepository {
   }
 
   /// Fetches best albums from the API and caches them into the database.
-  Future<List<BestAlbum>> _fetchAndCacheBestAlbums(int index, int limit) async {
+  Future<List<BestAlbumsList>> _fetchAndCacheBestAlbums(
+      int index, int limit) async {
     try {
       final apiAlbumsResponse =
           await _recentlyPlayedService.getBestAlbums(index, limit);
       final apiAlbums = apiAlbumsResponse.body?.data as List<BestAlbumsList>;
-      return await _cacheAlbums(apiAlbums);
+      return apiAlbums;
     } catch (error) {
       print('Error fetching and caching best albums: $error');
       return [];

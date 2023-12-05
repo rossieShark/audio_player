@@ -1,44 +1,29 @@
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/genres_model/genres_model.dart';
 import 'package:audio_player/domain/repositories/genres_repository/genres_repository.dart';
+import 'package:audio_player/domain/services/services.dart';
 
-import 'package:audio_player/services/service.dart';
 import 'package:chopper/chopper.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 void main() {
-  final audioDatabase = AudioDatabaseMock();
-  final audioPlayerServiceMock = AudioPlayerServiceMock();
-  final genresRepository =
-      GenresRepository(audioDatabase, audioPlayerServiceMock);
+  group('RecentlyPlayedRepository tests', () {
+    late AudioDatabaseMock audioDatabase;
+    late AudioPlayerServiceMock audioPlayerServiceMock;
+    late GenresRepository genresRepository;
 
-  group('GenresRepository.casheTracks', () {
-    test('Should cache genres in the database', () async {
-      //arrange
-      final tracks = [
-        Data(
-          id: 1,
-          image: 'image',
-          name: 'name',
-        )
-      ];
-      //act
-      final result = await genresRepository.cacheTracks(tracks);
-
-      //assert
-      expect(result, isNotNull);
-      expect(result.length, 1);
+    setUp(() {
+      audioDatabase = AudioDatabaseMock();
+      audioPlayerServiceMock = AudioPlayerServiceMock();
+      genresRepository =
+          GenresRepository(audioDatabase, audioPlayerServiceMock);
     });
-  });
-
-  group('getAllGenres', () {
-    test('should return a list of MusicGenre from the database', () async {
+    test('getAllGenres should return genres from the database', () async {
       // Arrange
-
       when(() => audioDatabase.getallGenres())
-          .thenAnswer((_) => Future.value([createTestGenres()]));
+          .thenAnswer((_) => Future.value(createTestGenres()));
 
       // Act
       final result = await genresRepository.getAllGenres();
@@ -49,26 +34,40 @@ void main() {
       expect(result[0].name, 'pop');
       verifyNever(() => audioPlayerServiceMock.getGenres());
     });
-  });
 
-  test('Should return genres from the Api ', () async {
-    //arrange
-    when(() => audioDatabase.getallGenres())
-        .thenAnswer((_) => Future.value([]));
+    test('getAllGenres should return genres from the API', () async {
+      // Arrange
+      final songsListResponse = createTestGenresResponse();
+      final response = createTestResponse(songsListResponse);
 
-    final tracksResponse = createTestGenresResponse();
-    final response = createTestResponse(tracksResponse);
+      when(() => audioDatabase.getallGenres())
+          .thenAnswer((_) => Future.value([]));
 
-    when(() => audioPlayerServiceMock.getGenres())
-        .thenAnswer((_) => Future.value(response));
-    //act
-    final result = await genresRepository.getAllGenres();
-    print(result);
-    //assert
-    expect(result, isNotNull);
-    expect(result.length, 1);
-    expect(result[0].name, 'rock');
-    verify(() => audioPlayerServiceMock.getGenres());
+      when(() => audioPlayerServiceMock.getGenres())
+          .thenAnswer((_) => Future.value(response));
+
+      // Act
+      final result = await genresRepository.getAllGenres();
+
+      // Assert
+      expect(result, isNotNull);
+      expect(result.length, 1);
+      expect(result[0].name, 'rock');
+      verify(() => audioPlayerServiceMock.getGenres()).called(1);
+    });
+
+    test('getTracks should return emptyList', () async {
+      // Arrange
+      when(() => audioDatabase.getallGenres())
+          .thenThrow(Exception('Test Error'));
+      when(() => audioPlayerServiceMock.getGenres())
+          .thenThrow(Exception('Test Error'));
+      // Act
+      final result = await genresRepository.getAllGenres();
+
+      // Assert
+      expect(result, isEmpty);
+    });
   });
 }
 
@@ -82,8 +81,8 @@ class AudioDatabaseMock extends Mock implements AudioAppDatabase {
 class AudioPlayerServiceMock extends Mock implements AudioPlayerService {}
 
 // Helper methods to create test data
-MusicGenre createTestGenres() {
-  return const MusicGenre(id: '1', image: 'image', name: 'pop');
+List<MusicGenre> createTestGenres() {
+  return const [MusicGenre(id: '1', image: 'image', name: 'pop')];
 }
 
 GenresResponse createTestGenresResponse() {

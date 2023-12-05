@@ -20,7 +20,7 @@ class AlbumDetailBloc extends Bloc<AlbumDetailBlocEvent, AlbumDetailBlocState> {
         print('Emitted album detail state');
       }
     } catch (error) {
-      emit(AlbumDetailBlocState.error());
+      emit(const AlbumDetailBlocState.error());
     }
   }
 }

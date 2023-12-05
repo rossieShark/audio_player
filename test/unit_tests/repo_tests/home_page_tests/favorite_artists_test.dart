@@ -1,101 +1,80 @@
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/home_screen_data/favourite_artist_model/favourite_artist_model.dart';
-import 'package:audio_player/services/home_screen_service/home_service.dart';
-import 'package:audio_player/services/service.dart';
+import 'package:audio_player/domain/repositories/index.dart';
+import 'package:audio_player/domain/services/services.dart';
+
 import 'package:chopper/chopper.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 void main() {
-  final audioDatabase = AudioDatabaseMock();
-  final audioPlayerServiceMock = AudioPlayerServiceMock();
-  final favoriteArtistRepository =
-      FavoriteArtistRepository(audioDatabase, audioPlayerServiceMock);
-
-  group('FavoriteArtistRepository', () {
-    group('cacheTracks', () {
-      test('should cache artists in the database', () async {
-        // Arrange
-        final tracks = [Artists(id: 1, image: 'image', name: 'name')];
-
-        // Act
-        final result = await favoriteArtistRepository.cacheTracks(tracks);
-
-        // Assert
-        expect(result, isNotNull);
-      });
+  group('FavoriteArtistRepository tests', () {
+    late AudioDatabaseMock audioDatabase;
+    late AudioPlayerServiceMock audioPlayerServiceMock;
+    late FavoriteArtistRepository favoriteArtistRepository;
+    setUp(() {
+      audioDatabase = AudioDatabaseMock();
+      audioPlayerServiceMock = AudioPlayerServiceMock();
+      favoriteArtistRepository =
+          FavoriteArtistRepository(audioDatabase, audioPlayerServiceMock);
     });
 
-    group('getTracksFromDb', () {
-      test('should return a list of FavoriteArtist from the database',
-          () async {
-        // Arrange
-        when(() => audioDatabase.getallFavouriteArtists())
-            .thenAnswer((_) => Future.value(createFavoriteTestList()));
+    test('getFavoriteArtists should return tracks from the database', () async {
+      // Arrange
+      when(() => audioDatabase.getallFavouriteArtists())
+          .thenAnswer((_) => Future.value(createFavoriteTestList()));
 
-        // Act
-        final result = await favoriteArtistRepository.getTracksFromDb();
+      // Act
+      final result = await favoriteArtistRepository.getFavoriteArtists();
 
-        // Assert
-        expect(result, isNotNull);
-        expect(result.length, 2);
-        expect(result[0].name, 'Artist1');
-        expect(result[1].name, 'Artist2');
-      });
+      // Assert
+      expect(result, isNotNull);
+      expect(result.length, 2);
+      expect(result[0].name, 'Artist1');
+      verifyNever(() => audioPlayerServiceMock.getFavoriteArtists());
     });
 
-    group('getFavoriteArtists', () {
-      test('should return artists from the database when available', () async {
-        // Arrange
-        when(() => audioDatabase.getallFavouriteArtists())
-            .thenAnswer((_) => Future.value(createFavoriteTestList()));
-        // Act
-        final result = await favoriteArtistRepository.getFavoriteArtists();
+    test('getTracks should return track from the API', () async {
+      // Arrange
+      final songsListResponse = createTestArtistsResponse();
+      final response = createTestResponse(songsListResponse);
 
-        // Assert
-        expect(result, isNotNull);
-        expect(result.length, 2);
-        expect(result[0].name, 'Artist1');
-        expect(result[1].name, 'Artist2');
+      when(() => audioDatabase.getallFavouriteArtists())
+          .thenAnswer((_) => Future.value([]));
 
-        verifyNever(() => audioPlayerServiceMock.getFavoriteArtists());
-      });
+      when(() => audioPlayerServiceMock.getFavoriteArtists())
+          .thenAnswer((_) => Future.value(response));
 
-      test(
-          'should return artists from the service when not available in the database',
-          () async {
-        // Arrange
-        when(() => audioDatabase.getallFavouriteArtists())
-            .thenAnswer((_) => Future.value([]));
+      when(() => audioDatabase.addManyFavoriteArtists(
+              [const FavoriteArtist(name: 'name', id: 1, image: 'image')]))
+          .thenAnswer((_) => Future<void>.value());
 
-        final artistsResponse = createTestArtistsResponse();
+      // Act
+      final result = await favoriteArtistRepository.getFavoriteArtists();
+      // Assert
+      expect(result, isNotNull);
+      expect(result.length, 1);
+      expect(result[0].image, 'image');
+      verify(() => audioPlayerServiceMock.getFavoriteArtists()).called(1);
+    });
 
-        final response = createTestResponse(artistsResponse);
+    test('getFavoriteArtists should return tracks from the database', () async {
+      // Arrange
+      when(() => audioDatabase.getallFavouriteArtists())
+          .thenThrow(Exception('Test Error'));
+      when(() => audioPlayerServiceMock.getRecentlyPlayedTracks())
+          .thenThrow(Exception('Test Error'));
+      // Act
+      final result = await favoriteArtistRepository.getFavoriteArtists();
 
-        when(() => audioPlayerServiceMock.getFavoriteArtists())
-            .thenAnswer((_) => Future.value(response));
-
-        // Act
-        final result = await favoriteArtistRepository.getFavoriteArtists();
-
-        // Assert
-        expect(result, isNotNull);
-        expect(result.length, 1);
-        expect(result[0].name, 'name');
-
-        verify(() => audioPlayerServiceMock.getFavoriteArtists()).called(1);
-      });
+      // Assert
+      expect(result, isEmpty);
     });
   });
 }
 
-class AudioDatabaseMock extends Mock implements AudioAppDatabase {
-  @override
-  Future<void> addManyFavoriteArtists(List<FavoriteArtist> artists) async {
-    return Future<void>.value();
-  }
-}
+class AudioDatabaseMock extends Mock implements AudioAppDatabase {}
 
 class AudioPlayerServiceMock extends Mock implements AudioPlayerService {}
 

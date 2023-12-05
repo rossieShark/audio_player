@@ -2,21 +2,25 @@ import 'dart:async';
 
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
+import 'package:audio_player/domain/repositories/index.dart';
+import 'package:audio_player/domain/services/services.dart';
 
-import 'package:audio_player/services/service.dart';
-import 'package:audio_player/services/services.dart';
 import 'package:chopper/chopper.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 void main() {
-  final audioDatabase = AudioDatabaseMock();
-  final audioPlayerServiceMock = AudioPlayerServiceMock();
-  final albumDetailsRepository =
-      AlbumDetailsRepository(audioDatabase, audioPlayerServiceMock);
-
   group('AlbumDetailsRepository', () {
+    late AudioDatabaseMock audioDatabase;
+    late AudioPlayerServiceMock audioPlayerServiceMock;
+    late AlbumDetailsRepository albumDetailsRepository;
+    setUp(() {
+      audioDatabase = AudioDatabaseMock();
+      audioPlayerServiceMock = AudioPlayerServiceMock();
+      albumDetailsRepository =
+          AlbumDetailsRepository(audioDatabase, audioPlayerServiceMock);
+    });
     test('getDetailAlbums should return album from the database', () async {
       // Arrange
       when(() => audioDatabase.watchInfoInDetailAlbum(1))
@@ -34,32 +38,42 @@ void main() {
 
     test('getDetailAlbums should return album from the API', () async {
       // Arrange
-      const albumId = '2';
+      const albumId = '1';
       final songsListResponse = createTestAlbumDetailResponse();
       final response = createTestResponse(songsListResponse);
 
-      when(() => audioDatabase.watchInfoInDetailAlbum(2))
+      when(() => audioDatabase.watchInfoInDetailAlbum(1))
           .thenAnswer((_) => Stream.value([]));
 
       when(() => audioPlayerServiceMock.getAlbumSongsList(albumId))
           .thenAnswer((_) => Future.value(response));
-
+      when(() => audioDatabase.addManyDetailAlbums([createTestDetailAlbums()]))
+          .thenAnswer((_) => Future<void>.value());
       // Act
-      final _ = await albumDetailsRepository.getDetailAlbums(albumId);
+      final result = await albumDetailsRepository.getDetailAlbums(albumId);
 
       // Assert
+      expect(result, isNotNull);
+      expect(result.length, 1);
+      expect(result[0].artistNames, 'name');
       verify(() => audioPlayerServiceMock.getAlbumSongsList(albumId)).called(1);
+    });
+    test('getDetailAlbums should return emptyList', () async {
+      // Arrange
+      when(() => audioDatabase.watchInfoInDetailAlbum(3))
+          .thenThrow(Exception('Test Error'));
+      when(() => audioPlayerServiceMock.getAlbumSongsList('3'))
+          .thenThrow(Exception('Test Error'));
+      // Act
+      final result = await albumDetailsRepository.getDetailAlbums('3');
+
+      // Assert
+      expect(result, isEmpty);
     });
   });
 }
 
-class AudioDatabaseMock extends Mock implements AudioAppDatabase {
-  @override
-  Future<void> addManyDetailAlbums(List<DetailAlbum> albums) async {
-    // Return a completed future with a value to simulate a successful operation
-    return Future<void>.value();
-  }
-}
+class AudioDatabaseMock extends Mock implements AudioAppDatabase {}
 
 class AudioPlayerServiceMock extends Mock implements AudioPlayerService {}
 
@@ -77,7 +91,7 @@ DetailAlbum createTestDetailAlbums() {
 AlbumDetailsResponse createTestAlbumDetailResponse() {
   return AlbumDetailsResponse(data: [
     AlbumData(
-        id: 2,
+        id: 1,
         title: "title",
         type: "album",
         preview: "preview",

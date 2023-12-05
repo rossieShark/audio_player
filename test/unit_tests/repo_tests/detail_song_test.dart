@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
+import 'package:audio_player/domain/repositories/index.dart';
+import 'package:audio_player/domain/services/services.dart';
 
-import 'package:audio_player/services/service.dart';
-import 'package:audio_player/services/services.dart';
 import 'package:chopper/chopper.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_test/flutter_test.dart';
