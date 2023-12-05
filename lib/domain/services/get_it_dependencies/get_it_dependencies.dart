@@ -3,6 +3,7 @@ import 'package:audio_player/app_logic/blocs/filter_bloc.dart';
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/databases/language_storage/language_storage.dart';
 import 'package:audio_player/domain/repositories/index.dart';
+import 'package:audio_player/domain/repositories/recently_searched_repository/recently_searched_repository.dart';
 
 import 'package:audio_player/domain/services/services.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -46,6 +47,9 @@ class SetGetItDependencies {
     );
     GetIt.instance.registerLazySingleton<AlbumRepository>(
       () => AlbumRepository(GetIt.instance.get()),
+    );
+    GetIt.instance.registerLazySingleton<RecentlySearchedRepository>(
+      () => RecentlySearchedRepository(GetIt.instance.get()),
     );
 
     GetIt.instance.registerLazySingleton<SearchRepository>(
