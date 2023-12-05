@@ -29,13 +29,13 @@ class SearchResultBloc extends Bloc<SearchEvent, SearchState> {
       return;
     }
     emit(const SearchState.loading());
-    final albumDetails =
+    final searchResult =
         await repository.getSearchResult(event.newText, event.filter);
-    if (albumDetails.isEmpty) {
+    if (searchResult.isEmpty) {
       emit(const SearchState.noResults());
       return;
     }
-    emit(SearchState.loaded(data: albumDetails));
+    emit(SearchState.loaded(data: searchResult));
   }
 
   Future<void> _onSearchLoadMoreItems(
