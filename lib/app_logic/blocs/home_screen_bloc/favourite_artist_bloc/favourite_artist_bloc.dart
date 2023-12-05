@@ -29,10 +29,5 @@ class FavoriteArtistBloc
   Future<List<FavoriteArtist>> _returnArtists() async {
     final favoriteArtists = await repository.getFavoriteArtists();
     return favoriteArtists;
-    // if (favoriteArtists.isEmpty) {
-    //   return await repository.getFavoriteArtists();
-    // } else {
-    //   return favoriteArtists;
-    // }
   }
 }
