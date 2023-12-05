@@ -20,7 +20,7 @@ void main() {
     });
 
     blocTest<RecentlyPlayedBloc, RecentlyPlayedState>(
-      'emits FavoriteArtistBloc when FetchFavoriteArtistsEvent is added',
+      'emits RecentlyPlayedBloc when FetchRecentlyPlayedEvent is added',
       build: () {
         // Mock the scenario where getTracksFromDb returns non-empty data
         when(() => repository.getTracks()).thenAnswer((_) async => [
@@ -54,7 +54,7 @@ void main() {
     );
 
     blocTest<RecentlyPlayedBloc, RecentlyPlayedState>(
-      'emits FavoriteArtistBloc when FetchFavoriteArtistsEvent is added with empty tracks',
+      'emits RecentlyPlayedBloc when FetchRecentlyPlayedEvent is added with empty tracks',
       build: () {
         // Mock the scenario where getTracksFromDb returns an empty list
         when(() => repository.getTracks()).thenAnswer((_) async => []);
@@ -64,6 +64,18 @@ void main() {
       expect: () => [
         // Check that the bloc emits a FavoriteArtistState with data from getFavoriteArtists
         isA<LoadingRecentlyPlayedState>()
+      ],
+    );
+
+    blocTest<RecentlyPlayedBloc, RecentlyPlayedState>(
+      'emits RecentlyPlayedBloc when FetchRecentlyPlayedEvent throws an exception',
+      build: () {
+        when(() => repository.getTracks()).thenThrow(Exception());
+        return recentlyPlayedBloc;
+      },
+      act: (bloc) => bloc.add(FetchRecentlyPlayedEvent()),
+      expect: () => [
+        isA<ErrorRecentlyPlayedState>(),
       ],
     );
   });
