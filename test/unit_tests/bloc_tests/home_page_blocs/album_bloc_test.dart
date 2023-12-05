@@ -1,12 +1,16 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/app_database/database.dart';
-import 'package:audio_player/services/services.dart';
+import 'package:audio_player/domain/repositories/index.dart';
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:mocktail/mocktail.dart';
 
 class MockAlbumRepository extends Mock implements AlbumRepository {}
+
+class MockBestAlbumsPaginationService extends Mock
+    implements BestAlbumsPaginationService {}
 
 void main() {
   group('AlbumBloc', () {
@@ -18,7 +22,7 @@ void main() {
       albumBloc = AlbumBloc(repository);
     });
 
-    blocTest<AlbumBloc, AlbumState>(
+    blocTest<AlbumBloc, AlbumBlocState>(
         'emits AlbumState when FetchAlbumsEvent is added',
         build: () {
           when(() => repository.getAlbums())
@@ -27,8 +31,31 @@ void main() {
         },
         act: (bloc) => bloc.add(FetchAlbumsEvent()),
         expect: () => [
-              isA<AlbumState>(),
+              isA<LoadedAlbumBlocState>(),
             ]);
+
+    blocTest<AlbumBloc, AlbumBlocState>(
+        'emits AlbumState when FetchAlbumsEvent is added',
+        build: () {
+          when(() => repository.getAlbums()).thenAnswer((_) async => []);
+          return albumBloc;
+        },
+        act: (bloc) => bloc.add(FetchAlbumsEvent()),
+        expect: () => [
+              isA<LoadingAlbumBlocState>(),
+            ]);
+
+    blocTest<AlbumBloc, AlbumBlocState>(
+      'emits ErrorAlbumBlocState when FetchAlbumsEvent throws an exception',
+      build: () {
+        when(() => repository.getAlbums()).thenThrow(Exception());
+        return albumBloc;
+      },
+      act: (bloc) => bloc.add(FetchAlbumsEvent()),
+      expect: () => [
+        isA<ErrorAlbumBlocState>(),
+      ],
+    );
   });
 
   group('AlbumRepository', () {
@@ -36,8 +63,7 @@ void main() {
       final service = MockBestAlbumsPaginationService();
       // Arrange
       when(() => service.loadMoreItems()).thenAnswer((_) async {});
-      when(() => service.items)
-          .thenReturn(createTestAlbums()); // Set items to an empty list
+      when(() => service.items).thenReturn(createTestAlbums());
       final repository = AlbumRepository(service);
 
       // Act
@@ -50,8 +76,8 @@ void main() {
   });
 }
 
-class MockBestAlbumsPaginationService extends Mock
-    implements BestAlbumsPaginationService {}
+// class MockBestAlbumsPaginationService extends Mock
+//     implements BestAlbumsPaginationService {}
 
 List<BestAlbum> createTestAlbums() {
   return const [
