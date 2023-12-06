@@ -35,7 +35,7 @@ void main() {
       act: (bloc) =>
           bloc.add(const LoadSearchEvent(newText: 'query', filter: 'All')),
       expect: () => [
-        isA<LoadingSearchState>(), // Use isA matcher for type checking
+        isA<LoadingSearchState>(),
         isA<LoadedSearchState>(),
       ],
     );
@@ -64,16 +64,16 @@ void main() {
         isA<EmptySearchState>(),
       ],
       verify: (_) {
-        // Verify that loadFromDatabase was called
+        // Verify that getSearchResult was called
         verifyNever(() => searchRepository.getSearchResult('', 'All'))
                 .callCount ==
             0;
       },
     );
     blocTest<SearchResultBloc, SearchState>(
-      'emits LoadSearchEvent after a delay when TextChangedSearchEvent is added',
+      'emits LoadSearchEvent after a delay when TextChangedSearchEvent is added (with no results)',
       build: () {
-        // Mock the behavior of repository.getAlbums
+        // Mock the behavior of repository.getSearchResult
         when(() => searchRepository.getSearchResult('query', 'All'))
             .thenAnswer((_) async => []);
 
@@ -84,7 +84,7 @@ void main() {
         bloc.add(const TextChangedSearchEvent(newText: 'query', filter: 'All'));
       },
       expect: () => [
-        isA<NoResultsSearchState>(), // Expect a loading state when TextChangedSearchEvent is added
+        isA<NoResultsSearchState>(),
       ],
       wait: const Duration(seconds: 1), // Wait for 1 second (the delay)
       skip: 1, // Skip the initial loading state
@@ -94,10 +94,11 @@ void main() {
             .called(1);
       },
     );
+
     blocTest<SearchResultBloc, SearchState>(
-      'emits LoadSearchEvent after a delay when TextChangedSearchEvent is added',
+      'emits LoadSearchEvent after a delay when TextChangedSearchEvent is added (with results)',
       build: () {
-        // Mock the behavior of repository.getAlbums
+        // Mock the behavior of repository.getSearchResult
         when(() => searchRepository.getSearchResult('query', 'All'))
             .thenAnswer((_) async => createSearchResult());
 

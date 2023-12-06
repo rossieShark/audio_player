@@ -15,17 +15,16 @@ class FavoriteSongBloc extends Bloc<FavoriteSongEvent, FavouriteSongState> {
     on<SortSongsEvent>(_onSorting);
   }
   bool _isSorted = false;
+  bool get isSorted => _isSorted;
   void _onAddSongs(
       AddSongsEvent event, Emitter<FavouriteSongState> emit) async {
-    List<SongModel> songs = await _returnFavouriteSongsList();
-    songs.add(event.song);
-    await _repository.addToFavorites(event.song);
+    final songs = await _repository.addToFavorites(event.song);
     emit(FavouriteSongState.loaded(data: songs));
   }
 
   void _onLoadSongs(
       LoadFavouriteSongsEvent event, Emitter<FavouriteSongState> emit) async {
-    List<SongModel> songs = await _returnFavouriteSongsList();
+    List<SongModel> songs = await _repository.loadSongs();
     if (songs.isEmpty) {
       emit(const FavouriteSongState.noResults());
     } else {
@@ -35,8 +34,7 @@ class FavoriteSongBloc extends Bloc<FavoriteSongEvent, FavouriteSongState> {
 
   void _onToggleFavouriteSong(
       ToggleIsFavourite event, Emitter<FavouriteSongState> emit) async {
-    List<SongModel> songs = await _returnFavouriteSongsList();
-    bool isFavorite = songs.any((song) => song.id == event.detailSong.id);
+    bool isFavorite = await _repository.isFavourite(event.detailSong.id);
     if (isFavorite) {
       add(RemoveSongsEvent(event.detailSong));
     } else {
@@ -46,9 +44,7 @@ class FavoriteSongBloc extends Bloc<FavoriteSongEvent, FavouriteSongState> {
 
   void _onRemoveSong(
       RemoveSongsEvent event, Emitter<FavouriteSongState> emit) async {
-    List<SongModel> songs = await _returnFavouriteSongsList();
-    songs.removeWhere((item) => item.id == event.detailSong.id);
-    await _repository.removeSongFromDatabase(event.detailSong);
+    final songs = await _repository.removeSongFromDatabase(event.detailSong);
     if (songs.isEmpty) {
       emit(const FavouriteSongState.noResults());
     } else {
@@ -58,7 +54,7 @@ class FavoriteSongBloc extends Bloc<FavoriteSongEvent, FavouriteSongState> {
 
   void _onSorting(
       SortSongsEvent event, Emitter<FavouriteSongState> emit) async {
-    List<SongModel> songs = await _returnFavouriteSongsList();
+    List<SongModel> songs = await _repository.loadSongs();
 
     if (_isSorted) {
       // If already sorted, return the original list
@@ -71,9 +67,5 @@ class FavoriteSongBloc extends Bloc<FavoriteSongEvent, FavouriteSongState> {
 
     // Toggle the sorting state
     _isSorted = !_isSorted;
-  }
-
-  Future<List<SongModel>> _returnFavouriteSongsList() async {
-    return await _repository.loadSongs();
   }
 }

@@ -15,12 +15,14 @@ void main() {
     late AudioDatabaseMock audioDatabase;
     late AudioPlayerServiceMock audioPlayerServiceMock;
     late AlbumDetailsRepository albumDetailsRepository;
+
     setUp(() {
       audioDatabase = AudioDatabaseMock();
       audioPlayerServiceMock = AudioPlayerServiceMock();
       albumDetailsRepository =
           AlbumDetailsRepository(audioDatabase, audioPlayerServiceMock);
     });
+
     test('getDetailAlbums should return album from the database', () async {
       // Arrange
       when(() => audioDatabase.watchInfoInDetailAlbum(1))
@@ -33,6 +35,8 @@ void main() {
       expect(result, isNotNull);
       expect(result.length, 1);
       expect(result[0].type, 'album');
+
+      // Verify that audioPlayerServiceMock.getAlbumSongsList was never called.
       verifyNever(() => audioPlayerServiceMock.getAlbumSongsList('1'));
     });
 
@@ -47,8 +51,10 @@ void main() {
 
       when(() => audioPlayerServiceMock.getAlbumSongsList(albumId))
           .thenAnswer((_) => Future.value(response));
+
       when(() => audioDatabase.addManyDetailAlbums([createTestDetailAlbums()]))
           .thenAnswer((_) => Future<void>.value());
+
       // Act
       final result = await albumDetailsRepository.getDetailAlbums(albumId);
 
@@ -56,14 +62,18 @@ void main() {
       expect(result, isNotNull);
       expect(result.length, 1);
       expect(result[0].artistNames, 'name');
+
+      // Verify that audioPlayerServiceMock.getAlbumSongsList was called once with the correct parameter.
       verify(() => audioPlayerServiceMock.getAlbumSongsList(albumId)).called(1);
     });
+
     test('getDetailAlbums should return emptyList', () async {
       // Arrange
       when(() => audioDatabase.watchInfoInDetailAlbum(3))
           .thenThrow(Exception('Test Error'));
       when(() => audioPlayerServiceMock.getAlbumSongsList('3'))
           .thenThrow(Exception('Test Error'));
+
       // Act
       final result = await albumDetailsRepository.getDetailAlbums('3');
 

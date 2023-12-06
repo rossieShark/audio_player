@@ -9,7 +9,7 @@ import 'package:mocktail/mocktail.dart';
 class MockGenresRepository extends Mock implements GenresRepository {}
 
 void main() {
-  group('DetailMusicPageBloc', () {
+  group('GenresBloc', () {
     late GenresBloc genresBloc;
     late MockGenresRepository repository;
 
@@ -19,7 +19,7 @@ void main() {
     });
 
     blocTest<GenresBloc, GenresBlocState>(
-      'emits GenresState when FetchGenresEvent is added',
+      'emits LoadedGenresBlocState when FetchGenresEvent is added',
       build: () {
         when(() => repository.getAllGenres()).thenAnswer((_) async =>
             [const MusicGenre(id: '1', image: 'image', name: 'name')]);
@@ -38,7 +38,7 @@ void main() {
     );
 
     blocTest<GenresBloc, GenresBlocState>(
-      'emits GenresState when FetchGenresEvent is added with empty genres',
+      'emits LoadingGenresBlocState when FetchGenresEvent is added with empty genres',
       build: () {
         when(() => repository.getAllGenres()).thenAnswer((_) async => []);
         return genresBloc;
@@ -47,7 +47,7 @@ void main() {
       expect: () => [isA<LoadingGenresBlocState>()],
     );
     blocTest<GenresBloc, GenresBlocState>(
-      'emits GenresState when FetchGenresEvent throws an exception',
+      'emits ErrorGenresBlocState when FetchGenresEvent throws an exception',
       build: () {
         when(() => repository.getAllGenres()).thenThrow(Exception());
         return genresBloc;

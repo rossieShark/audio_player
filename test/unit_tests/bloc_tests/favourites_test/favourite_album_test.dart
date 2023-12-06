@@ -21,7 +21,7 @@ void main() {
     favoriteBloc.close();
   });
 
-  group('FavoriteSongBloc', () {
+  group('FavoriteAlbumBloc', () {
     final songModelToAdd = SongModel(
         artistNames: 'A',
         id: '1',
@@ -56,7 +56,7 @@ void main() {
         ),
       ],
       verify: (_) {
-        // Verify that loadFromDatabase was called
+        // Verify that loadAlbums was called
         verify(() => repository.loadAlbums()).called(1);
       },
     );
@@ -72,7 +72,7 @@ void main() {
         isA<NoResultsFavoriteAlbumState>(),
       ],
       verify: (_) {
-        // Verify that loadFromDatabase was called
+        // Verify that loadAlbums was called
         verify(() => repository.loadAlbums()).called(1);
       },
     );
@@ -82,7 +82,7 @@ void main() {
         when(() => repository.loadAlbums())
             .thenAnswer((_) async => [existingSongModel]);
         when(() => repository.addToFavoritesAlbum(songModelToAdd))
-            .thenAnswer((_) async => Future<void>);
+            .thenAnswer((_) async => [existingSongModel, songModelToAdd]);
         return favoriteBloc;
       },
       act: (bloc) => bloc.add(AddAlbumEvent(songModelToAdd)),
@@ -94,9 +94,7 @@ void main() {
         ),
       ],
       verify: (_) {
-        // Verify that loadFromDatabase was called
-        verify(() => repository.loadAlbums()).called(1);
-        // Verify that addToRecentlySearched was called
+        // Verify that addToFavoritesAlbum was called
         verify(() => repository.addToFavoritesAlbum(songModelToAdd)).called(1);
       },
     );
@@ -107,7 +105,7 @@ void main() {
         when(() => repository.loadAlbums())
             .thenAnswer((_) async => [existingSongModel, songModelToAdd]);
         when(() => repository.removeFromFavoritesAlbum(songModelToAdd))
-            .thenAnswer((_) async => Future<void>);
+            .thenAnswer((_) async => [existingSongModel]);
         return favoriteBloc;
       },
       act: (bloc) => bloc.add(RemoveAlbumsEvent(songModelToAdd)),
@@ -119,9 +117,7 @@ void main() {
         ),
       ],
       verify: (_) {
-        // Verify that loadFromDatabase was called
-        verify(() => repository.loadAlbums()).called(1);
-        // Verify that addToRecentlySearched was called
+        // Verify that removeFromFavoritesAlbum was called
         verify(() => repository.removeFromFavoritesAlbum(songModelToAdd))
             .called(1);
       },
@@ -133,15 +129,13 @@ void main() {
         when(() => repository.loadAlbums())
             .thenAnswer((_) async => [songModelToAdd]);
         when(() => repository.removeFromFavoritesAlbum(songModelToAdd))
-            .thenAnswer((_) async => Future<void>);
+            .thenAnswer((_) async => []);
         return favoriteBloc;
       },
       act: (bloc) => bloc.add(RemoveAlbumsEvent(songModelToAdd)),
       expect: () => [isA<NoResultsFavoriteAlbumState>()],
       verify: (_) {
-        // Verify that loadFromDatabase was called
-        verify(() => repository.loadAlbums()).called(1);
-        // Verify that addToRecentlySearched was called
+        // Verify that removeFromFavoritesAlbum was called
         verify(() => repository.removeFromFavoritesAlbum(songModelToAdd))
             .called(1);
       },
@@ -150,10 +144,10 @@ void main() {
     blocTest<FavoriteAlbumBloc, FavoriteAlbumState>(
       'emits the correct states when ToggleIsFavouriteAlbum event is added',
       build: () {
-        when(() => repository.loadAlbums())
-            .thenAnswer((_) async => [songModelToAdd]);
+        when(() => repository.isFavourite(songModelToAdd.id))
+            .thenAnswer((_) async => true);
         when(() => repository.removeFromFavoritesAlbum(songModelToAdd))
-            .thenAnswer((_) async => Future<void>);
+            .thenAnswer((_) async => []);
         return favoriteBloc;
       },
       act: (bloc) => bloc.add(ToggleIsFavouriteAlbum(album: songModelToAdd)),
@@ -171,10 +165,10 @@ void main() {
     blocTest<FavoriteAlbumBloc, FavoriteAlbumState>(
       'emits the correct states when ToggleIsFavouriteAlbum event is added',
       build: () {
-        when(() => repository.loadAlbums())
-            .thenAnswer((_) async => [songModelToAdd]);
+        when(() => repository.isFavourite(existingSongModel.id))
+            .thenAnswer((_) async => false);
         when(() => repository.addToFavoritesAlbum(existingSongModel))
-            .thenAnswer((_) async => Future<void>);
+            .thenAnswer((_) async => [existingSongModel]);
         return favoriteBloc;
       },
       act: (bloc) => bloc.add(ToggleIsFavouriteAlbum(album: existingSongModel)),
@@ -182,7 +176,7 @@ void main() {
         isA<LoadedFavoriteAlbumState>().having(
           (state) => state.data,
           'favouriteAlbumBloc',
-          [songModelToAdd, existingSongModel],
+          [existingSongModel],
         ),
       ],
       verify: (_) {
@@ -191,7 +185,6 @@ void main() {
         verifyNever(
                 () => repository.removeFromFavoritesAlbum(existingSongModel))
             .called(0);
-        // Add additional verifications based on your expected behavior
       },
     );
 
@@ -210,6 +203,28 @@ void main() {
           'favouriteAlbumBloc',
           [songModelToAdd, existingSongModel],
         ),
+      ],
+      verify: (_) {
+        verify(() => repository.loadAlbums()).called(1);
+      },
+    );
+    blocTest<FavoriteAlbumBloc, FavoriteAlbumState>(
+      'return sortedList when SortSongsEvent event is added',
+      build: () {
+        when(() => repository.loadAlbums())
+            .thenAnswer((_) async => [existingSongModel, songModelToAdd]);
+
+        return favoriteBloc;
+      },
+      act: (bloc) => bloc.add(const SortAlbumsEvent()),
+      expect: () => [
+        // Check if sorting is applied
+        if (favoriteBloc.isSorted)
+          isA<LoadedFavoriteAlbumState>().having(
+            (state) => state.data,
+            'favouriteSongBloc',
+            [songModelToAdd, existingSongModel],
+          ),
       ],
       verify: (_) {
         verify(() => repository.loadAlbums()).called(1);

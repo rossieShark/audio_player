@@ -528,8 +528,6 @@ void main() {
     final textField = find.byType(TextField);
     await tester.enterText(textField, 'Sample text');
     expect(find.text('Sample text'), findsOneWidget);
-
-    // Add more test cases as needed to cover different scenarios.
   });
 
   testWidgets('Widget displays images correctly', (WidgetTester tester) async {
@@ -551,8 +549,6 @@ void main() {
     expect(find.byType(GestureDetector),
         findsNWidgets(1)); // Three GestureDetector widgets.
     expect(find.byType(Image), findsNWidgets(3)); // Three Image widgets.
-
-    // You can add similar expectations for the Facebook and Apple icons.
 
     // Perform interactions if needed.
     // For example, you can simulate a tap on the Google icon:

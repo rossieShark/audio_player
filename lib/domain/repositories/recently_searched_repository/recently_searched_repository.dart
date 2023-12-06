@@ -24,22 +24,34 @@ class RecentlySearchedRepository {
     return loadedRecentlySearchedSongs;
   }
 
-  Future<void> addToRecentlySearched(SongModel detailSong) async {
-    await _database.insertRecentlySearched(
-      RecentlySearchedSong(
-        preview: detailSong.preview,
-        type: detailSong.type,
-        id: int.parse(detailSong.id),
-        title: detailSong.title,
-        artist: detailSong.artistNames,
-        songImage: detailSong.image,
-        isFavourite: detailSong.isFavourite,
-      ),
-    );
+  Future<List<SongModel>> addToRecentlySearched(SongModel detailSong) async {
+    bool isUniqueSong = await isUnique(detailSong.id);
+    if (isUniqueSong) {
+      await _database.insertRecentlySearched(
+        RecentlySearchedSong(
+          preview: detailSong.preview,
+          type: detailSong.type,
+          id: int.parse(detailSong.id),
+          title: detailSong.title,
+          artist: detailSong.artistNames,
+          songImage: detailSong.image,
+          isFavourite: detailSong.isFavourite,
+        ),
+      );
+      return await loadFromDatabase();
+    }
+    return await loadFromDatabase();
   }
 
-  Future<void> removeFromRecentlySearched(SongModel detailSong) async {
+  Future<List<SongModel>> removeFromRecentlySearched(
+      SongModel detailSong) async {
     await _database.deleteRecentlySearched(int.parse(detailSong.id));
+    return await loadFromDatabase();
+  }
+
+  Future<bool> isUnique(String id) async {
+    final recentlySearched = await loadFromDatabase();
+    return recentlySearched.every((song) => song.id != id);
   }
 
   Future<void> removeAllRecentlySearched() async {

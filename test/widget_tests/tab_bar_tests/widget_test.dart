@@ -21,7 +21,5 @@ void main() {
     expect(find.byType(AnimateGradient), findsOneWidget);
 
     expect(find.byType(Icon), findsOneWidget);
-
-    // You can add more specific assertions here based on your widget's behavior.
   });
 }

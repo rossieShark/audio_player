@@ -6,7 +6,7 @@ class NewPlaylistRepository {
   final AudioAppDatabase _database;
 
   NewPlaylistRepository(this._database);
-  Future<List<FavoriteFolder>> returnMyMusicFolderList() async {
+  Future<List<FavoriteFolder>> loadPlaylists() async {
     final folders = await _database.getFolders();
     final loadedFolders = folders
         .map(
@@ -19,13 +19,15 @@ class NewPlaylistRepository {
     return loadedFolders;
   }
 
-  Future<void> addToFolders(FavoriteFolder folder) async {
+  Future<List<FavoriteFolder>> addToFolders(String title) async {
+    final folder = convertToFavoriteFolder(title);
     await _database.insertToMyFolders(
       MyMusicFolder(
         name: folder.title,
         image: folder.image,
       ),
     );
+    return await loadPlaylists();
   }
 
   FavoriteFolder convertToFavoriteFolder(String title) {

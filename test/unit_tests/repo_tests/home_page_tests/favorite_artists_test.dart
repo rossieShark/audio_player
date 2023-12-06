@@ -13,6 +13,7 @@ void main() {
     late AudioDatabaseMock audioDatabase;
     late AudioPlayerServiceMock audioPlayerServiceMock;
     late FavoriteArtistRepository favoriteArtistRepository;
+
     setUp(() {
       audioDatabase = AudioDatabaseMock();
       audioPlayerServiceMock = AudioPlayerServiceMock();
@@ -20,7 +21,8 @@ void main() {
           FavoriteArtistRepository(audioDatabase, audioPlayerServiceMock);
     });
 
-    test('getFavoriteArtists should return tracks from the database', () async {
+    test('getFavoriteArtists should return artists from the database',
+        () async {
       // Arrange
       when(() => audioDatabase.getallFavouriteArtists())
           .thenAnswer((_) => Future.value(createFavoriteTestList()));
@@ -35,10 +37,10 @@ void main() {
       verifyNever(() => audioPlayerServiceMock.getFavoriteArtists());
     });
 
-    test('getTracks should return track from the API', () async {
+    test('getFavoriteArtists should return artists from the API', () async {
       // Arrange
-      final songsListResponse = createTestArtistsResponse();
-      final response = createTestResponse(songsListResponse);
+      final artistsListResponse = createTestArtistsResponse();
+      final response = createTestResponse(artistsListResponse);
 
       when(() => audioDatabase.getallFavouriteArtists())
           .thenAnswer((_) => Future.value([]));
@@ -52,6 +54,7 @@ void main() {
 
       // Act
       final result = await favoriteArtistRepository.getFavoriteArtists();
+
       // Assert
       expect(result, isNotNull);
       expect(result.length, 1);
@@ -59,12 +62,15 @@ void main() {
       verify(() => audioPlayerServiceMock.getFavoriteArtists()).called(1);
     });
 
-    test('getFavoriteArtists should return tracks from the database', () async {
+    test(
+        'getFavoriteArtists should return empty list when both database and API fail',
+        () async {
       // Arrange
       when(() => audioDatabase.getallFavouriteArtists())
           .thenThrow(Exception('Test Error'));
       when(() => audioPlayerServiceMock.getRecentlyPlayedTracks())
           .thenThrow(Exception('Test Error'));
+
       // Act
       final result = await favoriteArtistRepository.getFavoriteArtists();
 

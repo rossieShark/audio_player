@@ -19,13 +19,14 @@ void main() {
     blocTest<ImageBloc, ImageBlocState>(
       'emits ImageBlocState when PickAndUploadImageEvent is added',
       build: () {
+        // Stub the service to return a mock image path when picking from the gallery
         when(() => service.pickImageFromGallery())
             .thenAnswer((_) async => 'image' as String?);
         return bloc;
       },
       act: (bloc) => bloc.add(PickAndUploadImageEvent()),
       verify: (bloc) {
-        // Access the emitted state using bloc.state
+        // Verify that the emitted state is of the expected type and contains the correct image path
         expect(bloc.state, isA<ImageBlocState>());
         expect(bloc.state.image, 'image');
       },
@@ -34,13 +35,14 @@ void main() {
     blocTest<ImageBloc, ImageBlocState>(
       'emits ImageBlocState when PickfromCamAndUploadImageEvent is added',
       build: () {
+        // Stub the service to return a mock image path when picking from the camera
         when(() => service.pickImageFromCamera())
             .thenAnswer((_) async => 'image' as String?);
         return bloc;
       },
       act: (bloc) => bloc.add(PickfromCamAndUploadImageEvent()),
       verify: (bloc) {
-        // Access the emitted state using bloc.state
+        // Verify that the emitted state is of the expected type and contains the correct image path
         expect(bloc.state, isA<ImageBlocState>());
         expect(bloc.state.image, 'image');
       },

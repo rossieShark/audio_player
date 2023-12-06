@@ -16,7 +16,7 @@ void main() {
     });
 
     blocTest<AlbumDetailBloc, AlbumDetailBlocState>(
-      'emits AlbumDetailBlocState when FetchAlbumDetailBlocEvent is added',
+      'emits LoadedAlbumDetailBlocState when FetchAlbumDetailBlocEvent is added',
       build: () {
         when(() => repository.getDetailAlbums(any())).thenAnswer((_) async => [
               const DetailAlbum(
@@ -36,7 +36,7 @@ void main() {
     );
 
     blocTest<AlbumDetailBloc, AlbumDetailBlocState>(
-      'emits AlbumDetailBlocState when FetchAlbumDetailBlocEvent is added',
+      'emits EmptyAlbumDetailBlocState when FetchAlbumDetailBlocEvent is added',
       build: () {
         when(() => repository.getDetailAlbums(any()))
             .thenAnswer((_) async => []);
@@ -48,7 +48,7 @@ void main() {
       ],
     );
     blocTest<AlbumDetailBloc, AlbumDetailBlocState>(
-      'emits ErrorState when an error occurs',
+      'emits ErrorAlbumDetailBlocState when an error occurs',
       build: () {
         // Mock your repository or service to throw an error
         when(() => repository.getDetailAlbums('1'))

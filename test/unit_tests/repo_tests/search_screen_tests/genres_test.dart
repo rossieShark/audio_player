@@ -9,6 +9,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 void main() {
+  setUpAll(() {
+    registerFallbackValue(createTestGenres());
+  });
+
   group('RecentlyPlayedRepository tests', () {
     late AudioDatabaseMock audioDatabase;
     late AudioPlayerServiceMock audioPlayerServiceMock;
@@ -20,6 +24,7 @@ void main() {
       genresRepository =
           GenresRepository(audioDatabase, audioPlayerServiceMock);
     });
+
     test('getAllGenres should return genres from the database', () async {
       // Arrange
       when(() => audioDatabase.getallGenres())
@@ -37,8 +42,8 @@ void main() {
 
     test('getAllGenres should return genres from the API', () async {
       // Arrange
-      final songsListResponse = createTestGenresResponse();
-      final response = createTestResponse(songsListResponse);
+      final genresListResponse = createTestGenresResponse();
+      final response = createTestResponse(genresListResponse);
 
       when(() => audioDatabase.getallGenres())
           .thenAnswer((_) => Future.value([]));
@@ -56,12 +61,16 @@ void main() {
       verify(() => audioPlayerServiceMock.getGenres()).called(1);
     });
 
-    test('getTracks should return emptyList', () async {
+    test('getAllGenres should return empty list when database and API fail',
+        () async {
       // Arrange
       when(() => audioDatabase.getallGenres())
           .thenThrow(Exception('Test Error'));
       when(() => audioPlayerServiceMock.getGenres())
           .thenThrow(Exception('Test Error'));
+      when(() => audioDatabase.addManyAlbums(any()))
+          .thenAnswer((_) => Future.value());
+
       // Act
       final result = await genresRepository.getAllGenres();
 

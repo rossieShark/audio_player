@@ -81,10 +81,8 @@ void main() {
     blocTest<RecentlySearchedBloc, RecentlySearchedState>(
       'emits LoadedRecentlySearchedState when AddToRecentlySearchedEvent is added with existing data',
       build: () {
-        when(() => repository.loadFromDatabase())
-            .thenAnswer((_) async => [existingSongModel]);
         when(() => repository.addToRecentlySearched(songModelToAdd))
-            .thenAnswer((_) async => Future<void>);
+            .thenAnswer((_) async => [songModelToAdd]);
         return recentlySearchedBloc;
       },
       act: (bloc) => bloc.add(AddToRecentlySearchedEvent(songModelToAdd)),
@@ -92,57 +90,27 @@ void main() {
         isA<LoadedRecentlySearchedState>().having(
           (state) => state.data,
           'recentlySearched',
-          [existingSongModel, songModelToAdd],
+          [songModelToAdd],
         ),
       ],
       verify: (_) {
-        // Verify that loadFromDatabase was called
-        verify(() => repository.loadFromDatabase()).called(1);
         // Verify that addToRecentlySearched was called
         verify(() => repository.addToRecentlySearched(songModelToAdd))
             .called(1);
-      },
-    );
-    blocTest<RecentlySearchedBloc, RecentlySearchedState>(
-      'emits LoadedRecentlySearchedState when AddToRecentlySearchedEvent is added with existing equal data',
-      build: () {
-        when(() => repository.loadFromDatabase())
-            .thenAnswer((_) async => [existingSongModel]);
-        when(() => repository.addToRecentlySearched(existingSongModel))
-            .thenAnswer((_) async => Future<void>);
-        return recentlySearchedBloc;
-      },
-      act: (bloc) => bloc.add(AddToRecentlySearchedEvent(existingSongModel)),
-      expect: () => [
-        isA<LoadedRecentlySearchedState>().having(
-          (state) => state.data,
-          'recentlySearched',
-          [existingSongModel],
-        ),
-      ],
-      verify: (_) {
-        // Verify that loadFromDatabase was called
-        verify(() => repository.loadFromDatabase()).called(1);
-        // Verify that loadFromDatabase was never called
-        verifyNever(() => repository.addToRecentlySearched(existingSongModel));
       },
     );
 
     blocTest<RecentlySearchedBloc, RecentlySearchedState>(
       'emits EmptyRecentlySearchedState when RemoveFromRecentlySearchedEvent is added',
       build: () {
-        when(() => repository.loadFromDatabase())
-            .thenAnswer((_) async => [existingSongModel]);
         when(() => repository.removeFromRecentlySearched(existingSongModel))
-            .thenAnswer((_) async => Future<void>);
+            .thenAnswer((_) async => []);
         return recentlySearchedBloc;
       },
       act: (bloc) =>
           bloc.add(RemoveFromRecentlySearchedEvent(existingSongModel)),
       expect: () => [isA<EmptyRecentlySearchedState>()],
       verify: (_) {
-        // Verify that loadFromDatabase was called
-        verify(() => repository.loadFromDatabase()).called(1);
         // Verify that removeFromRecentlySearched was called
         verify(() => repository.removeFromRecentlySearched(existingSongModel))
             .called(1);
@@ -155,7 +123,7 @@ void main() {
         when(() => repository.loadFromDatabase())
             .thenAnswer((_) async => [existingSongModel, songModelToAdd]);
         when(() => repository.removeFromRecentlySearched(existingSongModel))
-            .thenAnswer((_) async => Future<void>);
+            .thenAnswer((_) async => [songModelToAdd]);
         return recentlySearchedBloc;
       },
       act: (bloc) =>
@@ -168,8 +136,6 @@ void main() {
         ),
       ],
       verify: (_) {
-        // Verify that loadFromDatabase was called
-        verify(() => repository.loadFromDatabase()).called(1);
         // Verify that removeFromRecentlySearched was called
         verify(() => repository.removeFromRecentlySearched(existingSongModel))
             .called(1);

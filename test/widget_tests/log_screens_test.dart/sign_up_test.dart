@@ -26,8 +26,6 @@ void main() {
     expect(find.byType(CustomButton), findsOneWidget);
     expect(find.text("Already have an account? "), findsOneWidget);
     expect(find.text(' Sign In'), findsOneWidget);
-
-    // You can add more test scenarios and assertions as needed.
   });
 }
 

@@ -79,8 +79,6 @@ void main() {
     expect(likeButtonWidget.artistNames, songInfo.artistNames);
     expect(likeButtonWidget.title, songInfo.title);
     expect(likeButtonWidget.image, songInfo.imageUrl);
-
-    // You can add more specific assertions as needed.
   });
 }
 

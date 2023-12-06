@@ -23,7 +23,7 @@ void main() {
 
   group('LanguageBloc', () {
     blocTest<LanguageBloc, Locale?>(
-      'emits new state, when language was changed',
+      'emits new state when the language is changed',
       build: () {
         when(() => storage.changeLocale(const Locale('ru')))
             .thenAnswer((_) async => Future<void>.value());
@@ -37,7 +37,7 @@ void main() {
     );
 
     blocTest<LanguageBloc, Locale?>(
-      'emits new state, when language was changed and loadSavedLocale returns null',
+      'emits new state when the language is changed, and loadSavedLocale returns null',
       build: () {
         when(() => storage.changeLocale(const Locale('ru')))
             .thenAnswer((_) async => Future<void>);
@@ -51,7 +51,7 @@ void main() {
     );
 
     blocTest<LanguageBloc, Locale?>(
-      'emits state, when language was loaded',
+      'emits state when the language is loaded',
       build: () {
         when(() => storage.loadSavedLocale()).thenAnswer((_) async => 'de');
         return bloc;
@@ -63,7 +63,7 @@ void main() {
     );
 
     blocTest<LanguageBloc, Locale?>(
-      'get supported locals',
+      'get supported locales',
       build: () {
         return bloc;
       },

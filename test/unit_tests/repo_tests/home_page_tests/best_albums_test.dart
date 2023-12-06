@@ -10,17 +10,23 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 void main() {
+  setUpAll(() {
+    registerFallbackValue(createTestAlbumWith1Value());
+  });
+
   group('BestAlbumRepository tests', () {
     late AudioDatabaseMock audioDatabase;
     late AudioPlayerServiceMock audioPlayerServiceMock;
     late BestAlbumRepository bestAlbumRepository;
+
     setUp(() {
       audioDatabase = AudioDatabaseMock();
       audioPlayerServiceMock = AudioPlayerServiceMock();
       bestAlbumRepository =
           BestAlbumRepository(audioDatabase, audioPlayerServiceMock);
     });
-    test('getBestAlbums should return tracks from the database', () async {
+
+    test('getBestAlbums should return albums from the database', () async {
       // Arrange
       when(() => audioDatabase.getallBestAlbums())
           .thenAnswer((_) => Future.value(createTestAlbum()));
@@ -35,15 +41,18 @@ void main() {
       verifyNever(() => audioPlayerServiceMock.getBestAlbums(0, 2));
     });
 
-    test('getBestAlbums should return track from the API', () async {
+    test('getBestAlbums should return albums from the API (database is empty)',
+        () async {
       // Arrange
-      final songsListResponse = createTestAlbumsResponse();
-      final response = createTestResponse(songsListResponse);
+      final albumsListResponse = createTestAlbumsResponse();
+      final response = createTestResponse(albumsListResponse);
 
       when(() => audioDatabase.getallBestAlbums())
           .thenAnswer((_) => Future.value([]));
       when(() => audioPlayerServiceMock.getBestAlbums(0, 2))
           .thenAnswer((_) => Future.value(response));
+      when(() => audioDatabase.addManyAlbums(any()))
+          .thenAnswer((_) => Future.value());
 
       // Act
       final result = await bestAlbumRepository.getBestAlbums(0, 2);
@@ -53,17 +62,20 @@ void main() {
       expect(result.length, 2);
       expect(result[0].artist, 'artist');
       verify(() => audioPlayerServiceMock.getBestAlbums(0, 2)).called(1);
+      verify(() => audioDatabase.addManyAlbums(any())).called(1);
     });
 
-    test('getBestAlbums should return track from the API', () async {
+    test('getBestAlbums should return albums from the API', () async {
       // Arrange
-      final songsListResponse = createTestAlbumsResponse();
-      final response = createTestResponse(songsListResponse);
+      final albumsListResponse = createTestAlbumsResponse();
+      final response = createTestResponse(albumsListResponse);
 
       when(() => audioDatabase.getallBestAlbums())
           .thenAnswer((_) => Future.value(createTestAlbumWith1Value()));
       when(() => audioPlayerServiceMock.getBestAlbums(1, 3))
           .thenAnswer((_) => Future.value(response));
+      when(() => audioDatabase.addManyAlbums(any()))
+          .thenAnswer((_) => Future.value());
 
       // Act
       final result = await bestAlbumRepository.getBestAlbums(1, 3);
@@ -73,13 +85,18 @@ void main() {
       expect(result.length, 2);
       expect(result[0].artist, 'artist');
       verify(() => audioPlayerServiceMock.getBestAlbums(1, 3)).called(1);
+      verify(() => audioDatabase.addManyAlbums(any())).called(1);
     });
-    test('getTracks should return emptyList', () async {
+
+    test(
+        'getBestAlbums should return empty list when both database and API fail',
+        () async {
       // Arrange
       when(() => audioDatabase.getallBestAlbums())
           .thenThrow(Exception('Test Error'));
       when(() => audioPlayerServiceMock.getBestAlbums(0, 2))
           .thenThrow(Exception('Test Error'));
+
       // Act
       final result = await bestAlbumRepository.getBestAlbums(0, 2);
 
@@ -150,11 +167,6 @@ Response<BestAlbumsResponse> createTestResponse(BestAlbumsResponse data) {
   );
 }
 
-class AudioDatabaseMock extends Mock implements AudioAppDatabase {
-  @override
-  Future<void> addManyAlbums(List<BestAlbum> albums) async {
-    return Future<void>.value();
-  }
-}
+class AudioDatabaseMock extends Mock implements AudioAppDatabase {}
 
 class AudioPlayerServiceMock extends Mock implements AudioPlayerService {}

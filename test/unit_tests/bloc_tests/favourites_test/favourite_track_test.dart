@@ -23,7 +23,7 @@ void main() {
     favoriteBloc.close();
   });
 
-  group('FavoriteSongBloc', () {
+  group('FavoriteTrackBloc', () {
     final songModelToAdd = SongModel(
         artistNames: 'A',
         id: '1',
@@ -84,7 +84,7 @@ void main() {
         when(() => repository.loadSongs())
             .thenAnswer((_) async => [existingSongModel]);
         when(() => repository.addToFavorites(songModelToAdd))
-            .thenAnswer((_) async => Future<void>);
+            .thenAnswer((_) async => [existingSongModel, songModelToAdd]);
         return favoriteBloc;
       },
       act: (bloc) => bloc.add(AddSongsEvent(songModelToAdd)),
@@ -96,9 +96,7 @@ void main() {
         ),
       ],
       verify: (_) {
-        // Verify that loadFromDatabase was called
-        verify(() => repository.loadSongs()).called(1);
-        // Verify that addToRecentlySearched was called
+        // Verify that addToFavorites was called
         verify(() => repository.addToFavorites(songModelToAdd)).called(1);
       },
     );
@@ -109,7 +107,7 @@ void main() {
         when(() => repository.loadSongs())
             .thenAnswer((_) async => [existingSongModel, songModelToAdd]);
         when(() => repository.removeSongFromDatabase(songModelToAdd))
-            .thenAnswer((_) async => Future<void>);
+            .thenAnswer((_) async => [existingSongModel]);
         return favoriteBloc;
       },
       act: (bloc) => bloc.add(RemoveSongsEvent(songModelToAdd)),
@@ -121,9 +119,7 @@ void main() {
         ),
       ],
       verify: (_) {
-        // Verify that loadFromDatabase was called
-        verify(() => repository.loadSongs()).called(1);
-        // Verify that addToRecentlySearched was called
+        // Verify that removeSongFromDatabase was called
         verify(() => repository.removeSongFromDatabase(songModelToAdd))
             .called(1);
       },
@@ -135,15 +131,13 @@ void main() {
         when(() => repository.loadSongs())
             .thenAnswer((_) async => [songModelToAdd]);
         when(() => repository.removeSongFromDatabase(songModelToAdd))
-            .thenAnswer((_) async => Future<void>);
+            .thenAnswer((_) async => []);
         return favoriteBloc;
       },
       act: (bloc) => bloc.add(RemoveSongsEvent(songModelToAdd)),
       expect: () => [isA<NoResultsFavouriteSongState>()],
       verify: (_) {
-        // Verify that loadFromDatabase was called
-        verify(() => repository.loadSongs()).called(1);
-        // Verify that addToRecentlySearched was called
+        // Verify that removeSongFromDatabase was called
         verify(() => repository.removeSongFromDatabase(songModelToAdd))
             .called(1);
       },
@@ -152,10 +146,10 @@ void main() {
     blocTest<FavoriteSongBloc, FavouriteSongState>(
       'emits the correct states when ToggleIsFavourite event is added',
       build: () {
-        when(() => repository.loadSongs())
-            .thenAnswer((_) async => [songModelToAdd]);
+        when(() => repository.isFavourite(songModelToAdd.id))
+            .thenAnswer((_) async => true);
         when(() => repository.removeSongFromDatabase(songModelToAdd))
-            .thenAnswer((_) async => Future<void>);
+            .thenAnswer((_) async => []);
         return favoriteBloc;
       },
       act: (bloc) => bloc.add(ToggleIsFavourite(detailSong: songModelToAdd)),
@@ -166,17 +160,16 @@ void main() {
         verify(() => repository.removeSongFromDatabase(songModelToAdd))
             .called(1);
         verifyNever(() => repository.addToFavorites(songModelToAdd)).called(0);
-        // Add additional verifications based on your expected behavior
       },
     );
 
     blocTest<FavoriteSongBloc, FavouriteSongState>(
       'emits the correct states when ToggleIsFavourite event is added',
       build: () {
-        when(() => repository.loadSongs())
-            .thenAnswer((_) async => [songModelToAdd]);
+        when(() => repository.isFavourite(existingSongModel.id))
+            .thenAnswer((_) async => false);
         when(() => repository.addToFavorites(existingSongModel))
-            .thenAnswer((_) async => Future<void>);
+            .thenAnswer((_) async => [existingSongModel]);
         return favoriteBloc;
       },
       act: (bloc) => bloc.add(ToggleIsFavourite(detailSong: existingSongModel)),
@@ -184,14 +177,13 @@ void main() {
         isA<LoadedFavouriteSongState>().having(
           (state) => state.data,
           'favouriteSongBloc',
-          [songModelToAdd, existingSongModel],
+          [existingSongModel],
         ),
       ],
       verify: (_) {
         verify(() => repository.addToFavorites(existingSongModel)).called(1);
         verifyNever(() => repository.removeSongFromDatabase(existingSongModel))
             .called(0);
-        // Add additional verifications based on your expected behavior
       },
     );
 
@@ -210,6 +202,28 @@ void main() {
           'favouriteSongBloc',
           [songModelToAdd, existingSongModel],
         ),
+      ],
+      verify: (_) {
+        verify(() => repository.loadSongs()).called(1);
+      },
+    );
+
+    blocTest<FavoriteSongBloc, FavouriteSongState>(
+      'return sortedList when SortSongsEvent event is added',
+      build: () {
+        when(() => repository.loadSongs())
+            .thenAnswer((_) async => [existingSongModel, songModelToAdd]);
+
+        return favoriteBloc;
+      },
+      act: (bloc) => bloc.add(const SortSongsEvent()),
+      expect: () => [
+        if (favoriteBloc.isSorted) // Check if sorting is applied
+          isA<LoadedFavouriteSongState>().having(
+            (state) => state.data,
+            'favouriteSongBloc',
+            [songModelToAdd, existingSongModel],
+          ),
       ],
       verify: (_) {
         verify(() => repository.loadSongs()).called(1);

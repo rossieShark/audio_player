@@ -22,7 +22,7 @@ void main() {
       favoriteArtistBloc.close();
     });
     blocTest<FavoriteArtistBloc, FavoriteArtistBlocState>(
-      'emits FavoriteArtistBloc when FetchFavoriteArtistsEvent is added',
+      'emits LoadedFavoriteArtistBlocState when FetchFavoriteArtistsEvent is added',
       build: () {
         // Mock the scenario where getTracksFromDb returns non-empty data
         when(() => repository.getFavoriteArtists()).thenAnswer((_) async => [
@@ -42,7 +42,7 @@ void main() {
     );
 
     blocTest<FavoriteArtistBloc, FavoriteArtistBlocState>(
-      'emits FavoriteArtistBloc when FetchFavoriteArtistsEvent is added with empty tracks',
+      'emits LoadingFavoriteArtistBlocState when FetchFavoriteArtistsEvent is added with empty tracks',
       build: () {
         // Mock the scenario where getTracksFromDb returns an empty list
         when(() => repository.getFavoriteArtists()).thenAnswer((_) async => []);
@@ -55,7 +55,7 @@ void main() {
       ],
     );
     blocTest<FavoriteArtistBloc, FavoriteArtistBlocState>(
-      'emits FavoriteArtistBloc when FetchFavoriteArtistsEvent throws an exception',
+      'emits ErrorFavoriteArtistBlocState when FetchFavoriteArtistsEvent throws an exception',
       build: () {
         when(() => repository.getFavoriteArtists()).thenThrow(Exception());
         return favoriteArtistBloc;

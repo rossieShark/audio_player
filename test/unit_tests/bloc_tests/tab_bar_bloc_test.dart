@@ -37,7 +37,7 @@ void main() {
       build: () => tabBarBloc,
       act: (bloc) {
         bloc.setTabIndex(2);
-        bloc.setTabIndex(2); // Should not emit a new state
+        bloc.setTabIndex(2);
       },
       expect: () => [2],
     );

@@ -7,31 +7,25 @@ class NewPlaylistBloc extends Bloc<NewPlaylistBlocEvent, NewPlaylistState> {
 
   NewPlaylistBloc(this._repository) : super(const NewPlaylistState.empty()) {
     on<AddNewPlaylistEvent>(_onAddFolder);
-
     on<LoadNewPlaylistEvent>(_onLoadFolders);
   }
 
   void _onAddFolder(
       AddNewPlaylistEvent event, Emitter<NewPlaylistState> emit) async {
-    List<FavoriteFolder> folders = await _returnMyFolderList();
-    final folder = _repository.convertToFavoriteFolder(event.folderName);
-    folders.add(folder);
-    await _repository.addToFolders(folder);
-
+    // List<FavoriteFolder> folders = await _returnMyFolderList();
+    // final folder = _repository.convertToFavoriteFolder(event.folderName);
+    // folders.add(folder);
+    final folders = await _repository.addToFolders(event.folderName);
     emit(NewPlaylistState.loaded(folders: folders));
   }
 
   void _onLoadFolders(
       LoadNewPlaylistEvent event, Emitter<NewPlaylistState> emit) async {
-    List<FavoriteFolder> folders = await _returnMyFolderList();
+    List<FavoriteFolder> folders = await _repository.loadPlaylists();
     if (folders.isEmpty) {
       emit(const NewPlaylistState.empty());
     } else {
       emit(NewPlaylistState.loaded(folders: folders));
     }
-  }
-
-  Future<List<FavoriteFolder>> _returnMyFolderList() async {
-    return await _repository.returnMyMusicFolderList();
   }
 }

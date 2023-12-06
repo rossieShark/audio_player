@@ -25,15 +25,11 @@ void main() {
       image: 'image',
       title: 'title2',
     );
-    final folder1 = FavoriteFolder(
-      image: 'image',
-      title: 'title',
-    );
 
     blocTest<NewPlaylistBloc, NewPlaylistState>(
       'emits LoadedNewPlaylistState when LoadNewPlaylistEvent is added',
       build: () {
-        when(() => repository.returnMyMusicFolderList())
+        when(() => repository.loadPlaylists())
             .thenAnswer((_) async => [addFolder]);
         return bloc;
       },
@@ -41,39 +37,35 @@ void main() {
       expect: () => [
         isA<LoadedNewPlaylistState>().having(
           (state) => state.folders,
-          'favouriteSongBloc',
+          'folders',
           contains(addFolder),
         ),
       ],
       verify: (_) {
-        // Verify that loadFromDatabase was called
-        verify(() => repository.returnMyMusicFolderList()).called(1);
+        // Verify that loadPlaylists was called
+        verify(() => repository.loadPlaylists()).called(1);
       },
     );
 
     blocTest<NewPlaylistBloc, NewPlaylistState>(
       'emits EmptyNewPlaylistState when LoadNewPlaylistEvent is added',
       build: () {
-        when(() => repository.returnMyMusicFolderList())
-            .thenAnswer((_) async => []);
+        when(() => repository.loadPlaylists()).thenAnswer((_) async => []);
         return bloc;
       },
       act: (bloc) => bloc.add(const LoadNewPlaylistEvent()),
       expect: () => [isA<EmptyNewPlaylistState>()],
       verify: (_) {
-        // Verify that loadFromDatabase was called
-        verify(() => repository.returnMyMusicFolderList()).called(1);
+        // Verify that loadPlaylists was called
+        verify(() => repository.loadPlaylists()).called(1);
       },
     );
+
     blocTest<NewPlaylistBloc, NewPlaylistState>(
       'emits LoadedNewPlaylistState when AddNewPlaylistEvent is added',
       build: () {
-        when(() => repository.returnMyMusicFolderList())
-            .thenAnswer((_) async => [folder1]);
-        when(() => repository.convertToFavoriteFolder(addFolder.title))
-            .thenAnswer((_) => addFolder);
-        when(() => repository.addToFolders(addFolder))
-            .thenAnswer((_) async => Future<void>);
+        when(() => repository.addToFolders(addFolder.title))
+            .thenAnswer((_) async => [addFolder]);
         return bloc;
       },
       act: (bloc) => bloc.add(AddNewPlaylistEvent(addFolder.title)),
@@ -81,15 +73,12 @@ void main() {
         isA<LoadedNewPlaylistState>().having(
           (state) => state.folders,
           'folders',
-          [folder1, addFolder], // Adjust this part with your expected folders
+          [addFolder], // Adjust this part with your expected folders
         ),
       ],
       verify: (_) {
-        // Verify that loadFromDatabase was called
-        verify(() => repository.returnMyMusicFolderList()).called(1);
-        verify(() => repository.addToFolders(addFolder)).called(1);
-        verify(() => repository.convertToFavoriteFolder(addFolder.title))
-            .called(1);
+        // Verify that addToFolders was called
+        verify(() => repository.addToFolders(addFolder.title)).called(1);
       },
     );
   });

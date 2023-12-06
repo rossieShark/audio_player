@@ -11,6 +11,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 void main() {
+  setUpAll(() {
+    // Registering a fallback value for createTestDetailSong.
+    registerFallbackValue(createTestDetailSong());
+  });
+
   final audioDatabase = AudioDatabaseMock();
   final audioPlayerServiceMock = AudioPlayerServiceMock();
   final songDetailRepository =
@@ -27,8 +32,9 @@ void main() {
 
       // Assert
       expect(result, isNotNull);
-
       expect(result!.type, 'track');
+
+      // Verify that audioPlayerServiceMock.getDetailSongs was never called.
       verifyNever(() => audioPlayerServiceMock.getDetailSongs('1'));
     });
 
@@ -44,6 +50,8 @@ void main() {
       // Mock the API service to return the response
       when(() => audioPlayerServiceMock.getDetailSongs('2'))
           .thenAnswer((_) => Future.value(response));
+      when(() => audioDatabase.insertDetailSong(any()))
+          .thenAnswer((_) => Future.value());
 
       // Act
       final result = await songDetailRepository.getDetailSongInfo('2');
@@ -53,15 +61,15 @@ void main() {
       expect(result, isNotNull);
       expect(result!.type, 'track');
 
-      // Verify that the API service was called once with the correct parameter
+      // Verify that the API service and database methods were called with the correct parameters
       verify(() => audioPlayerServiceMock.getDetailSongs('2')).called(1);
-
-      // Verify that the database's insertDetailSong method was called once with the correct arguments
-      //  verify(() => audioDatabase.insertDetailSong(any())).called(1);
+      verify(() => audioDatabase.insertDetailSong(any())).called(1);
     });
+
     test('getDetailAlbums should return null from the API', () async {
       // Arrange
       final response = createTestErrorResponse();
+
       // Mock the scenario where the data is not found in the local database
       when(() => audioDatabase.watchDetailSongById(2))
           .thenAnswer((_) => Stream.value(null));
@@ -69,6 +77,8 @@ void main() {
       // Mock the API service to return a non-successful response (e.g., status code 404)
       when(() => audioPlayerServiceMock.getDetailSongs('2'))
           .thenAnswer((_) => Future.value(response));
+      when(() => audioDatabase.insertDetailSong(any()))
+          .thenAnswer((_) => Future.value());
 
       // Act
       final result = await songDetailRepository.getDetailSongInfo('2');
@@ -79,17 +89,14 @@ void main() {
 
       // Verify that the API service was called once with the correct parameter
       verify(() => audioPlayerServiceMock.getDetailSongs('2')).called(1);
+
+      // Verify that audioDatabase.insertDetailSong was never called in this case.
+      verifyNever(() => audioDatabase.insertDetailSong(any()));
     });
   });
 }
 
-class AudioDatabaseMock extends Mock implements AudioAppDatabase {
-  @override
-  Future<void> insertDetailSong(DetailInfoSong detailInfoSong) async {
-    // Return a completed future with a value to simulate a successful operation
-    return Future<void>.value();
-  }
-}
+class AudioDatabaseMock extends Mock implements AudioAppDatabase {}
 
 class AudioPlayerServiceMock extends Mock implements AudioPlayerService {}
 

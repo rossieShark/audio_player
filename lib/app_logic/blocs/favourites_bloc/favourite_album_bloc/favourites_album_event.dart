@@ -34,14 +34,6 @@ class SortAlbumsEvent extends FavoriteAlbumEvent {
   List<Object> get props => [];
 }
 
-class IsFavouriteAlbumEvent extends FavoriteAlbumEvent {
-  final String albumId;
-  const IsFavouriteAlbumEvent({required this.albumId});
-
-  @override
-  List<Object> get props => [albumId];
-}
-
 class ToggleIsFavouriteAlbum extends FavoriteAlbumEvent {
   final SongModel album;
   const ToggleIsFavouriteAlbum({

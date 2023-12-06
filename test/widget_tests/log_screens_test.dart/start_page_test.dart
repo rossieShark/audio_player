@@ -37,7 +37,6 @@ void main() {
     expect(find.text(' Sign Up'), findsOneWidget);
     verify(() => mockGoRouter.go(routeNameMap[RouteName.sigIn]!)).called(1);
     verifyNever(() => mockGoRouter.go(routeNameMap[RouteName.signUp]!));
-    // You can add more test scenarios and assertions as needed.
 
     await tester.tap(find.text(' Sign Up'));
     //  await tester.tap(find.text(' Sign Up'));

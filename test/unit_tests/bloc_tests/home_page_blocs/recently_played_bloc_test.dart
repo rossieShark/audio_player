@@ -10,7 +10,7 @@ class MockRecentlyPlayedRepository extends Mock
     implements RecentlyPlayedRepository {}
 
 void main() {
-  group('FavoriteArtistBloc', () {
+  group('RecentlyPlayedBloc', () {
     late RecentlyPlayedBloc recentlyPlayedBloc;
     late MockRecentlyPlayedRepository repository;
 
@@ -20,7 +20,7 @@ void main() {
     });
 
     blocTest<RecentlyPlayedBloc, RecentlyPlayedState>(
-      'emits RecentlyPlayedBloc when FetchRecentlyPlayedEvent is added',
+      'emits LoadedRecentlyPlayedState when FetchRecentlyPlayedEvent is added',
       build: () {
         // Mock the scenario where getTracksFromDb returns non-empty data
         when(() => repository.getTracks()).thenAnswer((_) async => [
@@ -54,7 +54,7 @@ void main() {
     );
 
     blocTest<RecentlyPlayedBloc, RecentlyPlayedState>(
-      'emits RecentlyPlayedBloc when FetchRecentlyPlayedEvent is added with empty tracks',
+      'emits LoadingRecentlyPlayedState when FetchRecentlyPlayedEvent is added with empty tracks',
       build: () {
         // Mock the scenario where getTracksFromDb returns an empty list
         when(() => repository.getTracks()).thenAnswer((_) async => []);
@@ -68,7 +68,7 @@ void main() {
     );
 
     blocTest<RecentlyPlayedBloc, RecentlyPlayedState>(
-      'emits RecentlyPlayedBloc when FetchRecentlyPlayedEvent throws an exception',
+      'emits ErrorRecentlyPlayedState when FetchRecentlyPlayedEvent throws an exception',
       build: () {
         when(() => repository.getTracks()).thenThrow(Exception());
         return recentlyPlayedBloc;

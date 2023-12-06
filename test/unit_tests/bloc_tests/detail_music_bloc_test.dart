@@ -19,22 +19,29 @@ void main() {
     });
 
     blocTest<DetailMusicPageBloc, DetailMusicPageState>(
-      'emits AlbumDetailBlocState when FetchAlbumDetailBlocEvent is added',
-      build: () {
-        when(() => repository.getDetailSongInfo(any())).thenAnswer((_) async =>
-            const DetailInfoSong(
-                artistNames: 'name',
-                id: 1,
-                imageUrl: 'image',
-                preview: 'preview',
-                title: 'title',
-                type: 'type'));
-        return detailMusicPageBloc;
-      },
-      act: (bloc) => bloc.add(FetchSongDetailEvent('1')),
-      expect: () => [
-        isA<DetailMusicPageState>(),
-      ],
-    );
+        'emits AlbumDetailBlocState when FetchAlbumDetailBlocEvent is added',
+        build: () {
+          when(() => repository.getDetailSongInfo(any())).thenAnswer(
+              (_) async => const DetailInfoSong(
+                  artistNames: 'name',
+                  id: 1,
+                  imageUrl: 'image',
+                  preview: 'preview',
+                  title: 'title',
+                  type: 'type'));
+          return detailMusicPageBloc;
+        },
+        act: (bloc) => bloc.add(FetchSongDetailEvent('1')),
+        expect: () => [
+              isA<DetailMusicPageState>(),
+            ],
+        verify: (bloc) {
+          // Verify that the emitted state is of the correct type
+          expect(bloc.state, isA<DetailMusicPageState>());
+
+          final state = bloc.state;
+          expect(state.songDetail?.artistNames, 'name');
+          expect(state.songDetail?.id, 1);
+        });
   });
 }

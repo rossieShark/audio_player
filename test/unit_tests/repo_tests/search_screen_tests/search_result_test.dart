@@ -8,29 +8,28 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 void main() {
-  // final searchPaginationService =
-  //     SearchResultPaginationService(searchRepository);
-
   group('getSearchResults', () {
     late AudioPlayerServiceMock audioPlayerServiceMock;
     late SearchResultRepository searchRepository;
+
     setUp(() {
       audioPlayerServiceMock = AudioPlayerServiceMock();
       searchRepository = SearchResultRepository(audioPlayerServiceMock);
     });
+
     test('should return a list of AllSearchResult from API', () async {
       // Arrange
-
       final tracksResponse = createTestSearchResponse();
       final response = createTestResponse(tracksResponse);
 
       when(() => audioPlayerServiceMock.getSearchResult('Joji', 0, 1))
           .thenAnswer((_) => Future.value(response));
-      //act
+
+      // Act
       final result =
           await searchRepository.getSearchResult(0, 1, 'Joji', 'All');
-      print(result);
-      //assert
+
+      // Assert
       expect(result, isNotNull);
       expect(result.length, 1);
       expect(result[0].artist.name, 'Joji');
@@ -43,44 +42,20 @@ void main() {
           () => audioPlayerServiceMock.getSearchTrackResult('Joji', 0, 1));
     });
 
-    test('should return a list of AllSearchResult from API', () async {
+    test('should return a list of AllSearchResult for track from API',
+        () async {
       // Arrange
-
-      final tracksResponse = createTestSearchResponse();
-      final response = createTestResponse(tracksResponse);
-
-      when(() => audioPlayerServiceMock.getSearchResult('Joji', 0, 1))
-          .thenAnswer((_) => Future.value(response));
-      //act
-      final result =
-          await searchRepository.getSearchResult(0, 1, 'Joji', 'All');
-      print(result);
-      //assert
-      expect(result, isNotNull);
-      expect(result.length, 1);
-      expect(result[0].artist.name, 'Joji');
-
-      verify(() => audioPlayerServiceMock.getSearchResult('Joji', 0, 1))
-          .called(1);
-      verifyNever(
-          () => audioPlayerServiceMock.getSearchAlbumResult('Joji', 0, 1));
-      verifyNever(
-          () => audioPlayerServiceMock.getSearchTrackResult('Joji', 0, 1));
-    });
-
-    test('should return a list of AllSearchResult from API', () async {
-      // Arrange
-
       final tracksResponse = createTestSearchResponse();
       final response = createTestResponse(tracksResponse);
 
       when(() => audioPlayerServiceMock.getSearchTrackResult('Joji', 0, 1))
           .thenAnswer((_) => Future.value(response));
-      //act
+
+      // Act
       final result =
           await searchRepository.getSearchResult(0, 1, 'Joji', 'track');
-      print(result);
-      //assert
+
+      // Assert
       expect(result, isNotNull);
       expect(result.length, 1);
       expect(result[0].artist.name, 'Joji');
@@ -92,19 +67,20 @@ void main() {
       verifyNever(() => audioPlayerServiceMock.getSearchResult('Joji', 0, 1));
     });
 
-    test('should return a list of AllSearchResult from API', () async {
+    test('should return a list of AllSearchResult for album from API',
+        () async {
       // Arrange
-
       final tracksResponse = createTestAlbumsResponse();
       final response = createAlbumsResponse(tracksResponse);
 
       when(() => audioPlayerServiceMock.getSearchAlbumResult('Joji', 0, 1))
           .thenAnswer((_) => Future.value(response));
-      //act
+
+      // Act
       final result =
           await searchRepository.getSearchResult(0, 1, 'Joji', 'album');
-      print(result);
-      //assert
+
+      // Assert
       expect(result, isNotNull);
       expect(result.length, 1);
       expect(result[0].artist.name, 'Joji');
@@ -121,21 +97,20 @@ void main() {
     late AudioPlayerServiceMock audioPlayerServiceMock;
     late SearchResultRepository searchRepository;
     late SearchResultPaginationService searchPaginationService;
+
     setUp(() {
       audioPlayerServiceMock = AudioPlayerServiceMock();
       searchRepository = SearchResultRepository(audioPlayerServiceMock);
       searchPaginationService = SearchResultPaginationService(searchRepository);
     });
+
     test('should load more items', () async {
       // Arrange
       final tracksResponse = createTestSearchResponse();
       final response = createTestResponse(tracksResponse);
 
-      when(() => audioPlayerServiceMock.getSearchResult(
-            'Joji',
-            0,
-            10,
-          )).thenAnswer((_) => Future.value(response));
+      when(() => audioPlayerServiceMock.getSearchResult('Joji', 0, 10))
+          .thenAnswer((_) => Future.value(response));
 
       // Act
       await searchPaginationService.loadMoreItems('Joji', 'All');
@@ -151,10 +126,10 @@ void main() {
       // Arrange
       searchPaginationService.items.add(SearchData(
         title: 'Sanctuary',
-        artist: SearchDataArtist(image: "image", name: "Joji"),
+        artist: SearchDataArtist(image: 'image', name: 'Joji'),
         id: 1,
-        preview: "preview",
-        type: "type",
+        preview: 'preview',
+        type: 'type',
       ));
 
       // Act

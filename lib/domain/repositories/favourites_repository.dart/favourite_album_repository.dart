@@ -6,7 +6,7 @@ class FavouriteAlbumRepository {
 
   FavouriteAlbumRepository(this._database);
 
-  Future<void> addToFavoritesAlbum(SongModel detailSong) async {
+  Future<List<SongModel>> addToFavoritesAlbum(SongModel detailSong) async {
     await _database.insertFavoritAlbum(
       FavoriteAlbum(
         preview: detailSong.preview,
@@ -18,10 +18,18 @@ class FavouriteAlbumRepository {
         isFavourite: detailSong.isFavourite,
       ),
     );
+    return loadAlbums();
   }
 
-  Future<void> removeFromFavoritesAlbum(SongModel detailSong) async {
+  Future<List<SongModel>> removeFromFavoritesAlbum(SongModel detailSong) async {
     await _database.deleteFavoriteAlbum(int.parse(detailSong.id));
+    return loadAlbums();
+  }
+
+  Future<bool> isFavourite(String albumId) async {
+    final albums = await loadAlbums();
+    bool isFavorite = albums.any((album) => album.id == albumId);
+    return isFavorite;
   }
 
   Future<List<SongModel>> loadAlbums() async {

@@ -13,12 +13,14 @@ void main() {
     late AudioDatabaseMock audioDatabase;
     late AudioPlayerServiceMock audioPlayerServiceMock;
     late RecentlyPlayedRepository recentlyPlayedRepository;
+
     setUp(() {
       audioDatabase = AudioDatabaseMock();
       audioPlayerServiceMock = AudioPlayerServiceMock();
       recentlyPlayedRepository =
           RecentlyPlayedRepository(audioDatabase, audioPlayerServiceMock);
     });
+
     test('getTracks should return tracks from the database', () async {
       // Arrange
       when(() => audioDatabase.getallRecentlyPlayedSongs())
@@ -36,8 +38,8 @@ void main() {
 
     test('getTracks should return track from the API', () async {
       // Arrange
-      final songsListResponse = createTestResentlyPlayedResponse();
-      final response = createTestResponse(songsListResponse);
+      final recentlyPlayedResponse = createTestResentlyPlayedResponse();
+      final response = createTestResponse(recentlyPlayedResponse);
 
       when(() => audioDatabase.getallRecentlyPlayedSongs())
           .thenAnswer((_) => Future.value([]));
@@ -46,6 +48,7 @@ void main() {
           .thenAnswer((_) => Future.value(response));
       when(() => audioDatabase.addManySongs(createSongsFromDb()))
           .thenAnswer((_) => Future<void>.value());
+
       // Act
       final result = await recentlyPlayedRepository.getTracks();
 
@@ -56,12 +59,14 @@ void main() {
       verify(() => audioPlayerServiceMock.getRecentlyPlayedTracks()).called(1);
     });
 
-    test('getTracks should return emptyList', () async {
+    test('getTracks should return empty list when database and API fail',
+        () async {
       // Arrange
       when(() => audioDatabase.getallRecentlyPlayedSongs())
           .thenThrow(Exception('Test Error'));
       when(() => audioPlayerServiceMock.getRecentlyPlayedTracks())
           .thenThrow(Exception('Test Error'));
+
       // Act
       final result = await recentlyPlayedRepository.getTracks();
 

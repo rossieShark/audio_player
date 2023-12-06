@@ -24,8 +24,6 @@ void main() {
     expect(find.byType(IPadTabBar), findsOneWidget);
     expect(find.byType(Scaffold), findsOneWidget);
     expect(find.byType(NavigationRail), findsOneWidget);
-
-    // You can add more specific assertions here based on your widget's behavior.
   });
 }
 

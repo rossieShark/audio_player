@@ -23,7 +23,7 @@ void main() {
     });
 
     blocTest<AlbumBloc, AlbumBlocState>(
-        'emits AlbumState when FetchAlbumsEvent is added',
+        'emits LoadedAlbumBlocState when FetchAlbumsEvent is added',
         build: () {
           when(() => repository.getAlbums())
               .thenAnswer((_) async => createTestAlbums());
@@ -35,7 +35,7 @@ void main() {
             ]);
 
     blocTest<AlbumBloc, AlbumBlocState>(
-        'emits AlbumState when FetchAlbumsEvent is added',
+        'emits LoadingAlbumBlocState when FetchAlbumsEvent is added with empty result',
         build: () {
           when(() => repository.getAlbums()).thenAnswer((_) async => []);
           return albumBloc;
@@ -75,9 +75,6 @@ void main() {
     });
   });
 }
-
-// class MockBestAlbumsPaginationService extends Mock
-//     implements BestAlbumsPaginationService {}
 
 List<BestAlbum> createTestAlbums() {
   return const [
