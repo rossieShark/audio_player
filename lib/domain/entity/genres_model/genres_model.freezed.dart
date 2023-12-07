@@ -253,6 +253,7 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
   }
 }
 
+// ignore: duplicate_ignore
 /// @nodoc
 @JsonSerializable()
 class _$_Data implements _Data {

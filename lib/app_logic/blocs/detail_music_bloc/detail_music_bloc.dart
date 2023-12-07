@@ -5,13 +5,23 @@ class DetailMusicPageBloc
     extends Bloc<DetailMusicPageEvent, DetailMusicPageState> {
   final SongDetailRepository repository;
 
-  DetailMusicPageBloc(this.repository) : super(DetailMusicPageState(null)) {
+  DetailMusicPageBloc(this.repository)
+      : super(const DetailMusicPageState.loading()) {
     on<FetchSongDetailEvent>(_fetchSongDetail);
   }
 
   void _fetchSongDetail(
       FetchSongDetailEvent event, Emitter<DetailMusicPageState> emit) async {
-    final songDetail = await repository.getDetailSongInfo(event.id);
-    emit(DetailMusicPageState(songDetail));
+    try {
+      final songDetail = await repository.getDetailSongInfo(event.id);
+      if (songDetail == null) {
+        emit(const DetailMusicPageState.loading());
+        return;
+      } else {
+        emit(DetailMusicPageState.loaded(songDetail: songDetail));
+      }
+    } catch (error) {
+      emit(const DetailMusicPageState.error());
+    }
   }
 }

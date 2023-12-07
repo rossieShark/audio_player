@@ -50,7 +50,7 @@ class BestAlbumListBody extends StatelessWidget {
         shrinkWrap: true,
         crossAxisSpacing: 16,
         mainAxisSpacing: 8,
-        crossAxisCount: crossAxisCount,
+        crossAxisCount: crossAxisCount > 0 ? crossAxisCount : 1,
         scrollDirection: Axis.vertical,
         physics: const NeverScrollableScrollPhysics(),
         children: bestAlbumList!.asMap().entries.map((entry) {
@@ -80,12 +80,10 @@ class BestAlbumsContent extends StatelessWidget {
       required this.title});
   @override
   Widget build(BuildContext context) {
-    final maxWidth = MediaQuery.of(context).size.width;
-
     return GestureDetector(
       onTap: () {
         GoRouter.of(context).push(Uri(
-          path: '/${routeNameMap[RouteName.albumDetail]!}$id',
+          path: '/${Routes().albumDetail}$id',
           queryParameters: {'image': image, 'title': title, 'artist': artist},
         ).toString());
       },
@@ -99,7 +97,7 @@ class BestAlbumsContent extends StatelessWidget {
                 child: child);
           },
           child: Stack(children: [
-            _CreateBackgroundImage(maxWidth: maxWidth, image: image),
+            _CreateBackgroundImage(image: image),
             const _CreateHoveredContainer(),
             _CreateAlbumTitle(artist: artist, title: title),
           ]),
@@ -160,15 +158,14 @@ class _CreateAlbumTitle extends StatelessWidget {
 
 class _CreateBackgroundImage extends StatelessWidget {
   const _CreateBackgroundImage({
-    required this.maxWidth,
     required this.image,
   });
 
-  final double maxWidth;
   final String image;
 
   @override
   Widget build(BuildContext context) {
+    final maxWidth = MediaQuery.of(context).size.width;
     return ResponsiveBuilder(
       narrow: 220.0,
       medium: 350.0,
@@ -176,7 +173,7 @@ class _CreateBackgroundImage extends StatelessWidget {
       builder: (context, child, height) {
         return ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          child: SizedBox(height: height, width: maxWidth - 32, child: child),
+          child: SizedBox(height: height, width: maxWidth, child: child),
         );
       },
       child: Image.network(

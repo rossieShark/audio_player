@@ -61,10 +61,8 @@ class _CreateListView extends StatelessWidget {
                   return GestureDetector(
                     onTap: () {
                       String id = song.id;
-                      GoRouter.of(context).push(Uri(
-                              path:
-                                  '/${routeNameMap[RouteName.detailMusic]!}$id')
-                          .toString());
+                      GoRouter.of(context).push(
+                          Uri(path: '/${Routes().detailTrack}$id').toString());
                     },
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),

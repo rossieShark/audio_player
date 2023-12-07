@@ -17,14 +17,14 @@ class CreateSliderSection extends StatefulWidget {
 class _CreateSliderSectionState extends State<CreateSliderSection> {
   Duration duration = const Duration(seconds: 30);
   Duration position = Duration.zero;
-  StreamSubscription<Duration>? durationSubscription;
+  // StreamSubscription<Duration>? durationSubscription;
   StreamSubscription<Duration>? positionSubscription;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    durationSubscription?.cancel();
+    // durationSubscription?.cancel();
     positionSubscription?.cancel();
 
     final bloc = context.read<MusicBloc>();
@@ -39,7 +39,7 @@ class _CreateSliderSectionState extends State<CreateSliderSection> {
 
   @override
   void dispose() {
-    durationSubscription?.cancel();
+    // durationSubscription?.cancel();
     positionSubscription?.cancel();
     super.dispose();
   }

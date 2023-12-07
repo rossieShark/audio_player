@@ -8,8 +8,8 @@ import 'package:infinite_carousel/infinite_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class RecentlyPlayedList extends StatelessWidget {
-  const RecentlyPlayedList({
+class RecentlyPlayedWidget extends StatelessWidget {
+  const RecentlyPlayedWidget({
     super.key,
   });
 
@@ -25,8 +25,9 @@ class RecentlyPlayedList extends StatelessWidget {
           child: CustomFadingCircleIndicator(),
         ),
         loaded: (data) => PlatformBuilder(
-            web: ImageListView(chartItems: data.data),
-            other: ImageScroll(chartItems: data.data),
+            iOS: ImageScroll(chartItems: data.data),
+            android: ImageScroll(chartItems: data.data),
+            other: ImageListView(chartItems: data.data),
             builder: (context, child, widget) {
               return widget;
             }),
@@ -238,8 +239,8 @@ class _CreatePlayButton extends StatelessWidget {
   }
 
   void _onMobiePressed(BuildContext context) {
-    GoRouter.of(context).push(
-        Uri(path: '/${routeNameMap[RouteName.detailMusic]!}$id').toString());
+    GoRouter.of(context)
+        .push(Uri(path: '/${Routes().detailTrack}$id').toString());
   }
 }
 

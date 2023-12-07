@@ -7,20 +7,22 @@ class InactiveWebDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-        padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
-        child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 10,
-              ),
-              Column(children: [
-                _MusicControlSection(),
-                _SliderSection(),
-              ]),
-            ]));
+    return const Scaffold(
+      body: Padding(
+          padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+          child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Column(children: [
+                  _MusicControlSection(),
+                  _SliderSection(),
+                ]),
+              ])),
+    );
   }
 }
 

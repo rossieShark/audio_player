@@ -5,8 +5,8 @@ import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
-class FavoriteArtistList extends StatelessWidget {
-  const FavoriteArtistList({
+class FavoriteArtistWidget extends StatelessWidget {
+  const FavoriteArtistWidget({
     super.key,
   });
 
@@ -21,14 +21,14 @@ class FavoriteArtistList extends StatelessWidget {
         loading: (context) => const Center(
           child: CustomFadingCircleIndicator(),
         ),
-        loaded: (data) => CreateListView(favoriteArtistList: data.data),
+        loaded: (data) => FavouriteArtistBody(favoriteArtistList: data.data),
       );
     });
   }
 }
 
-class CreateListView extends StatefulWidget {
-  const CreateListView({
+class FavouriteArtistBody extends StatefulWidget {
+  const FavouriteArtistBody({
     super.key,
     required this.favoriteArtistList,
   });
@@ -36,10 +36,10 @@ class CreateListView extends StatefulWidget {
   final List<FavoriteArtist> favoriteArtistList;
 
   @override
-  State<CreateListView> createState() => _CreateListViewState();
+  State<FavouriteArtistBody> createState() => _FavouriteArtistBodyState();
 }
 
-class _CreateListViewState extends State<CreateListView> {
+class _FavouriteArtistBodyState extends State<FavouriteArtistBody> {
   final ScrollController _horizontalScroll = ScrollController();
 
   bool _canScrollBack = false;

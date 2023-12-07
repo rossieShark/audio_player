@@ -52,11 +52,12 @@ class _CreatePlayPauseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final maxHeigth = MediaQuery.of(context).size.height;
     return BlocBuilder<MusicBloc, MusicState>(builder: (context, state) {
       bool isSongPlay = state.playlist.any((song) => song.id == songs[0].id);
       return Container(
         color: Colors.transparent,
-        height: MediaQuery.of(context).size.height / 2 - 150,
+        height: (maxHeigth / 2 - 150) < 0 ? 100 : (maxHeigth / 2 - 150),
         child: Align(
           alignment: Alignment.bottomCenter,
           child: ResponsiveBuilder(

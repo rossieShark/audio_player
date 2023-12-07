@@ -1,116 +1,147 @@
-import 'dart:convert';
-
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/app_database/database.dart';
+import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/ui/widgets/screens/home_screen/home_screen_index.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:flutter_test/flutter_test.dart';
+
 import 'package:mocktail/mocktail.dart';
-import 'package:nock/nock.dart';
 
 import 'golden_image.dart';
 
+class MockFavoriteArtistBloc
+    extends MockBloc<FavoriteArtistEvent, FavoriteArtistBlocState>
+    implements FavoriteArtistBloc {}
+
 void main() {
-  group('FavoriteArtistList Widget Test', () {
-    final mockFavoriteArtistBloc = MockFavoriteArtistBloc();
+  setUp(() {});
 
-    testWidgets('Renders loading indicator when list is empty', (tester) async {
-      when(() => mockFavoriteArtistBloc.state)
-          .thenReturn(FavoriteArtistState([]));
+  group('FavoriteArtistList Widget Tests', () {
+    testWidgets('renders loading state', (WidgetTester tester) async {
+      // Create a mock of your FavoriteArtistBloc
+      final mockBloc = MockFavoriteArtistBloc();
 
+      // Stub the behavior of the bloc to emit Loading state
+      when(() => mockBloc.state).thenReturn(
+          const LoadingFavoriteArtistBlocState()); // Stub state instead of initialState
+
+      whenListen<FavoriteArtistBlocState>(
+        mockBloc,
+        Stream<FavoriteArtistBlocState>.fromIterable([
+          const LoadingFavoriteArtistBlocState(),
+        ]),
+      );
+
+      // Build our widget and trigger a frame.
       await tester.pumpWidget(
         MaterialApp(
           home: BlocProvider<FavoriteArtistBloc>(
-            create: (context) => mockFavoriteArtistBloc,
-            child: const FavoriteArtistList(),
+            create: (context) => mockBloc,
+            child: const FavoriteArtistWidget(),
           ),
         ),
       );
+      await tester.pump(Duration.zero);
 
+      // Verify that the Loading state is rendered
       expect(find.byType(CustomFadingCircleIndicator), findsOneWidget);
     });
 
-    testWidgets('Renders CreateListView when list is not empty',
-        (tester) async {
-      nock.init();
-      nock.cleanAll();
-      nock('https://run.mocky.io')
-          .get('/v3/image1.jpg')
-          .reply(200, base64Decode(imageURL));
-      const image = 'https://run.mocky.io/v3/image1.jpg';
-      // Mock the dependencies and initialize the widget
-      final favoriteArtistList = [
-        const FavoriteArtist(image: image, name: 'Artist 1', id: 1),
-        const FavoriteArtist(image: image, name: 'Artist 2', id: 2),
-      ];
+    testWidgets('renders error state', (WidgetTester tester) async {
+      // Create a mock of your FavoriteArtistBloc
+      final mockBloc = MockFavoriteArtistBloc();
 
-      final mockFavoriteArtistBloc = MockFavoriteArtistBloc();
+      // Stub the behavior of the bloc to emit Error state
+      when(() => mockBloc.state).thenReturn(
+          const ErrorFavoriteArtistBlocState()); // Stub state instead of initialState
 
-      when(() => mockFavoriteArtistBloc.state).thenReturn(
-        FavoriteArtistState(favoriteArtistList),
+      whenListen<FavoriteArtistBlocState>(
+        mockBloc,
+        Stream<FavoriteArtistBlocState>.fromIterable([
+          const ErrorFavoriteArtistBlocState(),
+        ]),
       );
+
+      // Build our widget and trigger a frame.
       await tester.pumpWidget(
         MaterialApp(
-          home: BlocProvider<FavoriteArtistBloc>.value(
-            value: mockFavoriteArtistBloc,
-            child: const FavoriteArtistList(),
+          home: BlocProvider<FavoriteArtistBloc>(
+            create: (context) => mockBloc,
+            child: makeTestableWidget(child: const FavoriteArtistWidget()),
           ),
         ),
       );
+      await tester.pump(Duration.zero);
 
-      expect(find.byType(CreateListView), findsOneWidget);
-    });
-  });
-
-  group('CreateListView Widget Test', () {
-    nock.init();
-    nock.cleanAll();
-    nock('https://run.mocky.io')
-        .get('/v3/image1.jpg')
-        .reply(200, base64Decode(imageURL));
-    const image = 'https://run.mocky.io/v3/image1.jpg';
-    // Mock the dependencies and initialize the widget
-    final favoriteArtistList = [
-      const FavoriteArtist(image: image, name: 'Artist 1', id: 1),
-      const FavoriteArtist(image: image, name: 'Artist 2', id: 2),
-    ];
-
-    final mockFavoriteArtistBloc = MockFavoriteArtistBloc();
-
-    when(() => mockFavoriteArtistBloc.state).thenReturn(
-      FavoriteArtistState(favoriteArtistList),
-    );
-
-    testWidgets('Renders favorite artists in a horizontal list',
-        (tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: CreateListView(favoriteArtistList: favoriteArtistList),
-        ),
-      );
-
-      // You can make assertions about the rendered widgets here
-      expect(find.byType(FavoriteListContent),
-          findsNWidgets(favoriteArtistList.length));
+      // Verify that the Error state is rendered
+      expect(find.byType(NoResultsWidget), findsOneWidget);
     });
 
-    testWidgets('Renders scroll buttons when list is scrollable',
-        (tester) async {
-      await tester.pumpWidget(
-        MaterialApp(
-          home: CreateListView(favoriteArtistList: favoriteArtistList),
-        ),
+    testWidgets('renders loaded state for wider widths',
+        (WidgetTester tester) async {
+      final image = returnTestImage();
+
+      // Create a mock of your FavoriteArtistBloc
+      final mockBloc = MockFavoriteArtistBloc();
+
+      // Stub the behavior of the bloc to emit Loaded state
+      when(() => mockBloc.state).thenReturn(LoadedFavoriteArtistBlocState(
+          data: _createTestList(image))); // Stub state instead of initialState
+
+      whenListen<FavoriteArtistBlocState>(
+        mockBloc,
+        Stream<FavoriteArtistBlocState>.fromIterable([
+          LoadedFavoriteArtistBlocState(data: _createTestList(image)),
+        ]),
       );
 
-      // You can make assertions about the rendered scroll buttons here
+      // Build our widget and trigger a frame.
+      await tester.pumpWidget(
+        MaterialApp(
+          home: BlocProvider<FavoriteArtistBloc>(
+            create: (context) => mockBloc,
+            child: makeTestableWidget(child: const FavoriteArtistWidget()),
+          ),
+        ),
+      );
+      await tester.pump(Duration.zero);
+
+      // Verify that the Loaded state is rendered
+      expect(find.byType(FavouriteArtistBody), findsOneWidget);
+      expect(find.byType(ListView), findsOneWidget);
+      expect(find.byType(Stack), findsOneWidget);
       expect(find.byType(CreateScrollButtons), findsOneWidget);
+      expect(find.byType(FavoriteListContent), findsWidgets);
     });
   });
 }
 
-class MockFavoriteArtistBloc
-    extends MockBloc<FavoriteArtistEvent, FavoriteArtistState>
-    implements FavoriteArtistBloc {}
+Widget makeTestableWidget({required Widget child}) {
+  return MediaQuery(
+    data: const MediaQueryData(),
+    child: MaterialApp(
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      locale: const Locale('en'),
+      home: child,
+    ),
+  );
+}
+
+List<FavoriteArtist> _createTestList(String image) {
+  return [
+    FavoriteArtist(id: 1, image: image, name: 'name'),
+    FavoriteArtist(
+      id: 2,
+      image: image,
+      name: 'name',
+    )
+  ];
+}

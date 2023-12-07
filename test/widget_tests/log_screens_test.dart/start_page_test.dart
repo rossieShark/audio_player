@@ -35,14 +35,14 @@ void main() {
     //  expect(find.byWidget(CustomButton()), 2);
     expect(find.text(" Sign In"), findsOneWidget);
     expect(find.text(' Sign Up'), findsOneWidget);
-    verify(() => mockGoRouter.go(routeNameMap[RouteName.sigIn]!)).called(1);
-    verifyNever(() => mockGoRouter.go(routeNameMap[RouteName.signUp]!));
+    verify(() => mockGoRouter.go(Routes().signIn)).called(1);
+    verifyNever(() => mockGoRouter.go(Routes().signUp));
 
     await tester.tap(find.text(' Sign Up'));
     //  await tester.tap(find.text(' Sign Up'));
     await tester.pumpAndSettle();
     expect(find.text(' Sign Up'), findsOneWidget);
-    verify(() => mockGoRouter.go(routeNameMap[RouteName.signUp]!)).called(1);
+    verify(() => mockGoRouter.go(Routes().signUp)).called(1);
   });
 }
 

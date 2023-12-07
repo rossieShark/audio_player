@@ -19,29 +19,47 @@ void main() {
     });
 
     blocTest<DetailMusicPageBloc, DetailMusicPageState>(
-        'emits AlbumDetailBlocState when FetchAlbumDetailBlocEvent is added',
-        build: () {
-          when(() => repository.getDetailSongInfo(any())).thenAnswer(
-              (_) async => const DetailInfoSong(
-                  artistNames: 'name',
-                  id: 1,
-                  imageUrl: 'image',
-                  preview: 'preview',
-                  title: 'title',
-                  type: 'type'));
-          return detailMusicPageBloc;
-        },
-        act: (bloc) => bloc.add(FetchSongDetailEvent('1')),
-        expect: () => [
-              isA<DetailMusicPageState>(),
-            ],
-        verify: (bloc) {
-          // Verify that the emitted state is of the correct type
-          expect(bloc.state, isA<DetailMusicPageState>());
+      'emits LoadedAlbumDetailBlocState when FetchAlbumDetailBlocEvent is added',
+      build: () {
+        when(() => repository.getDetailSongInfo(any())).thenAnswer((_) async =>
+            Future.value(const DetailInfoSong(
+                id: 1,
+                artistNames: 'name',
+                preview: 'preview',
+                title: 'title',
+                type: 'type',
+                imageUrl: 'image')));
 
-          final state = bloc.state;
-          expect(state.songDetail?.artistNames, 'name');
-          expect(state.songDetail?.id, 1);
-        });
+        return detailMusicPageBloc;
+      },
+      act: (bloc) => bloc.add(FetchSongDetailEvent('1')),
+      expect: () => [isA<LoadedDetailMusicPageState>()],
+    );
+
+    blocTest<DetailMusicPageBloc, DetailMusicPageState>(
+      'emits EmptyAlbumDetailBlocState when FetchAlbumDetailBlocEvent is added',
+      build: () {
+        when(() => repository.getDetailSongInfo('1'))
+            .thenAnswer((_) async => null);
+        return detailMusicPageBloc;
+      },
+      act: (bloc) => bloc.add(FetchSongDetailEvent('1')),
+      expect: () => [
+        isA<LoadingDetailMusicPageState>(),
+      ],
+    );
+    blocTest<DetailMusicPageBloc, DetailMusicPageState>(
+      'emits ErrorAlbumDetailBlocState when an error occurs',
+      build: () {
+        // Mock your repository or service to throw an error
+        when(() => repository.getDetailSongInfo('1'))
+            .thenThrow(Exception('Test Error'));
+        return detailMusicPageBloc;
+      },
+      act: (bloc) => bloc.add(FetchSongDetailEvent('1')),
+      expect: () => [
+        isA<ErrorDetailMusicPageState>(),
+      ],
+    );
   });
 }

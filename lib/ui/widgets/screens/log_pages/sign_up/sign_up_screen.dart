@@ -101,7 +101,7 @@ class _SignInPageState extends State<SignUpPage> {
           ),
           CreateRegisterWidget(
             text: AppLocalizations.of(context)!.alreadyHaveAnAccount,
-            onTap: () => context.go(routeNameMap[RouteName.sigIn]!),
+            onTap: () => context.go(Routes().signIn),
             buttonNext: AppLocalizations.of(context)!.signInButton,
           ),
           const SizedBox(

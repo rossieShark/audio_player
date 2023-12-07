@@ -39,7 +39,7 @@ class _SignMethodsWidget extends StatelessWidget {
           CustomButton(
               width: 140,
               onPressed: () {
-                context.go(routeNameMap[RouteName.sigIn]!);
+                context.go(Routes().signIn);
               },
               buttonText: AppLocalizations.of(context)!.signInButton),
           const SizedBox(
@@ -48,7 +48,7 @@ class _SignMethodsWidget extends StatelessWidget {
           CustomButton(
               width: 140,
               onPressed: () {
-                context.go(routeNameMap[RouteName.signUp]!);
+                context.go(Routes().signUp);
               },
               buttonText: AppLocalizations.of(context)!.signUpButton),
           const SizedBox(

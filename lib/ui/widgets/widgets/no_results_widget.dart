@@ -22,7 +22,7 @@ class NoResultsWidget extends StatelessWidget {
       },
       child: Center(
         child: Text(
-          AppLocalizations.of(context)!.noResultsText,
+          AppLocalizations.of(context)?.noResultsText ?? 'No results',
           style: TextStyle(color: AppColors.white.color, fontSize: 25),
         ),
       ),

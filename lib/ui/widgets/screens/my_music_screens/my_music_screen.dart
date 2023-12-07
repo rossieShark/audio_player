@@ -53,7 +53,7 @@ class _MyMusicPageState extends State<MyMusicPage> {
                   iconData: Icons.settings,
                   color: AppColors.accent.color,
                   onPressed: () {
-                    context.push('/${routeNameMap[RouteName.settings]!}');
+                    context.push('/${Routes().settings}');
                   }),
               builder: (context, child, widget) {
                 return widget;

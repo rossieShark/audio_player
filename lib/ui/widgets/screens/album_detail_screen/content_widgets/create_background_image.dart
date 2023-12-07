@@ -3,23 +3,22 @@ import 'package:flutter/material.dart';
 
 class CreateBackgroundImage extends StatelessWidget {
   final String imageUrl;
-  final double height;
 
   const CreateBackgroundImage({
     super.key,
     required this.imageUrl,
-    required this.height,
   });
 
   @override
   Widget build(BuildContext context) {
+    final imageHeight = MediaQuery.of(context).size.height / 2;
     return Stack(
       children: [
         Image.asset(
           AppImages.black,
           fit: BoxFit.fill,
           width: double.infinity,
-          height: height,
+          height: imageHeight,
         ),
         ShaderMask(
           shaderCallback: (Rect bounds) {
@@ -37,7 +36,7 @@ class CreateBackgroundImage extends StatelessWidget {
             imageUrl,
             fit: BoxFit.cover,
             width: double.infinity,
-            height: height,
+            height: imageHeight,
           ),
         ),
       ],

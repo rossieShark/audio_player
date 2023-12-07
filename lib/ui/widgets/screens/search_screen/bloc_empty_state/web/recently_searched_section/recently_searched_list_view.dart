@@ -119,7 +119,7 @@ class RecentlySearchedListView extends StatelessWidget {
                 ? () {
                     String id = song.id;
                     GoRouter.of(context).push(Uri(
-                      path: '/${routeNameMap[RouteName.albumDetail]!}$id',
+                      path: '/${Routes().albumDetail}$id',
                       queryParameters: {
                         'image': song.image,
                         'title': song.title,

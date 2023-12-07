@@ -62,8 +62,8 @@ class SearchListView extends StatelessWidget {
     int id = searchSong.id;
     final bloc = context.read<RecentlySearchedBloc>();
     if ((searchSong.type == SearchFilters.track) && !isHovered) {
-      GoRouter.of(context).push(
-          Uri(path: '/${routeNameMap[RouteName.detailMusic]!}$id').toString());
+      GoRouter.of(context)
+          .push(Uri(path: '/${Routes().detailTrack}$id').toString());
 
       bloc.add(AddToRecentlySearchedEvent(
         SongModel(
@@ -78,7 +78,7 @@ class SearchListView extends StatelessWidget {
     } else {
       int id = searchSong.id;
       GoRouter.of(context).push(Uri(
-        path: '/${routeNameMap[RouteName.albumDetail]!}$id',
+        path: '/${Routes().albumDetail}$id',
         queryParameters: {
           'image': searchSong.artist.image,
           'title': searchSong.title,

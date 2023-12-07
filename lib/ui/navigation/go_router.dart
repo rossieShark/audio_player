@@ -28,7 +28,7 @@ final router = GoRouter(
             ),
         routes: [
           GoRoute(
-            path: routeNameMap[RouteName.home]!,
+            path: Routes().home,
             pageBuilder: (context, state) => CupertinoPage(
               key: state.pageKey,
               child: const HomePage().createWithMultiProviders([
@@ -46,14 +46,14 @@ final router = GoRouter(
             redirect: (BuildContext context, GoRouterState state) {
               final FirebaseAuth auth = FirebaseAuth.instance;
               if (auth.currentUser == null) {
-                return routeNameMap[RouteName.start]!;
+                return Routes().start;
               } else {
                 return null;
               }
             },
           ),
           GoRoute(
-            path: routeNameMap[RouteName.search]!,
+            path: Routes().search,
             pageBuilder: (context, state) => CupertinoPage(
               key: state.pageKey,
               child: const SearchPage().createWithMultiProviders([
@@ -67,7 +67,7 @@ final router = GoRouter(
             ),
           ),
           GoRoute(
-            path: routeNameMap[RouteName.myMusic]!,
+            path: Routes().myMusic,
             pageBuilder: (context, state) => CupertinoPage(
               key: state.pageKey,
               child: const MyMusicPage(),
@@ -76,7 +76,7 @@ final router = GoRouter(
         ]),
     GoRoute(
       parentNavigatorKey: _rootNavigatorKey,
-      path: '/${routeNameMap[RouteName.favoriteTracks]!}',
+      path: '/${Routes().tracks}',
       pageBuilder: (context, state) => CupertinoPage(
         key: state.pageKey,
         child: const MyFavoriteSongs().createWithMultiProviders([
@@ -88,7 +88,7 @@ final router = GoRouter(
     ),
     GoRoute(
       parentNavigatorKey: _rootNavigatorKey,
-      path: '/${routeNameMap[RouteName.favoriteAlbums]!}',
+      path: '/${Routes().albums}',
       pageBuilder: (context, state) => CupertinoPage(
         key: state.pageKey,
         child: const MyFavoriteAlbum(),
@@ -96,10 +96,10 @@ final router = GoRouter(
     ),
     GoRoute(
       parentNavigatorKey: _rootNavigatorKey,
-      path: '/${routeNameMap[RouteName.albumDetail]!}:id',
+      path: '/${Routes().albumDetail}:id',
       pageBuilder: (context, state) => CupertinoPage(
         key: state.pageKey,
-        child: AlbumDetailPage(
+        child: AlbumDetailWidget(
           param: state.pathParameters['id'] ?? '',
           image: state.uri.queryParameters['image'] ?? '',
           title: state.uri.queryParameters['title'] ?? '',
@@ -109,7 +109,7 @@ final router = GoRouter(
     ),
     GoRoute(
       parentNavigatorKey: _rootNavigatorKey,
-      path: '/${routeNameMap[RouteName.detailMusic]!}:id',
+      path: '/${Routes().detailTrack}:id',
       builder: (context, state) => Builder(
         builder: (innerContext) {
           final songId = state.pathParameters['id'] ?? '';
@@ -127,25 +127,25 @@ final router = GoRouter(
     ),
     GoRoute(
       parentNavigatorKey: _rootNavigatorKey,
-      path: '/${routeNameMap[RouteName.settings]!}',
+      path: '/${Routes().settings}',
       pageBuilder: (context, state) => CupertinoPage(
         key: state.pageKey,
         child: const Settings(),
       ),
     ),
     GoRoute(
-        path: routeNameMap[RouteName.start]!,
+        path: Routes().start,
         pageBuilder: (context, state) => const CupertinoPage(
               child: StartPage(),
             )),
     GoRoute(
-      path: routeNameMap[RouteName.sigIn]!,
+      path: Routes().signIn,
       pageBuilder: (context, state) => const CupertinoPage(
         child: SignInPage(),
       ),
     ),
     GoRoute(
-      path: routeNameMap[RouteName.signUp]!,
+      path: Routes().signUp,
       pageBuilder: (context, state) => const CupertinoPage(
         child: SignUpPage(),
       ),
@@ -153,127 +153,125 @@ final router = GoRouter(
   ],
 );
 
-final webRouter = GoRouter(
-    navigatorKey: _webNavKey,
-    initialLocation: routeNameMap[RouteName.home]!,
-    routes: [
-      ShellRoute(
-          navigatorKey: _webShellNavigatorKey,
-          builder: (context, state, widget) => TabBarContent(
-                key: state.pageKey,
-                child: widget,
-              ),
-          routes: [
-            GoRoute(
-                path: routeNameMap[RouteName.home]!,
-                pageBuilder: (context, state) => CupertinoPage(
-                      key: state.pageKey,
-                      child: const HomePage().createWithMultiProviders([
-                        BlocProvider<AlbumBloc>(
-                          create: (_) => GetIt.I.get(),
-                        ),
-                        BlocProvider<FavoriteArtistBloc>(
-                          create: (context) => GetIt.I.get(),
-                        ),
-                        BlocProvider<RecentlyPlayedBloc>(
-                          create: (context) => GetIt.I.get(),
-                        ),
-                      ]),
+final webRouter =
+    GoRouter(navigatorKey: _webNavKey, initialLocation: Routes().home, routes: [
+  ShellRoute(
+      navigatorKey: _webShellNavigatorKey,
+      builder: (context, state, widget) => TabBarContent(
+            key: state.pageKey,
+            child: widget,
+          ),
+      routes: [
+        GoRoute(
+            path: Routes().home,
+            pageBuilder: (context, state) => CupertinoPage(
+                  key: state.pageKey,
+                  child: const HomePage().createWithMultiProviders([
+                    BlocProvider<AlbumBloc>(
+                      create: (_) => GetIt.I.get(),
                     ),
-                redirect: (BuildContext context, GoRouterState state) {
-                  final FirebaseAuth auth = FirebaseAuth.instance;
-                  if (auth.currentUser == null) {
-                    return routeNameMap[RouteName.start]!;
-                  } else {
-                    return null;
-                  }
-                },
-                routes: [
-                  GoRoute(
-                    path: 'detail_music/:id',
-                    builder: (context, state) => Builder(
-                      builder: (innerContext) {
-                        final songId = state.pathParameters['id'] ?? '';
-                        return SlideUpTransition(
-                          child: MobileDetailMusicPage(
-                            param: songId,
-                          ).createWithMultiProviders(
-                            [
-                              BlocProvider<DetailMusicPageBloc>(
-                                create: (blocContext) => GetIt.I.get(),
-                              ),
-                            ],
+                    BlocProvider<FavoriteArtistBloc>(
+                      create: (context) => GetIt.I.get(),
+                    ),
+                    BlocProvider<RecentlyPlayedBloc>(
+                      create: (context) => GetIt.I.get(),
+                    ),
+                  ]),
+                ),
+            redirect: (BuildContext context, GoRouterState state) {
+              final FirebaseAuth auth = FirebaseAuth.instance;
+              if (auth.currentUser == null) {
+                return Routes().start;
+              } else {
+                return null;
+              }
+            },
+            routes: [
+              GoRoute(
+                path: 'detail_music/:id',
+                builder: (context, state) => Builder(
+                  builder: (innerContext) {
+                    final songId = state.pathParameters['id'] ?? '';
+                    return SlideUpTransition(
+                      child: MobileDetailMusicPage(
+                        param: songId,
+                      ).createWithMultiProviders(
+                        [
+                          BlocProvider<DetailMusicPageBloc>(
+                            create: (blocContext) => GetIt.I.get(),
                           ),
-                        );
-                      },
-                    ),
-                  ),
-                  GoRoute(
-                    path: '${routeNameMap[RouteName.albumDetail]!}:id',
-                    pageBuilder: (context, state) => CupertinoPage(
-                        key: state.pageKey,
-                        child: AlbumDetailPage(
-                          param: state.pathParameters['id'] ?? '',
-                          image: state.uri.queryParameters['image'] ?? '',
-                          title: state.uri.queryParameters['title'] ?? '',
-                          artist: state.uri.queryParameters['artist'] ?? '',
-                        )),
-                  ),
-                  GoRoute(
-                    path: routeNameMap[RouteName.favoriteTracks]!,
-                    pageBuilder: (context, state) =>
-                        const CupertinoPage(child: MyFavoriteSongs()),
-                  ),
-                  GoRoute(
-                    path: routeNameMap[RouteName.favoriteAlbums]!,
-                    pageBuilder: (context, state) => const CupertinoPage(
-                      child: MyFavoriteAlbum(),
-                    ),
-                  ),
-                ]),
-            GoRoute(
-              path: routeNameMap[RouteName.myMusic]!,
-              pageBuilder: (context, state) => CupertinoPage(
-                key: state.pageKey,
-                child: const MyMusicPage(),
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
-            ),
-            GoRoute(
-              path: routeNameMap[RouteName.search]!,
-              pageBuilder: (context, state) => CupertinoPage(
-                key: state.pageKey,
-                child: const SearchPage().createWithMultiProviders([
-                  BlocProvider<SearchResultBloc>(
-                    create: (context) => GetIt.I.get(),
-                  ),
-                  BlocProvider<GenresBloc>(
-                    create: (context) => GetIt.I.get(),
-                  ),
-                ]),
+              GoRoute(
+                path: '${Routes().albumDetail}:id',
+                pageBuilder: (context, state) => CupertinoPage(
+                    key: state.pageKey,
+                    child: AlbumDetailWidget(
+                      param: state.pathParameters['id'] ?? '',
+                      image: state.uri.queryParameters['image'] ?? '',
+                      title: state.uri.queryParameters['title'] ?? '',
+                      artist: state.uri.queryParameters['artist'] ?? '',
+                    )),
               ),
-            ),
-          ]),
-      GoRoute(
-        path: '/${routeNameMap[RouteName.settings]!}',
-        pageBuilder: (context, state) => const CupertinoPage(
-          child: Settings(),
+              GoRoute(
+                path: Routes().tracks,
+                pageBuilder: (context, state) =>
+                    const CupertinoPage(child: MyFavoriteSongs()),
+              ),
+              GoRoute(
+                path: Routes().albums,
+                pageBuilder: (context, state) => const CupertinoPage(
+                  child: MyFavoriteAlbum(),
+                ),
+              ),
+            ]),
+        GoRoute(
+          path: Routes().myMusic,
+          pageBuilder: (context, state) => CupertinoPage(
+            key: state.pageKey,
+            child: const MyMusicPage(),
+          ),
         ),
-      ),
-      GoRoute(
-          path: routeNameMap[RouteName.start]!,
-          pageBuilder: (context, state) => const CupertinoPage(
-                child: StartPage(),
-              )),
-      GoRoute(
-        path: routeNameMap[RouteName.sigIn]!,
-        pageBuilder: (context, state) => const CupertinoPage(
-          child: SignInPage(),
+        GoRoute(
+          path: Routes().search,
+          pageBuilder: (context, state) => CupertinoPage(
+            key: state.pageKey,
+            child: const SearchPage().createWithMultiProviders([
+              BlocProvider<SearchResultBloc>(
+                create: (context) => GetIt.I.get(),
+              ),
+              BlocProvider<GenresBloc>(
+                create: (context) => GetIt.I.get(),
+              ),
+            ]),
+          ),
         ),
-      ),
-      GoRoute(
-        path: routeNameMap[RouteName.signUp]!,
-        pageBuilder: (context, state) => const CupertinoPage(
-          child: SignUpPage(),
-        ),
-      ),
-    ]);
+      ]),
+  GoRoute(
+    path: '/${Routes().settings}',
+    pageBuilder: (context, state) => const CupertinoPage(
+      child: Settings(),
+    ),
+  ),
+  GoRoute(
+      path: Routes().start,
+      pageBuilder: (context, state) => const CupertinoPage(
+            child: StartPage(),
+          )),
+  GoRoute(
+    path: Routes().signIn,
+    pageBuilder: (context, state) => const CupertinoPage(
+      child: SignInPage(),
+    ),
+  ),
+  GoRoute(
+    path: Routes().signUp,
+    pageBuilder: (context, state) => const CupertinoPage(
+      child: SignUpPage(),
+    ),
+  ),
+]);

@@ -9,14 +9,14 @@ class NavigationUtils {
 
     switch (index) {
       case 0:
-        context.go(routeNameMap[RouteName.myMusic]!);
+        context.go(Routes().myMusic);
         break;
       case 1:
-        context.go(routeNameMap[RouteName.home]!);
+        context.go(Routes().home);
         break;
 
       case 2:
-        context.go(routeNameMap[RouteName.search]!);
+        context.go(Routes().search);
         break;
     }
   }
@@ -27,39 +27,51 @@ class NavigationUtils {
 
     switch (index) {
       case 0:
-        context.go(routeNameMap[RouteName.search]!);
+        context.go(Routes().search);
         break;
       case 1:
-        context.go(routeNameMap[RouteName.home]!);
+        context.go(Routes().home);
         break;
     }
   }
 }
 
-enum RouteName {
-  home,
-  myMusic,
-  search,
-  favoriteTracks,
-  favoriteAlbums,
-  detailMusic,
-  albumDetail,
-  settings,
-  sigIn,
-  signUp,
-  start,
-}
+// enum RouteName {
+//   home,
+//   myMusic,
+//   search,
+//   favoriteTracks,
+//   favoriteAlbums,
+//   detailMusic,
+//   albumDetail,
+//   settings,
+//   sigIn,
+//   signUp,
+//   start,
+// }
 
-Map<RouteName, String> routeNameMap = {
-  RouteName.home: '/',
-  RouteName.search: '/search',
-  RouteName.myMusic: '/my_music',
-  RouteName.favoriteTracks: 'tracks',
-  RouteName.favoriteAlbums: 'albums',
-  RouteName.detailMusic: 'detail_music/',
-  RouteName.albumDetail: 'album_detail/',
-  RouteName.settings: 'settings',
-  RouteName.sigIn: '/signin',
-  RouteName.signUp: '/signup',
-  RouteName.start: '/start',
-};
+class Routes {
+  final String _home = '/';
+  final String _search = '/search';
+  final String _myMusic = '/my_music';
+  final String _tracks = 'tracks';
+  final String _albums = 'albums';
+  final String _detailMusic = 'detail_music/';
+  final String _albumDetail = 'album_detail/';
+  final String _settings = 'settings';
+  final String _signin = '/signin';
+  final String _signup = '/signup';
+  final String _start = '/start';
+
+  String get home => _home;
+  String get search => _search;
+  String get myMusic => _myMusic;
+  String get tracks => _tracks;
+  String get albums => _albums;
+  String get detailTrack => _detailMusic;
+  String get albumDetail => _albumDetail;
+  String get settings => _settings;
+  String get signIn => _signin;
+  String get signUp => _signup;
+  String get start => _start;
+}

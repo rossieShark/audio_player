@@ -48,7 +48,7 @@ class FireBaseFunctions {
   Future<void> validSignWithGoogle(BuildContext context) async {
     bool success = await FireBaseFunctions().signInWithGoogle();
     if (success) {
-      return context.go(routeNameMap[RouteName.home]!);
+      return context.go(Routes().home);
     } else {
       await showDialog(
         context: context,
@@ -62,7 +62,7 @@ class FireBaseFunctions {
       BuildContext context, String email, String password) async {
     bool success = await FireBaseFunctions().register(email, password);
     if (success) {
-      return context.go(routeNameMap[RouteName.home]!);
+      return context.go(Routes().home);
     } else {
       showDialog(
         context: context,
@@ -76,7 +76,7 @@ class FireBaseFunctions {
       BuildContext context, String email, String password) async {
     bool success = await _signIn(email, password);
     if (success) {
-      return context.go(routeNameMap[RouteName.home]!);
+      return context.go(Routes().home);
     } else {
       showDialog(
         context: context,

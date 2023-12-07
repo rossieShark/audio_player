@@ -70,7 +70,7 @@ class _CreateFavouriteAlbumListView extends StatelessWidget {
 
   void _onTap(String id, String image, BuildContext context) {
     GoRouter.of(context).push(Uri(
-      path: '/${routeNameMap[RouteName.albumDetail]!}$id',
+      path: '/${Routes().albumDetail}$id',
       queryParameters: {'image': image},
     ).toString());
   }

@@ -2,6 +2,7 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/resources/resources.dart';
+import 'package:audio_player/ui/widgets/screens/album_detail_screen/content_widgets/no_data_widget.dart';
 import 'package:audio_player/ui/widgets/screens/detail_music_screen/detail_music_index.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
@@ -23,15 +24,15 @@ class _WebDetailMusicPageState extends State<WebDetailMusicPage> {
             width: MediaQuery.of(context).size.width,
             child: const InactiveWebDetailPage());
       } else {
-        return _WebDetailMusicPageContent(id: state!.currentSongId.toString());
+        return WebDetailMusicPageContent(id: state!.currentSongId.toString());
       }
     });
   }
 }
 
-class _WebDetailMusicPageContent extends StatelessWidget {
+class WebDetailMusicPageContent extends StatelessWidget {
   final String id;
-  const _WebDetailMusicPageContent({required this.id});
+  const WebDetailMusicPageContent({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -39,21 +40,16 @@ class _WebDetailMusicPageContent extends StatelessWidget {
       FetchSongDetailEvent(id),
     );
     return BlocBuilder<DetailMusicPageBloc, DetailMusicPageState>(
-      builder: (context, state) {
-        if (state.songDetail == null) {
-          return const Center(
-            child: CustomFadingCircleIndicator(),
-          );
-        } else {
-          final songInfo = state.songDetail;
-
-          return Scaffold(
-            backgroundColor: AppColors.background.color,
-            body: CreateMainWebContent(param: id, songInfo: songInfo),
-          );
-        }
-      },
-    );
+        builder: (context, state) {
+      return state.map(
+        error: (_) => const NoDataWidget(),
+        loading: (_) => const Center(
+          child: CustomFadingCircleIndicator(),
+        ),
+        loaded: (data) =>
+            CreateMainWebContent(param: id, songInfo: data.songDetail),
+      );
+    });
   }
 }
 
@@ -64,14 +60,18 @@ class CreateMainWebContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveWidget(
-      narrow: (context) =>
-          CreateNarrowContent(songInfo: songInfo, param: param),
-      medium: (context) =>
-          _CreateMediumContent(songInfo: songInfo, param: param),
-      mediumExtra: (context) =>
-          _CreateMediumExtraContent(songInfo: songInfo, param: param),
-      large: (context) => _CreateLargeContent(songInfo: songInfo, param: param),
+    return Scaffold(
+      backgroundColor: AppColors.background.color,
+      body: ResponsiveWidget(
+        narrow: (context) =>
+            CreateNarrowContent(songInfo: songInfo, param: param),
+        medium: (context) =>
+            CreateMediumContent(songInfo: songInfo, param: param),
+        mediumExtra: (context) =>
+            CreateMediumExtraContent(songInfo: songInfo, param: param),
+        large: (context) =>
+            CreateLargeContent(songInfo: songInfo, param: param),
+      ),
     );
   }
 }
@@ -88,19 +88,22 @@ class CreateNarrowContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      const SizedBox(
-        width: 20,
-      ),
-      MusicControlSection(songInfo: songInfo!),
-      CreateLikeandShuffleSection(param: param, songInfo: songInfo),
-      const SizedBox(width: 16)
-    ]);
+    return SizedBox(
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        const SizedBox(
+          width: 20,
+        ),
+        MusicControlSection(songInfo: songInfo!),
+        CreateLikeandShuffleSection(param: param, songInfo: songInfo),
+        const SizedBox(width: 16)
+      ]),
+    );
   }
 }
 
-class _CreateMediumContent extends StatelessWidget {
-  const _CreateMediumContent({
+class CreateMediumContent extends StatelessWidget {
+  const CreateMediumContent({
+    super.key,
     required this.songInfo,
     required this.param,
   });
@@ -120,8 +123,9 @@ class _CreateMediumContent extends StatelessWidget {
   }
 }
 
-class _CreateMediumExtraContent extends StatelessWidget {
-  const _CreateMediumExtraContent({
+class CreateMediumExtraContent extends StatelessWidget {
+  const CreateMediumExtraContent({
+    super.key,
     required this.songInfo,
     required this.param,
   });
@@ -152,8 +156,9 @@ class _CreateMediumExtraContent extends StatelessWidget {
   }
 }
 
-class _CreateLargeContent extends StatelessWidget {
-  const _CreateLargeContent({
+class CreateLargeContent extends StatelessWidget {
+  const CreateLargeContent({
+    super.key,
     required this.songInfo,
     required this.param,
   });

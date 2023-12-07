@@ -109,7 +109,7 @@ class _DeleteAccountSettingTile extends SettingsTile {
             builder: (context) => AppAlertDialog(
               onConfirm: () async {
                 await FireBaseFunctions().deleteAccount();
-                context.pushReplacement(routeNameMap[RouteName.start]!);
+                context.pushReplacement(Routes().start);
               },
               title: AppLocalizations.of(context)!.deleteAccount,
               subtitle: AppLocalizations.of(context)!.deleteAccountAlert,
@@ -129,7 +129,7 @@ class _SignOutSettingTile extends SettingsTile {
       : super.navigation(
           onPressed: (context) {
             FireBaseFunctions().signOut();
-            context.go(routeNameMap[RouteName.start]!);
+            context.go(Routes().start);
           },
           title: Center(
             child: Builder(builder: (context) {

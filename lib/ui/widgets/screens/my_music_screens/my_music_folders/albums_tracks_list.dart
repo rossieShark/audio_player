@@ -23,11 +23,9 @@ class AlbumTracksListView extends StatelessWidget {
             return GestureDetector(
               onTap: () {
                 if (index == 0) {
-                  GoRouter.of(context)
-                      .push('/${routeNameMap[RouteName.favoriteAlbums]!}');
+                  GoRouter.of(context).push('/${Routes().albums}');
                 } else {
-                  GoRouter.of(context)
-                      .push('/${routeNameMap[RouteName.favoriteTracks]!}');
+                  GoRouter.of(context).push('/${Routes().tracks}');
                 }
               },
               child: PlaylistCard(index: index, folders: folders),

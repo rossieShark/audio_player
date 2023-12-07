@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
           iconData: Icons.search,
           color: AppColors.accent.color,
           onPressed: () {
-            context.go(routeNameMap[RouteName.search]!);
+            context.go(Routes().search);
           },
         ),
         actions: [
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
               iconData: Icons.settings,
               color: AppColors.accent.color,
               onPressed: () {
-                context.push('/${routeNameMap[RouteName.settings]!}');
+                context.push('/${Routes().settings}');
               })
         ],
       ),
@@ -143,7 +143,7 @@ class _BuildRecentlyPlayedSection extends StatelessWidget {
           },
           child: const Padding(
               padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
-              child: RecentlyPlayedList()),
+              child: RecentlyPlayedWidget()),
         )
       ],
     );
@@ -169,7 +169,7 @@ class _BuildFavoriteArtistSection extends StatelessWidget {
             child: child,
           );
         },
-        child: const FavoriteArtistList(),
+        child: const FavoriteArtistWidget(),
       )
     ]);
   }

@@ -4,13 +4,13 @@ import 'package:audio_player/ui/widgets/screens/album_detail_screen/detail_album
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
-class AlbumDetailPage extends StatefulWidget {
+class AlbumDetailWidget extends StatefulWidget {
   final String param;
   final String image;
   final String title;
   final String artist;
 
-  const AlbumDetailPage(
+  const AlbumDetailWidget(
       {super.key,
       required this.param,
       required this.image,
@@ -18,10 +18,10 @@ class AlbumDetailPage extends StatefulWidget {
       required this.artist});
 
   @override
-  State<AlbumDetailPage> createState() => _AlbumDetailPageState();
+  State<AlbumDetailWidget> createState() => _AlbumDetailWidgetState();
 }
 
-class _AlbumDetailPageState extends State<AlbumDetailPage> {
+class _AlbumDetailWidgetState extends State<AlbumDetailWidget> {
   @override
   void initState() {
     super.initState();
@@ -29,7 +29,7 @@ class _AlbumDetailPageState extends State<AlbumDetailPage> {
   }
 
   @override
-  void didUpdateWidget(covariant AlbumDetailPage oldWidget) {
+  void didUpdateWidget(covariant AlbumDetailWidget oldWidget) {
     if (widget.param != oldWidget.param) {
       _fetchAlbumDetails();
     }
@@ -52,7 +52,7 @@ class _AlbumDetailPageState extends State<AlbumDetailPage> {
         ),
         empty: (_) => const NoDataWidget(),
         error: (_) => const NoDataWidget(),
-        loaded: (data) => _AlbumDetailScreenBody(
+        loaded: (data) => AlbumDetailScreenBody(
           songList: data.albumDetailList,
           widget: widget,
         ),
@@ -61,14 +61,15 @@ class _AlbumDetailPageState extends State<AlbumDetailPage> {
   }
 }
 
-class _AlbumDetailScreenBody extends StatelessWidget {
-  const _AlbumDetailScreenBody({
+class AlbumDetailScreenBody extends StatelessWidget {
+  const AlbumDetailScreenBody({
+    super.key,
     required this.songList,
     required this.widget,
   });
 
   final List<DetailAlbum> songList;
-  final AlbumDetailPage widget;
+  final AlbumDetailWidget widget;
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +80,6 @@ class _AlbumDetailScreenBody extends StatelessWidget {
       body: Stack(children: [
         CreateBackgroundImage(
           imageUrl: widget.image,
-          height: maxHeight / 2,
         ),
         CreatePlayButtonSection(
             param: widget.param,
