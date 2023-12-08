@@ -14,7 +14,7 @@ class NewFoldersBlocBuilder extends StatelessWidget {
         builder: (context, state) {
       return state.map(
         empty: (context) => const SizedBox(),
-        loaded: (folders) => _NewFolddersListView(
+        loaded: (folders) => NewFolddersListView(
           folders: folders.folders,
         ),
       );
@@ -22,9 +22,9 @@ class NewFoldersBlocBuilder extends StatelessWidget {
   }
 }
 
-class _NewFolddersListView extends StatelessWidget {
+class NewFolddersListView extends StatelessWidget {
   final List<FavoriteFolder> folders;
-  const _NewFolddersListView({
+  const NewFolddersListView({
     required this.folders,
   });
 

@@ -55,7 +55,7 @@ class _GenresListState extends State<_GenresList> {
           loading: (context) => const Center(
             child: CustomFadingCircleIndicator(),
           ),
-          loaded: (data) => _GenresGridView(
+          loaded: (data) => GenresGridView(
             genres: data.data,
           ),
         );
@@ -64,8 +64,9 @@ class _GenresListState extends State<_GenresList> {
   }
 }
 
-class _GenresGridView extends StatelessWidget {
-  const _GenresGridView({
+class GenresGridView extends StatelessWidget {
+  const GenresGridView({
+    super.key,
     required this.genres,
   });
 
@@ -75,29 +76,31 @@ class _GenresGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final crossAxisCount = width ~/ 260;
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: GridView.count(
-        padding: const EdgeInsets.all(20),
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
-        crossAxisCount: crossAxisCount,
-        scrollDirection: Axis.vertical,
-        children: genres.asMap().entries.map((entry) {
-          final index = entry.key;
-          return GestureDetector(
-            onTap: () {},
-            child: HoverableWidget(builder: (context, child, isHovered) {
-              return CreateGenresListContent(
-                name: genres[index].name,
-                image: genres[0].image,
-                isHovered: isHovered,
-              );
-            }),
-          );
-        }).toList(),
+    return SizedBox(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: GridView.count(
+          padding: const EdgeInsets.all(20),
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
+          crossAxisCount: crossAxisCount > 0 ? crossAxisCount : 3,
+          scrollDirection: Axis.vertical,
+          children: genres.asMap().entries.map((entry) {
+            final index = entry.key;
+            return GestureDetector(
+              onTap: () {},
+              child: HoverableWidget(builder: (context, child, isHovered) {
+                return CreateGenresListContent(
+                  name: genres[index].name,
+                  image: genres[0].image,
+                  isHovered: isHovered,
+                );
+              }),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

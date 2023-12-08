@@ -26,15 +26,15 @@ class MyFavoriteSongs extends StatelessWidget {
             loading: (context) =>
                 const Center(child: CustomFadingCircleIndicator()),
             noResults: (context) => const NoFavouritesTextWidget(),
-            loaded: (data) => _CreateFavouritesSongListView(songs: data.data));
+            loaded: (data) => CreateFavouritesSongListView(songs: data.data));
       }),
     );
   }
 }
 
-class _CreateFavouritesSongListView extends StatelessWidget {
+class CreateFavouritesSongListView extends StatelessWidget {
   final List<SongModel> songs;
-  const _CreateFavouritesSongListView({required this.songs});
+  const CreateFavouritesSongListView({required this.songs});
 
   @override
   Widget build(BuildContext context) {

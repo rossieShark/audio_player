@@ -20,13 +20,10 @@ class CreateSearchSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: ResponsiveWidget(
-        narrow: (context) => NarrowSearchSection(searchResult: searchResult),
-        other: (context) => WideSearchSection(
-            textFieldController: textFieldController,
-            searchResult: searchResult),
-      ),
+    return ResponsiveWidget(
+      narrow: (context) => NarrowSearchSection(searchResult: searchResult),
+      other: (context) => WideSearchSection(
+          textFieldController: textFieldController, searchResult: searchResult),
     );
   }
 }

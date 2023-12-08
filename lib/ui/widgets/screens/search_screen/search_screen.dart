@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/app_logic/blocs/filter_bloc.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:audio_player/ui/widgets/screens/index.dart';
 
 import 'package:audio_player/ui/widgets/screens/search_screen/search_export.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
@@ -88,14 +89,17 @@ class _SearchPageState extends State<SearchPage> {
                 ),
                 PlatformBuilder(
                     web: state.map(
-                        empty: (_) => const CreateBlocEmptyState(),
+                        empty: (_) => const SliverToBoxAdapter(
+                            child: CreateBlocEmptyState()),
                         loading: (_) => const SliverToBoxAdapter(
                             child: CustomFadingCircleIndicator()),
                         noResults: (_) => const NoResultsWidget(),
-                        loaded: (loadEvent) => CreateSearchSection(
-                              scrollController: _scrollController,
-                              searchResult: loadEvent.data,
-                              textFieldController: _textFieldController,
+                        loaded: (loadEvent) => SliverToBoxAdapter(
+                              child: CreateSearchSection(
+                                scrollController: _scrollController,
+                                searchResult: loadEvent.data,
+                                textFieldController: _textFieldController,
+                              ),
                             )),
                     other: state.map(
                         empty: (_) => const SliverToBoxAdapter(
@@ -103,7 +107,8 @@ class _SearchPageState extends State<SearchPage> {
                             ),
                         loading: (_) => const SliverToBoxAdapter(
                             child: CustomFadingCircleIndicator()),
-                        noResults: (_) => const NoResultsWidget(),
+                        noResults: (_) =>
+                            const SliverToBoxAdapter(child: NoResultsWidget()),
                         loaded: (loadEvent) => SliverToBoxAdapter(
                               child:
                                   SearchListView(searchResult: loadEvent.data),
@@ -141,7 +146,7 @@ class _SearchTextField extends StatelessWidget {
             ? ''
             : AppLocalizations.of(context)!.searchTextFieldHintText,
         focusNode: focusNode,
-        width: MediaQuery.of(context).size.width - 32,
+        width: MediaQuery.of(context).size.width,
         prefixIcon: const Icon(Icons.search, color: Colors.grey),
         textFieldColor: Colors.transparent,
         textColor: AppColors.white.color,

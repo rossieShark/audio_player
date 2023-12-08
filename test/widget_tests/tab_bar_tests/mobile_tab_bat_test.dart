@@ -12,12 +12,11 @@ import 'package:mocktail/mocktail.dart';
 void main() {
   testWidgets('MobileTabBar widget test', (WidgetTester tester) async {
     // Build the MobileTabBar widget.
-
     await tester.pumpWidget(
       makeTestableWidget(
         child: MobileTabBar(
-          tabIndex: 0, // Set the initial tab index for testing
-          child: Container(), // Replace with the child widget you want to test
+          tabIndex: 0,
+          child: Container(),
         ),
       ),
     );
@@ -65,10 +64,7 @@ class MockGoRouterProvider extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  /// The mock navigator used to mock navigation calls.
   final MockGoRouter goRouter;
-
-  /// The child [Widget] to render.
   final Widget child;
 
   @override

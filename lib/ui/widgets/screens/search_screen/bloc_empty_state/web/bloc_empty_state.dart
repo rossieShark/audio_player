@@ -22,20 +22,18 @@ class _CreateBlocEmptyStateState extends State<CreateBlocEmptyState> {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: BlocBuilder<RecentlySearchedBloc, RecentlySearchedState>(
-          builder: (context, state) {
-        return state.map(
-          loading: (context) =>
-              const Center(child: CustomFadingCircleIndicator()),
-          empty: (context) => const CreateGenresSection(),
-          loaded: (data) => const Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [CreateRecentlySearchedSection(), CreateGenresSection()],
-          ),
-        );
-      }),
-    );
+    return BlocBuilder<RecentlySearchedBloc, RecentlySearchedState>(
+        builder: (context, state) {
+      return state.map(
+        loading: (context) =>
+            const Center(child: CustomFadingCircleIndicator()),
+        empty: (context) => const CreateGenresSection(),
+        loaded: (data) => const Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [CreateRecentlySearchedSection(), CreateGenresSection()],
+        ),
+      );
+    });
   }
 }

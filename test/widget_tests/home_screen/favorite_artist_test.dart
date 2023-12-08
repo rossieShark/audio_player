@@ -1,16 +1,12 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/app_database/database.dart';
-import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/ui/widgets/screens/home_screen/home_screen_index.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:mocktail/mocktail.dart';
-
+import '../testable_widget_sample.dart';
 import 'golden_image.dart';
 
 class MockFavoriteArtistBloc
@@ -21,10 +17,13 @@ void main() {
   setUp(() {});
 
   group('FavoriteArtistList Widget Tests', () {
+    late MockFavoriteArtistBloc mockBloc;
+    late String image;
+    setUp(() {
+      mockBloc = MockFavoriteArtistBloc();
+      image = returnTestImage();
+    });
     testWidgets('renders loading state', (WidgetTester tester) async {
-      // Create a mock of your FavoriteArtistBloc
-      final mockBloc = MockFavoriteArtistBloc();
-
       // Stub the behavior of the bloc to emit Loading state
       when(() => mockBloc.state).thenReturn(
           const LoadingFavoriteArtistBlocState()); // Stub state instead of initialState
@@ -36,7 +35,7 @@ void main() {
         ]),
       );
 
-      // Build our widget and trigger a frame.
+      // Build widget and trigger a frame.
       await tester.pumpWidget(
         MaterialApp(
           home: BlocProvider<FavoriteArtistBloc>(
@@ -52,9 +51,6 @@ void main() {
     });
 
     testWidgets('renders error state', (WidgetTester tester) async {
-      // Create a mock of your FavoriteArtistBloc
-      final mockBloc = MockFavoriteArtistBloc();
-
       // Stub the behavior of the bloc to emit Error state
       when(() => mockBloc.state).thenReturn(
           const ErrorFavoriteArtistBlocState()); // Stub state instead of initialState
@@ -71,7 +67,8 @@ void main() {
         MaterialApp(
           home: BlocProvider<FavoriteArtistBloc>(
             create: (context) => mockBloc,
-            child: makeTestableWidget(child: const FavoriteArtistWidget()),
+            child: TestableWidget()
+                .makeTestableWidget(child: const FavoriteArtistWidget()),
           ),
         ),
       );
@@ -83,11 +80,6 @@ void main() {
 
     testWidgets('renders loaded state for wider widths',
         (WidgetTester tester) async {
-      final image = returnTestImage();
-
-      // Create a mock of your FavoriteArtistBloc
-      final mockBloc = MockFavoriteArtistBloc();
-
       // Stub the behavior of the bloc to emit Loaded state
       when(() => mockBloc.state).thenReturn(LoadedFavoriteArtistBlocState(
           data: _createTestList(image))); // Stub state instead of initialState
@@ -104,7 +96,8 @@ void main() {
         MaterialApp(
           home: BlocProvider<FavoriteArtistBloc>(
             create: (context) => mockBloc,
-            child: makeTestableWidget(child: const FavoriteArtistWidget()),
+            child: TestableWidget()
+                .makeTestableWidget(child: const FavoriteArtistWidget()),
           ),
         ),
       );
@@ -118,21 +111,6 @@ void main() {
       expect(find.byType(FavoriteListContent), findsWidgets);
     });
   });
-}
-
-Widget makeTestableWidget({required Widget child}) {
-  return MediaQuery(
-    data: const MediaQueryData(),
-    child: MaterialApp(
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      locale: const Locale('en'),
-      home: child,
-    ),
-  );
 }
 
 List<FavoriteArtist> _createTestList(String image) {

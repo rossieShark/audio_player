@@ -1,20 +1,19 @@
-import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
-
 import 'package:audio_player/ui/widgets/screens/log_pages/start_page/start_page.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
+
+import '../testable_widget_sample.dart';
 
 void main() {
   testWidgets('StartPage widgets and interactions',
       (WidgetTester tester) async {
     final mockGoRouter = MockGoRouter();
-    // Build the SignInPage widget.
-    await tester.pumpWidget(makeTestableWidget(
+    // Build the StartPage widget.
+    await tester.pumpWidget(TestableWidget().makeTestableWidget(
         child: MockGoRouterProvider(
             goRouter: mockGoRouter, child: const StartPage())));
 
@@ -26,39 +25,22 @@ void main() {
         findsOneWidget);
 
     // Simulate user interactions.
-
     await tester.tap(find.text(' Sign In'));
-    //  await tester.tap(find.text(' Sign Up'));
     await tester.pumpAndSettle();
 
-    // // Verify that the expected interactions have occurred.
-    //  expect(find.byWidget(CustomButton()), 2);
+    // Verify that the expected interactions have occurred.
     expect(find.text(" Sign In"), findsOneWidget);
     expect(find.text(' Sign Up'), findsOneWidget);
     verify(() => mockGoRouter.go(Routes().signIn)).called(1);
     verifyNever(() => mockGoRouter.go(Routes().signUp));
 
+    // Simulate user interactions.
     await tester.tap(find.text(' Sign Up'));
-    //  await tester.tap(find.text(' Sign Up'));
     await tester.pumpAndSettle();
+    // Verify that the expected interactions have occurred.
     expect(find.text(' Sign Up'), findsOneWidget);
     verify(() => mockGoRouter.go(Routes().signUp)).called(1);
   });
-}
-
-Widget makeTestableWidget({required Widget child}) {
-  return MediaQuery(
-    data: const MediaQueryData(),
-    child: MaterialApp(
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      locale: const Locale('en'),
-      home: child,
-    ),
-  );
 }
 
 class MockGoRouter extends Mock implements GoRouter {}

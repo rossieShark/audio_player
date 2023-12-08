@@ -3,34 +3,44 @@ import 'dart:convert';
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/ui/widgets/screens/home_screen/home_screen_index.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
+import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:nock/nock.dart';
 
 import '../home_screen/golden_image.dart';
+
+class MockMusicBloc extends MockBloc<MusicEvent, MusicState>
+    implements MusicBloc {}
 
 void main() {
   group('Basic Goldens', () {
     testGoldens('RecentlyPlayedPageContent widget medium', (tester) async {
+      final musicBloc = MockMusicBloc();
       await loadAppFonts();
-      nock.init();
-      nock.cleanAll();
-      nock('https://run.mocky.io')
-          .get('/v3/image1.jpg')
-          .reply(200, base64Decode(imageURL));
-      final mockMusicProvider = MockMusicProvider();
-      when(() => mockMusicProvider.isPlaying).thenAnswer((invocation) => false);
+      final image = returnTestImage();
+      when(() => musicBloc.state).thenReturn(MusicState(
+          playlist: [],
+          currentSongIndex: 0,
+          currentSongId: 0,
+          isPlaying: false));
       // Build the FavoriteListContent widget with the bestAlbumList.
       await tester.pumpWidgetBuilder(
-        ChangeNotifierProvider<MusicProvider>(
-          create: (context) => mockMusicProvider,
-          child: MaterialApp(
-            home: Scaffold(
-              backgroundColor: AppColors.background.color,
-              body: const RecentlyPlayedPageContent(
-                image: 'https://run.mocky.io/v3/image1.jpg',
+        MaterialApp(
+          home: Scaffold(
+            backgroundColor: AppColors.background.color,
+            body: MultiBlocProvider(
+              providers: [
+                // BlocProvider<RecentlyPlayedBloc>(
+                //   create: (context) => mockBloc,
+                // ),
+                BlocProvider<MusicBloc>(
+                  create: (context) => musicBloc,
+                )
+              ],
+              child: RecentlyPlayedPageContent(
+                image: image,
                 artistName: 'Fauve',
                 title: 'Kane',
                 preview: '',
@@ -48,9 +58,4 @@ void main() {
           tester, 'recentlyPlayedPageContent golden medium');
     });
   });
-}
-
-class MockMusicProvider extends Mock implements MusicProvider {
-  @override
-  bool get isPlaying;
 }

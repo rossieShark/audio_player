@@ -23,6 +23,9 @@ class _CreatePasswordTextFieldState extends State<CreatePasswordTextField> {
 
   @override
   Widget build(BuildContext context) {
+    final narrowWidth = MediaQuery.of(context).size.width - 70 > 0
+        ? MediaQuery.of(context).size.width - 70
+        : 70;
     return Center(
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,12 +35,12 @@ class _CreatePasswordTextFieldState extends State<CreatePasswordTextField> {
             Padding(
                 padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                 child: ResponsiveBuilder(
-                    narrow: MediaQuery.of(context).size.width - 70,
+                    narrow: narrowWidth,
                     medium: 400.0 - 40,
                     large: 400.0 - 40,
                     builder: (context, child, width) {
                       return CustomTextField(
-                          width: width,
+                          width: width.toDouble(),
                           obscureText: obscureText,
                           focusNode: widget.focusNode,
                           controller: widget.passwordController,

@@ -61,8 +61,8 @@ class _MyMusicPageState extends State<MyMusicPage> {
         ],
       ),
       body: PlatformBuilder(
-          web: const _WebMyMusicBody(),
-          other: const _MobileMyMusicBody(),
+          web: const WebMyMusicBody(),
+          other: const MobileMyMusicBody(),
           builder: (context, child, widget) {
             return widget;
           }),
@@ -70,8 +70,8 @@ class _MyMusicPageState extends State<MyMusicPage> {
   }
 }
 
-class _MobileMyMusicBody extends StatelessWidget {
-  const _MobileMyMusicBody();
+class MobileMyMusicBody extends StatelessWidget {
+  const MobileMyMusicBody();
 
   @override
   Widget build(BuildContext context) {
@@ -99,8 +99,8 @@ class _MobileMyMusicBody extends StatelessWidget {
   }
 }
 
-class _WebMyMusicBody extends StatelessWidget {
-  const _WebMyMusicBody();
+class WebMyMusicBody extends StatelessWidget {
+  const WebMyMusicBody();
 
   @override
   Widget build(BuildContext context) {

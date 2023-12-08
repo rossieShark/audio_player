@@ -2,7 +2,10 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/app_logic/blocs/filter_bloc.dart';
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/databases/language_storage/language_storage.dart';
+import 'package:audio_player/domain/repositories/favourites_repository.dart/favourite_album_repository.dart';
+import 'package:audio_player/domain/repositories/favourites_repository.dart/favourite_song_repository.dart';
 import 'package:audio_player/domain/repositories/index.dart';
+import 'package:audio_player/domain/repositories/new_playlist_repository/new_playlist_repository.dart';
 import 'package:audio_player/domain/repositories/recently_searched_repository/recently_searched_repository.dart';
 
 import 'package:audio_player/domain/services/services.dart';
@@ -54,6 +57,12 @@ class SetGetItDependencies {
 
     GetIt.instance.registerLazySingleton<SearchRepository>(
         () => SearchRepository(GetIt.instance.get()));
+    GetIt.instance.registerLazySingleton<FavouriteAlbumRepository>(
+        () => FavouriteAlbumRepository(GetIt.instance.get()));
+    GetIt.instance.registerLazySingleton<FavouriteSongRepository>(
+        () => FavouriteSongRepository(GetIt.instance.get()));
+    GetIt.instance.registerLazySingleton<NewPlaylistRepository>(
+        () => NewPlaylistRepository(GetIt.instance.get()));
   }
 
   void setupBlocDependencies() {

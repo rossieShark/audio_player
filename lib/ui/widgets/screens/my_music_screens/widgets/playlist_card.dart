@@ -9,10 +9,11 @@ class PlaylistCard extends StatelessWidget {
   final List<FavoriteFolder> folders;
   @override
   Widget build(BuildContext context) {
+    final maxWidth = MediaQuery.of(context).size.width;
     return HoverableWidget(builder: (context, child, isHovered) {
       return SizedBox(
         height: 60,
-        width: MediaQuery.of(context).size.width - 32,
+        width: maxWidth - 32 < 0 ? 32 : maxWidth - 32,
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Row(

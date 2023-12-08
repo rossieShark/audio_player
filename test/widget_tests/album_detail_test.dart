@@ -1,18 +1,14 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/app_database/database.dart';
-import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
-
 import 'package:audio_player/ui/widgets/screens/album_detail_screen/detail_album_index.dart';
 import 'package:audio_player/ui/widgets/widgets/fading_indicator.dart';
-
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
-
 import 'home_screen/golden_image.dart';
+import 'testable_widget_sample.dart';
 
 class MockAlbumDetailBloc
     extends MockBloc<AlbumDetailBlocEvent, AlbumDetailBlocState>
@@ -31,10 +27,21 @@ class MockFavouriteSongBloc
 
 void main() {
   group('FavoriteArtistList Widget Tests', () {
+    late MockAlbumDetailBloc mockBloc;
+    late String image;
+    late MockMusicBloc musicBloc;
+    late MockFavouriteAlbumBloc favouriteBloc;
+    late MockFavouriteSongBloc favouriteSongBloc;
+
+    setUp(() {
+      mockBloc = MockAlbumDetailBloc();
+      image = returnTestImage();
+      musicBloc = MockMusicBloc();
+      favouriteBloc = MockFavouriteAlbumBloc();
+      favouriteSongBloc = MockFavouriteSongBloc();
+    });
+
     testWidgets('renders loading state', (WidgetTester tester) async {
-      // Create a mock of your RecentlyPlayedBloc
-      final mockBloc = MockAlbumDetailBloc();
-      final image = returnTestImage();
       // Stub the behavior of the bloc to emit Loading state
       when(() => mockBloc.state).thenReturn(
           const LoadingAlbumDetailBlocState()); // Stub state instead of initialState
@@ -66,11 +73,8 @@ void main() {
       expect(find.byType(CustomFadingCircleIndicator), findsOneWidget);
     });
 
-    testWidgets('renders error state', (WidgetTester tester) async {
-      // Create a mock of your RecentlyPlayedBloc
-      final mockBloc = MockAlbumDetailBloc();
-      final image = returnTestImage();
-      // Stub the behavior of the bloc to emit Error state
+    testWidgets('renders empty state', (WidgetTester tester) async {
+      // Stub the behavior of the bloc to emit Empty state
       when(() => mockBloc.state).thenReturn(
           const EmptyAlbumDetailBlocState()); // Stub state instead of initialState
 
@@ -85,7 +89,7 @@ void main() {
         MaterialApp(
           home: BlocProvider<AlbumDetailBloc>(
             create: (context) => mockBloc,
-            child: makeTestableWidget(
+            child: TestableWidget().makeTestableWidget(
               child: AlbumDetailWidget(
                 param: '1',
                 image: image,
@@ -98,13 +102,11 @@ void main() {
       );
       await tester.pump(Duration.zero);
 
-      // Verify that the Error state is rendered
+      // Verify that the Empty state is rendered
       expect(find.byType(NoDataWidget), findsOneWidget);
     });
+
     testWidgets('renders error state', (WidgetTester tester) async {
-      // Create a mock of your RecentlyPlayedBloc
-      final mockBloc = MockAlbumDetailBloc();
-      final image = returnTestImage();
       // Stub the behavior of the bloc to emit Error state
       when(() => mockBloc.state).thenReturn(
           const ErrorAlbumDetailBlocState()); // Stub state instead of initialState
@@ -120,7 +122,7 @@ void main() {
         MaterialApp(
           home: BlocProvider<AlbumDetailBloc>(
             create: (context) => mockBloc,
-            child: makeTestableWidget(
+            child: TestableWidget().makeTestableWidget(
               child: AlbumDetailWidget(
                 param: '1',
                 image: image,
@@ -136,16 +138,10 @@ void main() {
       // Verify that the Error state is rendered
       expect(find.byType(NoDataWidget), findsOneWidget);
     });
+
     testWidgets(
       'renders loaded state for mobiles',
       (WidgetTester tester) async {
-        final image = returnTestImage();
-
-        // Create a mock of your RecentlyPlayedBloc
-        final mockBloc = MockAlbumDetailBloc();
-        final musicBloc = MockMusicBloc();
-        final favouriteBloc = MockFavouriteAlbumBloc();
-        final favouriteSongBloc = MockFavouriteSongBloc();
         // Stub the behavior of the bloc to emit Loaded state
         when(() => mockBloc.state).thenReturn(LoadedAlbumDetailBlocState(
             albumDetailList:
@@ -188,7 +184,7 @@ void main() {
                 create: (context) => favouriteSongBloc,
               )
             ],
-            child: makeTestableWidget(
+            child: TestableWidget().makeTestableWidget(
               child: AlbumDetailWidget(
                 param: '1',
                 image: image,
@@ -201,28 +197,11 @@ void main() {
 
         await tester.pump(Duration.zero);
 
-        // Print the platform again after pumping
-
         expect(find.byType(AlbumDetailScreenBody), findsOneWidget);
         expect(find.byType(NoDataWidget), findsNothing);
       },
     );
   });
-}
-
-Widget makeTestableWidget({required Widget child}) {
-  return MediaQuery(
-    data: const MediaQueryData(),
-    child: MaterialApp(
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      locale: const Locale('en'),
-      home: child,
-    ),
-  );
 }
 
 List<DetailAlbum> _createTestList() {

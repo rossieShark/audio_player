@@ -24,15 +24,15 @@ class MyFavoriteAlbum extends StatelessWidget {
             loading: (context) =>
                 const Center(child: CustomFadingCircleIndicator()),
             noResults: (context) => const NoFavouritesTextWidget(),
-            loaded: (data) => _CreateFavouriteAlbumListView(albums: data.data));
+            loaded: (data) => CreateFavouriteAlbumListView(albums: data.data));
       }),
     );
   }
 }
 
-class _CreateFavouriteAlbumListView extends StatelessWidget {
+class CreateFavouriteAlbumListView extends StatelessWidget {
   final List<SongModel> albums;
-  const _CreateFavouriteAlbumListView({
+  const CreateFavouriteAlbumListView({
     required this.albums,
   });
 

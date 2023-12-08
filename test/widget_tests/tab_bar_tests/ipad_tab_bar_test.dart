@@ -14,8 +14,8 @@ void main() {
     await tester.pumpWidget(
       makeTestableWidget(
         child: IPadTabBar(
-          tabIndex: 1, // Set the initial tab index as needed.
-          child: Container(), // Replace with your actual child widget.
+          tabIndex: 1,
+          child: Container(),
         ),
       ),
     );
@@ -36,10 +36,7 @@ class MockGoRouterProvider extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  /// The mock navigator used to mock navigation calls.
   final MockGoRouter goRouter;
-
-  /// The child [Widget] to render.
   final Widget child;
 
   @override

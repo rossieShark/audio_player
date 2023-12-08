@@ -42,7 +42,7 @@ class SearchListView extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                 child: CustomListViewContent(
-                  imageSection: _CreateImageSection(
+                  imageSection: CreateSearchImageSection(
                       searchSong: searchSong, listHeight: listHeigth),
                   titleSection: CreateSongTitle(
                     artistName: searchSong.artist.name,
@@ -101,8 +101,9 @@ class SearchListView extends StatelessWidget {
   }
 }
 
-class _CreateImageSection extends StatelessWidget {
-  const _CreateImageSection({
+class CreateSearchImageSection extends StatelessWidget {
+  const CreateSearchImageSection({
+    super.key,
     required this.listHeight,
     required this.searchSong,
   });
@@ -126,7 +127,7 @@ class _CreateImageSection extends StatelessWidget {
             right: 16,
             child: HoverableWidget(builder: (context, child, isHovered) {
               return (isHovered && searchSong.type == SearchFilters.track)
-                  ? _CreatePlayButton(
+                  ? CreateSearchPlayButton(
                       playerSong: searchSong,
                       listHeight: listHeight,
                     )
@@ -137,10 +138,11 @@ class _CreateImageSection extends StatelessWidget {
   }
 }
 
-class _CreatePlayButton extends StatelessWidget {
+class CreateSearchPlayButton extends StatelessWidget {
   final SearchData playerSong;
   final double listHeight;
-  const _CreatePlayButton({required this.playerSong, required this.listHeight});
+  const CreateSearchPlayButton(
+      {super.key, required this.playerSong, required this.listHeight});
 
   @override
   Widget build(BuildContext context) {

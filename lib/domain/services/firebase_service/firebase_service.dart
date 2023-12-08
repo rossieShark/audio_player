@@ -151,6 +151,7 @@ class FireBaseFunctions {
     } else {
       context.read<PasswordMissmatchCubit>().passwordMissmatchText(
           AppLocalizations.of(context)!.passwordMissmatch);
+      print("passwordMissmatch");
     }
   }
 

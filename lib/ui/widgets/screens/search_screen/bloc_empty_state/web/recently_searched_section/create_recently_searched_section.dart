@@ -9,7 +9,7 @@ class CreateRecentlySearchedSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 270,
+        height: 260,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

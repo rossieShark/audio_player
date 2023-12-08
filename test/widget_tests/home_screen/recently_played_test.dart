@@ -1,18 +1,17 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/app_database/database.dart';
-import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/ui/widgets/screens/home_screen/home_screen_index.dart';
 import 'package:audio_player/ui/widgets/widgets/responsive_widgets/platform_widget/extended_platform.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../testable_widget_sample.dart';
 import 'golden_image.dart';
 
 class MockRecentlyPlayedBloc
@@ -23,13 +22,17 @@ class MockMusicBloc extends MockBloc<MusicEvent, MusicState>
     implements MusicBloc {}
 
 void main() {
-  setUp(() {});
-
   group('FavoriteArtistList Widget Tests', () {
-    testWidgets('renders loading state', (WidgetTester tester) async {
-      // Create a mock of your RecentlyPlayedBloc
-      final mockBloc = MockRecentlyPlayedBloc();
+    late MockRecentlyPlayedBloc mockBloc;
+    late MockMusicBloc musicBloc;
+    late String image;
 
+    setUp(() {
+      mockBloc = MockRecentlyPlayedBloc();
+      musicBloc = MockMusicBloc();
+      image = returnTestImage();
+    });
+    testWidgets('renders loading state', (WidgetTester tester) async {
       // Stub the behavior of the bloc to emit Loading state
       when(() => mockBloc.state).thenReturn(
           const LoadingRecentlyPlayedState()); // Stub state instead of initialState
@@ -41,7 +44,7 @@ void main() {
         ]),
       );
 
-      // Build our widget and trigger a frame.
+      // Build widget and trigger a frame.
       await tester.pumpWidget(
         MaterialApp(
           home: BlocProvider<RecentlyPlayedBloc>(
@@ -57,9 +60,6 @@ void main() {
     });
 
     testWidgets('renders error state', (WidgetTester tester) async {
-      // Create a mock of your RecentlyPlayedBloc
-      final mockBloc = MockRecentlyPlayedBloc();
-
       // Stub the behavior of the bloc to emit Error state
       when(() => mockBloc.state).thenReturn(
           const ErrorRecentlyPlayedState()); // Stub state instead of initialState
@@ -76,7 +76,8 @@ void main() {
         MaterialApp(
           home: BlocProvider<RecentlyPlayedBloc>(
             create: (context) => mockBloc,
-            child: makeTestableWidget(child: const RecentlyPlayedWidget()),
+            child: TestableWidget()
+                .makeTestableWidget(child: const RecentlyPlayedWidget()),
           ),
         ),
       );
@@ -91,11 +92,6 @@ void main() {
       'renders loaded state for mobiles',
       (WidgetTester tester) async {
         debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
-        final image = returnTestImage();
-
-        // Create a mock of your RecentlyPlayedBloc
-        final mockBloc = MockRecentlyPlayedBloc();
-        final musicBloc = MockMusicBloc();
 
         // Stub the behavior of the bloc to emit Loaded state
         when(() => mockBloc.state).thenReturn(LoadedRecentlyPlayedState(
@@ -116,7 +112,7 @@ void main() {
 
         print(debugDefaultTargetPlatformOverride);
 
-        // Build our widget and trigger a frame.
+        // Build widget and trigger a frame.
         await tester.pumpWidget(
           MaterialApp(
             home: MultiBlocProvider(
@@ -128,29 +124,22 @@ void main() {
                   create: (context) => musicBloc,
                 )
               ],
-              child: makeTestableWidget(child: const RecentlyPlayedWidget()),
+              child: TestableWidget()
+                  .makeTestableWidget(child: const RecentlyPlayedWidget()),
             ),
           ),
         );
 
-        // Print the platform again after the pump
-        print(debugDefaultTargetPlatformOverride);
-
         await tester.pump(Duration.zero);
 
-        // Print the platform again after pumping
-        print(debugDefaultTargetPlatformOverride);
         expect(find.byType(ImageListView), findsOneWidget);
         expect(find.byType(ImageScroll), findsNothing);
         debugDefaultTargetPlatformOverride = null;
-        // Perform your expectations here
       },
     );
     testWidgets(
         'PlatformBuilder should render correct widget based on platform',
         (WidgetTester tester) async {
-      // Mock data for your test
-
       await tester.pumpWidget(
         MaterialApp(
           home: PlatformBuilder(
@@ -172,18 +161,12 @@ void main() {
         expect(find.byType(ImageScroll), findsOneWidget);
         expect(find.byType(ImageListView), findsNothing);
       } else {
-        // Assuming it's neither iOS nor Android (e.g., web or other platforms)
         expect(find.byType(ImageScroll), findsNothing);
         expect(find.byType(ImageListView), findsOneWidget);
       }
     });
 
     testWidgets('renders loaded state for web', (WidgetTester tester) async {
-      final image = returnTestImage();
-
-      // Create a mock of your RecentlyPlayedBloc
-      final mockBloc = MockRecentlyPlayedBloc();
-      final musicBloc = MockMusicBloc();
       // Stub the behavior of the bloc to emit Loaded state
       when(() => mockBloc.state).thenReturn(LoadedRecentlyPlayedState(
           data: _createTestList(image))); // Stub state instead of initialState
@@ -211,7 +194,8 @@ void main() {
                 create: (context) => musicBloc,
               )
             ],
-            child: makeTestableWidget(child: const RecentlyPlayedWidget()),
+            child: TestableWidget()
+                .makeTestableWidget(child: const RecentlyPlayedWidget()),
           ),
         ),
       );
@@ -219,26 +203,8 @@ void main() {
 
       expect(find.byType(ImageListView), findsOneWidget);
       expect(find.byType(ImageScroll), findsNothing);
-      // expect(find.byType(Stack), findsOneWidget);
-      // expect(find.byType(CreateScrollButtons), findsOneWidget);
-      // expect(find.byType(FavoriteListContent), findsWidgets);
     });
   });
-}
-
-Widget makeTestableWidget({required Widget child}) {
-  return MediaQuery(
-    data: const MediaQueryData(),
-    child: MaterialApp(
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      locale: const Locale('en'),
-      home: child,
-    ),
-  );
 }
 
 List<RecentlyPlayedSong> _createTestList(String image) {

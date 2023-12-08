@@ -1,19 +1,15 @@
 import 'dart:async';
-
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/app_database/database.dart';
-import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
-
 import 'package:audio_player/ui/widgets/screens/home_screen/home_screen_index.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
+import '../testable_widget_sample.dart';
 import 'golden_image.dart';
 
 class MockAlbumBloc extends MockBloc<AlbumEvent, AlbumBlocState>
@@ -23,10 +19,13 @@ void main() {
   setUp(() {});
 
   group('BestAlbumList Widget Tests', () {
+    late MockAlbumBloc mockAlbumBloc;
+    late String image;
+    setUp(() {
+      mockAlbumBloc = MockAlbumBloc();
+      image = returnTestImage();
+    });
     testWidgets('renders loading state', (WidgetTester tester) async {
-      // Create a mock of your AlbumBloc
-      final mockAlbumBloc = MockAlbumBloc();
-
       // Stub the behavior of the bloc to emit Loading state
       when(() => mockAlbumBloc.state).thenReturn(
           const LoadingAlbumBlocState()); // Stub state instead of initialState
@@ -54,9 +53,6 @@ void main() {
     });
 
     testWidgets('renders error state', (WidgetTester tester) async {
-      // Create a mock of your AlbumBloc
-      final mockAlbumBloc = MockAlbumBloc();
-
       // Stub the behavior of the bloc to emit Error state
       when(() => mockAlbumBloc.state).thenReturn(
           const ErrorAlbumBlocState()); // Stub state instead of initialState
@@ -73,7 +69,8 @@ void main() {
         MaterialApp(
           home: BlocProvider<AlbumBloc>(
             create: (context) => mockAlbumBloc,
-            child: makeTestableWidget(child: const BestAlbumList()),
+            child: TestableWidget()
+                .makeTestableWidget(child: const BestAlbumList()),
           ),
         ),
       );
@@ -85,10 +82,6 @@ void main() {
 
     testWidgets('renders loaded state for wider widths',
         (WidgetTester tester) async {
-      final image = returnTestImage();
-
-      final mockAlbumBloc = MockAlbumBloc();
-
       // Stub the behavior of the bloc to emit Loaded state
       when(() => mockAlbumBloc.state).thenReturn(LoadedAlbumBlocState(
           data: _createTestList(image))); // Stub state instead of initialState
@@ -105,7 +98,8 @@ void main() {
         MaterialApp(
           home: BlocProvider<AlbumBloc>(
             create: (context) => mockAlbumBloc,
-            child: makeTestableWidget(child: const BestAlbumList()),
+            child: TestableWidget()
+                .makeTestableWidget(child: const BestAlbumList()),
           ),
         ),
       );
@@ -118,10 +112,6 @@ void main() {
     });
     testWidgets('renders loaded state for narrow width',
         (WidgetTester tester) async {
-      final image = returnTestImage();
-
-      final mockAlbumBloc = MockAlbumBloc();
-
       // Stub the behavior of the bloc to emit Loaded state
       when(() => mockAlbumBloc.state).thenReturn(LoadedAlbumBlocState(
           data: _createTestList(image))); // Stub state instead of initialState
@@ -142,7 +132,8 @@ void main() {
         MaterialApp(
           home: BlocProvider<AlbumBloc>(
             create: (context) => mockAlbumBloc,
-            child: makeTestableWidget(child: const BestAlbumList()),
+            child: TestableWidget()
+                .makeTestableWidget(child: const BestAlbumList()),
           ),
         ),
       );
@@ -155,15 +146,14 @@ void main() {
     testWidgets('test gestureDectector tap', (WidgetTester tester) async {
       final image = returnTestImage();
 
-      final mockAlbumBloc = MockAlbumBloc();
       final mockGoRouter = MockGoRouter();
       final goRouterUrl = Uri(
         path: '/${Routes().albumDetail}1',
         queryParameters: {'image': image, 'title': 'Title', 'artist': 'Artist'},
       ).toString();
       // Stub the behavior of the bloc to emit Loaded state
-      when(() => mockAlbumBloc.state).thenReturn(LoadedAlbumBlocState(
-          data: _createTestList(image))); // Stub state instead of initialState
+      when(() => mockAlbumBloc.state)
+          .thenReturn(LoadedAlbumBlocState(data: _createTestList(image)));
       when(() => mockGoRouter.push(goRouterUrl))
           .thenAnswer((_) => Future<void>.value());
 
@@ -179,7 +169,7 @@ void main() {
         MaterialApp(
           home: BlocProvider<AlbumBloc>(
             create: (context) => mockAlbumBloc,
-            child: makeTestableWidget(
+            child: TestableWidget().makeTestableWidget(
                 child: MockGoRouterProvider(
                     goRouter: mockGoRouter, child: const BestAlbumList())),
           ),
@@ -188,29 +178,12 @@ void main() {
       await tester.pump(Duration.zero);
       // Act: Simulate a tap on the GestureDetector
       await tester.tap(find.byType(GestureDetector).first);
-
-      // Wait for animations to complete
       await tester.pump(Duration.zero);
 
       // Assert: Verify that the navigation occurred
       verify(() => mockGoRouter.push(goRouterUrl)).called(1);
     });
   });
-}
-
-Widget makeTestableWidget({required Widget child}) {
-  return MediaQuery(
-    data: const MediaQueryData(),
-    child: MaterialApp(
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      locale: const Locale('en'),
-      home: child,
-    ),
-  );
 }
 
 List<BestAlbum> _createTestList(String image) {

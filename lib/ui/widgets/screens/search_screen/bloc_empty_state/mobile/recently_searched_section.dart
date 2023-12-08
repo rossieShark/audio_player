@@ -25,7 +25,7 @@ class MobileRecentlySearchedSection extends StatelessWidget {
       Center(
         child: Container(
           height: 10,
-          width: MediaQuery.of(context).size.width - 32,
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               border: Border(
                   bottom: BorderSide(color: AppColors.accent.color, width: 1))),

@@ -12,7 +12,10 @@ import 'app_logic/blocs/bloc_exports.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await _initialiseMain();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  _initialiseMain();
 
   runApp(
     MultiBlocProvider(
@@ -40,14 +43,10 @@ void main() async {
   );
 }
 
-Future<void> _initialiseMain() async {
+void _initialiseMain() {
   SetGetItDependencies().setupDatabaseDependencies();
   SetGetItDependencies().setupProviderDependencies();
   SetGetItDependencies().setupRepoDependencies();
   SetGetItDependencies().setupBlocDependencies();
   SetGetItDependencies().setupServiceDependencies();
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 }
