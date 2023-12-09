@@ -1,5 +1,6 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/models.dart';
+import 'package:audio_player/ui/widgets/screens/index.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
@@ -63,13 +64,14 @@ class CreateImageSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HoverableWidget(builder: (context, child, isHovered) {
+      final radius = height / 2;
       return Stack(
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 0, 16, 0),
             child: ClipRRect(
-              borderRadius: song.type == 'album'
-                  ? BorderRadius.circular(height) / 2
+              borderRadius: song.type == SearchFilters.album
+                  ? BorderRadius.circular(radius)
                   : BorderRadius.circular(8),
               child: SizedBox(
                 width: height,
@@ -84,7 +86,7 @@ class CreateImageSection extends StatelessWidget {
               bottom: 0,
               right: 16,
               child: (isHovered && song.type == 'track')
-                  ? _CreatePlayMusicButton(playedSong: song)
+                  ? CreatePlayMusicFavButton(playedSong: song)
                   : Container())
         ],
       );
@@ -92,9 +94,10 @@ class CreateImageSection extends StatelessWidget {
   }
 }
 
-class _CreatePlayMusicButton extends StatelessWidget {
+class CreatePlayMusicFavButton extends StatelessWidget {
   final SongModel playedSong;
-  const _CreatePlayMusicButton({
+  const CreatePlayMusicFavButton({
+    super.key,
     required this.playedSong,
   });
 

@@ -71,7 +71,7 @@ class _MyMusicPageState extends State<MyMusicPage> {
 }
 
 class MobileMyMusicBody extends StatelessWidget {
-  const MobileMyMusicBody();
+  const MobileMyMusicBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +100,7 @@ class MobileMyMusicBody extends StatelessWidget {
 }
 
 class WebMyMusicBody extends StatelessWidget {
-  const WebMyMusicBody();
+  const WebMyMusicBody({super.key});
 
   @override
   Widget build(BuildContext context) {

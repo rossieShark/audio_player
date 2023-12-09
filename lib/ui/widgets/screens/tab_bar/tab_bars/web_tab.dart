@@ -22,12 +22,13 @@ class WebTabBarState extends State<WebTabBar>
     with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+    final maxHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: AppColors.black.color,
       body: Column(children: [
         SizedBox(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height - 100,
+          height: maxHeight - 100 > 0 ? maxHeight - 100 : 100,
           child: Row(
             children: [
               _NavigationRailWidget(widget: widget),

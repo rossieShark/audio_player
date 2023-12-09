@@ -7,8 +7,9 @@ class InactiveWebDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Padding(
+    return Scaffold(
+      backgroundColor: AppColors.background.color,
+      body: const Padding(
           padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
           child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,

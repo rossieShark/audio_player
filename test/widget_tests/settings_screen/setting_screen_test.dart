@@ -5,7 +5,6 @@ import 'package:audio_player/ui/widgets/screens/settings_page/settings_page.dart
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -118,7 +117,7 @@ void main() {
             body: TestableWidget().makeTestableWidget(
               child: BlocProvider<ImageBloc>(
                 create: (context) => bloc,
-                child: ChangeUserinfo(),
+                child: const ChangeUserinfo(),
               ),
             ),
           ),

@@ -24,7 +24,10 @@ class _WebDetailMusicPageState extends State<WebDetailMusicPage> {
             width: MediaQuery.of(context).size.width,
             child: const InactiveWebDetailPage());
       } else {
-        return WebDetailMusicPageContent(id: state!.currentSongId.toString());
+        BlocProvider.of<DetailMusicPageBloc>(context).add(
+          FetchSongDetailEvent(state!.currentSongId.toString()),
+        );
+        return WebDetailMusicPageContent(id: state.currentSongId.toString());
       }
     });
   }
@@ -36,9 +39,6 @@ class WebDetailMusicPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<DetailMusicPageBloc>(context).add(
-      FetchSongDetailEvent(id),
-    );
     return BlocBuilder<DetailMusicPageBloc, DetailMusicPageState>(
         builder: (context, state) {
       return state.map(

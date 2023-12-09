@@ -3,11 +3,13 @@ import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/widgets/screens/my_music_screens/my_music_folders/albums_tracks_list.dart';
 import 'package:audio_player/ui/widgets/screens/my_music_screens/my_music_screen.dart';
+import 'package:audio_player/ui/widgets/screens/my_music_screens/new_playlist/new_folder.dart';
 import 'package:audio_player/ui/widgets/screens/my_music_screens/new_playlist/new_playlist_list.dart';
 import 'package:audio_player/ui/widgets/screens/my_music_screens/widgets/playlist_card.dart';
 import 'package:audio_player/ui/widgets/widgets/custom_buttons/platform_response_button.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -64,6 +66,11 @@ void main() {
       expect(find.byType(AlbumTracksListView), findsOneWidget);
       expect(find.byType(NewFoldersBlocBuilder), findsOneWidget);
       expect(find.byType(PlaylistCard), findsNWidgets(2));
+
+      await tester.tap(find.byIcon(Icons.add));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(AddNewPlaylist), findsOneWidget);
     });
 
     testWidgets('MyMusicPage test with loaded NewPlaylist',

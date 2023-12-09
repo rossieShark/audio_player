@@ -33,6 +33,7 @@ class MyFavoriteAlbum extends StatelessWidget {
 class CreateFavouriteAlbumListView extends StatelessWidget {
   final List<SongModel> albums;
   const CreateFavouriteAlbumListView({
+    super.key,
     required this.albums,
   });
 

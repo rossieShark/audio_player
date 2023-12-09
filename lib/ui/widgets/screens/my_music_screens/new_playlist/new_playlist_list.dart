@@ -25,6 +25,7 @@ class NewFoldersBlocBuilder extends StatelessWidget {
 class NewFolddersListView extends StatelessWidget {
   final List<FavoriteFolder> folders;
   const NewFolddersListView({
+    super.key,
     required this.folders,
   });
 

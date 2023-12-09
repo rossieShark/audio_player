@@ -4,12 +4,14 @@ import 'package:audio_player/ui/navigation/navigation_routes.dart';
 import 'package:audio_player/ui/widgets/screens/my_music_screens/my_music_folders/my_favorite_album.dart';
 import 'package:audio_player/ui/widgets/screens/my_music_screens/my_music_folders/my_favorite_songs.dart';
 import 'package:audio_player/ui/widgets/screens/my_music_screens/my_music_folders/widgets/common_favourite_list_biew_body.dart';
+import 'package:audio_player/ui/widgets/screens/my_music_screens/my_music_folders/widgets/favorite_list_content.dart';
 import 'package:audio_player/ui/widgets/screens/my_music_screens/my_music_folders/widgets/screen_main_structure.dart';
 
 import 'package:audio_player/ui/widgets/widgets/fading_indicator.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
@@ -171,10 +173,12 @@ void main() {
   group('MyFavoriteSongs Widget Tests', () {
     late MockFavouriteSongBloc favouriteSongBloc;
     late String image;
+    late MockMusicBloc musicBloc;
 
     setUp(() {
       favouriteSongBloc = MockFavouriteSongBloc();
       image = returnTestImage();
+      musicBloc = MockMusicBloc();
     });
 
     testWidgets('MyFavoriteSongs loading state', (WidgetTester tester) async {
@@ -283,6 +287,128 @@ void main() {
       await tester.pump(Duration.zero);
       verify(() => mockGoRouter.push(goRouterUrl)).called(1);
     });
+
+    testWidgets('FavouriteListContent  test', (WidgetTester tester) async {
+      // Stub the behavior of the musicbloc
+      when(() => musicBloc.state).thenReturn(MusicState(
+          playlist: [],
+          currentSongIndex: 0,
+          currentSongId: 0,
+          isPlaying: false));
+      when(() => musicBloc.add(PlayPause(song: _createPlayedSong())))
+          .thenAnswer((invocation) {
+        MusicState(
+            playlist: [_createPlayedSong()],
+            currentSongIndex: 1,
+            currentSongId: 1,
+            isPlaying: true);
+      });
+
+      whenListen<MusicState>(
+        musicBloc,
+        Stream<MusicState>.fromIterable([
+          MusicState(
+              playlist: [_createPlayedSong()],
+              currentSongIndex: 1,
+              currentSongId: 1,
+              isPlaying: true)
+        ]),
+      );
+      // Build our widget and trigger a frame.
+      await tester.pumpWidget(
+        MaterialApp(
+          home: MultiBlocProvider(
+              providers: [
+                BlocProvider<FavoriteSongBloc>(
+                  create: (context) => favouriteSongBloc,
+                ),
+                BlocProvider<MusicBloc>(
+                  create: (context) => musicBloc,
+                ),
+              ],
+              child: Scaffold(
+                body: TestableWidget().makeTestableWidget(
+                    child: FavouriteListContent(
+                        song: _createFavouritesList(image, 'track').first)),
+              )),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      // Verify that the Loading state is rendered
+      expect(find.byType(CreateImageSection), findsOneWidget);
+      expect(find.byType(CreateSongTitle), findsOneWidget);
+      expect(find.byType(IconButtonWidget), findsOneWidget);
+
+      // Tap on CommonFavouriteListViewBody and verify if push is called
+      final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+      await gesture.addPointer(location: Offset.zero);
+      addTearDown(gesture.removePointer);
+      await tester.pump();
+
+      // Move the mouse over the CreateSearchImageSection
+      await gesture.moveTo(tester.getCenter(find.byType(CreateImageSection)));
+      await tester.pumpAndSettle();
+      expect(find.byType(CreatePlayMusicFavButton), findsOneWidget);
+
+      await tester.tap(find.byType(CreatePlayButton));
+      await tester.pump(Duration.zero);
+      expect(
+        musicBloc.state,
+        isA<MusicState>().having(
+          (state) => state.playlist.length,
+          'data count',
+          1,
+        ),
+      );
+    });
+    testWidgets('FavouriteListContent  test while song isPlaying',
+        (WidgetTester tester) async {
+      // Stub the behavior of the musicbloc
+      when(() => musicBloc.state).thenReturn(MusicState(
+          playlist: [_createPlayedSong()],
+          currentSongIndex: 1,
+          currentSongId: 1,
+          isPlaying: true));
+
+      // Build our widget and trigger a frame.
+      await tester.pumpWidget(
+        MaterialApp(
+          home: MultiBlocProvider(
+              providers: [
+                BlocProvider<FavoriteSongBloc>(
+                  create: (context) => favouriteSongBloc,
+                ),
+                BlocProvider<MusicBloc>(
+                  create: (context) => musicBloc,
+                ),
+              ],
+              child: Scaffold(
+                body: TestableWidget().makeTestableWidget(
+                    child: FavouriteListContent(
+                        song: _createFavouritesList(image, 'track').first)),
+              )),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      // Verify that the Loading state is rendered
+      expect(find.byType(CreateImageSection), findsOneWidget);
+      expect(find.byType(CreateSongTitle), findsOneWidget);
+      expect(find.byType(IconButtonWidget), findsOneWidget);
+
+      // Tap on CommonFavouriteListViewBody and verify if push is called
+      final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+      await gesture.addPointer(location: Offset.zero);
+      addTearDown(gesture.removePointer);
+      await tester.pump();
+
+      // Move the mouse over the CreateSearchImageSection
+      await gesture.moveTo(tester.getCenter(find.byType(CreateImageSection)));
+      await tester.pumpAndSettle();
+      expect(find.byType(CreatePlayMusicFavButton), findsOneWidget);
+      expect(find.byIcon(Icons.pause), findsOneWidget);
+    });
   });
 }
 
@@ -298,6 +424,10 @@ List<SongModel> _createFavouritesList(String image, String type) {
       isFavourite: false,
     )
   ];
+}
+
+PlayedSong _createPlayedSong() {
+  return PlayedSong(id: 1, preview: "preview");
 }
 
 class MockGoRouter extends Mock implements GoRouter {}

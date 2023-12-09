@@ -34,7 +34,7 @@ class MyFavoriteSongs extends StatelessWidget {
 
 class CreateFavouritesSongListView extends StatelessWidget {
   final List<SongModel> songs;
-  const CreateFavouritesSongListView({required this.songs});
+  const CreateFavouritesSongListView({super.key, required this.songs});
 
   @override
   Widget build(BuildContext context) {
