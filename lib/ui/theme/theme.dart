@@ -1,3 +1,4 @@
+import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +30,26 @@ class AppThemeData {
       ),
       indicatorColor: Colors.transparent,
       useIndicator: false,
+    );
+  }
+
+  TextTheme createTextTheme() {
+    return TextTheme(
+      titleLarge: TextStyle(
+          color: AppColors.white.color,
+          fontSize: 30,
+          fontFamily: FontFamily.lusitana,
+          fontWeight: FontWeight.w400),
+      titleMedium: TextStyle(
+          color: AppColors.white.color,
+          fontSize: 25,
+          fontFamily: FontFamily.lusitana,
+          fontWeight: FontWeight.w400),
+      titleSmall: TextStyle(
+          color: AppColors.white.color,
+          fontSize: 22,
+          fontFamily: FontFamily.lusitana,
+          fontWeight: FontWeight.w500),
     );
   }
 }

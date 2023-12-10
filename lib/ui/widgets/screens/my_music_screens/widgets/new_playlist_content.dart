@@ -26,7 +26,7 @@ class NewPlaylistContent extends StatelessWidget {
                     fontSize: 25,
                     fontWeight: FontWeight.w200),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               IconButton(

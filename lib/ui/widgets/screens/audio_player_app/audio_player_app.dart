@@ -72,23 +72,7 @@ class _AudioPlayerAppState extends State<AudioPlayerApp> {
               BlocProvider.of<LanguageBloc>(context).supportedLocales,
           theme: ThemeData(
               splashColor: Colors.transparent,
-              textTheme: TextTheme(
-                titleLarge: TextStyle(
-                    color: AppColors.white.color,
-                    fontSize: 30,
-                    fontFamily: FontFamily.lusitana,
-                    fontWeight: FontWeight.w400),
-                titleMedium: TextStyle(
-                    color: AppColors.white.color,
-                    fontSize: 25,
-                    fontFamily: FontFamily.lusitana,
-                    fontWeight: FontWeight.w400),
-                titleSmall: TextStyle(
-                    color: AppColors.white.color,
-                    fontSize: 22,
-                    fontFamily: FontFamily.lusitana,
-                    fontWeight: FontWeight.w500),
-              ),
+              textTheme: AppThemeData().createTextTheme(),
               navigationRailTheme: AppThemeData().createNavBarTheme(),
               bottomNavigationBarTheme:
                   AppThemeData().createBottomNavigationBarTheme(),
