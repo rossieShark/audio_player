@@ -44,7 +44,7 @@ class NewFolddersListView extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  context.go('/${Routes().playlist}');
+                  context.push('/${Routes().playlist}');
                 },
                 child: PlaylistCard(index: index, folders: folders),
               );

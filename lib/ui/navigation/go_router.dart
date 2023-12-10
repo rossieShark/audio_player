@@ -89,6 +89,12 @@ final router = GoRouter(
     ),
     GoRoute(
       parentNavigatorKey: _rootNavigatorKey,
+      path: '/${Routes().playlist}',
+      pageBuilder: (context, state) =>
+          CupertinoPage(key: state.pageKey, child: const NewPlaylistContent()),
+    ),
+    GoRoute(
+      parentNavigatorKey: _rootNavigatorKey,
       path: '/${Routes().albums}',
       pageBuilder: (context, state) => CupertinoPage(
         key: state.pageKey,

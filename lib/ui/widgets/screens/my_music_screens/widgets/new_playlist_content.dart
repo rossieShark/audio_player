@@ -3,6 +3,7 @@ import 'package:audio_player/resources/resources.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class NewPlaylistContent extends StatelessWidget {
   const NewPlaylistContent({super.key});
@@ -11,6 +12,28 @@ class NewPlaylistContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.background.color,
+        appBar: AppBar(
+          backgroundColor: AppColors.background.color,
+          leading: PlatformBuilder(
+              iOS: ResponsiveButton(
+                  iconData: Icons.arrow_back_ios,
+                  onPressed: () {
+                    GoRouter.of(context).pop();
+                  },
+                  color: AppColors.white.color),
+              other: ResponsiveButton(
+                  iconData: Icons.arrow_back,
+                  onPressed: () {
+                    GoRouter.of(context).pop();
+                  },
+                  color: AppColors.white.color),
+              builder: (context, child, data) {
+                return IconButtonWidget(
+                    iconData: data.iconData,
+                    color: data.color,
+                    onPressed: data.onPressed);
+              }),
+        ),
         body: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Column(
