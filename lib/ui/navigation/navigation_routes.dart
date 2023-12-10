@@ -62,6 +62,7 @@ class Routes {
   final String _signin = '/signin';
   final String _signup = '/signup';
   final String _start = '/start';
+  final String _playlist = 'playlist';
 
   String get home => _home;
   String get search => _search;
@@ -74,4 +75,5 @@ class Routes {
   String get signIn => _signin;
   String get signUp => _signup;
   String get start => _start;
+  String get playlist => _playlist;
 }

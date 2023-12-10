@@ -1,9 +1,11 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/models.dart';
+import 'package:audio_player/ui/navigation/navigation_routes.dart';
 import 'package:audio_player/ui/widgets/screens/my_music_screens/widgets/playlist_card.dart';
 
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class NewFoldersBlocBuilder extends StatelessWidget {
   const NewFoldersBlocBuilder({super.key});
@@ -41,7 +43,9 @@ class NewFolddersListView extends StatelessWidget {
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
               return GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  context.go('/${Routes().playlist}');
+                },
                 child: PlaylistCard(index: index, folders: folders),
               );
             }),

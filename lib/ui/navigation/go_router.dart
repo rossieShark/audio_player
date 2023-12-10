@@ -5,6 +5,7 @@ import 'package:audio_player/ui/widgets/screens/index.dart';
 import 'package:audio_player/ui/widgets/screens/log_pages/sign_in/sign_in_page.dart';
 import 'package:audio_player/ui/widgets/screens/log_pages/sign_up/sign_up_screen.dart';
 import 'package:audio_player/ui/widgets/screens/log_pages/start_page/start_page.dart';
+import 'package:audio_player/ui/widgets/screens/my_music_screens/widgets/new_playlist_content.dart';
 import 'package:audio_player/ui/widgets/screens/settings_page/settings_page.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -226,6 +227,12 @@ final webRouter =
                 path: Routes().albums,
                 pageBuilder: (context, state) => const CupertinoPage(
                   child: MyFavoriteAlbum(),
+                ),
+              ),
+              GoRoute(
+                path: Routes().playlist,
+                pageBuilder: (context, state) => const CupertinoPage(
+                  child: NewPlaylistContent(),
                 ),
               ),
             ]),
