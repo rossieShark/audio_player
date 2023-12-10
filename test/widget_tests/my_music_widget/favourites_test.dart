@@ -6,8 +6,6 @@ import 'package:audio_player/ui/widgets/screens/my_music_screens/my_music_folder
 import 'package:audio_player/ui/widgets/screens/my_music_screens/my_music_folders/widgets/common_favourite_list_biew_body.dart';
 import 'package:audio_player/ui/widgets/screens/my_music_screens/my_music_folders/widgets/favorite_list_content.dart';
 import 'package:audio_player/ui/widgets/screens/my_music_screens/my_music_folders/widgets/screen_main_structure.dart';
-
-import 'package:audio_player/ui/widgets/widgets/fading_indicator.dart';
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:firebase_core/firebase_core.dart';
