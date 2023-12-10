@@ -81,5 +81,6 @@
     "noResultsText": "Нет результатов",
   
     "forgotPassword": "Забыли пароль?",
-    "folderNameMessage": "Это имя уже занято"
+    "folderNameMessage": "Это имя уже занято",
+    "addNewSongs": "Добавить новые песни"
     }

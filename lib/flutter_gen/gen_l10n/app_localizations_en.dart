@@ -242,4 +242,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get folderNameMessage => 'Please enter a unique name';
+
+  @override
+  String get addNewSongs => 'Add new songs';
 }

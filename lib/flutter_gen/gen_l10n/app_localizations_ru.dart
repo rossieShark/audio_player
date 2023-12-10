@@ -126,7 +126,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get browseAll => 'Жанры';
 
   @override
-  String get allFilter => 'All';
+  String get allFilter => 'Все';
 
   @override
   String get trackFilter => 'track';
@@ -243,4 +243,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get folderNameMessage => 'Это имя уже занято';
+
+  @override
+  String get addNewSongs => 'Добавить новые песни';
 }

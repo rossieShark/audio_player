@@ -314,6 +314,10 @@
     "folderNameMessage": "Please enter a unique name",
     "@folderNameMessage": {
         "description": "Please enter a unique name Alert message"
-    }
+    },
 
+    "addNewSongs": "Add new songs",
+    "@addNewSongs": {
+        "description": "Add new songs text"
+    }
 }

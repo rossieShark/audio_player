@@ -538,6 +538,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter a unique name'**
   String get folderNameMessage;
+
+  /// Add new songs text
+  ///
+  /// In en, this message translates to:
+  /// **'Add new songs'**
+  String get addNewSongs;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -28,7 +28,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get tracksFolder => 'Spuren';
 
   @override
-  String get noMusicState => 'Пока нет ничего';
+  String get noMusicState => 'Es gibt noch nichts';
 
   @override
   String followers(int count) {
@@ -135,75 +135,75 @@ class AppLocalizationsDe extends AppLocalizations {
   String get artistFilter => 'artist';
 
   @override
-  String get changePassword => 'Изменить пароль';
+  String get changePassword => 'Kennwort ändern';
 
   @override
-  String get enterPassword => 'Пароль';
+  String get enterPassword => 'Passwort';
 
   @override
   String get enterEmail => 'Email';
 
   @override
-  String get confirmPassword => 'Подтвердите пароль';
+  String get confirmPassword => 'Bestätigen Sie das Passwort';
 
   @override
-  String get changebutton => 'Изменить';
+  String get changebutton => 'Ändern';
 
   @override
-  String get incorrectPasswordAlert => 'Неправильный пароль или email';
+  String get incorrectPasswordAlert => 'Falsches Passwort oder falsche E-Mail';
 
   @override
-  String get signInButton => 'Войти';
+  String get signInButton => 'Betreten';
 
   @override
-  String get signInMethods => 'Зайти с помощью';
+  String get signInMethods => 'Melden Sie sich an mit';
 
   @override
-  String get noAccount => 'Нет аккаунта';
+  String get noAccount => 'Kein Account';
 
   @override
-  String get signUpButton => 'Зарегистрироваться';
+  String get signUpButton => 'Registrieren';
 
   @override
-  String get invalidEmailPassword =>
-      'Неверный адрес электронной почты или пароль';
+  String get invalidEmailPassword => 'Ungültige Emailadresse oder Passwort';
 
   @override
-  String get signUpMethods => 'Регистрация с';
+  String get signUpMethods => 'Registrieren mit';
 
   @override
-  String get alreadyHaveAnAccount => 'У вас уже есть учетная запись? ';
+  String get alreadyHaveAnAccount => 'Sie haben bereits ein Konto? ';
 
   @override
-  String get confirmButton => 'Подтвердить';
+  String get confirmButton => 'Bestätigen';
 
   @override
-  String get cancelButton => 'Отменить';
+  String get cancelButton => 'Stornieren';
 
   @override
   String get okButton => 'OK';
 
   @override
-  String get passwordMissmatch => 'Пароли не совпадают';
+  String get passwordMissmatch => 'Die Passwörter stimmen nicht überein';
 
   @override
-  String get exitConfirmMessage => 'Вы уверены, что хотите выйти?';
+  String get exitConfirmMessage =>
+      'Sind Sie sicher, dass Sie ausgehen möchten?';
 
   @override
-  String get yesButton => 'Да';
+  String get yesButton => 'Ja';
 
   @override
-  String get noButton => 'Нет';
+  String get noButton => 'Nein';
 
   @override
   String get googleSignError =>
-      'Ошибка при попытке войти в систему через Google.';
+      'Fehler beim Versuch, sich über Google anzumelden.';
 
   @override
-  String get resetPassword => 'Восстановление пароля';
+  String get resetPassword => 'Passwort Wiederherstellung';
 
   @override
-  String get sendButton => 'Отправить';
+  String get sendButton => 'Schicken';
 
   @override
   String get noDataText => 'No Data';
@@ -244,4 +244,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get folderNameMessage => 'Bitte geben Sie einen eindeutigen Namen ein';
+
+  @override
+  String get addNewSongs => 'Neue Lieder hinzufügen';
 }
