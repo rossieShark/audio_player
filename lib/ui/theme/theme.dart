@@ -8,9 +8,19 @@ class AppThemeData {
       backgroundColor: AppColors.background.color,
       selectedIconTheme: IconThemeData(color: AppColors.accent.color),
       type: BottomNavigationBarType.fixed,
-      selectedLabelStyle: TextStyle(color: AppColors.accent.color),
-      unselectedIconTheme: IconThemeData(color: AppColors.white.color),
-      unselectedLabelStyle: TextStyle(color: AppColors.white.color),
+      selectedLabelStyle: TextStyle(
+          color: AppColors.accent.color,
+          fontFamily: FontFamily.lusitana,
+          fontSize: 13,
+          fontWeight: FontWeight.w500),
+      unselectedIconTheme: IconThemeData(
+        color: AppColors.white.color,
+      ),
+      unselectedLabelStyle: TextStyle(
+          color: AppColors.white.color,
+          fontFamily: FontFamily.lusitana,
+          fontSize: 13,
+          fontWeight: FontWeight.w500),
       selectedItemColor: Colors.transparent,
       unselectedItemColor: Colors.transparent,
     );
@@ -19,8 +29,11 @@ class AppThemeData {
   NavigationRailThemeData createNavBarTheme() {
     return NavigationRailThemeData(
       backgroundColor: AppColors.background.color,
-      selectedLabelTextStyle:
-          TextStyle(color: AppColors.accent.color, fontSize: 15),
+      selectedLabelTextStyle: TextStyle(
+          color: AppColors.accent.color,
+          fontSize: 15,
+          fontFamily: FontFamily.lusitana,
+          fontWeight: FontWeight.w500),
       labelType: NavigationRailLabelType.all,
       unselectedLabelTextStyle:
           const TextStyle(color: Colors.transparent, fontSize: 0),
