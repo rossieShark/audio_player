@@ -105,28 +105,29 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
 }
 
 /// @nodoc
-abstract class _$$EmptySearchStateCopyWith<$Res> {
-  factory _$$EmptySearchStateCopyWith(
-          _$EmptySearchState value, $Res Function(_$EmptySearchState) then) =
-      __$$EmptySearchStateCopyWithImpl<$Res>;
+abstract class _$$EmptySearchStateImplCopyWith<$Res> {
+  factory _$$EmptySearchStateImplCopyWith(_$EmptySearchStateImpl value,
+          $Res Function(_$EmptySearchStateImpl) then) =
+      __$$EmptySearchStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$EmptySearchStateCopyWithImpl<$Res>
-    extends _$SearchStateCopyWithImpl<$Res, _$EmptySearchState>
-    implements _$$EmptySearchStateCopyWith<$Res> {
-  __$$EmptySearchStateCopyWithImpl(
-      _$EmptySearchState _value, $Res Function(_$EmptySearchState) _then)
+class __$$EmptySearchStateImplCopyWithImpl<$Res>
+    extends _$SearchStateCopyWithImpl<$Res, _$EmptySearchStateImpl>
+    implements _$$EmptySearchStateImplCopyWith<$Res> {
+  __$$EmptySearchStateImplCopyWithImpl(_$EmptySearchStateImpl _value,
+      $Res Function(_$EmptySearchStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$EmptySearchState implements EmptySearchState {
-  const _$EmptySearchState({final String? $type}) : $type = $type ?? 'empty';
+class _$EmptySearchStateImpl implements EmptySearchState {
+  const _$EmptySearchStateImpl({final String? $type})
+      : $type = $type ?? 'empty';
 
-  factory _$EmptySearchState.fromJson(Map<String, dynamic> json) =>
-      _$$EmptySearchStateFromJson(json);
+  factory _$EmptySearchStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EmptySearchStateImplFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
@@ -212,43 +213,43 @@ class _$EmptySearchState implements EmptySearchState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$EmptySearchStateToJson(
+    return _$$EmptySearchStateImplToJson(
       this,
     );
   }
 }
 
 abstract class EmptySearchState implements SearchState {
-  const factory EmptySearchState() = _$EmptySearchState;
+  const factory EmptySearchState() = _$EmptySearchStateImpl;
 
   factory EmptySearchState.fromJson(Map<String, dynamic> json) =
-      _$EmptySearchState.fromJson;
+      _$EmptySearchStateImpl.fromJson;
 }
 
 /// @nodoc
-abstract class _$$LoadingSearchStateCopyWith<$Res> {
-  factory _$$LoadingSearchStateCopyWith(_$LoadingSearchState value,
-          $Res Function(_$LoadingSearchState) then) =
-      __$$LoadingSearchStateCopyWithImpl<$Res>;
+abstract class _$$LoadingSearchStateImplCopyWith<$Res> {
+  factory _$$LoadingSearchStateImplCopyWith(_$LoadingSearchStateImpl value,
+          $Res Function(_$LoadingSearchStateImpl) then) =
+      __$$LoadingSearchStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingSearchStateCopyWithImpl<$Res>
-    extends _$SearchStateCopyWithImpl<$Res, _$LoadingSearchState>
-    implements _$$LoadingSearchStateCopyWith<$Res> {
-  __$$LoadingSearchStateCopyWithImpl(
-      _$LoadingSearchState _value, $Res Function(_$LoadingSearchState) _then)
+class __$$LoadingSearchStateImplCopyWithImpl<$Res>
+    extends _$SearchStateCopyWithImpl<$Res, _$LoadingSearchStateImpl>
+    implements _$$LoadingSearchStateImplCopyWith<$Res> {
+  __$$LoadingSearchStateImplCopyWithImpl(_$LoadingSearchStateImpl _value,
+      $Res Function(_$LoadingSearchStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$LoadingSearchState implements LoadingSearchState {
-  const _$LoadingSearchState({final String? $type})
+class _$LoadingSearchStateImpl implements LoadingSearchState {
+  const _$LoadingSearchStateImpl({final String? $type})
       : $type = $type ?? 'loading';
 
-  factory _$LoadingSearchState.fromJson(Map<String, dynamic> json) =>
-      _$$LoadingSearchStateFromJson(json);
+  factory _$LoadingSearchStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LoadingSearchStateImplFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
@@ -334,43 +335,43 @@ class _$LoadingSearchState implements LoadingSearchState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LoadingSearchStateToJson(
+    return _$$LoadingSearchStateImplToJson(
       this,
     );
   }
 }
 
 abstract class LoadingSearchState implements SearchState {
-  const factory LoadingSearchState() = _$LoadingSearchState;
+  const factory LoadingSearchState() = _$LoadingSearchStateImpl;
 
   factory LoadingSearchState.fromJson(Map<String, dynamic> json) =
-      _$LoadingSearchState.fromJson;
+      _$LoadingSearchStateImpl.fromJson;
 }
 
 /// @nodoc
-abstract class _$$NoResultsSearchStateCopyWith<$Res> {
-  factory _$$NoResultsSearchStateCopyWith(_$NoResultsSearchState value,
-          $Res Function(_$NoResultsSearchState) then) =
-      __$$NoResultsSearchStateCopyWithImpl<$Res>;
+abstract class _$$NoResultsSearchStateImplCopyWith<$Res> {
+  factory _$$NoResultsSearchStateImplCopyWith(_$NoResultsSearchStateImpl value,
+          $Res Function(_$NoResultsSearchStateImpl) then) =
+      __$$NoResultsSearchStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$NoResultsSearchStateCopyWithImpl<$Res>
-    extends _$SearchStateCopyWithImpl<$Res, _$NoResultsSearchState>
-    implements _$$NoResultsSearchStateCopyWith<$Res> {
-  __$$NoResultsSearchStateCopyWithImpl(_$NoResultsSearchState _value,
-      $Res Function(_$NoResultsSearchState) _then)
+class __$$NoResultsSearchStateImplCopyWithImpl<$Res>
+    extends _$SearchStateCopyWithImpl<$Res, _$NoResultsSearchStateImpl>
+    implements _$$NoResultsSearchStateImplCopyWith<$Res> {
+  __$$NoResultsSearchStateImplCopyWithImpl(_$NoResultsSearchStateImpl _value,
+      $Res Function(_$NoResultsSearchStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$NoResultsSearchState implements NoResultsSearchState {
-  const _$NoResultsSearchState({final String? $type})
+class _$NoResultsSearchStateImpl implements NoResultsSearchState {
+  const _$NoResultsSearchStateImpl({final String? $type})
       : $type = $type ?? 'noResults';
 
-  factory _$NoResultsSearchState.fromJson(Map<String, dynamic> json) =>
-      _$$NoResultsSearchStateFromJson(json);
+  factory _$NoResultsSearchStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NoResultsSearchStateImplFromJson(json);
 
   @JsonKey(name: 'runtimeType')
   final String $type;
@@ -456,34 +457,34 @@ class _$NoResultsSearchState implements NoResultsSearchState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$NoResultsSearchStateToJson(
+    return _$$NoResultsSearchStateImplToJson(
       this,
     );
   }
 }
 
 abstract class NoResultsSearchState implements SearchState {
-  const factory NoResultsSearchState() = _$NoResultsSearchState;
+  const factory NoResultsSearchState() = _$NoResultsSearchStateImpl;
 
   factory NoResultsSearchState.fromJson(Map<String, dynamic> json) =
-      _$NoResultsSearchState.fromJson;
+      _$NoResultsSearchStateImpl.fromJson;
 }
 
 /// @nodoc
-abstract class _$$LoadedSearchStateCopyWith<$Res> {
-  factory _$$LoadedSearchStateCopyWith(
-          _$LoadedSearchState value, $Res Function(_$LoadedSearchState) then) =
-      __$$LoadedSearchStateCopyWithImpl<$Res>;
+abstract class _$$LoadedSearchStateImplCopyWith<$Res> {
+  factory _$$LoadedSearchStateImplCopyWith(_$LoadedSearchStateImpl value,
+          $Res Function(_$LoadedSearchStateImpl) then) =
+      __$$LoadedSearchStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<SearchData> data});
 }
 
 /// @nodoc
-class __$$LoadedSearchStateCopyWithImpl<$Res>
-    extends _$SearchStateCopyWithImpl<$Res, _$LoadedSearchState>
-    implements _$$LoadedSearchStateCopyWith<$Res> {
-  __$$LoadedSearchStateCopyWithImpl(
-      _$LoadedSearchState _value, $Res Function(_$LoadedSearchState) _then)
+class __$$LoadedSearchStateImplCopyWithImpl<$Res>
+    extends _$SearchStateCopyWithImpl<$Res, _$LoadedSearchStateImpl>
+    implements _$$LoadedSearchStateImplCopyWith<$Res> {
+  __$$LoadedSearchStateImplCopyWithImpl(_$LoadedSearchStateImpl _value,
+      $Res Function(_$LoadedSearchStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -491,7 +492,7 @@ class __$$LoadedSearchStateCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$LoadedSearchState(
+    return _then(_$LoadedSearchStateImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -502,14 +503,14 @@ class __$$LoadedSearchStateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$LoadedSearchState implements LoadedSearchState {
-  const _$LoadedSearchState(
+class _$LoadedSearchStateImpl implements LoadedSearchState {
+  const _$LoadedSearchStateImpl(
       {required final List<SearchData> data, final String? $type})
       : _data = data,
         $type = $type ?? 'loaded';
 
-  factory _$LoadedSearchState.fromJson(Map<String, dynamic> json) =>
-      _$$LoadedSearchStateFromJson(json);
+  factory _$LoadedSearchStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LoadedSearchStateImplFromJson(json);
 
   final List<SearchData> _data;
   @override
@@ -530,8 +531,9 @@ class _$LoadedSearchState implements LoadedSearchState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedSearchStateCopyWith<_$LoadedSearchState> get copyWith =>
-      __$$LoadedSearchStateCopyWithImpl<_$LoadedSearchState>(this, _$identity);
+  _$$LoadedSearchStateImplCopyWith<_$LoadedSearchStateImpl> get copyWith =>
+      __$$LoadedSearchStateImplCopyWithImpl<_$LoadedSearchStateImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -609,7 +611,7 @@ class _$LoadedSearchState implements LoadedSearchState {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LoadedSearchStateToJson(
+    return _$$LoadedSearchStateImplToJson(
       this,
     );
   }
@@ -617,13 +619,13 @@ class _$LoadedSearchState implements LoadedSearchState {
 
 abstract class LoadedSearchState implements SearchState {
   const factory LoadedSearchState({required final List<SearchData> data}) =
-      _$LoadedSearchState;
+      _$LoadedSearchStateImpl;
 
   factory LoadedSearchState.fromJson(Map<String, dynamic> json) =
-      _$LoadedSearchState.fromJson;
+      _$LoadedSearchStateImpl.fromJson;
 
   List<SearchData> get data;
   @JsonKey(ignore: true)
-  _$$LoadedSearchStateCopyWith<_$LoadedSearchState> get copyWith =>
+  _$$LoadedSearchStateImplCopyWith<_$LoadedSearchStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

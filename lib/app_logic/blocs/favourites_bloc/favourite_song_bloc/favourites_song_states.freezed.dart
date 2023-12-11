@@ -81,26 +81,28 @@ class _$FavouriteSongStateCopyWithImpl<$Res, $Val extends FavouriteSongState>
 }
 
 /// @nodoc
-abstract class _$$LoadingFavouriteSongStateCopyWith<$Res> {
-  factory _$$LoadingFavouriteSongStateCopyWith(
-          _$LoadingFavouriteSongState value,
-          $Res Function(_$LoadingFavouriteSongState) then) =
-      __$$LoadingFavouriteSongStateCopyWithImpl<$Res>;
+abstract class _$$LoadingFavouriteSongStateImplCopyWith<$Res> {
+  factory _$$LoadingFavouriteSongStateImplCopyWith(
+          _$LoadingFavouriteSongStateImpl value,
+          $Res Function(_$LoadingFavouriteSongStateImpl) then) =
+      __$$LoadingFavouriteSongStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingFavouriteSongStateCopyWithImpl<$Res>
-    extends _$FavouriteSongStateCopyWithImpl<$Res, _$LoadingFavouriteSongState>
-    implements _$$LoadingFavouriteSongStateCopyWith<$Res> {
-  __$$LoadingFavouriteSongStateCopyWithImpl(_$LoadingFavouriteSongState _value,
-      $Res Function(_$LoadingFavouriteSongState) _then)
+class __$$LoadingFavouriteSongStateImplCopyWithImpl<$Res>
+    extends _$FavouriteSongStateCopyWithImpl<$Res,
+        _$LoadingFavouriteSongStateImpl>
+    implements _$$LoadingFavouriteSongStateImplCopyWith<$Res> {
+  __$$LoadingFavouriteSongStateImplCopyWithImpl(
+      _$LoadingFavouriteSongStateImpl _value,
+      $Res Function(_$LoadingFavouriteSongStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LoadingFavouriteSongState implements LoadingFavouriteSongState {
-  const _$LoadingFavouriteSongState();
+class _$LoadingFavouriteSongStateImpl implements LoadingFavouriteSongState {
+  const _$LoadingFavouriteSongStateImpl();
 
   @override
   String toString() {
@@ -177,32 +179,32 @@ class _$LoadingFavouriteSongState implements LoadingFavouriteSongState {
 }
 
 abstract class LoadingFavouriteSongState implements FavouriteSongState {
-  const factory LoadingFavouriteSongState() = _$LoadingFavouriteSongState;
+  const factory LoadingFavouriteSongState() = _$LoadingFavouriteSongStateImpl;
 }
 
 /// @nodoc
-abstract class _$$NoResultsFavouriteSongStateCopyWith<$Res> {
-  factory _$$NoResultsFavouriteSongStateCopyWith(
-          _$NoResultsFavouriteSongState value,
-          $Res Function(_$NoResultsFavouriteSongState) then) =
-      __$$NoResultsFavouriteSongStateCopyWithImpl<$Res>;
+abstract class _$$NoResultsFavouriteSongStateImplCopyWith<$Res> {
+  factory _$$NoResultsFavouriteSongStateImplCopyWith(
+          _$NoResultsFavouriteSongStateImpl value,
+          $Res Function(_$NoResultsFavouriteSongStateImpl) then) =
+      __$$NoResultsFavouriteSongStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$NoResultsFavouriteSongStateCopyWithImpl<$Res>
+class __$$NoResultsFavouriteSongStateImplCopyWithImpl<$Res>
     extends _$FavouriteSongStateCopyWithImpl<$Res,
-        _$NoResultsFavouriteSongState>
-    implements _$$NoResultsFavouriteSongStateCopyWith<$Res> {
-  __$$NoResultsFavouriteSongStateCopyWithImpl(
-      _$NoResultsFavouriteSongState _value,
-      $Res Function(_$NoResultsFavouriteSongState) _then)
+        _$NoResultsFavouriteSongStateImpl>
+    implements _$$NoResultsFavouriteSongStateImplCopyWith<$Res> {
+  __$$NoResultsFavouriteSongStateImplCopyWithImpl(
+      _$NoResultsFavouriteSongStateImpl _value,
+      $Res Function(_$NoResultsFavouriteSongStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$NoResultsFavouriteSongState implements NoResultsFavouriteSongState {
-  const _$NoResultsFavouriteSongState();
+class _$NoResultsFavouriteSongStateImpl implements NoResultsFavouriteSongState {
+  const _$NoResultsFavouriteSongStateImpl();
 
   @override
   String toString() {
@@ -279,24 +281,28 @@ class _$NoResultsFavouriteSongState implements NoResultsFavouriteSongState {
 }
 
 abstract class NoResultsFavouriteSongState implements FavouriteSongState {
-  const factory NoResultsFavouriteSongState() = _$NoResultsFavouriteSongState;
+  const factory NoResultsFavouriteSongState() =
+      _$NoResultsFavouriteSongStateImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedFavouriteSongStateCopyWith<$Res> {
-  factory _$$LoadedFavouriteSongStateCopyWith(_$LoadedFavouriteSongState value,
-          $Res Function(_$LoadedFavouriteSongState) then) =
-      __$$LoadedFavouriteSongStateCopyWithImpl<$Res>;
+abstract class _$$LoadedFavouriteSongStateImplCopyWith<$Res> {
+  factory _$$LoadedFavouriteSongStateImplCopyWith(
+          _$LoadedFavouriteSongStateImpl value,
+          $Res Function(_$LoadedFavouriteSongStateImpl) then) =
+      __$$LoadedFavouriteSongStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<SongModel> data});
 }
 
 /// @nodoc
-class __$$LoadedFavouriteSongStateCopyWithImpl<$Res>
-    extends _$FavouriteSongStateCopyWithImpl<$Res, _$LoadedFavouriteSongState>
-    implements _$$LoadedFavouriteSongStateCopyWith<$Res> {
-  __$$LoadedFavouriteSongStateCopyWithImpl(_$LoadedFavouriteSongState _value,
-      $Res Function(_$LoadedFavouriteSongState) _then)
+class __$$LoadedFavouriteSongStateImplCopyWithImpl<$Res>
+    extends _$FavouriteSongStateCopyWithImpl<$Res,
+        _$LoadedFavouriteSongStateImpl>
+    implements _$$LoadedFavouriteSongStateImplCopyWith<$Res> {
+  __$$LoadedFavouriteSongStateImplCopyWithImpl(
+      _$LoadedFavouriteSongStateImpl _value,
+      $Res Function(_$LoadedFavouriteSongStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -304,7 +310,7 @@ class __$$LoadedFavouriteSongStateCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$LoadedFavouriteSongState(
+    return _then(_$LoadedFavouriteSongStateImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -315,8 +321,8 @@ class __$$LoadedFavouriteSongStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedFavouriteSongState implements LoadedFavouriteSongState {
-  const _$LoadedFavouriteSongState({required final List<SongModel> data})
+class _$LoadedFavouriteSongStateImpl implements LoadedFavouriteSongState {
+  const _$LoadedFavouriteSongStateImpl({required final List<SongModel> data})
       : _data = data;
 
   final List<SongModel> _data;
@@ -335,10 +341,9 @@ class _$LoadedFavouriteSongState implements LoadedFavouriteSongState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedFavouriteSongStateCopyWith<_$LoadedFavouriteSongState>
-      get copyWith =>
-          __$$LoadedFavouriteSongStateCopyWithImpl<_$LoadedFavouriteSongState>(
-              this, _$identity);
+  _$$LoadedFavouriteSongStateImplCopyWith<_$LoadedFavouriteSongStateImpl>
+      get copyWith => __$$LoadedFavouriteSongStateImplCopyWithImpl<
+          _$LoadedFavouriteSongStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -411,10 +416,10 @@ class _$LoadedFavouriteSongState implements LoadedFavouriteSongState {
 
 abstract class LoadedFavouriteSongState implements FavouriteSongState {
   const factory LoadedFavouriteSongState(
-      {required final List<SongModel> data}) = _$LoadedFavouriteSongState;
+      {required final List<SongModel> data}) = _$LoadedFavouriteSongStateImpl;
 
   List<SongModel> get data;
   @JsonKey(ignore: true)
-  _$$LoadedFavouriteSongStateCopyWith<_$LoadedFavouriteSongState>
+  _$$LoadedFavouriteSongStateImplCopyWith<_$LoadedFavouriteSongStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

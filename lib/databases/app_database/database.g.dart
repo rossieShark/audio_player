@@ -48,9 +48,10 @@ class $RecentlyPlayedSongsTable extends RecentlyPlayedSongs
   List<GeneratedColumn> get $columns =>
       [id, artistNames, title, headerImageUrl, type, preview];
   @override
-  String get aliasedName => _alias ?? 'recently_played_songs';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'recently_played_songs';
+  String get actualTableName => $name;
+  static const String $name = 'recently_played_songs';
   @override
   VerificationContext validateIntegrity(Insertable<RecentlyPlayedSong> instance,
       {bool isInserting = false}) {
@@ -355,9 +356,10 @@ class $FavoriteArtistsTable extends FavoriteArtists
   @override
   List<GeneratedColumn> get $columns => [id, name, image];
   @override
-  String get aliasedName => _alias ?? 'favorite_artists';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'favorite_artists';
+  String get actualTableName => $name;
+  static const String $name = 'favorite_artists';
   @override
   VerificationContext validateIntegrity(Insertable<FavoriteArtist> instance,
       {bool isInserting = false}) {
@@ -544,7 +546,7 @@ class $BestAlbumsTable extends BestAlbums
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
       'id', aliasedName, false,
       type: DriftSqlType.int,
-      requiredDuringInsert: false,
+      requiredDuringInsert: true,
       $customConstraints: 'NOT NULL');
   static const VerificationMeta _titleMeta = const VerificationMeta('title');
   @override
@@ -566,19 +568,13 @@ class $BestAlbumsTable extends BestAlbums
   late final GeneratedColumn<String> type = GeneratedColumn<String>(
       'type', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _detailAlbumMeta =
-      const VerificationMeta('detailAlbum');
   @override
-  late final GeneratedColumn<int> detailAlbum = GeneratedColumn<int>(
-      'detail_album', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
+  List<GeneratedColumn> get $columns => [id, title, image, artist, type];
   @override
-  List<GeneratedColumn> get $columns =>
-      [id, title, image, artist, type, detailAlbum];
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get aliasedName => _alias ?? 'best_albums';
-  @override
-  String get actualTableName => 'best_albums';
+  String get actualTableName => $name;
+  static const String $name = 'best_albums';
   @override
   VerificationContext validateIntegrity(Insertable<BestAlbum> instance,
       {bool isInserting = false}) {
@@ -586,6 +582,8 @@ class $BestAlbumsTable extends BestAlbums
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
     }
     if (data.containsKey('title')) {
       context.handle(
@@ -611,19 +609,11 @@ class $BestAlbumsTable extends BestAlbums
     } else if (isInserting) {
       context.missing(_typeMeta);
     }
-    if (data.containsKey('detail_album')) {
-      context.handle(
-          _detailAlbumMeta,
-          detailAlbum.isAcceptableOrUnknown(
-              data['detail_album']!, _detailAlbumMeta));
-    } else if (isInserting) {
-      context.missing(_detailAlbumMeta);
-    }
     return context;
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => {id};
+  Set<GeneratedColumn> get $primaryKey => {id, title};
   @override
   BestAlbum map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -638,8 +628,6 @@ class $BestAlbumsTable extends BestAlbums
           .read(DriftSqlType.string, data['${effectivePrefix}artist'])!,
       type: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}type'])!,
-      detailAlbum: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}detail_album'])!,
     );
   }
 
@@ -655,14 +643,12 @@ class BestAlbum extends DataClass implements Insertable<BestAlbum> {
   final String image;
   final String artist;
   final String type;
-  final int detailAlbum;
   const BestAlbum(
       {required this.id,
       required this.title,
       required this.image,
       required this.artist,
-      required this.type,
-      required this.detailAlbum});
+      required this.type});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -671,7 +657,6 @@ class BestAlbum extends DataClass implements Insertable<BestAlbum> {
     map['image'] = Variable<String>(image);
     map['artist'] = Variable<String>(artist);
     map['type'] = Variable<String>(type);
-    map['detail_album'] = Variable<int>(detailAlbum);
     return map;
   }
 
@@ -682,7 +667,6 @@ class BestAlbum extends DataClass implements Insertable<BestAlbum> {
       image: Value(image),
       artist: Value(artist),
       type: Value(type),
-      detailAlbum: Value(detailAlbum),
     );
   }
 
@@ -695,7 +679,6 @@ class BestAlbum extends DataClass implements Insertable<BestAlbum> {
       image: serializer.fromJson<String>(json['image']),
       artist: serializer.fromJson<String>(json['artist']),
       type: serializer.fromJson<String>(json['type']),
-      detailAlbum: serializer.fromJson<int>(json['detailAlbum']),
     );
   }
   @override
@@ -707,7 +690,6 @@ class BestAlbum extends DataClass implements Insertable<BestAlbum> {
       'image': serializer.toJson<String>(image),
       'artist': serializer.toJson<String>(artist),
       'type': serializer.toJson<String>(type),
-      'detailAlbum': serializer.toJson<int>(detailAlbum),
     };
   }
 
@@ -716,15 +698,13 @@ class BestAlbum extends DataClass implements Insertable<BestAlbum> {
           String? title,
           String? image,
           String? artist,
-          String? type,
-          int? detailAlbum}) =>
+          String? type}) =>
       BestAlbum(
         id: id ?? this.id,
         title: title ?? this.title,
         image: image ?? this.image,
         artist: artist ?? this.artist,
         type: type ?? this.type,
-        detailAlbum: detailAlbum ?? this.detailAlbum,
       );
   @override
   String toString() {
@@ -733,14 +713,13 @@ class BestAlbum extends DataClass implements Insertable<BestAlbum> {
           ..write('title: $title, ')
           ..write('image: $image, ')
           ..write('artist: $artist, ')
-          ..write('type: $type, ')
-          ..write('detailAlbum: $detailAlbum')
+          ..write('type: $type')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, title, image, artist, type, detailAlbum);
+  int get hashCode => Object.hash(id, title, image, artist, type);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -749,8 +728,7 @@ class BestAlbum extends DataClass implements Insertable<BestAlbum> {
           other.title == this.title &&
           other.image == this.image &&
           other.artist == this.artist &&
-          other.type == this.type &&
-          other.detailAlbum == this.detailAlbum);
+          other.type == this.type);
 }
 
 class BestAlbumsCompanion extends UpdateCompanion<BestAlbum> {
@@ -759,34 +737,34 @@ class BestAlbumsCompanion extends UpdateCompanion<BestAlbum> {
   final Value<String> image;
   final Value<String> artist;
   final Value<String> type;
-  final Value<int> detailAlbum;
+  final Value<int> rowid;
   const BestAlbumsCompanion({
     this.id = const Value.absent(),
     this.title = const Value.absent(),
     this.image = const Value.absent(),
     this.artist = const Value.absent(),
     this.type = const Value.absent(),
-    this.detailAlbum = const Value.absent(),
+    this.rowid = const Value.absent(),
   });
   BestAlbumsCompanion.insert({
-    this.id = const Value.absent(),
+    required int id,
     required String title,
     required String image,
     required String artist,
     required String type,
-    required int detailAlbum,
-  })  : title = Value(title),
+    this.rowid = const Value.absent(),
+  })  : id = Value(id),
+        title = Value(title),
         image = Value(image),
         artist = Value(artist),
-        type = Value(type),
-        detailAlbum = Value(detailAlbum);
+        type = Value(type);
   static Insertable<BestAlbum> custom({
     Expression<int>? id,
     Expression<String>? title,
     Expression<String>? image,
     Expression<String>? artist,
     Expression<String>? type,
-    Expression<int>? detailAlbum,
+    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -794,7 +772,7 @@ class BestAlbumsCompanion extends UpdateCompanion<BestAlbum> {
       if (image != null) 'image': image,
       if (artist != null) 'artist': artist,
       if (type != null) 'type': type,
-      if (detailAlbum != null) 'detail_album': detailAlbum,
+      if (rowid != null) 'rowid': rowid,
     });
   }
 
@@ -804,14 +782,14 @@ class BestAlbumsCompanion extends UpdateCompanion<BestAlbum> {
       Value<String>? image,
       Value<String>? artist,
       Value<String>? type,
-      Value<int>? detailAlbum}) {
+      Value<int>? rowid}) {
     return BestAlbumsCompanion(
       id: id ?? this.id,
       title: title ?? this.title,
       image: image ?? this.image,
       artist: artist ?? this.artist,
       type: type ?? this.type,
-      detailAlbum: detailAlbum ?? this.detailAlbum,
+      rowid: rowid ?? this.rowid,
     );
   }
 
@@ -833,8 +811,8 @@ class BestAlbumsCompanion extends UpdateCompanion<BestAlbum> {
     if (type.present) {
       map['type'] = Variable<String>(type.value);
     }
-    if (detailAlbum.present) {
-      map['detail_album'] = Variable<int>(detailAlbum.value);
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
     }
     return map;
   }
@@ -847,7 +825,7 @@ class BestAlbumsCompanion extends UpdateCompanion<BestAlbum> {
           ..write('image: $image, ')
           ..write('artist: $artist, ')
           ..write('type: $type, ')
-          ..write('detailAlbum: $detailAlbum')
+          ..write('rowid: $rowid')
           ..write(')'))
         .toString();
   }
@@ -898,9 +876,10 @@ class $DetailAlbumsTable extends DetailAlbums
   List<GeneratedColumn> get $columns =>
       [id, albumid, artistNames, type, preview, title];
   @override
-  String get aliasedName => _alias ?? 'detail_albums';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'detail_albums';
+  String get actualTableName => $name;
+  static const String $name = 'detail_albums';
   @override
   VerificationContext validateIntegrity(Insertable<DetailAlbum> instance,
       {bool isInserting = false}) {
@@ -1229,9 +1208,10 @@ class $FavoriteAlbumsTable extends FavoriteAlbums
   List<GeneratedColumn> get $columns =>
       [id, title, artist, songImage, type, preview, isFavourite];
   @override
-  String get aliasedName => _alias ?? 'favorite_albums';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'favorite_albums';
+  String get actualTableName => $name;
+  static const String $name = 'favorite_albums';
   @override
   VerificationContext validateIntegrity(Insertable<FavoriteAlbum> instance,
       {bool isInserting = false}) {
@@ -1590,9 +1570,10 @@ class $FavoriteSongsTable extends FavoriteSongs
   List<GeneratedColumn> get $columns =>
       [id, title, artist, songImage, type, preview, isFavourite];
   @override
-  String get aliasedName => _alias ?? 'favorite_songs';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'favorite_songs';
+  String get actualTableName => $name;
+  static const String $name = 'favorite_songs';
   @override
   VerificationContext validateIntegrity(Insertable<FavoriteSong> instance,
       {bool isInserting = false}) {
@@ -1951,9 +1932,10 @@ class $RecentlySearchedSongsTable extends RecentlySearchedSongs
   List<GeneratedColumn> get $columns =>
       [id, title, artist, type, songImage, preview, isFavourite];
   @override
-  String get aliasedName => _alias ?? 'recently_searched_songs';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'recently_searched_songs';
+  String get actualTableName => $name;
+  static const String $name = 'recently_searched_songs';
   @override
   VerificationContext validateIntegrity(
       Insertable<RecentlySearchedSong> instance,
@@ -2307,9 +2289,10 @@ class $DetailInfoSongsTable extends DetailInfoSongs
   List<GeneratedColumn> get $columns =>
       [id, title, artistNames, imageUrl, preview, type];
   @override
-  String get aliasedName => _alias ?? 'detail_info_songs';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'detail_info_songs';
+  String get actualTableName => $name;
+  static const String $name = 'detail_info_songs';
   @override
   VerificationContext validateIntegrity(Insertable<DetailInfoSong> instance,
       {bool isInserting = false}) {
@@ -2611,9 +2594,10 @@ class $MusicGenresTable extends MusicGenres
   @override
   List<GeneratedColumn> get $columns => [id, name, image];
   @override
-  String get aliasedName => _alias ?? 'music_genres';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'music_genres';
+  String get actualTableName => $name;
+  static const String $name = 'music_genres';
   @override
   VerificationContext validateIntegrity(Insertable<MusicGenre> instance,
       {bool isInserting = false}) {
@@ -2822,9 +2806,10 @@ class $MyMusicFoldersTable extends MyMusicFolders
   @override
   List<GeneratedColumn> get $columns => [name, image];
   @override
-  String get aliasedName => _alias ?? 'my_music_folders';
+  String get aliasedName => _alias ?? actualTableName;
   @override
-  String get actualTableName => 'my_music_folders';
+  String get actualTableName => $name;
+  static const String $name = 'my_music_folders';
   @override
   VerificationContext validateIntegrity(Insertable<MyMusicFolder> instance,
       {bool isInserting = false}) {

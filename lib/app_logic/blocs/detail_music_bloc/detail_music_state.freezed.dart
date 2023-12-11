@@ -82,28 +82,28 @@ class _$DetailMusicPageStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$LoadingDetailMusicPageStateCopyWith<$Res> {
-  factory _$$LoadingDetailMusicPageStateCopyWith(
-          _$LoadingDetailMusicPageState value,
-          $Res Function(_$LoadingDetailMusicPageState) then) =
-      __$$LoadingDetailMusicPageStateCopyWithImpl<$Res>;
+abstract class _$$LoadingDetailMusicPageStateImplCopyWith<$Res> {
+  factory _$$LoadingDetailMusicPageStateImplCopyWith(
+          _$LoadingDetailMusicPageStateImpl value,
+          $Res Function(_$LoadingDetailMusicPageStateImpl) then) =
+      __$$LoadingDetailMusicPageStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingDetailMusicPageStateCopyWithImpl<$Res>
+class __$$LoadingDetailMusicPageStateImplCopyWithImpl<$Res>
     extends _$DetailMusicPageStateCopyWithImpl<$Res,
-        _$LoadingDetailMusicPageState>
-    implements _$$LoadingDetailMusicPageStateCopyWith<$Res> {
-  __$$LoadingDetailMusicPageStateCopyWithImpl(
-      _$LoadingDetailMusicPageState _value,
-      $Res Function(_$LoadingDetailMusicPageState) _then)
+        _$LoadingDetailMusicPageStateImpl>
+    implements _$$LoadingDetailMusicPageStateImplCopyWith<$Res> {
+  __$$LoadingDetailMusicPageStateImplCopyWithImpl(
+      _$LoadingDetailMusicPageStateImpl _value,
+      $Res Function(_$LoadingDetailMusicPageStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LoadingDetailMusicPageState implements LoadingDetailMusicPageState {
-  const _$LoadingDetailMusicPageState();
+class _$LoadingDetailMusicPageStateImpl implements LoadingDetailMusicPageState {
+  const _$LoadingDetailMusicPageStateImpl();
 
   @override
   String toString() {
@@ -180,31 +180,33 @@ class _$LoadingDetailMusicPageState implements LoadingDetailMusicPageState {
 }
 
 abstract class LoadingDetailMusicPageState implements DetailMusicPageState {
-  const factory LoadingDetailMusicPageState() = _$LoadingDetailMusicPageState;
+  const factory LoadingDetailMusicPageState() =
+      _$LoadingDetailMusicPageStateImpl;
 }
 
 /// @nodoc
-abstract class _$$ErrorDetailMusicPageStateCopyWith<$Res> {
-  factory _$$ErrorDetailMusicPageStateCopyWith(
-          _$ErrorDetailMusicPageState value,
-          $Res Function(_$ErrorDetailMusicPageState) then) =
-      __$$ErrorDetailMusicPageStateCopyWithImpl<$Res>;
+abstract class _$$ErrorDetailMusicPageStateImplCopyWith<$Res> {
+  factory _$$ErrorDetailMusicPageStateImplCopyWith(
+          _$ErrorDetailMusicPageStateImpl value,
+          $Res Function(_$ErrorDetailMusicPageStateImpl) then) =
+      __$$ErrorDetailMusicPageStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ErrorDetailMusicPageStateCopyWithImpl<$Res>
+class __$$ErrorDetailMusicPageStateImplCopyWithImpl<$Res>
     extends _$DetailMusicPageStateCopyWithImpl<$Res,
-        _$ErrorDetailMusicPageState>
-    implements _$$ErrorDetailMusicPageStateCopyWith<$Res> {
-  __$$ErrorDetailMusicPageStateCopyWithImpl(_$ErrorDetailMusicPageState _value,
-      $Res Function(_$ErrorDetailMusicPageState) _then)
+        _$ErrorDetailMusicPageStateImpl>
+    implements _$$ErrorDetailMusicPageStateImplCopyWith<$Res> {
+  __$$ErrorDetailMusicPageStateImplCopyWithImpl(
+      _$ErrorDetailMusicPageStateImpl _value,
+      $Res Function(_$ErrorDetailMusicPageStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ErrorDetailMusicPageState implements ErrorDetailMusicPageState {
-  const _$ErrorDetailMusicPageState();
+class _$ErrorDetailMusicPageStateImpl implements ErrorDetailMusicPageState {
+  const _$ErrorDetailMusicPageStateImpl();
 
   @override
   String toString() {
@@ -281,27 +283,27 @@ class _$ErrorDetailMusicPageState implements ErrorDetailMusicPageState {
 }
 
 abstract class ErrorDetailMusicPageState implements DetailMusicPageState {
-  const factory ErrorDetailMusicPageState() = _$ErrorDetailMusicPageState;
+  const factory ErrorDetailMusicPageState() = _$ErrorDetailMusicPageStateImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedDetailMusicPageStateCopyWith<$Res> {
-  factory _$$LoadedDetailMusicPageStateCopyWith(
-          _$LoadedDetailMusicPageState value,
-          $Res Function(_$LoadedDetailMusicPageState) then) =
-      __$$LoadedDetailMusicPageStateCopyWithImpl<$Res>;
+abstract class _$$LoadedDetailMusicPageStateImplCopyWith<$Res> {
+  factory _$$LoadedDetailMusicPageStateImplCopyWith(
+          _$LoadedDetailMusicPageStateImpl value,
+          $Res Function(_$LoadedDetailMusicPageStateImpl) then) =
+      __$$LoadedDetailMusicPageStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DetailInfoSong? songDetail});
 }
 
 /// @nodoc
-class __$$LoadedDetailMusicPageStateCopyWithImpl<$Res>
+class __$$LoadedDetailMusicPageStateImplCopyWithImpl<$Res>
     extends _$DetailMusicPageStateCopyWithImpl<$Res,
-        _$LoadedDetailMusicPageState>
-    implements _$$LoadedDetailMusicPageStateCopyWith<$Res> {
-  __$$LoadedDetailMusicPageStateCopyWithImpl(
-      _$LoadedDetailMusicPageState _value,
-      $Res Function(_$LoadedDetailMusicPageState) _then)
+        _$LoadedDetailMusicPageStateImpl>
+    implements _$$LoadedDetailMusicPageStateImplCopyWith<$Res> {
+  __$$LoadedDetailMusicPageStateImplCopyWithImpl(
+      _$LoadedDetailMusicPageStateImpl _value,
+      $Res Function(_$LoadedDetailMusicPageStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -309,7 +311,7 @@ class __$$LoadedDetailMusicPageStateCopyWithImpl<$Res>
   $Res call({
     Object? songDetail = freezed,
   }) {
-    return _then(_$LoadedDetailMusicPageState(
+    return _then(_$LoadedDetailMusicPageStateImpl(
       songDetail: freezed == songDetail
           ? _value.songDetail
           : songDetail // ignore: cast_nullable_to_non_nullable
@@ -320,8 +322,8 @@ class __$$LoadedDetailMusicPageStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedDetailMusicPageState implements LoadedDetailMusicPageState {
-  const _$LoadedDetailMusicPageState({required this.songDetail});
+class _$LoadedDetailMusicPageStateImpl implements LoadedDetailMusicPageState {
+  const _$LoadedDetailMusicPageStateImpl({required this.songDetail});
 
   @override
   final DetailInfoSong? songDetail;
@@ -334,9 +336,9 @@ class _$LoadedDetailMusicPageState implements LoadedDetailMusicPageState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedDetailMusicPageStateCopyWith<_$LoadedDetailMusicPageState>
-      get copyWith => __$$LoadedDetailMusicPageStateCopyWithImpl<
-          _$LoadedDetailMusicPageState>(this, _$identity);
+  _$$LoadedDetailMusicPageStateImplCopyWith<_$LoadedDetailMusicPageStateImpl>
+      get copyWith => __$$LoadedDetailMusicPageStateImplCopyWithImpl<
+          _$LoadedDetailMusicPageStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -410,10 +412,10 @@ class _$LoadedDetailMusicPageState implements LoadedDetailMusicPageState {
 abstract class LoadedDetailMusicPageState implements DetailMusicPageState {
   const factory LoadedDetailMusicPageState(
           {required final DetailInfoSong? songDetail}) =
-      _$LoadedDetailMusicPageState;
+      _$LoadedDetailMusicPageStateImpl;
 
   DetailInfoSong? get songDetail;
   @JsonKey(ignore: true)
-  _$$LoadedDetailMusicPageStateCopyWith<_$LoadedDetailMusicPageState>
+  _$$LoadedDetailMusicPageStateImplCopyWith<_$LoadedDetailMusicPageStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

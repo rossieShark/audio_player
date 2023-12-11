@@ -81,11 +81,11 @@ class _$SongDetailsResponceCopyWithImpl<$Res, $Val extends SongDetailsResponce>
 }
 
 /// @nodoc
-abstract class _$$_SongDetailsResponceCopyWith<$Res>
+abstract class _$$SongDetailsResponceImplCopyWith<$Res>
     implements $SongDetailsResponceCopyWith<$Res> {
-  factory _$$_SongDetailsResponceCopyWith(_$_SongDetailsResponce value,
-          $Res Function(_$_SongDetailsResponce) then) =
-      __$$_SongDetailsResponceCopyWithImpl<$Res>;
+  factory _$$SongDetailsResponceImplCopyWith(_$SongDetailsResponceImpl value,
+          $Res Function(_$SongDetailsResponceImpl) then) =
+      __$$SongDetailsResponceImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -93,11 +93,11 @@ abstract class _$$_SongDetailsResponceCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SongDetailsResponceCopyWithImpl<$Res>
-    extends _$SongDetailsResponceCopyWithImpl<$Res, _$_SongDetailsResponce>
-    implements _$$_SongDetailsResponceCopyWith<$Res> {
-  __$$_SongDetailsResponceCopyWithImpl(_$_SongDetailsResponce _value,
-      $Res Function(_$_SongDetailsResponce) _then)
+class __$$SongDetailsResponceImplCopyWithImpl<$Res>
+    extends _$SongDetailsResponceCopyWithImpl<$Res, _$SongDetailsResponceImpl>
+    implements _$$SongDetailsResponceImplCopyWith<$Res> {
+  __$$SongDetailsResponceImplCopyWithImpl(_$SongDetailsResponceImpl _value,
+      $Res Function(_$SongDetailsResponceImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -108,7 +108,7 @@ class __$$_SongDetailsResponceCopyWithImpl<$Res>
     Object? preview = null,
     Object? type = null,
   }) {
-    return _then(_$_SongDetailsResponce(
+    return _then(_$SongDetailsResponceImpl(
       contributors: null == contributors
           ? _value._contributors
           : contributors // ignore: cast_nullable_to_non_nullable
@@ -131,16 +131,16 @@ class __$$_SongDetailsResponceCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SongDetailsResponce implements _SongDetailsResponce {
-  _$_SongDetailsResponce(
+class _$SongDetailsResponceImpl implements _SongDetailsResponce {
+  _$SongDetailsResponceImpl(
       {required final List<Artist> contributors,
       required this.title,
       required this.preview,
       required this.type})
       : _contributors = contributors;
 
-  factory _$_SongDetailsResponce.fromJson(Map<String, dynamic> json) =>
-      _$$_SongDetailsResponceFromJson(json);
+  factory _$SongDetailsResponceImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SongDetailsResponceImplFromJson(json);
 
   final List<Artist> _contributors;
   @override
@@ -166,7 +166,7 @@ class _$_SongDetailsResponce implements _SongDetailsResponce {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SongDetailsResponce &&
+            other is _$SongDetailsResponceImpl &&
             const DeepCollectionEquality()
                 .equals(other._contributors, _contributors) &&
             (identical(other.title, title) || other.title == title) &&
@@ -182,13 +182,13 @@ class _$_SongDetailsResponce implements _SongDetailsResponce {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SongDetailsResponceCopyWith<_$_SongDetailsResponce> get copyWith =>
-      __$$_SongDetailsResponceCopyWithImpl<_$_SongDetailsResponce>(
+  _$$SongDetailsResponceImplCopyWith<_$SongDetailsResponceImpl> get copyWith =>
+      __$$SongDetailsResponceImplCopyWithImpl<_$SongDetailsResponceImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SongDetailsResponceToJson(
+    return _$$SongDetailsResponceImplToJson(
       this,
     );
   }
@@ -199,10 +199,10 @@ abstract class _SongDetailsResponce implements SongDetailsResponce {
       {required final List<Artist> contributors,
       required final String title,
       required final String preview,
-      required final String type}) = _$_SongDetailsResponce;
+      required final String type}) = _$SongDetailsResponceImpl;
 
   factory _SongDetailsResponce.fromJson(Map<String, dynamic> json) =
-      _$_SongDetailsResponce.fromJson;
+      _$SongDetailsResponceImpl.fromJson;
 
   @override
   List<Artist> get contributors;
@@ -214,7 +214,7 @@ abstract class _SongDetailsResponce implements SongDetailsResponce {
   String get type;
   @override
   @JsonKey(ignore: true)
-  _$$_SongDetailsResponceCopyWith<_$_SongDetailsResponce> get copyWith =>
+  _$$SongDetailsResponceImplCopyWith<_$SongDetailsResponceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -271,19 +271,21 @@ class _$ArtistCopyWithImpl<$Res, $Val extends Artist>
 }
 
 /// @nodoc
-abstract class _$$_ArtistCopyWith<$Res> implements $ArtistCopyWith<$Res> {
-  factory _$$_ArtistCopyWith(_$_Artist value, $Res Function(_$_Artist) then) =
-      __$$_ArtistCopyWithImpl<$Res>;
+abstract class _$$ArtistImplCopyWith<$Res> implements $ArtistCopyWith<$Res> {
+  factory _$$ArtistImplCopyWith(
+          _$ArtistImpl value, $Res Function(_$ArtistImpl) then) =
+      __$$ArtistImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String name, @JsonKey(name: 'picture_big') String image});
 }
 
 /// @nodoc
-class __$$_ArtistCopyWithImpl<$Res>
-    extends _$ArtistCopyWithImpl<$Res, _$_Artist>
-    implements _$$_ArtistCopyWith<$Res> {
-  __$$_ArtistCopyWithImpl(_$_Artist _value, $Res Function(_$_Artist) _then)
+class __$$ArtistImplCopyWithImpl<$Res>
+    extends _$ArtistCopyWithImpl<$Res, _$ArtistImpl>
+    implements _$$ArtistImplCopyWith<$Res> {
+  __$$ArtistImplCopyWithImpl(
+      _$ArtistImpl _value, $Res Function(_$ArtistImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -292,7 +294,7 @@ class __$$_ArtistCopyWithImpl<$Res>
     Object? name = null,
     Object? image = null,
   }) {
-    return _then(_$_Artist(
+    return _then(_$ArtistImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -307,12 +309,12 @@ class __$$_ArtistCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Artist implements _Artist {
-  _$_Artist(
+class _$ArtistImpl implements _Artist {
+  _$ArtistImpl(
       {required this.name, @JsonKey(name: 'picture_big') required this.image});
 
-  factory _$_Artist.fromJson(Map<String, dynamic> json) =>
-      _$$_ArtistFromJson(json);
+  factory _$ArtistImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ArtistImplFromJson(json);
 
   @override
   final String name;
@@ -329,7 +331,7 @@ class _$_Artist implements _Artist {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Artist &&
+            other is _$ArtistImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.image, image) || other.image == image));
   }
@@ -341,12 +343,12 @@ class _$_Artist implements _Artist {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ArtistCopyWith<_$_Artist> get copyWith =>
-      __$$_ArtistCopyWithImpl<_$_Artist>(this, _$identity);
+  _$$ArtistImplCopyWith<_$ArtistImpl> get copyWith =>
+      __$$ArtistImplCopyWithImpl<_$ArtistImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ArtistToJson(
+    return _$$ArtistImplToJson(
       this,
     );
   }
@@ -354,10 +356,11 @@ class _$_Artist implements _Artist {
 
 abstract class _Artist implements Artist {
   factory _Artist(
-      {required final String name,
-      @JsonKey(name: 'picture_big') required final String image}) = _$_Artist;
+          {required final String name,
+          @JsonKey(name: 'picture_big') required final String image}) =
+      _$ArtistImpl;
 
-  factory _Artist.fromJson(Map<String, dynamic> json) = _$_Artist.fromJson;
+  factory _Artist.fromJson(Map<String, dynamic> json) = _$ArtistImpl.fromJson;
 
   @override
   String get name;
@@ -366,6 +369,6 @@ abstract class _Artist implements Artist {
   String get image;
   @override
   @JsonKey(ignore: true)
-  _$$_ArtistCopyWith<_$_Artist> get copyWith =>
+  _$$ArtistImplCopyWith<_$ArtistImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -81,26 +81,28 @@ class _$FavoriteAlbumStateCopyWithImpl<$Res, $Val extends FavoriteAlbumState>
 }
 
 /// @nodoc
-abstract class _$$LoadingFavoriteAlbumStateCopyWith<$Res> {
-  factory _$$LoadingFavoriteAlbumStateCopyWith(
-          _$LoadingFavoriteAlbumState value,
-          $Res Function(_$LoadingFavoriteAlbumState) then) =
-      __$$LoadingFavoriteAlbumStateCopyWithImpl<$Res>;
+abstract class _$$LoadingFavoriteAlbumStateImplCopyWith<$Res> {
+  factory _$$LoadingFavoriteAlbumStateImplCopyWith(
+          _$LoadingFavoriteAlbumStateImpl value,
+          $Res Function(_$LoadingFavoriteAlbumStateImpl) then) =
+      __$$LoadingFavoriteAlbumStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingFavoriteAlbumStateCopyWithImpl<$Res>
-    extends _$FavoriteAlbumStateCopyWithImpl<$Res, _$LoadingFavoriteAlbumState>
-    implements _$$LoadingFavoriteAlbumStateCopyWith<$Res> {
-  __$$LoadingFavoriteAlbumStateCopyWithImpl(_$LoadingFavoriteAlbumState _value,
-      $Res Function(_$LoadingFavoriteAlbumState) _then)
+class __$$LoadingFavoriteAlbumStateImplCopyWithImpl<$Res>
+    extends _$FavoriteAlbumStateCopyWithImpl<$Res,
+        _$LoadingFavoriteAlbumStateImpl>
+    implements _$$LoadingFavoriteAlbumStateImplCopyWith<$Res> {
+  __$$LoadingFavoriteAlbumStateImplCopyWithImpl(
+      _$LoadingFavoriteAlbumStateImpl _value,
+      $Res Function(_$LoadingFavoriteAlbumStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LoadingFavoriteAlbumState implements LoadingFavoriteAlbumState {
-  const _$LoadingFavoriteAlbumState();
+class _$LoadingFavoriteAlbumStateImpl implements LoadingFavoriteAlbumState {
+  const _$LoadingFavoriteAlbumStateImpl();
 
   @override
   String toString() {
@@ -111,7 +113,7 @@ class _$LoadingFavoriteAlbumState implements LoadingFavoriteAlbumState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadingFavoriteAlbumState);
+            other is _$LoadingFavoriteAlbumStateImpl);
   }
 
   @override
@@ -187,32 +189,32 @@ class _$LoadingFavoriteAlbumState implements LoadingFavoriteAlbumState {
 }
 
 abstract class LoadingFavoriteAlbumState implements FavoriteAlbumState {
-  const factory LoadingFavoriteAlbumState() = _$LoadingFavoriteAlbumState;
+  const factory LoadingFavoriteAlbumState() = _$LoadingFavoriteAlbumStateImpl;
 }
 
 /// @nodoc
-abstract class _$$NoResultsFavoriteAlbumStateCopyWith<$Res> {
-  factory _$$NoResultsFavoriteAlbumStateCopyWith(
-          _$NoResultsFavoriteAlbumState value,
-          $Res Function(_$NoResultsFavoriteAlbumState) then) =
-      __$$NoResultsFavoriteAlbumStateCopyWithImpl<$Res>;
+abstract class _$$NoResultsFavoriteAlbumStateImplCopyWith<$Res> {
+  factory _$$NoResultsFavoriteAlbumStateImplCopyWith(
+          _$NoResultsFavoriteAlbumStateImpl value,
+          $Res Function(_$NoResultsFavoriteAlbumStateImpl) then) =
+      __$$NoResultsFavoriteAlbumStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$NoResultsFavoriteAlbumStateCopyWithImpl<$Res>
+class __$$NoResultsFavoriteAlbumStateImplCopyWithImpl<$Res>
     extends _$FavoriteAlbumStateCopyWithImpl<$Res,
-        _$NoResultsFavoriteAlbumState>
-    implements _$$NoResultsFavoriteAlbumStateCopyWith<$Res> {
-  __$$NoResultsFavoriteAlbumStateCopyWithImpl(
-      _$NoResultsFavoriteAlbumState _value,
-      $Res Function(_$NoResultsFavoriteAlbumState) _then)
+        _$NoResultsFavoriteAlbumStateImpl>
+    implements _$$NoResultsFavoriteAlbumStateImplCopyWith<$Res> {
+  __$$NoResultsFavoriteAlbumStateImplCopyWithImpl(
+      _$NoResultsFavoriteAlbumStateImpl _value,
+      $Res Function(_$NoResultsFavoriteAlbumStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$NoResultsFavoriteAlbumState implements NoResultsFavoriteAlbumState {
-  const _$NoResultsFavoriteAlbumState();
+class _$NoResultsFavoriteAlbumStateImpl implements NoResultsFavoriteAlbumState {
+  const _$NoResultsFavoriteAlbumStateImpl();
 
   @override
   String toString() {
@@ -223,7 +225,7 @@ class _$NoResultsFavoriteAlbumState implements NoResultsFavoriteAlbumState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$NoResultsFavoriteAlbumState);
+            other is _$NoResultsFavoriteAlbumStateImpl);
   }
 
   @override
@@ -299,24 +301,28 @@ class _$NoResultsFavoriteAlbumState implements NoResultsFavoriteAlbumState {
 }
 
 abstract class NoResultsFavoriteAlbumState implements FavoriteAlbumState {
-  const factory NoResultsFavoriteAlbumState() = _$NoResultsFavoriteAlbumState;
+  const factory NoResultsFavoriteAlbumState() =
+      _$NoResultsFavoriteAlbumStateImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedFavoriteAlbumStateCopyWith<$Res> {
-  factory _$$LoadedFavoriteAlbumStateCopyWith(_$LoadedFavoriteAlbumState value,
-          $Res Function(_$LoadedFavoriteAlbumState) then) =
-      __$$LoadedFavoriteAlbumStateCopyWithImpl<$Res>;
+abstract class _$$LoadedFavoriteAlbumStateImplCopyWith<$Res> {
+  factory _$$LoadedFavoriteAlbumStateImplCopyWith(
+          _$LoadedFavoriteAlbumStateImpl value,
+          $Res Function(_$LoadedFavoriteAlbumStateImpl) then) =
+      __$$LoadedFavoriteAlbumStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<SongModel> data});
 }
 
 /// @nodoc
-class __$$LoadedFavoriteAlbumStateCopyWithImpl<$Res>
-    extends _$FavoriteAlbumStateCopyWithImpl<$Res, _$LoadedFavoriteAlbumState>
-    implements _$$LoadedFavoriteAlbumStateCopyWith<$Res> {
-  __$$LoadedFavoriteAlbumStateCopyWithImpl(_$LoadedFavoriteAlbumState _value,
-      $Res Function(_$LoadedFavoriteAlbumState) _then)
+class __$$LoadedFavoriteAlbumStateImplCopyWithImpl<$Res>
+    extends _$FavoriteAlbumStateCopyWithImpl<$Res,
+        _$LoadedFavoriteAlbumStateImpl>
+    implements _$$LoadedFavoriteAlbumStateImplCopyWith<$Res> {
+  __$$LoadedFavoriteAlbumStateImplCopyWithImpl(
+      _$LoadedFavoriteAlbumStateImpl _value,
+      $Res Function(_$LoadedFavoriteAlbumStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -324,7 +330,7 @@ class __$$LoadedFavoriteAlbumStateCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$LoadedFavoriteAlbumState(
+    return _then(_$LoadedFavoriteAlbumStateImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -335,8 +341,8 @@ class __$$LoadedFavoriteAlbumStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedFavoriteAlbumState implements LoadedFavoriteAlbumState {
-  const _$LoadedFavoriteAlbumState({required final List<SongModel> data})
+class _$LoadedFavoriteAlbumStateImpl implements LoadedFavoriteAlbumState {
+  const _$LoadedFavoriteAlbumStateImpl({required final List<SongModel> data})
       : _data = data;
 
   final List<SongModel> _data;
@@ -356,7 +362,7 @@ class _$LoadedFavoriteAlbumState implements LoadedFavoriteAlbumState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadedFavoriteAlbumState &&
+            other is _$LoadedFavoriteAlbumStateImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -367,10 +373,9 @@ class _$LoadedFavoriteAlbumState implements LoadedFavoriteAlbumState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedFavoriteAlbumStateCopyWith<_$LoadedFavoriteAlbumState>
-      get copyWith =>
-          __$$LoadedFavoriteAlbumStateCopyWithImpl<_$LoadedFavoriteAlbumState>(
-              this, _$identity);
+  _$$LoadedFavoriteAlbumStateImplCopyWith<_$LoadedFavoriteAlbumStateImpl>
+      get copyWith => __$$LoadedFavoriteAlbumStateImplCopyWithImpl<
+          _$LoadedFavoriteAlbumStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -443,10 +448,10 @@ class _$LoadedFavoriteAlbumState implements LoadedFavoriteAlbumState {
 
 abstract class LoadedFavoriteAlbumState implements FavoriteAlbumState {
   const factory LoadedFavoriteAlbumState(
-      {required final List<SongModel> data}) = _$LoadedFavoriteAlbumState;
+      {required final List<SongModel> data}) = _$LoadedFavoriteAlbumStateImpl;
 
   List<SongModel> get data;
   @JsonKey(ignore: true)
-  _$$LoadedFavoriteAlbumStateCopyWith<_$LoadedFavoriteAlbumState>
+  _$$LoadedFavoriteAlbumStateImplCopyWith<_$LoadedFavoriteAlbumStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

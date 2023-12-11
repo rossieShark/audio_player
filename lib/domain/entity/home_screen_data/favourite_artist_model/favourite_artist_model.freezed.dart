@@ -64,23 +64,25 @@ class _$FavouriteArtistResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_FavouriteArtistResponseCopyWith<$Res>
+abstract class _$$FavouriteArtistResponseImplCopyWith<$Res>
     implements $FavouriteArtistResponseCopyWith<$Res> {
-  factory _$$_FavouriteArtistResponseCopyWith(_$_FavouriteArtistResponse value,
-          $Res Function(_$_FavouriteArtistResponse) then) =
-      __$$_FavouriteArtistResponseCopyWithImpl<$Res>;
+  factory _$$FavouriteArtistResponseImplCopyWith(
+          _$FavouriteArtistResponseImpl value,
+          $Res Function(_$FavouriteArtistResponseImpl) then) =
+      __$$FavouriteArtistResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Artists> data});
 }
 
 /// @nodoc
-class __$$_FavouriteArtistResponseCopyWithImpl<$Res>
+class __$$FavouriteArtistResponseImplCopyWithImpl<$Res>
     extends _$FavouriteArtistResponseCopyWithImpl<$Res,
-        _$_FavouriteArtistResponse>
-    implements _$$_FavouriteArtistResponseCopyWith<$Res> {
-  __$$_FavouriteArtistResponseCopyWithImpl(_$_FavouriteArtistResponse _value,
-      $Res Function(_$_FavouriteArtistResponse) _then)
+        _$FavouriteArtistResponseImpl>
+    implements _$$FavouriteArtistResponseImplCopyWith<$Res> {
+  __$$FavouriteArtistResponseImplCopyWithImpl(
+      _$FavouriteArtistResponseImpl _value,
+      $Res Function(_$FavouriteArtistResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -88,7 +90,7 @@ class __$$_FavouriteArtistResponseCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$_FavouriteArtistResponse(
+    return _then(_$FavouriteArtistResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -99,12 +101,12 @@ class __$$_FavouriteArtistResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_FavouriteArtistResponse implements _FavouriteArtistResponse {
-  _$_FavouriteArtistResponse({required final List<Artists> data})
+class _$FavouriteArtistResponseImpl implements _FavouriteArtistResponse {
+  _$FavouriteArtistResponseImpl({required final List<Artists> data})
       : _data = data;
 
-  factory _$_FavouriteArtistResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_FavouriteArtistResponseFromJson(json);
+  factory _$FavouriteArtistResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FavouriteArtistResponseImplFromJson(json);
 
   final List<Artists> _data;
   @override
@@ -123,7 +125,7 @@ class _$_FavouriteArtistResponse implements _FavouriteArtistResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_FavouriteArtistResponse &&
+            other is _$FavouriteArtistResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -135,14 +137,13 @@ class _$_FavouriteArtistResponse implements _FavouriteArtistResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FavouriteArtistResponseCopyWith<_$_FavouriteArtistResponse>
-      get copyWith =>
-          __$$_FavouriteArtistResponseCopyWithImpl<_$_FavouriteArtistResponse>(
-              this, _$identity);
+  _$$FavouriteArtistResponseImplCopyWith<_$FavouriteArtistResponseImpl>
+      get copyWith => __$$FavouriteArtistResponseImplCopyWithImpl<
+          _$FavouriteArtistResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_FavouriteArtistResponseToJson(
+    return _$$FavouriteArtistResponseImplToJson(
       this,
     );
   }
@@ -150,16 +151,16 @@ class _$_FavouriteArtistResponse implements _FavouriteArtistResponse {
 
 abstract class _FavouriteArtistResponse implements FavouriteArtistResponse {
   factory _FavouriteArtistResponse({required final List<Artists> data}) =
-      _$_FavouriteArtistResponse;
+      _$FavouriteArtistResponseImpl;
 
   factory _FavouriteArtistResponse.fromJson(Map<String, dynamic> json) =
-      _$_FavouriteArtistResponse.fromJson;
+      _$FavouriteArtistResponseImpl.fromJson;
 
   @override
   List<Artists> get data;
   @override
   @JsonKey(ignore: true)
-  _$$_FavouriteArtistResponseCopyWith<_$_FavouriteArtistResponse>
+  _$$FavouriteArtistResponseImplCopyWith<_$FavouriteArtistResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -222,20 +223,21 @@ class _$ArtistsCopyWithImpl<$Res, $Val extends Artists>
 }
 
 /// @nodoc
-abstract class _$$_ArtistsCopyWith<$Res> implements $ArtistsCopyWith<$Res> {
-  factory _$$_ArtistsCopyWith(
-          _$_Artists value, $Res Function(_$_Artists) then) =
-      __$$_ArtistsCopyWithImpl<$Res>;
+abstract class _$$ArtistsImplCopyWith<$Res> implements $ArtistsCopyWith<$Res> {
+  factory _$$ArtistsImplCopyWith(
+          _$ArtistsImpl value, $Res Function(_$ArtistsImpl) then) =
+      __$$ArtistsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int id, String name, @JsonKey(name: 'picture_big') String image});
 }
 
 /// @nodoc
-class __$$_ArtistsCopyWithImpl<$Res>
-    extends _$ArtistsCopyWithImpl<$Res, _$_Artists>
-    implements _$$_ArtistsCopyWith<$Res> {
-  __$$_ArtistsCopyWithImpl(_$_Artists _value, $Res Function(_$_Artists) _then)
+class __$$ArtistsImplCopyWithImpl<$Res>
+    extends _$ArtistsCopyWithImpl<$Res, _$ArtistsImpl>
+    implements _$$ArtistsImplCopyWith<$Res> {
+  __$$ArtistsImplCopyWithImpl(
+      _$ArtistsImpl _value, $Res Function(_$ArtistsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -245,7 +247,7 @@ class __$$_ArtistsCopyWithImpl<$Res>
     Object? name = null,
     Object? image = null,
   }) {
-    return _then(_$_Artists(
+    return _then(_$ArtistsImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -264,14 +266,14 @@ class __$$_ArtistsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Artists implements _Artists {
-  _$_Artists(
+class _$ArtistsImpl implements _Artists {
+  _$ArtistsImpl(
       {required this.id,
       required this.name,
       @JsonKey(name: 'picture_big') required this.image});
 
-  factory _$_Artists.fromJson(Map<String, dynamic> json) =>
-      _$$_ArtistsFromJson(json);
+  factory _$ArtistsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ArtistsImplFromJson(json);
 
   @override
   final int id;
@@ -290,7 +292,7 @@ class _$_Artists implements _Artists {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Artists &&
+            other is _$ArtistsImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.image, image) || other.image == image));
@@ -303,12 +305,12 @@ class _$_Artists implements _Artists {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ArtistsCopyWith<_$_Artists> get copyWith =>
-      __$$_ArtistsCopyWithImpl<_$_Artists>(this, _$identity);
+  _$$ArtistsImplCopyWith<_$ArtistsImpl> get copyWith =>
+      __$$ArtistsImplCopyWithImpl<_$ArtistsImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ArtistsToJson(
+    return _$$ArtistsImplToJson(
       this,
     );
   }
@@ -316,11 +318,12 @@ class _$_Artists implements _Artists {
 
 abstract class _Artists implements Artists {
   factory _Artists(
-      {required final int id,
-      required final String name,
-      @JsonKey(name: 'picture_big') required final String image}) = _$_Artists;
+          {required final int id,
+          required final String name,
+          @JsonKey(name: 'picture_big') required final String image}) =
+      _$ArtistsImpl;
 
-  factory _Artists.fromJson(Map<String, dynamic> json) = _$_Artists.fromJson;
+  factory _Artists.fromJson(Map<String, dynamic> json) = _$ArtistsImpl.fromJson;
 
   @override
   int get id;
@@ -331,6 +334,6 @@ abstract class _Artists implements Artists {
   String get image;
   @override
   @JsonKey(ignore: true)
-  _$$_ArtistsCopyWith<_$_Artists> get copyWith =>
+  _$$ArtistsImplCopyWith<_$ArtistsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

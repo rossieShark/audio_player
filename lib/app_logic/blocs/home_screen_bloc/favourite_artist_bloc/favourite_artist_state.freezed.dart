@@ -82,28 +82,29 @@ class _$FavoriteArtistBlocStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ErrorFavoriteArtistBlocStateCopyWith<$Res> {
-  factory _$$ErrorFavoriteArtistBlocStateCopyWith(
-          _$ErrorFavoriteArtistBlocState value,
-          $Res Function(_$ErrorFavoriteArtistBlocState) then) =
-      __$$ErrorFavoriteArtistBlocStateCopyWithImpl<$Res>;
+abstract class _$$ErrorFavoriteArtistBlocStateImplCopyWith<$Res> {
+  factory _$$ErrorFavoriteArtistBlocStateImplCopyWith(
+          _$ErrorFavoriteArtistBlocStateImpl value,
+          $Res Function(_$ErrorFavoriteArtistBlocStateImpl) then) =
+      __$$ErrorFavoriteArtistBlocStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ErrorFavoriteArtistBlocStateCopyWithImpl<$Res>
+class __$$ErrorFavoriteArtistBlocStateImplCopyWithImpl<$Res>
     extends _$FavoriteArtistBlocStateCopyWithImpl<$Res,
-        _$ErrorFavoriteArtistBlocState>
-    implements _$$ErrorFavoriteArtistBlocStateCopyWith<$Res> {
-  __$$ErrorFavoriteArtistBlocStateCopyWithImpl(
-      _$ErrorFavoriteArtistBlocState _value,
-      $Res Function(_$ErrorFavoriteArtistBlocState) _then)
+        _$ErrorFavoriteArtistBlocStateImpl>
+    implements _$$ErrorFavoriteArtistBlocStateImplCopyWith<$Res> {
+  __$$ErrorFavoriteArtistBlocStateImplCopyWithImpl(
+      _$ErrorFavoriteArtistBlocStateImpl _value,
+      $Res Function(_$ErrorFavoriteArtistBlocStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ErrorFavoriteArtistBlocState implements ErrorFavoriteArtistBlocState {
-  const _$ErrorFavoriteArtistBlocState();
+class _$ErrorFavoriteArtistBlocStateImpl
+    implements ErrorFavoriteArtistBlocState {
+  const _$ErrorFavoriteArtistBlocStateImpl();
 
   @override
   String toString() {
@@ -180,33 +181,34 @@ class _$ErrorFavoriteArtistBlocState implements ErrorFavoriteArtistBlocState {
 }
 
 abstract class ErrorFavoriteArtistBlocState implements FavoriteArtistBlocState {
-  const factory ErrorFavoriteArtistBlocState() = _$ErrorFavoriteArtistBlocState;
+  const factory ErrorFavoriteArtistBlocState() =
+      _$ErrorFavoriteArtistBlocStateImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingFavoriteArtistBlocStateCopyWith<$Res> {
-  factory _$$LoadingFavoriteArtistBlocStateCopyWith(
-          _$LoadingFavoriteArtistBlocState value,
-          $Res Function(_$LoadingFavoriteArtistBlocState) then) =
-      __$$LoadingFavoriteArtistBlocStateCopyWithImpl<$Res>;
+abstract class _$$LoadingFavoriteArtistBlocStateImplCopyWith<$Res> {
+  factory _$$LoadingFavoriteArtistBlocStateImplCopyWith(
+          _$LoadingFavoriteArtistBlocStateImpl value,
+          $Res Function(_$LoadingFavoriteArtistBlocStateImpl) then) =
+      __$$LoadingFavoriteArtistBlocStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingFavoriteArtistBlocStateCopyWithImpl<$Res>
+class __$$LoadingFavoriteArtistBlocStateImplCopyWithImpl<$Res>
     extends _$FavoriteArtistBlocStateCopyWithImpl<$Res,
-        _$LoadingFavoriteArtistBlocState>
-    implements _$$LoadingFavoriteArtistBlocStateCopyWith<$Res> {
-  __$$LoadingFavoriteArtistBlocStateCopyWithImpl(
-      _$LoadingFavoriteArtistBlocState _value,
-      $Res Function(_$LoadingFavoriteArtistBlocState) _then)
+        _$LoadingFavoriteArtistBlocStateImpl>
+    implements _$$LoadingFavoriteArtistBlocStateImplCopyWith<$Res> {
+  __$$LoadingFavoriteArtistBlocStateImplCopyWithImpl(
+      _$LoadingFavoriteArtistBlocStateImpl _value,
+      $Res Function(_$LoadingFavoriteArtistBlocStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LoadingFavoriteArtistBlocState
+class _$LoadingFavoriteArtistBlocStateImpl
     implements LoadingFavoriteArtistBlocState {
-  const _$LoadingFavoriteArtistBlocState();
+  const _$LoadingFavoriteArtistBlocStateImpl();
 
   @override
   String toString() {
@@ -285,27 +287,27 @@ class _$LoadingFavoriteArtistBlocState
 abstract class LoadingFavoriteArtistBlocState
     implements FavoriteArtistBlocState {
   const factory LoadingFavoriteArtistBlocState() =
-      _$LoadingFavoriteArtistBlocState;
+      _$LoadingFavoriteArtistBlocStateImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedFavoriteArtistBlocStateCopyWith<$Res> {
-  factory _$$LoadedFavoriteArtistBlocStateCopyWith(
-          _$LoadedFavoriteArtistBlocState value,
-          $Res Function(_$LoadedFavoriteArtistBlocState) then) =
-      __$$LoadedFavoriteArtistBlocStateCopyWithImpl<$Res>;
+abstract class _$$LoadedFavoriteArtistBlocStateImplCopyWith<$Res> {
+  factory _$$LoadedFavoriteArtistBlocStateImplCopyWith(
+          _$LoadedFavoriteArtistBlocStateImpl value,
+          $Res Function(_$LoadedFavoriteArtistBlocStateImpl) then) =
+      __$$LoadedFavoriteArtistBlocStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<FavoriteArtist> data});
 }
 
 /// @nodoc
-class __$$LoadedFavoriteArtistBlocStateCopyWithImpl<$Res>
+class __$$LoadedFavoriteArtistBlocStateImplCopyWithImpl<$Res>
     extends _$FavoriteArtistBlocStateCopyWithImpl<$Res,
-        _$LoadedFavoriteArtistBlocState>
-    implements _$$LoadedFavoriteArtistBlocStateCopyWith<$Res> {
-  __$$LoadedFavoriteArtistBlocStateCopyWithImpl(
-      _$LoadedFavoriteArtistBlocState _value,
-      $Res Function(_$LoadedFavoriteArtistBlocState) _then)
+        _$LoadedFavoriteArtistBlocStateImpl>
+    implements _$$LoadedFavoriteArtistBlocStateImplCopyWith<$Res> {
+  __$$LoadedFavoriteArtistBlocStateImplCopyWithImpl(
+      _$LoadedFavoriteArtistBlocStateImpl _value,
+      $Res Function(_$LoadedFavoriteArtistBlocStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -313,7 +315,7 @@ class __$$LoadedFavoriteArtistBlocStateCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$LoadedFavoriteArtistBlocState(
+    return _then(_$LoadedFavoriteArtistBlocStateImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -324,8 +326,9 @@ class __$$LoadedFavoriteArtistBlocStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedFavoriteArtistBlocState implements LoadedFavoriteArtistBlocState {
-  const _$LoadedFavoriteArtistBlocState(
+class _$LoadedFavoriteArtistBlocStateImpl
+    implements LoadedFavoriteArtistBlocState {
+  const _$LoadedFavoriteArtistBlocStateImpl(
       {required final List<FavoriteArtist> data})
       : _data = data;
 
@@ -345,9 +348,10 @@ class _$LoadedFavoriteArtistBlocState implements LoadedFavoriteArtistBlocState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedFavoriteArtistBlocStateCopyWith<_$LoadedFavoriteArtistBlocState>
-      get copyWith => __$$LoadedFavoriteArtistBlocStateCopyWithImpl<
-          _$LoadedFavoriteArtistBlocState>(this, _$identity);
+  _$$LoadedFavoriteArtistBlocStateImplCopyWith<
+          _$LoadedFavoriteArtistBlocStateImpl>
+      get copyWith => __$$LoadedFavoriteArtistBlocStateImplCopyWithImpl<
+          _$LoadedFavoriteArtistBlocStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -422,10 +426,11 @@ abstract class LoadedFavoriteArtistBlocState
     implements FavoriteArtistBlocState {
   const factory LoadedFavoriteArtistBlocState(
           {required final List<FavoriteArtist> data}) =
-      _$LoadedFavoriteArtistBlocState;
+      _$LoadedFavoriteArtistBlocStateImpl;
 
   List<FavoriteArtist> get data;
   @JsonKey(ignore: true)
-  _$$LoadedFavoriteArtistBlocStateCopyWith<_$LoadedFavoriteArtistBlocState>
+  _$$LoadedFavoriteArtistBlocStateImplCopyWith<
+          _$LoadedFavoriteArtistBlocStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

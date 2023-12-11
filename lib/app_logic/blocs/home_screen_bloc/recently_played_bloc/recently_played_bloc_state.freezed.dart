@@ -81,25 +81,28 @@ class _$RecentlyPlayedStateCopyWithImpl<$Res, $Val extends RecentlyPlayedState>
 }
 
 /// @nodoc
-abstract class _$$ErrorRecentlyPlayedStateCopyWith<$Res> {
-  factory _$$ErrorRecentlyPlayedStateCopyWith(_$ErrorRecentlyPlayedState value,
-          $Res Function(_$ErrorRecentlyPlayedState) then) =
-      __$$ErrorRecentlyPlayedStateCopyWithImpl<$Res>;
+abstract class _$$ErrorRecentlyPlayedStateImplCopyWith<$Res> {
+  factory _$$ErrorRecentlyPlayedStateImplCopyWith(
+          _$ErrorRecentlyPlayedStateImpl value,
+          $Res Function(_$ErrorRecentlyPlayedStateImpl) then) =
+      __$$ErrorRecentlyPlayedStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ErrorRecentlyPlayedStateCopyWithImpl<$Res>
-    extends _$RecentlyPlayedStateCopyWithImpl<$Res, _$ErrorRecentlyPlayedState>
-    implements _$$ErrorRecentlyPlayedStateCopyWith<$Res> {
-  __$$ErrorRecentlyPlayedStateCopyWithImpl(_$ErrorRecentlyPlayedState _value,
-      $Res Function(_$ErrorRecentlyPlayedState) _then)
+class __$$ErrorRecentlyPlayedStateImplCopyWithImpl<$Res>
+    extends _$RecentlyPlayedStateCopyWithImpl<$Res,
+        _$ErrorRecentlyPlayedStateImpl>
+    implements _$$ErrorRecentlyPlayedStateImplCopyWith<$Res> {
+  __$$ErrorRecentlyPlayedStateImplCopyWithImpl(
+      _$ErrorRecentlyPlayedStateImpl _value,
+      $Res Function(_$ErrorRecentlyPlayedStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ErrorRecentlyPlayedState implements ErrorRecentlyPlayedState {
-  const _$ErrorRecentlyPlayedState();
+class _$ErrorRecentlyPlayedStateImpl implements ErrorRecentlyPlayedState {
+  const _$ErrorRecentlyPlayedStateImpl();
 
   @override
   String toString() {
@@ -176,32 +179,32 @@ class _$ErrorRecentlyPlayedState implements ErrorRecentlyPlayedState {
 }
 
 abstract class ErrorRecentlyPlayedState implements RecentlyPlayedState {
-  const factory ErrorRecentlyPlayedState() = _$ErrorRecentlyPlayedState;
+  const factory ErrorRecentlyPlayedState() = _$ErrorRecentlyPlayedStateImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingRecentlyPlayedStateCopyWith<$Res> {
-  factory _$$LoadingRecentlyPlayedStateCopyWith(
-          _$LoadingRecentlyPlayedState value,
-          $Res Function(_$LoadingRecentlyPlayedState) then) =
-      __$$LoadingRecentlyPlayedStateCopyWithImpl<$Res>;
+abstract class _$$LoadingRecentlyPlayedStateImplCopyWith<$Res> {
+  factory _$$LoadingRecentlyPlayedStateImplCopyWith(
+          _$LoadingRecentlyPlayedStateImpl value,
+          $Res Function(_$LoadingRecentlyPlayedStateImpl) then) =
+      __$$LoadingRecentlyPlayedStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingRecentlyPlayedStateCopyWithImpl<$Res>
+class __$$LoadingRecentlyPlayedStateImplCopyWithImpl<$Res>
     extends _$RecentlyPlayedStateCopyWithImpl<$Res,
-        _$LoadingRecentlyPlayedState>
-    implements _$$LoadingRecentlyPlayedStateCopyWith<$Res> {
-  __$$LoadingRecentlyPlayedStateCopyWithImpl(
-      _$LoadingRecentlyPlayedState _value,
-      $Res Function(_$LoadingRecentlyPlayedState) _then)
+        _$LoadingRecentlyPlayedStateImpl>
+    implements _$$LoadingRecentlyPlayedStateImplCopyWith<$Res> {
+  __$$LoadingRecentlyPlayedStateImplCopyWithImpl(
+      _$LoadingRecentlyPlayedStateImpl _value,
+      $Res Function(_$LoadingRecentlyPlayedStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LoadingRecentlyPlayedState implements LoadingRecentlyPlayedState {
-  const _$LoadingRecentlyPlayedState();
+class _$LoadingRecentlyPlayedStateImpl implements LoadingRecentlyPlayedState {
+  const _$LoadingRecentlyPlayedStateImpl();
 
   @override
   String toString() {
@@ -278,25 +281,27 @@ class _$LoadingRecentlyPlayedState implements LoadingRecentlyPlayedState {
 }
 
 abstract class LoadingRecentlyPlayedState implements RecentlyPlayedState {
-  const factory LoadingRecentlyPlayedState() = _$LoadingRecentlyPlayedState;
+  const factory LoadingRecentlyPlayedState() = _$LoadingRecentlyPlayedStateImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedRecentlyPlayedStateCopyWith<$Res> {
-  factory _$$LoadedRecentlyPlayedStateCopyWith(
-          _$LoadedRecentlyPlayedState value,
-          $Res Function(_$LoadedRecentlyPlayedState) then) =
-      __$$LoadedRecentlyPlayedStateCopyWithImpl<$Res>;
+abstract class _$$LoadedRecentlyPlayedStateImplCopyWith<$Res> {
+  factory _$$LoadedRecentlyPlayedStateImplCopyWith(
+          _$LoadedRecentlyPlayedStateImpl value,
+          $Res Function(_$LoadedRecentlyPlayedStateImpl) then) =
+      __$$LoadedRecentlyPlayedStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<RecentlyPlayedSong> data});
 }
 
 /// @nodoc
-class __$$LoadedRecentlyPlayedStateCopyWithImpl<$Res>
-    extends _$RecentlyPlayedStateCopyWithImpl<$Res, _$LoadedRecentlyPlayedState>
-    implements _$$LoadedRecentlyPlayedStateCopyWith<$Res> {
-  __$$LoadedRecentlyPlayedStateCopyWithImpl(_$LoadedRecentlyPlayedState _value,
-      $Res Function(_$LoadedRecentlyPlayedState) _then)
+class __$$LoadedRecentlyPlayedStateImplCopyWithImpl<$Res>
+    extends _$RecentlyPlayedStateCopyWithImpl<$Res,
+        _$LoadedRecentlyPlayedStateImpl>
+    implements _$$LoadedRecentlyPlayedStateImplCopyWith<$Res> {
+  __$$LoadedRecentlyPlayedStateImplCopyWithImpl(
+      _$LoadedRecentlyPlayedStateImpl _value,
+      $Res Function(_$LoadedRecentlyPlayedStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -304,7 +309,7 @@ class __$$LoadedRecentlyPlayedStateCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$LoadedRecentlyPlayedState(
+    return _then(_$LoadedRecentlyPlayedStateImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -315,8 +320,8 @@ class __$$LoadedRecentlyPlayedStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedRecentlyPlayedState implements LoadedRecentlyPlayedState {
-  const _$LoadedRecentlyPlayedState(
+class _$LoadedRecentlyPlayedStateImpl implements LoadedRecentlyPlayedState {
+  const _$LoadedRecentlyPlayedStateImpl(
       {required final List<RecentlyPlayedSong> data})
       : _data = data;
 
@@ -336,9 +341,9 @@ class _$LoadedRecentlyPlayedState implements LoadedRecentlyPlayedState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedRecentlyPlayedStateCopyWith<_$LoadedRecentlyPlayedState>
-      get copyWith => __$$LoadedRecentlyPlayedStateCopyWithImpl<
-          _$LoadedRecentlyPlayedState>(this, _$identity);
+  _$$LoadedRecentlyPlayedStateImplCopyWith<_$LoadedRecentlyPlayedStateImpl>
+      get copyWith => __$$LoadedRecentlyPlayedStateImplCopyWithImpl<
+          _$LoadedRecentlyPlayedStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -412,10 +417,10 @@ class _$LoadedRecentlyPlayedState implements LoadedRecentlyPlayedState {
 abstract class LoadedRecentlyPlayedState implements RecentlyPlayedState {
   const factory LoadedRecentlyPlayedState(
           {required final List<RecentlyPlayedSong> data}) =
-      _$LoadedRecentlyPlayedState;
+      _$LoadedRecentlyPlayedStateImpl;
 
   List<RecentlyPlayedSong> get data;
   @JsonKey(ignore: true)
-  _$$LoadedRecentlyPlayedStateCopyWith<_$LoadedRecentlyPlayedState>
+  _$$LoadedRecentlyPlayedStateImplCopyWith<_$LoadedRecentlyPlayedStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

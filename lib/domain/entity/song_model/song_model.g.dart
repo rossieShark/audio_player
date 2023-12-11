@@ -6,9 +6,9 @@ part of 'song_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SongDetailsResponce _$$_SongDetailsResponceFromJson(
+_$SongDetailsResponceImpl _$$SongDetailsResponceImplFromJson(
         Map<String, dynamic> json) =>
-    _$_SongDetailsResponce(
+    _$SongDetailsResponceImpl(
       contributors: (json['contributors'] as List<dynamic>)
           .map((e) => Artist.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -17,8 +17,8 @@ _$_SongDetailsResponce _$$_SongDetailsResponceFromJson(
       type: json['type'] as String,
     );
 
-Map<String, dynamic> _$$_SongDetailsResponceToJson(
-        _$_SongDetailsResponce instance) =>
+Map<String, dynamic> _$$SongDetailsResponceImplToJson(
+        _$SongDetailsResponceImpl instance) =>
     <String, dynamic>{
       'contributors': instance.contributors,
       'title': instance.title,
@@ -26,12 +26,13 @@ Map<String, dynamic> _$$_SongDetailsResponceToJson(
       'type': instance.type,
     };
 
-_$_Artist _$$_ArtistFromJson(Map<String, dynamic> json) => _$_Artist(
+_$ArtistImpl _$$ArtistImplFromJson(Map<String, dynamic> json) => _$ArtistImpl(
       name: json['name'] as String,
       image: json['picture_big'] as String,
     );
 
-Map<String, dynamic> _$$_ArtistToJson(_$_Artist instance) => <String, dynamic>{
+Map<String, dynamic> _$$ArtistImplToJson(_$ArtistImpl instance) =>
+    <String, dynamic>{
       'name': instance.name,
       'picture_big': instance.image,
     };

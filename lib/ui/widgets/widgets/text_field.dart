@@ -85,9 +85,9 @@ class CustomTextField extends StatelessWidget {
                     )
                   : null),
           style: TextStyle(
-              fontSize: 14,
+              fontSize: 16,
               fontFamily: FontFamily.poiretOne,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w800,
               color: textColor ?? AppColors.black.color),
         ),
       ),

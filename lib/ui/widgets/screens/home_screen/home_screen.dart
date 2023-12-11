@@ -58,6 +58,8 @@ class _BuildMainSectionState extends State<_BuildMainSection> {
   @override
   void initState() {
     super.initState();
+    final albumBloc = BlocProvider.of<AlbumBloc>(context);
+    albumBloc.add(FetchAlbumsEvent());
     _scrollController = ScrollController();
     _scrollController.addListener(() {
       _scrollListener();

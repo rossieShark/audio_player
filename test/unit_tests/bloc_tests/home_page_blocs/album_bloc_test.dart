@@ -81,14 +81,14 @@ List<BestAlbum> createTestAlbums() {
     BestAlbum(
         id: 1,
         artist: 'artist',
-        detailAlbum: 1,
+        // detailAlbum: 1,
         image: 'image',
         title: 'title',
         type: 'album'),
     BestAlbum(
         id: 2,
         artist: 'artist',
-        detailAlbum: 2,
+        // detailAlbum: 2,
         image: 'image',
         title: 'title',
         type: 'album')

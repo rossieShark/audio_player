@@ -6,22 +6,22 @@ part of 'search_result_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SearchResultResponce _$$_SearchResultResponceFromJson(
+_$SearchResultResponceImpl _$$SearchResultResponceImplFromJson(
         Map<String, dynamic> json) =>
-    _$_SearchResultResponce(
+    _$SearchResultResponceImpl(
       data: (json['data'] as List<dynamic>)
           .map((e) => SearchData.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_SearchResultResponceToJson(
-        _$_SearchResultResponce instance) =>
+Map<String, dynamic> _$$SearchResultResponceImplToJson(
+        _$SearchResultResponceImpl instance) =>
     <String, dynamic>{
       'data': instance.data,
     };
 
-_$_SearchData _$$_SearchDataFromJson(Map<String, dynamic> json) =>
-    _$_SearchData(
+_$SearchDataImpl _$$SearchDataImplFromJson(Map<String, dynamic> json) =>
+    _$SearchDataImpl(
       id: json['id'] as int,
       title: json['title'] as String,
       type: json['type'] as String,
@@ -29,7 +29,7 @@ _$_SearchData _$$_SearchDataFromJson(Map<String, dynamic> json) =>
       artist: SearchDataArtist.fromJson(json['artist'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_SearchDataToJson(_$_SearchData instance) =>
+Map<String, dynamic> _$$SearchDataImplToJson(_$SearchDataImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
@@ -38,13 +38,15 @@ Map<String, dynamic> _$$_SearchDataToJson(_$_SearchData instance) =>
       'artist': instance.artist,
     };
 
-_$_SearchDataArtist _$$_SearchDataArtistFromJson(Map<String, dynamic> json) =>
-    _$_SearchDataArtist(
+_$SearchDataArtistImpl _$$SearchDataArtistImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SearchDataArtistImpl(
       image: json['picture_big'] as String,
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$$_SearchDataArtistToJson(_$_SearchDataArtist instance) =>
+Map<String, dynamic> _$$SearchDataArtistImplToJson(
+        _$SearchDataArtistImpl instance) =>
     <String, dynamic>{
       'picture_big': instance.image,
       'name': instance.name,

@@ -82,28 +82,29 @@ class _$RecentlySearchedStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$LoadingRecentlySearchedStateCopyWith<$Res> {
-  factory _$$LoadingRecentlySearchedStateCopyWith(
-          _$LoadingRecentlySearchedState value,
-          $Res Function(_$LoadingRecentlySearchedState) then) =
-      __$$LoadingRecentlySearchedStateCopyWithImpl<$Res>;
+abstract class _$$LoadingRecentlySearchedStateImplCopyWith<$Res> {
+  factory _$$LoadingRecentlySearchedStateImplCopyWith(
+          _$LoadingRecentlySearchedStateImpl value,
+          $Res Function(_$LoadingRecentlySearchedStateImpl) then) =
+      __$$LoadingRecentlySearchedStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingRecentlySearchedStateCopyWithImpl<$Res>
+class __$$LoadingRecentlySearchedStateImplCopyWithImpl<$Res>
     extends _$RecentlySearchedStateCopyWithImpl<$Res,
-        _$LoadingRecentlySearchedState>
-    implements _$$LoadingRecentlySearchedStateCopyWith<$Res> {
-  __$$LoadingRecentlySearchedStateCopyWithImpl(
-      _$LoadingRecentlySearchedState _value,
-      $Res Function(_$LoadingRecentlySearchedState) _then)
+        _$LoadingRecentlySearchedStateImpl>
+    implements _$$LoadingRecentlySearchedStateImplCopyWith<$Res> {
+  __$$LoadingRecentlySearchedStateImplCopyWithImpl(
+      _$LoadingRecentlySearchedStateImpl _value,
+      $Res Function(_$LoadingRecentlySearchedStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LoadingRecentlySearchedState implements LoadingRecentlySearchedState {
-  const _$LoadingRecentlySearchedState();
+class _$LoadingRecentlySearchedStateImpl
+    implements LoadingRecentlySearchedState {
+  const _$LoadingRecentlySearchedStateImpl();
 
   @override
   String toString() {
@@ -114,7 +115,7 @@ class _$LoadingRecentlySearchedState implements LoadingRecentlySearchedState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadingRecentlySearchedState);
+            other is _$LoadingRecentlySearchedStateImpl);
   }
 
   @override
@@ -190,32 +191,33 @@ class _$LoadingRecentlySearchedState implements LoadingRecentlySearchedState {
 }
 
 abstract class LoadingRecentlySearchedState implements RecentlySearchedState {
-  const factory LoadingRecentlySearchedState() = _$LoadingRecentlySearchedState;
+  const factory LoadingRecentlySearchedState() =
+      _$LoadingRecentlySearchedStateImpl;
 }
 
 /// @nodoc
-abstract class _$$EmptyRecentlySearchedStateCopyWith<$Res> {
-  factory _$$EmptyRecentlySearchedStateCopyWith(
-          _$EmptyRecentlySearchedState value,
-          $Res Function(_$EmptyRecentlySearchedState) then) =
-      __$$EmptyRecentlySearchedStateCopyWithImpl<$Res>;
+abstract class _$$EmptyRecentlySearchedStateImplCopyWith<$Res> {
+  factory _$$EmptyRecentlySearchedStateImplCopyWith(
+          _$EmptyRecentlySearchedStateImpl value,
+          $Res Function(_$EmptyRecentlySearchedStateImpl) then) =
+      __$$EmptyRecentlySearchedStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$EmptyRecentlySearchedStateCopyWithImpl<$Res>
+class __$$EmptyRecentlySearchedStateImplCopyWithImpl<$Res>
     extends _$RecentlySearchedStateCopyWithImpl<$Res,
-        _$EmptyRecentlySearchedState>
-    implements _$$EmptyRecentlySearchedStateCopyWith<$Res> {
-  __$$EmptyRecentlySearchedStateCopyWithImpl(
-      _$EmptyRecentlySearchedState _value,
-      $Res Function(_$EmptyRecentlySearchedState) _then)
+        _$EmptyRecentlySearchedStateImpl>
+    implements _$$EmptyRecentlySearchedStateImplCopyWith<$Res> {
+  __$$EmptyRecentlySearchedStateImplCopyWithImpl(
+      _$EmptyRecentlySearchedStateImpl _value,
+      $Res Function(_$EmptyRecentlySearchedStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$EmptyRecentlySearchedState implements EmptyRecentlySearchedState {
-  const _$EmptyRecentlySearchedState();
+class _$EmptyRecentlySearchedStateImpl implements EmptyRecentlySearchedState {
+  const _$EmptyRecentlySearchedStateImpl();
 
   @override
   String toString() {
@@ -226,7 +228,7 @@ class _$EmptyRecentlySearchedState implements EmptyRecentlySearchedState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$EmptyRecentlySearchedState);
+            other is _$EmptyRecentlySearchedStateImpl);
   }
 
   @override
@@ -302,27 +304,27 @@ class _$EmptyRecentlySearchedState implements EmptyRecentlySearchedState {
 }
 
 abstract class EmptyRecentlySearchedState implements RecentlySearchedState {
-  const factory EmptyRecentlySearchedState() = _$EmptyRecentlySearchedState;
+  const factory EmptyRecentlySearchedState() = _$EmptyRecentlySearchedStateImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedRecentlySearchedStateCopyWith<$Res> {
-  factory _$$LoadedRecentlySearchedStateCopyWith(
-          _$LoadedRecentlySearchedState value,
-          $Res Function(_$LoadedRecentlySearchedState) then) =
-      __$$LoadedRecentlySearchedStateCopyWithImpl<$Res>;
+abstract class _$$LoadedRecentlySearchedStateImplCopyWith<$Res> {
+  factory _$$LoadedRecentlySearchedStateImplCopyWith(
+          _$LoadedRecentlySearchedStateImpl value,
+          $Res Function(_$LoadedRecentlySearchedStateImpl) then) =
+      __$$LoadedRecentlySearchedStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<SongModel> data});
 }
 
 /// @nodoc
-class __$$LoadedRecentlySearchedStateCopyWithImpl<$Res>
+class __$$LoadedRecentlySearchedStateImplCopyWithImpl<$Res>
     extends _$RecentlySearchedStateCopyWithImpl<$Res,
-        _$LoadedRecentlySearchedState>
-    implements _$$LoadedRecentlySearchedStateCopyWith<$Res> {
-  __$$LoadedRecentlySearchedStateCopyWithImpl(
-      _$LoadedRecentlySearchedState _value,
-      $Res Function(_$LoadedRecentlySearchedState) _then)
+        _$LoadedRecentlySearchedStateImpl>
+    implements _$$LoadedRecentlySearchedStateImplCopyWith<$Res> {
+  __$$LoadedRecentlySearchedStateImplCopyWithImpl(
+      _$LoadedRecentlySearchedStateImpl _value,
+      $Res Function(_$LoadedRecentlySearchedStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -330,7 +332,7 @@ class __$$LoadedRecentlySearchedStateCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$LoadedRecentlySearchedState(
+    return _then(_$LoadedRecentlySearchedStateImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -341,8 +343,8 @@ class __$$LoadedRecentlySearchedStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedRecentlySearchedState implements LoadedRecentlySearchedState {
-  const _$LoadedRecentlySearchedState({required final List<SongModel> data})
+class _$LoadedRecentlySearchedStateImpl implements LoadedRecentlySearchedState {
+  const _$LoadedRecentlySearchedStateImpl({required final List<SongModel> data})
       : _data = data;
 
   final List<SongModel> _data;
@@ -362,7 +364,7 @@ class _$LoadedRecentlySearchedState implements LoadedRecentlySearchedState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadedRecentlySearchedState &&
+            other is _$LoadedRecentlySearchedStateImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -373,9 +375,9 @@ class _$LoadedRecentlySearchedState implements LoadedRecentlySearchedState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedRecentlySearchedStateCopyWith<_$LoadedRecentlySearchedState>
-      get copyWith => __$$LoadedRecentlySearchedStateCopyWithImpl<
-          _$LoadedRecentlySearchedState>(this, _$identity);
+  _$$LoadedRecentlySearchedStateImplCopyWith<_$LoadedRecentlySearchedStateImpl>
+      get copyWith => __$$LoadedRecentlySearchedStateImplCopyWithImpl<
+          _$LoadedRecentlySearchedStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -448,10 +450,11 @@ class _$LoadedRecentlySearchedState implements LoadedRecentlySearchedState {
 
 abstract class LoadedRecentlySearchedState implements RecentlySearchedState {
   const factory LoadedRecentlySearchedState(
-      {required final List<SongModel> data}) = _$LoadedRecentlySearchedState;
+          {required final List<SongModel> data}) =
+      _$LoadedRecentlySearchedStateImpl;
 
   List<SongModel> get data;
   @JsonKey(ignore: true)
-  _$$LoadedRecentlySearchedStateCopyWith<_$LoadedRecentlySearchedState>
+  _$$LoadedRecentlySearchedStateImplCopyWith<_$LoadedRecentlySearchedStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

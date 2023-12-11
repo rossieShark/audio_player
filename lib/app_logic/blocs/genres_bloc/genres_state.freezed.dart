@@ -81,25 +81,25 @@ class _$GenresBlocStateCopyWithImpl<$Res, $Val extends GenresBlocState>
 }
 
 /// @nodoc
-abstract class _$$ErrorGenresBlocStateCopyWith<$Res> {
-  factory _$$ErrorGenresBlocStateCopyWith(_$ErrorGenresBlocState value,
-          $Res Function(_$ErrorGenresBlocState) then) =
-      __$$ErrorGenresBlocStateCopyWithImpl<$Res>;
+abstract class _$$ErrorGenresBlocStateImplCopyWith<$Res> {
+  factory _$$ErrorGenresBlocStateImplCopyWith(_$ErrorGenresBlocStateImpl value,
+          $Res Function(_$ErrorGenresBlocStateImpl) then) =
+      __$$ErrorGenresBlocStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ErrorGenresBlocStateCopyWithImpl<$Res>
-    extends _$GenresBlocStateCopyWithImpl<$Res, _$ErrorGenresBlocState>
-    implements _$$ErrorGenresBlocStateCopyWith<$Res> {
-  __$$ErrorGenresBlocStateCopyWithImpl(_$ErrorGenresBlocState _value,
-      $Res Function(_$ErrorGenresBlocState) _then)
+class __$$ErrorGenresBlocStateImplCopyWithImpl<$Res>
+    extends _$GenresBlocStateCopyWithImpl<$Res, _$ErrorGenresBlocStateImpl>
+    implements _$$ErrorGenresBlocStateImplCopyWith<$Res> {
+  __$$ErrorGenresBlocStateImplCopyWithImpl(_$ErrorGenresBlocStateImpl _value,
+      $Res Function(_$ErrorGenresBlocStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ErrorGenresBlocState implements ErrorGenresBlocState {
-  const _$ErrorGenresBlocState();
+class _$ErrorGenresBlocStateImpl implements ErrorGenresBlocState {
+  const _$ErrorGenresBlocStateImpl();
 
   @override
   String toString() {
@@ -176,29 +176,31 @@ class _$ErrorGenresBlocState implements ErrorGenresBlocState {
 }
 
 abstract class ErrorGenresBlocState implements GenresBlocState {
-  const factory ErrorGenresBlocState() = _$ErrorGenresBlocState;
+  const factory ErrorGenresBlocState() = _$ErrorGenresBlocStateImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingGenresBlocStateCopyWith<$Res> {
-  factory _$$LoadingGenresBlocStateCopyWith(_$LoadingGenresBlocState value,
-          $Res Function(_$LoadingGenresBlocState) then) =
-      __$$LoadingGenresBlocStateCopyWithImpl<$Res>;
+abstract class _$$LoadingGenresBlocStateImplCopyWith<$Res> {
+  factory _$$LoadingGenresBlocStateImplCopyWith(
+          _$LoadingGenresBlocStateImpl value,
+          $Res Function(_$LoadingGenresBlocStateImpl) then) =
+      __$$LoadingGenresBlocStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingGenresBlocStateCopyWithImpl<$Res>
-    extends _$GenresBlocStateCopyWithImpl<$Res, _$LoadingGenresBlocState>
-    implements _$$LoadingGenresBlocStateCopyWith<$Res> {
-  __$$LoadingGenresBlocStateCopyWithImpl(_$LoadingGenresBlocState _value,
-      $Res Function(_$LoadingGenresBlocState) _then)
+class __$$LoadingGenresBlocStateImplCopyWithImpl<$Res>
+    extends _$GenresBlocStateCopyWithImpl<$Res, _$LoadingGenresBlocStateImpl>
+    implements _$$LoadingGenresBlocStateImplCopyWith<$Res> {
+  __$$LoadingGenresBlocStateImplCopyWithImpl(
+      _$LoadingGenresBlocStateImpl _value,
+      $Res Function(_$LoadingGenresBlocStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LoadingGenresBlocState implements LoadingGenresBlocState {
-  const _$LoadingGenresBlocState();
+class _$LoadingGenresBlocStateImpl implements LoadingGenresBlocState {
+  const _$LoadingGenresBlocStateImpl();
 
   @override
   String toString() {
@@ -275,24 +277,25 @@ class _$LoadingGenresBlocState implements LoadingGenresBlocState {
 }
 
 abstract class LoadingGenresBlocState implements GenresBlocState {
-  const factory LoadingGenresBlocState() = _$LoadingGenresBlocState;
+  const factory LoadingGenresBlocState() = _$LoadingGenresBlocStateImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedGenresBlocStateCopyWith<$Res> {
-  factory _$$LoadedGenresBlocStateCopyWith(_$LoadedGenresBlocState value,
-          $Res Function(_$LoadedGenresBlocState) then) =
-      __$$LoadedGenresBlocStateCopyWithImpl<$Res>;
+abstract class _$$LoadedGenresBlocStateImplCopyWith<$Res> {
+  factory _$$LoadedGenresBlocStateImplCopyWith(
+          _$LoadedGenresBlocStateImpl value,
+          $Res Function(_$LoadedGenresBlocStateImpl) then) =
+      __$$LoadedGenresBlocStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<MusicGenre> data});
 }
 
 /// @nodoc
-class __$$LoadedGenresBlocStateCopyWithImpl<$Res>
-    extends _$GenresBlocStateCopyWithImpl<$Res, _$LoadedGenresBlocState>
-    implements _$$LoadedGenresBlocStateCopyWith<$Res> {
-  __$$LoadedGenresBlocStateCopyWithImpl(_$LoadedGenresBlocState _value,
-      $Res Function(_$LoadedGenresBlocState) _then)
+class __$$LoadedGenresBlocStateImplCopyWithImpl<$Res>
+    extends _$GenresBlocStateCopyWithImpl<$Res, _$LoadedGenresBlocStateImpl>
+    implements _$$LoadedGenresBlocStateImplCopyWith<$Res> {
+  __$$LoadedGenresBlocStateImplCopyWithImpl(_$LoadedGenresBlocStateImpl _value,
+      $Res Function(_$LoadedGenresBlocStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -300,7 +303,7 @@ class __$$LoadedGenresBlocStateCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$LoadedGenresBlocState(
+    return _then(_$LoadedGenresBlocStateImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -311,8 +314,8 @@ class __$$LoadedGenresBlocStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedGenresBlocState implements LoadedGenresBlocState {
-  const _$LoadedGenresBlocState({required final List<MusicGenre> data})
+class _$LoadedGenresBlocStateImpl implements LoadedGenresBlocState {
+  const _$LoadedGenresBlocStateImpl({required final List<MusicGenre> data})
       : _data = data;
 
   final List<MusicGenre> _data;
@@ -331,9 +334,9 @@ class _$LoadedGenresBlocState implements LoadedGenresBlocState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedGenresBlocStateCopyWith<_$LoadedGenresBlocState> get copyWith =>
-      __$$LoadedGenresBlocStateCopyWithImpl<_$LoadedGenresBlocState>(
-          this, _$identity);
+  _$$LoadedGenresBlocStateImplCopyWith<_$LoadedGenresBlocStateImpl>
+      get copyWith => __$$LoadedGenresBlocStateImplCopyWithImpl<
+          _$LoadedGenresBlocStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -406,10 +409,10 @@ class _$LoadedGenresBlocState implements LoadedGenresBlocState {
 
 abstract class LoadedGenresBlocState implements GenresBlocState {
   const factory LoadedGenresBlocState({required final List<MusicGenre> data}) =
-      _$LoadedGenresBlocState;
+      _$LoadedGenresBlocStateImpl;
 
   List<MusicGenre> get data;
   @JsonKey(ignore: true)
-  _$$LoadedGenresBlocStateCopyWith<_$LoadedGenresBlocState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$LoadedGenresBlocStateImplCopyWith<_$LoadedGenresBlocStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

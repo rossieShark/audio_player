@@ -63,22 +63,22 @@ class _$SearchResultResponceCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_SearchResultResponceCopyWith<$Res>
+abstract class _$$SearchResultResponceImplCopyWith<$Res>
     implements $SearchResultResponceCopyWith<$Res> {
-  factory _$$_SearchResultResponceCopyWith(_$_SearchResultResponce value,
-          $Res Function(_$_SearchResultResponce) then) =
-      __$$_SearchResultResponceCopyWithImpl<$Res>;
+  factory _$$SearchResultResponceImplCopyWith(_$SearchResultResponceImpl value,
+          $Res Function(_$SearchResultResponceImpl) then) =
+      __$$SearchResultResponceImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<SearchData> data});
 }
 
 /// @nodoc
-class __$$_SearchResultResponceCopyWithImpl<$Res>
-    extends _$SearchResultResponceCopyWithImpl<$Res, _$_SearchResultResponce>
-    implements _$$_SearchResultResponceCopyWith<$Res> {
-  __$$_SearchResultResponceCopyWithImpl(_$_SearchResultResponce _value,
-      $Res Function(_$_SearchResultResponce) _then)
+class __$$SearchResultResponceImplCopyWithImpl<$Res>
+    extends _$SearchResultResponceCopyWithImpl<$Res, _$SearchResultResponceImpl>
+    implements _$$SearchResultResponceImplCopyWith<$Res> {
+  __$$SearchResultResponceImplCopyWithImpl(_$SearchResultResponceImpl _value,
+      $Res Function(_$SearchResultResponceImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -86,7 +86,7 @@ class __$$_SearchResultResponceCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$_SearchResultResponce(
+    return _then(_$SearchResultResponceImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -97,12 +97,12 @@ class __$$_SearchResultResponceCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SearchResultResponce implements _SearchResultResponce {
-  _$_SearchResultResponce({required final List<SearchData> data})
+class _$SearchResultResponceImpl implements _SearchResultResponce {
+  _$SearchResultResponceImpl({required final List<SearchData> data})
       : _data = data;
 
-  factory _$_SearchResultResponce.fromJson(Map<String, dynamic> json) =>
-      _$$_SearchResultResponceFromJson(json);
+  factory _$SearchResultResponceImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SearchResultResponceImplFromJson(json);
 
   final List<SearchData> _data;
   @override
@@ -121,7 +121,7 @@ class _$_SearchResultResponce implements _SearchResultResponce {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SearchResultResponce &&
+            other is _$SearchResultResponceImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -133,13 +133,14 @@ class _$_SearchResultResponce implements _SearchResultResponce {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SearchResultResponceCopyWith<_$_SearchResultResponce> get copyWith =>
-      __$$_SearchResultResponceCopyWithImpl<_$_SearchResultResponce>(
-          this, _$identity);
+  _$$SearchResultResponceImplCopyWith<_$SearchResultResponceImpl>
+      get copyWith =>
+          __$$SearchResultResponceImplCopyWithImpl<_$SearchResultResponceImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SearchResultResponceToJson(
+    return _$$SearchResultResponceImplToJson(
       this,
     );
   }
@@ -147,17 +148,17 @@ class _$_SearchResultResponce implements _SearchResultResponce {
 
 abstract class _SearchResultResponce implements SearchResultResponce {
   factory _SearchResultResponce({required final List<SearchData> data}) =
-      _$_SearchResultResponce;
+      _$SearchResultResponceImpl;
 
   factory _SearchResultResponce.fromJson(Map<String, dynamic> json) =
-      _$_SearchResultResponce.fromJson;
+      _$SearchResultResponceImpl.fromJson;
 
   @override
   List<SearchData> get data;
   @override
   @JsonKey(ignore: true)
-  _$$_SearchResultResponceCopyWith<_$_SearchResultResponce> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SearchResultResponceImplCopyWith<_$SearchResultResponceImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 SearchData _$SearchDataFromJson(Map<String, dynamic> json) {
@@ -247,11 +248,11 @@ class _$SearchDataCopyWithImpl<$Res, $Val extends SearchData>
 }
 
 /// @nodoc
-abstract class _$$_SearchDataCopyWith<$Res>
+abstract class _$$SearchDataImplCopyWith<$Res>
     implements $SearchDataCopyWith<$Res> {
-  factory _$$_SearchDataCopyWith(
-          _$_SearchData value, $Res Function(_$_SearchData) then) =
-      __$$_SearchDataCopyWithImpl<$Res>;
+  factory _$$SearchDataImplCopyWith(
+          _$SearchDataImpl value, $Res Function(_$SearchDataImpl) then) =
+      __$$SearchDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -266,11 +267,11 @@ abstract class _$$_SearchDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SearchDataCopyWithImpl<$Res>
-    extends _$SearchDataCopyWithImpl<$Res, _$_SearchData>
-    implements _$$_SearchDataCopyWith<$Res> {
-  __$$_SearchDataCopyWithImpl(
-      _$_SearchData _value, $Res Function(_$_SearchData) _then)
+class __$$SearchDataImplCopyWithImpl<$Res>
+    extends _$SearchDataCopyWithImpl<$Res, _$SearchDataImpl>
+    implements _$$SearchDataImplCopyWith<$Res> {
+  __$$SearchDataImplCopyWithImpl(
+      _$SearchDataImpl _value, $Res Function(_$SearchDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -282,7 +283,7 @@ class __$$_SearchDataCopyWithImpl<$Res>
     Object? preview = null,
     Object? artist = null,
   }) {
-    return _then(_$_SearchData(
+    return _then(_$SearchDataImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -309,16 +310,16 @@ class __$$_SearchDataCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SearchData implements _SearchData {
-  _$_SearchData(
+class _$SearchDataImpl implements _SearchData {
+  _$SearchDataImpl(
       {required this.id,
       required this.title,
       required this.type,
       required this.preview,
       required this.artist});
 
-  factory _$_SearchData.fromJson(Map<String, dynamic> json) =>
-      _$$_SearchDataFromJson(json);
+  factory _$SearchDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SearchDataImplFromJson(json);
 
   @override
   final int id;
@@ -340,7 +341,7 @@ class _$_SearchData implements _SearchData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SearchData &&
+            other is _$SearchDataImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.type, type) || other.type == type) &&
@@ -356,12 +357,12 @@ class _$_SearchData implements _SearchData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SearchDataCopyWith<_$_SearchData> get copyWith =>
-      __$$_SearchDataCopyWithImpl<_$_SearchData>(this, _$identity);
+  _$$SearchDataImplCopyWith<_$SearchDataImpl> get copyWith =>
+      __$$SearchDataImplCopyWithImpl<_$SearchDataImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SearchDataToJson(
+    return _$$SearchDataImplToJson(
       this,
     );
   }
@@ -373,10 +374,10 @@ abstract class _SearchData implements SearchData {
       required final String title,
       required final String type,
       required final String preview,
-      required final SearchDataArtist artist}) = _$_SearchData;
+      required final SearchDataArtist artist}) = _$SearchDataImpl;
 
   factory _SearchData.fromJson(Map<String, dynamic> json) =
-      _$_SearchData.fromJson;
+      _$SearchDataImpl.fromJson;
 
   @override
   int get id;
@@ -390,7 +391,7 @@ abstract class _SearchData implements SearchData {
   SearchDataArtist get artist;
   @override
   @JsonKey(ignore: true)
-  _$$_SearchDataCopyWith<_$_SearchData> get copyWith =>
+  _$$SearchDataImplCopyWith<_$SearchDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -449,22 +450,22 @@ class _$SearchDataArtistCopyWithImpl<$Res, $Val extends SearchDataArtist>
 }
 
 /// @nodoc
-abstract class _$$_SearchDataArtistCopyWith<$Res>
+abstract class _$$SearchDataArtistImplCopyWith<$Res>
     implements $SearchDataArtistCopyWith<$Res> {
-  factory _$$_SearchDataArtistCopyWith(
-          _$_SearchDataArtist value, $Res Function(_$_SearchDataArtist) then) =
-      __$$_SearchDataArtistCopyWithImpl<$Res>;
+  factory _$$SearchDataArtistImplCopyWith(_$SearchDataArtistImpl value,
+          $Res Function(_$SearchDataArtistImpl) then) =
+      __$$SearchDataArtistImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: 'picture_big') String image, String name});
 }
 
 /// @nodoc
-class __$$_SearchDataArtistCopyWithImpl<$Res>
-    extends _$SearchDataArtistCopyWithImpl<$Res, _$_SearchDataArtist>
-    implements _$$_SearchDataArtistCopyWith<$Res> {
-  __$$_SearchDataArtistCopyWithImpl(
-      _$_SearchDataArtist _value, $Res Function(_$_SearchDataArtist) _then)
+class __$$SearchDataArtistImplCopyWithImpl<$Res>
+    extends _$SearchDataArtistCopyWithImpl<$Res, _$SearchDataArtistImpl>
+    implements _$$SearchDataArtistImplCopyWith<$Res> {
+  __$$SearchDataArtistImplCopyWithImpl(_$SearchDataArtistImpl _value,
+      $Res Function(_$SearchDataArtistImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -473,7 +474,7 @@ class __$$_SearchDataArtistCopyWithImpl<$Res>
     Object? image = null,
     Object? name = null,
   }) {
-    return _then(_$_SearchDataArtist(
+    return _then(_$SearchDataArtistImpl(
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -488,12 +489,12 @@ class __$$_SearchDataArtistCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_SearchDataArtist implements _SearchDataArtist {
-  _$_SearchDataArtist(
+class _$SearchDataArtistImpl implements _SearchDataArtist {
+  _$SearchDataArtistImpl(
       {@JsonKey(name: 'picture_big') required this.image, required this.name});
 
-  factory _$_SearchDataArtist.fromJson(Map<String, dynamic> json) =>
-      _$$_SearchDataArtistFromJson(json);
+  factory _$SearchDataArtistImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SearchDataArtistImplFromJson(json);
 
   @override
   @JsonKey(name: 'picture_big')
@@ -510,7 +511,7 @@ class _$_SearchDataArtist implements _SearchDataArtist {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SearchDataArtist &&
+            other is _$SearchDataArtistImpl &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -522,12 +523,13 @@ class _$_SearchDataArtist implements _SearchDataArtist {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SearchDataArtistCopyWith<_$_SearchDataArtist> get copyWith =>
-      __$$_SearchDataArtistCopyWithImpl<_$_SearchDataArtist>(this, _$identity);
+  _$$SearchDataArtistImplCopyWith<_$SearchDataArtistImpl> get copyWith =>
+      __$$SearchDataArtistImplCopyWithImpl<_$SearchDataArtistImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SearchDataArtistToJson(
+    return _$$SearchDataArtistImplToJson(
       this,
     );
   }
@@ -536,10 +538,10 @@ class _$_SearchDataArtist implements _SearchDataArtist {
 abstract class _SearchDataArtist implements SearchDataArtist {
   factory _SearchDataArtist(
       {@JsonKey(name: 'picture_big') required final String image,
-      required final String name}) = _$_SearchDataArtist;
+      required final String name}) = _$SearchDataArtistImpl;
 
   factory _SearchDataArtist.fromJson(Map<String, dynamic> json) =
-      _$_SearchDataArtist.fromJson;
+      _$SearchDataArtistImpl.fromJson;
 
   @override
   @JsonKey(name: 'picture_big')
@@ -548,6 +550,6 @@ abstract class _SearchDataArtist implements SearchDataArtist {
   String get name;
   @override
   @JsonKey(ignore: true)
-  _$$_SearchDataArtistCopyWith<_$_SearchDataArtist> get copyWith =>
+  _$$SearchDataArtistImplCopyWith<_$SearchDataArtistImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

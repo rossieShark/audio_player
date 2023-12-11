@@ -6,62 +6,64 @@ part of 'serch_event.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TextChangedSearchEvent _$$TextChangedSearchEventFromJson(
+_$TextChangedSearchEventImpl _$$TextChangedSearchEventImplFromJson(
         Map<String, dynamic> json) =>
-    _$TextChangedSearchEvent(
+    _$TextChangedSearchEventImpl(
       newText: json['newText'] as String,
       filter: json['filter'] as String,
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$TextChangedSearchEventToJson(
-        _$TextChangedSearchEvent instance) =>
+Map<String, dynamic> _$$TextChangedSearchEventImplToJson(
+        _$TextChangedSearchEventImpl instance) =>
     <String, dynamic>{
       'newText': instance.newText,
       'filter': instance.filter,
       'runtimeType': instance.$type,
     };
 
-_$LoadSearchEvent _$$LoadSearchEventFromJson(Map<String, dynamic> json) =>
-    _$LoadSearchEvent(
+_$LoadSearchEventImpl _$$LoadSearchEventImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LoadSearchEventImpl(
       newText: json['newText'] as String,
       filter: json['filter'] as String,
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$LoadSearchEventToJson(_$LoadSearchEvent instance) =>
+Map<String, dynamic> _$$LoadSearchEventImplToJson(
+        _$LoadSearchEventImpl instance) =>
     <String, dynamic>{
       'newText': instance.newText,
       'filter': instance.filter,
       'runtimeType': instance.$type,
     };
 
-_$LoadMoreItemsSearchEvent _$$LoadMoreItemsSearchEventFromJson(
+_$LoadMoreItemsSearchEventImpl _$$LoadMoreItemsSearchEventImplFromJson(
         Map<String, dynamic> json) =>
-    _$LoadMoreItemsSearchEvent(
+    _$LoadMoreItemsSearchEventImpl(
       text: json['text'] as String,
       filter: json['filter'] as String,
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$LoadMoreItemsSearchEventToJson(
-        _$LoadMoreItemsSearchEvent instance) =>
+Map<String, dynamic> _$$LoadMoreItemsSearchEventImplToJson(
+        _$LoadMoreItemsSearchEventImpl instance) =>
     <String, dynamic>{
       'text': instance.text,
       'filter': instance.filter,
       'runtimeType': instance.$type,
     };
 
-_$FilterFetchResultSearchEvent _$$FilterFetchResultSearchEventFromJson(
+_$FilterFetchResultSearchEventImpl _$$FilterFetchResultSearchEventImplFromJson(
         Map<String, dynamic> json) =>
-    _$FilterFetchResultSearchEvent(
+    _$FilterFetchResultSearchEventImpl(
       text: json['text'] as String,
       filter: json['filter'] as String,
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$FilterFetchResultSearchEventToJson(
-        _$FilterFetchResultSearchEvent instance) =>
+Map<String, dynamic> _$$FilterFetchResultSearchEventImplToJson(
+        _$FilterFetchResultSearchEventImpl instance) =>
     <String, dynamic>{
       'text': instance.text,
       'filter': instance.filter,

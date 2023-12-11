@@ -193,7 +193,7 @@ List<BestAlbum> _createTestList(String image) {
       image: image,
       artist: 'Artist',
       title: 'Title',
-      detailAlbum: 1,
+      // detailAlbum: 1,
       type: 'album',
     ),
     BestAlbum(
@@ -201,7 +201,7 @@ List<BestAlbum> _createTestList(String image) {
         image: image,
         artist: 'Artist',
         title: 'Title',
-        detailAlbum: 1,
+        // detailAlbum: 1,
         type: 'album')
   ];
 }

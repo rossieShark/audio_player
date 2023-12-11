@@ -17,7 +17,7 @@ class BestAlbumRepository {
           title: album.title,
           id: album.id,
           image: album.coverImage,
-          detailAlbum: album.id,
+          // detailAlbum: album.id,
           artist: album.artist.name,
         );
       }).toList();

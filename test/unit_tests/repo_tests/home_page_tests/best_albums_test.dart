@@ -111,7 +111,7 @@ List<BestAlbum> createTestAlbum() {
   return const [
     BestAlbum(
       artist: 'artist',
-      detailAlbum: 1,
+      // detailAlbum: 1,
       id: 1,
       image: 'image',
       title: 'title',
@@ -119,7 +119,7 @@ List<BestAlbum> createTestAlbum() {
     ),
     BestAlbum(
       artist: 'artist',
-      detailAlbum: 2,
+      // detailAlbum: 2,
       id: 2,
       image: 'image',
       title: 'title',
@@ -132,7 +132,7 @@ List<BestAlbum> createTestAlbumWith1Value() {
   return const [
     BestAlbum(
       artist: 'artist',
-      detailAlbum: 1,
+      // detailAlbum: 1,
       id: 1,
       image: 'image',
       title: 'title',

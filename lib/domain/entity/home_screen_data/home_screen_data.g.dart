@@ -6,22 +6,22 @@ part of 'home_screen_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_BestAlbumsResponse _$$_BestAlbumsResponseFromJson(
+_$BestAlbumsResponseImpl _$$BestAlbumsResponseImplFromJson(
         Map<String, dynamic> json) =>
-    _$_BestAlbumsResponse(
+    _$BestAlbumsResponseImpl(
       data: (json['data'] as List<dynamic>)
           .map((e) => BestAlbumsList.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_BestAlbumsResponseToJson(
-        _$_BestAlbumsResponse instance) =>
+Map<String, dynamic> _$$BestAlbumsResponseImplToJson(
+        _$BestAlbumsResponseImpl instance) =>
     <String, dynamic>{
       'data': instance.data,
     };
 
-_$_BestAlbumsList _$$_BestAlbumsListFromJson(Map<String, dynamic> json) =>
-    _$_BestAlbumsList(
+_$BestAlbumsListImpl _$$BestAlbumsListImplFromJson(Map<String, dynamic> json) =>
+    _$BestAlbumsListImpl(
       artist: AlbumArtist.fromJson(json['artist'] as Map<String, dynamic>),
       id: json['id'] as int,
       coverImage: json['cover_xl'] as String,
@@ -29,7 +29,8 @@ _$_BestAlbumsList _$$_BestAlbumsListFromJson(Map<String, dynamic> json) =>
       type: json['type'] as String,
     );
 
-Map<String, dynamic> _$$_BestAlbumsListToJson(_$_BestAlbumsList instance) =>
+Map<String, dynamic> _$$BestAlbumsListImplToJson(
+        _$BestAlbumsListImpl instance) =>
     <String, dynamic>{
       'artist': instance.artist,
       'id': instance.id,
@@ -38,13 +39,13 @@ Map<String, dynamic> _$$_BestAlbumsListToJson(_$_BestAlbumsList instance) =>
       'type': instance.type,
     };
 
-_$_AlbumArtist _$$_AlbumArtistFromJson(Map<String, dynamic> json) =>
-    _$_AlbumArtist(
+_$AlbumArtistImpl _$$AlbumArtistImplFromJson(Map<String, dynamic> json) =>
+    _$AlbumArtistImpl(
       name: json['name'] as String,
       id: json['id'] as int,
     );
 
-Map<String, dynamic> _$$_AlbumArtistToJson(_$_AlbumArtist instance) =>
+Map<String, dynamic> _$$AlbumArtistImplToJson(_$AlbumArtistImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'id': instance.id,

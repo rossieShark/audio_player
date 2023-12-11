@@ -28,9 +28,9 @@ class BestAlbums extends Table {
   TextColumn get image => text()();
   TextColumn get artist => text()();
   TextColumn get type => text()();
-  IntColumn get detailAlbum => integer()();
+  // IntColumn get detailAlbum => integer()();
   @override
-  Set<Column> get primaryKey => {id};
+  Set<Column> get primaryKey => {id, title};
 }
 
 @DataClassName('DetailAlbum')

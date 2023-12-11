@@ -125,22 +125,24 @@ class _$SearchEventCopyWithImpl<$Res, $Val extends SearchEvent>
 }
 
 /// @nodoc
-abstract class _$$TextChangedSearchEventCopyWith<$Res>
+abstract class _$$TextChangedSearchEventImplCopyWith<$Res>
     implements $SearchEventCopyWith<$Res> {
-  factory _$$TextChangedSearchEventCopyWith(_$TextChangedSearchEvent value,
-          $Res Function(_$TextChangedSearchEvent) then) =
-      __$$TextChangedSearchEventCopyWithImpl<$Res>;
+  factory _$$TextChangedSearchEventImplCopyWith(
+          _$TextChangedSearchEventImpl value,
+          $Res Function(_$TextChangedSearchEventImpl) then) =
+      __$$TextChangedSearchEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String newText, String filter});
 }
 
 /// @nodoc
-class __$$TextChangedSearchEventCopyWithImpl<$Res>
-    extends _$SearchEventCopyWithImpl<$Res, _$TextChangedSearchEvent>
-    implements _$$TextChangedSearchEventCopyWith<$Res> {
-  __$$TextChangedSearchEventCopyWithImpl(_$TextChangedSearchEvent _value,
-      $Res Function(_$TextChangedSearchEvent) _then)
+class __$$TextChangedSearchEventImplCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$TextChangedSearchEventImpl>
+    implements _$$TextChangedSearchEventImplCopyWith<$Res> {
+  __$$TextChangedSearchEventImplCopyWithImpl(
+      _$TextChangedSearchEventImpl _value,
+      $Res Function(_$TextChangedSearchEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -149,7 +151,7 @@ class __$$TextChangedSearchEventCopyWithImpl<$Res>
     Object? newText = null,
     Object? filter = null,
   }) {
-    return _then(_$TextChangedSearchEvent(
+    return _then(_$TextChangedSearchEventImpl(
       newText: null == newText
           ? _value.newText
           : newText // ignore: cast_nullable_to_non_nullable
@@ -164,13 +166,13 @@ class __$$TextChangedSearchEventCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TextChangedSearchEvent implements TextChangedSearchEvent {
-  const _$TextChangedSearchEvent(
+class _$TextChangedSearchEventImpl implements TextChangedSearchEvent {
+  const _$TextChangedSearchEventImpl(
       {required this.newText, required this.filter, final String? $type})
       : $type = $type ?? 'textChanged';
 
-  factory _$TextChangedSearchEvent.fromJson(Map<String, dynamic> json) =>
-      _$$TextChangedSearchEventFromJson(json);
+  factory _$TextChangedSearchEventImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TextChangedSearchEventImplFromJson(json);
 
   @override
   final String newText;
@@ -189,7 +191,7 @@ class _$TextChangedSearchEvent implements TextChangedSearchEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TextChangedSearchEvent &&
+            other is _$TextChangedSearchEventImpl &&
             (identical(other.newText, newText) || other.newText == newText) &&
             (identical(other.filter, filter) || other.filter == filter));
   }
@@ -201,9 +203,9 @@ class _$TextChangedSearchEvent implements TextChangedSearchEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TextChangedSearchEventCopyWith<_$TextChangedSearchEvent> get copyWith =>
-      __$$TextChangedSearchEventCopyWithImpl<_$TextChangedSearchEvent>(
-          this, _$identity);
+  _$$TextChangedSearchEventImplCopyWith<_$TextChangedSearchEventImpl>
+      get copyWith => __$$TextChangedSearchEventImplCopyWithImpl<
+          _$TextChangedSearchEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -282,7 +284,7 @@ class _$TextChangedSearchEvent implements TextChangedSearchEvent {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TextChangedSearchEventToJson(
+    return _$$TextChangedSearchEventImplToJson(
       this,
     );
   }
@@ -291,37 +293,37 @@ class _$TextChangedSearchEvent implements TextChangedSearchEvent {
 abstract class TextChangedSearchEvent implements SearchEvent {
   const factory TextChangedSearchEvent(
       {required final String newText,
-      required final String filter}) = _$TextChangedSearchEvent;
+      required final String filter}) = _$TextChangedSearchEventImpl;
 
   factory TextChangedSearchEvent.fromJson(Map<String, dynamic> json) =
-      _$TextChangedSearchEvent.fromJson;
+      _$TextChangedSearchEventImpl.fromJson;
 
   String get newText;
   @override
   String get filter;
   @override
   @JsonKey(ignore: true)
-  _$$TextChangedSearchEventCopyWith<_$TextChangedSearchEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$TextChangedSearchEventImplCopyWith<_$TextChangedSearchEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadSearchEventCopyWith<$Res>
+abstract class _$$LoadSearchEventImplCopyWith<$Res>
     implements $SearchEventCopyWith<$Res> {
-  factory _$$LoadSearchEventCopyWith(
-          _$LoadSearchEvent value, $Res Function(_$LoadSearchEvent) then) =
-      __$$LoadSearchEventCopyWithImpl<$Res>;
+  factory _$$LoadSearchEventImplCopyWith(_$LoadSearchEventImpl value,
+          $Res Function(_$LoadSearchEventImpl) then) =
+      __$$LoadSearchEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String newText, String filter});
 }
 
 /// @nodoc
-class __$$LoadSearchEventCopyWithImpl<$Res>
-    extends _$SearchEventCopyWithImpl<$Res, _$LoadSearchEvent>
-    implements _$$LoadSearchEventCopyWith<$Res> {
-  __$$LoadSearchEventCopyWithImpl(
-      _$LoadSearchEvent _value, $Res Function(_$LoadSearchEvent) _then)
+class __$$LoadSearchEventImplCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$LoadSearchEventImpl>
+    implements _$$LoadSearchEventImplCopyWith<$Res> {
+  __$$LoadSearchEventImplCopyWithImpl(
+      _$LoadSearchEventImpl _value, $Res Function(_$LoadSearchEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -330,7 +332,7 @@ class __$$LoadSearchEventCopyWithImpl<$Res>
     Object? newText = null,
     Object? filter = null,
   }) {
-    return _then(_$LoadSearchEvent(
+    return _then(_$LoadSearchEventImpl(
       newText: null == newText
           ? _value.newText
           : newText // ignore: cast_nullable_to_non_nullable
@@ -345,13 +347,13 @@ class __$$LoadSearchEventCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$LoadSearchEvent implements LoadSearchEvent {
-  const _$LoadSearchEvent(
+class _$LoadSearchEventImpl implements LoadSearchEvent {
+  const _$LoadSearchEventImpl(
       {required this.newText, required this.filter, final String? $type})
       : $type = $type ?? 'loadSearchResults';
 
-  factory _$LoadSearchEvent.fromJson(Map<String, dynamic> json) =>
-      _$$LoadSearchEventFromJson(json);
+  factory _$LoadSearchEventImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LoadSearchEventImplFromJson(json);
 
   @override
   final String newText;
@@ -370,7 +372,7 @@ class _$LoadSearchEvent implements LoadSearchEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadSearchEvent &&
+            other is _$LoadSearchEventImpl &&
             (identical(other.newText, newText) || other.newText == newText) &&
             (identical(other.filter, filter) || other.filter == filter));
   }
@@ -382,8 +384,9 @@ class _$LoadSearchEvent implements LoadSearchEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadSearchEventCopyWith<_$LoadSearchEvent> get copyWith =>
-      __$$LoadSearchEventCopyWithImpl<_$LoadSearchEvent>(this, _$identity);
+  _$$LoadSearchEventImplCopyWith<_$LoadSearchEventImpl> get copyWith =>
+      __$$LoadSearchEventImplCopyWithImpl<_$LoadSearchEventImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -462,7 +465,7 @@ class _$LoadSearchEvent implements LoadSearchEvent {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LoadSearchEventToJson(
+    return _$$LoadSearchEventImplToJson(
       this,
     );
   }
@@ -471,37 +474,39 @@ class _$LoadSearchEvent implements LoadSearchEvent {
 abstract class LoadSearchEvent implements SearchEvent {
   const factory LoadSearchEvent(
       {required final String newText,
-      required final String filter}) = _$LoadSearchEvent;
+      required final String filter}) = _$LoadSearchEventImpl;
 
   factory LoadSearchEvent.fromJson(Map<String, dynamic> json) =
-      _$LoadSearchEvent.fromJson;
+      _$LoadSearchEventImpl.fromJson;
 
   String get newText;
   @override
   String get filter;
   @override
   @JsonKey(ignore: true)
-  _$$LoadSearchEventCopyWith<_$LoadSearchEvent> get copyWith =>
+  _$$LoadSearchEventImplCopyWith<_$LoadSearchEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadMoreItemsSearchEventCopyWith<$Res>
+abstract class _$$LoadMoreItemsSearchEventImplCopyWith<$Res>
     implements $SearchEventCopyWith<$Res> {
-  factory _$$LoadMoreItemsSearchEventCopyWith(_$LoadMoreItemsSearchEvent value,
-          $Res Function(_$LoadMoreItemsSearchEvent) then) =
-      __$$LoadMoreItemsSearchEventCopyWithImpl<$Res>;
+  factory _$$LoadMoreItemsSearchEventImplCopyWith(
+          _$LoadMoreItemsSearchEventImpl value,
+          $Res Function(_$LoadMoreItemsSearchEventImpl) then) =
+      __$$LoadMoreItemsSearchEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String text, String filter});
 }
 
 /// @nodoc
-class __$$LoadMoreItemsSearchEventCopyWithImpl<$Res>
-    extends _$SearchEventCopyWithImpl<$Res, _$LoadMoreItemsSearchEvent>
-    implements _$$LoadMoreItemsSearchEventCopyWith<$Res> {
-  __$$LoadMoreItemsSearchEventCopyWithImpl(_$LoadMoreItemsSearchEvent _value,
-      $Res Function(_$LoadMoreItemsSearchEvent) _then)
+class __$$LoadMoreItemsSearchEventImplCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$LoadMoreItemsSearchEventImpl>
+    implements _$$LoadMoreItemsSearchEventImplCopyWith<$Res> {
+  __$$LoadMoreItemsSearchEventImplCopyWithImpl(
+      _$LoadMoreItemsSearchEventImpl _value,
+      $Res Function(_$LoadMoreItemsSearchEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -510,7 +515,7 @@ class __$$LoadMoreItemsSearchEventCopyWithImpl<$Res>
     Object? text = null,
     Object? filter = null,
   }) {
-    return _then(_$LoadMoreItemsSearchEvent(
+    return _then(_$LoadMoreItemsSearchEventImpl(
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -525,13 +530,13 @@ class __$$LoadMoreItemsSearchEventCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$LoadMoreItemsSearchEvent implements LoadMoreItemsSearchEvent {
-  const _$LoadMoreItemsSearchEvent(
+class _$LoadMoreItemsSearchEventImpl implements LoadMoreItemsSearchEvent {
+  const _$LoadMoreItemsSearchEventImpl(
       {required this.text, required this.filter, final String? $type})
       : $type = $type ?? 'loadMoreItems';
 
-  factory _$LoadMoreItemsSearchEvent.fromJson(Map<String, dynamic> json) =>
-      _$$LoadMoreItemsSearchEventFromJson(json);
+  factory _$LoadMoreItemsSearchEventImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LoadMoreItemsSearchEventImplFromJson(json);
 
   @override
   final String text;
@@ -550,7 +555,7 @@ class _$LoadMoreItemsSearchEvent implements LoadMoreItemsSearchEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadMoreItemsSearchEvent &&
+            other is _$LoadMoreItemsSearchEventImpl &&
             (identical(other.text, text) || other.text == text) &&
             (identical(other.filter, filter) || other.filter == filter));
   }
@@ -562,10 +567,9 @@ class _$LoadMoreItemsSearchEvent implements LoadMoreItemsSearchEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadMoreItemsSearchEventCopyWith<_$LoadMoreItemsSearchEvent>
-      get copyWith =>
-          __$$LoadMoreItemsSearchEventCopyWithImpl<_$LoadMoreItemsSearchEvent>(
-              this, _$identity);
+  _$$LoadMoreItemsSearchEventImplCopyWith<_$LoadMoreItemsSearchEventImpl>
+      get copyWith => __$$LoadMoreItemsSearchEventImplCopyWithImpl<
+          _$LoadMoreItemsSearchEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -644,7 +648,7 @@ class _$LoadMoreItemsSearchEvent implements LoadMoreItemsSearchEvent {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LoadMoreItemsSearchEventToJson(
+    return _$$LoadMoreItemsSearchEventImplToJson(
       this,
     );
   }
@@ -653,39 +657,39 @@ class _$LoadMoreItemsSearchEvent implements LoadMoreItemsSearchEvent {
 abstract class LoadMoreItemsSearchEvent implements SearchEvent {
   const factory LoadMoreItemsSearchEvent(
       {required final String text,
-      required final String filter}) = _$LoadMoreItemsSearchEvent;
+      required final String filter}) = _$LoadMoreItemsSearchEventImpl;
 
   factory LoadMoreItemsSearchEvent.fromJson(Map<String, dynamic> json) =
-      _$LoadMoreItemsSearchEvent.fromJson;
+      _$LoadMoreItemsSearchEventImpl.fromJson;
 
   String get text;
   @override
   String get filter;
   @override
   @JsonKey(ignore: true)
-  _$$LoadMoreItemsSearchEventCopyWith<_$LoadMoreItemsSearchEvent>
+  _$$LoadMoreItemsSearchEventImplCopyWith<_$LoadMoreItemsSearchEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$FilterFetchResultSearchEventCopyWith<$Res>
+abstract class _$$FilterFetchResultSearchEventImplCopyWith<$Res>
     implements $SearchEventCopyWith<$Res> {
-  factory _$$FilterFetchResultSearchEventCopyWith(
-          _$FilterFetchResultSearchEvent value,
-          $Res Function(_$FilterFetchResultSearchEvent) then) =
-      __$$FilterFetchResultSearchEventCopyWithImpl<$Res>;
+  factory _$$FilterFetchResultSearchEventImplCopyWith(
+          _$FilterFetchResultSearchEventImpl value,
+          $Res Function(_$FilterFetchResultSearchEventImpl) then) =
+      __$$FilterFetchResultSearchEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String text, String filter});
 }
 
 /// @nodoc
-class __$$FilterFetchResultSearchEventCopyWithImpl<$Res>
-    extends _$SearchEventCopyWithImpl<$Res, _$FilterFetchResultSearchEvent>
-    implements _$$FilterFetchResultSearchEventCopyWith<$Res> {
-  __$$FilterFetchResultSearchEventCopyWithImpl(
-      _$FilterFetchResultSearchEvent _value,
-      $Res Function(_$FilterFetchResultSearchEvent) _then)
+class __$$FilterFetchResultSearchEventImplCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$FilterFetchResultSearchEventImpl>
+    implements _$$FilterFetchResultSearchEventImplCopyWith<$Res> {
+  __$$FilterFetchResultSearchEventImplCopyWithImpl(
+      _$FilterFetchResultSearchEventImpl _value,
+      $Res Function(_$FilterFetchResultSearchEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -694,7 +698,7 @@ class __$$FilterFetchResultSearchEventCopyWithImpl<$Res>
     Object? text = null,
     Object? filter = null,
   }) {
-    return _then(_$FilterFetchResultSearchEvent(
+    return _then(_$FilterFetchResultSearchEventImpl(
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -709,13 +713,15 @@ class __$$FilterFetchResultSearchEventCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$FilterFetchResultSearchEvent implements FilterFetchResultSearchEvent {
-  const _$FilterFetchResultSearchEvent(
+class _$FilterFetchResultSearchEventImpl
+    implements FilterFetchResultSearchEvent {
+  const _$FilterFetchResultSearchEventImpl(
       {required this.text, required this.filter, final String? $type})
       : $type = $type ?? 'filterFetchResult';
 
-  factory _$FilterFetchResultSearchEvent.fromJson(Map<String, dynamic> json) =>
-      _$$FilterFetchResultSearchEventFromJson(json);
+  factory _$FilterFetchResultSearchEventImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$FilterFetchResultSearchEventImplFromJson(json);
 
   @override
   final String text;
@@ -734,7 +740,7 @@ class _$FilterFetchResultSearchEvent implements FilterFetchResultSearchEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FilterFetchResultSearchEvent &&
+            other is _$FilterFetchResultSearchEventImpl &&
             (identical(other.text, text) || other.text == text) &&
             (identical(other.filter, filter) || other.filter == filter));
   }
@@ -746,9 +752,10 @@ class _$FilterFetchResultSearchEvent implements FilterFetchResultSearchEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FilterFetchResultSearchEventCopyWith<_$FilterFetchResultSearchEvent>
-      get copyWith => __$$FilterFetchResultSearchEventCopyWithImpl<
-          _$FilterFetchResultSearchEvent>(this, _$identity);
+  _$$FilterFetchResultSearchEventImplCopyWith<
+          _$FilterFetchResultSearchEventImpl>
+      get copyWith => __$$FilterFetchResultSearchEventImplCopyWithImpl<
+          _$FilterFetchResultSearchEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -827,7 +834,7 @@ class _$FilterFetchResultSearchEvent implements FilterFetchResultSearchEvent {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$FilterFetchResultSearchEventToJson(
+    return _$$FilterFetchResultSearchEventImplToJson(
       this,
     );
   }
@@ -836,16 +843,17 @@ class _$FilterFetchResultSearchEvent implements FilterFetchResultSearchEvent {
 abstract class FilterFetchResultSearchEvent implements SearchEvent {
   const factory FilterFetchResultSearchEvent(
       {required final String text,
-      required final String filter}) = _$FilterFetchResultSearchEvent;
+      required final String filter}) = _$FilterFetchResultSearchEventImpl;
 
   factory FilterFetchResultSearchEvent.fromJson(Map<String, dynamic> json) =
-      _$FilterFetchResultSearchEvent.fromJson;
+      _$FilterFetchResultSearchEventImpl.fromJson;
 
   String get text;
   @override
   String get filter;
   @override
   @JsonKey(ignore: true)
-  _$$FilterFetchResultSearchEventCopyWith<_$FilterFetchResultSearchEvent>
+  _$$FilterFetchResultSearchEventImplCopyWith<
+          _$FilterFetchResultSearchEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

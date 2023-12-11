@@ -75,25 +75,26 @@ class _$NewPlaylistStateCopyWithImpl<$Res, $Val extends NewPlaylistState>
 }
 
 /// @nodoc
-abstract class _$$EmptyNewPlaylistStateCopyWith<$Res> {
-  factory _$$EmptyNewPlaylistStateCopyWith(_$EmptyNewPlaylistState value,
-          $Res Function(_$EmptyNewPlaylistState) then) =
-      __$$EmptyNewPlaylistStateCopyWithImpl<$Res>;
+abstract class _$$EmptyNewPlaylistStateImplCopyWith<$Res> {
+  factory _$$EmptyNewPlaylistStateImplCopyWith(
+          _$EmptyNewPlaylistStateImpl value,
+          $Res Function(_$EmptyNewPlaylistStateImpl) then) =
+      __$$EmptyNewPlaylistStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$EmptyNewPlaylistStateCopyWithImpl<$Res>
-    extends _$NewPlaylistStateCopyWithImpl<$Res, _$EmptyNewPlaylistState>
-    implements _$$EmptyNewPlaylistStateCopyWith<$Res> {
-  __$$EmptyNewPlaylistStateCopyWithImpl(_$EmptyNewPlaylistState _value,
-      $Res Function(_$EmptyNewPlaylistState) _then)
+class __$$EmptyNewPlaylistStateImplCopyWithImpl<$Res>
+    extends _$NewPlaylistStateCopyWithImpl<$Res, _$EmptyNewPlaylistStateImpl>
+    implements _$$EmptyNewPlaylistStateImplCopyWith<$Res> {
+  __$$EmptyNewPlaylistStateImplCopyWithImpl(_$EmptyNewPlaylistStateImpl _value,
+      $Res Function(_$EmptyNewPlaylistStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$EmptyNewPlaylistState implements EmptyNewPlaylistState {
-  const _$EmptyNewPlaylistState();
+class _$EmptyNewPlaylistStateImpl implements EmptyNewPlaylistState {
+  const _$EmptyNewPlaylistStateImpl();
 
   @override
   String toString() {
@@ -164,24 +165,26 @@ class _$EmptyNewPlaylistState implements EmptyNewPlaylistState {
 }
 
 abstract class EmptyNewPlaylistState implements NewPlaylistState {
-  const factory EmptyNewPlaylistState() = _$EmptyNewPlaylistState;
+  const factory EmptyNewPlaylistState() = _$EmptyNewPlaylistStateImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedNewPlaylistStateCopyWith<$Res> {
-  factory _$$LoadedNewPlaylistStateCopyWith(_$LoadedNewPlaylistState value,
-          $Res Function(_$LoadedNewPlaylistState) then) =
-      __$$LoadedNewPlaylistStateCopyWithImpl<$Res>;
+abstract class _$$LoadedNewPlaylistStateImplCopyWith<$Res> {
+  factory _$$LoadedNewPlaylistStateImplCopyWith(
+          _$LoadedNewPlaylistStateImpl value,
+          $Res Function(_$LoadedNewPlaylistStateImpl) then) =
+      __$$LoadedNewPlaylistStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<FavoriteFolder> folders});
 }
 
 /// @nodoc
-class __$$LoadedNewPlaylistStateCopyWithImpl<$Res>
-    extends _$NewPlaylistStateCopyWithImpl<$Res, _$LoadedNewPlaylistState>
-    implements _$$LoadedNewPlaylistStateCopyWith<$Res> {
-  __$$LoadedNewPlaylistStateCopyWithImpl(_$LoadedNewPlaylistState _value,
-      $Res Function(_$LoadedNewPlaylistState) _then)
+class __$$LoadedNewPlaylistStateImplCopyWithImpl<$Res>
+    extends _$NewPlaylistStateCopyWithImpl<$Res, _$LoadedNewPlaylistStateImpl>
+    implements _$$LoadedNewPlaylistStateImplCopyWith<$Res> {
+  __$$LoadedNewPlaylistStateImplCopyWithImpl(
+      _$LoadedNewPlaylistStateImpl _value,
+      $Res Function(_$LoadedNewPlaylistStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -189,7 +192,7 @@ class __$$LoadedNewPlaylistStateCopyWithImpl<$Res>
   $Res call({
     Object? folders = null,
   }) {
-    return _then(_$LoadedNewPlaylistState(
+    return _then(_$LoadedNewPlaylistStateImpl(
       folders: null == folders
           ? _value._folders
           : folders // ignore: cast_nullable_to_non_nullable
@@ -200,8 +203,9 @@ class __$$LoadedNewPlaylistStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedNewPlaylistState implements LoadedNewPlaylistState {
-  const _$LoadedNewPlaylistState({required final List<FavoriteFolder> folders})
+class _$LoadedNewPlaylistStateImpl implements LoadedNewPlaylistState {
+  const _$LoadedNewPlaylistStateImpl(
+      {required final List<FavoriteFolder> folders})
       : _folders = folders;
 
   final List<FavoriteFolder> _folders;
@@ -220,9 +224,9 @@ class _$LoadedNewPlaylistState implements LoadedNewPlaylistState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedNewPlaylistStateCopyWith<_$LoadedNewPlaylistState> get copyWith =>
-      __$$LoadedNewPlaylistStateCopyWithImpl<_$LoadedNewPlaylistState>(
-          this, _$identity);
+  _$$LoadedNewPlaylistStateImplCopyWith<_$LoadedNewPlaylistStateImpl>
+      get copyWith => __$$LoadedNewPlaylistStateImplCopyWithImpl<
+          _$LoadedNewPlaylistStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -289,10 +293,11 @@ class _$LoadedNewPlaylistState implements LoadedNewPlaylistState {
 
 abstract class LoadedNewPlaylistState implements NewPlaylistState {
   const factory LoadedNewPlaylistState(
-      {required final List<FavoriteFolder> folders}) = _$LoadedNewPlaylistState;
+          {required final List<FavoriteFolder> folders}) =
+      _$LoadedNewPlaylistStateImpl;
 
   List<FavoriteFolder> get folders;
   @JsonKey(ignore: true)
-  _$$LoadedNewPlaylistStateCopyWith<_$LoadedNewPlaylistState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$LoadedNewPlaylistStateImplCopyWith<_$LoadedNewPlaylistStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

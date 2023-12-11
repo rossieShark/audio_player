@@ -6,30 +6,31 @@ part of 'recently_played_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_RecentlyPlayedResponse _$$_RecentlyPlayedResponseFromJson(
+_$RecentlyPlayedResponseImpl _$$RecentlyPlayedResponseImplFromJson(
         Map<String, dynamic> json) =>
-    _$_RecentlyPlayedResponse(
+    _$RecentlyPlayedResponseImpl(
       tracks: Tracks.fromJson(json['tracks'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_RecentlyPlayedResponseToJson(
-        _$_RecentlyPlayedResponse instance) =>
+Map<String, dynamic> _$$RecentlyPlayedResponseImplToJson(
+        _$RecentlyPlayedResponseImpl instance) =>
     <String, dynamic>{
       'tracks': instance.tracks,
     };
 
-_$_Tracks _$$_TracksFromJson(Map<String, dynamic> json) => _$_Tracks(
+_$TracksImpl _$$TracksImplFromJson(Map<String, dynamic> json) => _$TracksImpl(
       data: (json['data'] as List<dynamic>)
           .map((e) => TracksData.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_TracksToJson(_$_Tracks instance) => <String, dynamic>{
+Map<String, dynamic> _$$TracksImplToJson(_$TracksImpl instance) =>
+    <String, dynamic>{
       'data': instance.data,
     };
 
-_$_TracksData _$$_TracksDataFromJson(Map<String, dynamic> json) =>
-    _$_TracksData(
+_$TracksDataImpl _$$TracksDataImplFromJson(Map<String, dynamic> json) =>
+    _$TracksDataImpl(
       title: json['title'] as String,
       artist: Artist.fromJson(json['artist'] as Map<String, dynamic>),
       id: json['id'] as int,
@@ -37,7 +38,7 @@ _$_TracksData _$$_TracksDataFromJson(Map<String, dynamic> json) =>
       type: json['type'] as String,
     );
 
-Map<String, dynamic> _$$_TracksDataToJson(_$_TracksData instance) =>
+Map<String, dynamic> _$$TracksDataImplToJson(_$TracksDataImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
       'artist': instance.artist,
@@ -46,13 +47,14 @@ Map<String, dynamic> _$$_TracksDataToJson(_$_TracksData instance) =>
       'type': instance.type,
     };
 
-_$_Artist _$$_ArtistFromJson(Map<String, dynamic> json) => _$_Artist(
+_$ArtistImpl _$$ArtistImplFromJson(Map<String, dynamic> json) => _$ArtistImpl(
       name: json['name'] as String,
       image: json['picture_big'] as String,
       id: json['id'] as int,
     );
 
-Map<String, dynamic> _$$_ArtistToJson(_$_Artist instance) => <String, dynamic>{
+Map<String, dynamic> _$$ArtistImplToJson(_$ArtistImpl instance) =>
+    <String, dynamic>{
       'name': instance.name,
       'picture_big': instance.image,
       'id': instance.id,

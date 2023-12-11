@@ -62,22 +62,22 @@ class _$GenresResponseCopyWithImpl<$Res, $Val extends GenresResponse>
 }
 
 /// @nodoc
-abstract class _$$_GenresResponseCopyWith<$Res>
+abstract class _$$GenresResponseImplCopyWith<$Res>
     implements $GenresResponseCopyWith<$Res> {
-  factory _$$_GenresResponseCopyWith(
-          _$_GenresResponse value, $Res Function(_$_GenresResponse) then) =
-      __$$_GenresResponseCopyWithImpl<$Res>;
+  factory _$$GenresResponseImplCopyWith(_$GenresResponseImpl value,
+          $Res Function(_$GenresResponseImpl) then) =
+      __$$GenresResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Data> data});
 }
 
 /// @nodoc
-class __$$_GenresResponseCopyWithImpl<$Res>
-    extends _$GenresResponseCopyWithImpl<$Res, _$_GenresResponse>
-    implements _$$_GenresResponseCopyWith<$Res> {
-  __$$_GenresResponseCopyWithImpl(
-      _$_GenresResponse _value, $Res Function(_$_GenresResponse) _then)
+class __$$GenresResponseImplCopyWithImpl<$Res>
+    extends _$GenresResponseCopyWithImpl<$Res, _$GenresResponseImpl>
+    implements _$$GenresResponseImplCopyWith<$Res> {
+  __$$GenresResponseImplCopyWithImpl(
+      _$GenresResponseImpl _value, $Res Function(_$GenresResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -85,7 +85,7 @@ class __$$_GenresResponseCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$_GenresResponse(
+    return _then(_$GenresResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -96,11 +96,11 @@ class __$$_GenresResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GenresResponse implements _GenresResponse {
-  _$_GenresResponse({required final List<Data> data}) : _data = data;
+class _$GenresResponseImpl implements _GenresResponse {
+  _$GenresResponseImpl({required final List<Data> data}) : _data = data;
 
-  factory _$_GenresResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_GenresResponseFromJson(json);
+  factory _$GenresResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GenresResponseImplFromJson(json);
 
   final List<Data> _data;
   @override
@@ -119,7 +119,7 @@ class _$_GenresResponse implements _GenresResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GenresResponse &&
+            other is _$GenresResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -131,28 +131,30 @@ class _$_GenresResponse implements _GenresResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GenresResponseCopyWith<_$_GenresResponse> get copyWith =>
-      __$$_GenresResponseCopyWithImpl<_$_GenresResponse>(this, _$identity);
+  _$$GenresResponseImplCopyWith<_$GenresResponseImpl> get copyWith =>
+      __$$GenresResponseImplCopyWithImpl<_$GenresResponseImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GenresResponseToJson(
+    return _$$GenresResponseImplToJson(
       this,
     );
   }
 }
 
 abstract class _GenresResponse implements GenresResponse {
-  factory _GenresResponse({required final List<Data> data}) = _$_GenresResponse;
+  factory _GenresResponse({required final List<Data> data}) =
+      _$GenresResponseImpl;
 
   factory _GenresResponse.fromJson(Map<String, dynamic> json) =
-      _$_GenresResponse.fromJson;
+      _$GenresResponseImpl.fromJson;
 
   @override
   List<Data> get data;
   @override
   @JsonKey(ignore: true)
-  _$$_GenresResponseCopyWith<_$_GenresResponse> get copyWith =>
+  _$$GenresResponseImplCopyWith<_$GenresResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -163,7 +165,8 @@ Data _$DataFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Data {
   int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String get name =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'picture_big')
   String get image => throw _privateConstructorUsedError;
 
@@ -215,18 +218,20 @@ class _$DataCopyWithImpl<$Res, $Val extends Data>
 }
 
 /// @nodoc
-abstract class _$$_DataCopyWith<$Res> implements $DataCopyWith<$Res> {
-  factory _$$_DataCopyWith(_$_Data value, $Res Function(_$_Data) then) =
-      __$$_DataCopyWithImpl<$Res>;
+abstract class _$$DataImplCopyWith<$Res> implements $DataCopyWith<$Res> {
+  factory _$$DataImplCopyWith(
+          _$DataImpl value, $Res Function(_$DataImpl) then) =
+      __$$DataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int id, String name, @JsonKey(name: 'picture_big') String image});
 }
 
 /// @nodoc
-class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
-    implements _$$_DataCopyWith<$Res> {
-  __$$_DataCopyWithImpl(_$_Data _value, $Res Function(_$_Data) _then)
+class __$$DataImplCopyWithImpl<$Res>
+    extends _$DataCopyWithImpl<$Res, _$DataImpl>
+    implements _$$DataImplCopyWith<$Res> {
+  __$$DataImplCopyWithImpl(_$DataImpl _value, $Res Function(_$DataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -236,7 +241,7 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
     Object? name = null,
     Object? image = null,
   }) {
-    return _then(_$_Data(
+    return _then(_$DataImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -253,22 +258,22 @@ class __$$_DataCopyWithImpl<$Res> extends _$DataCopyWithImpl<$Res, _$_Data>
   }
 }
 
-// ignore: duplicate_ignore
 /// @nodoc
 @JsonSerializable()
-class _$_Data implements _Data {
-  _$_Data(
+class _$DataImpl implements _Data {
+  _$DataImpl(
       {required this.id,
       required this.name,
       @JsonKey(name: 'picture_big') required this.image});
 
-  factory _$_Data.fromJson(Map<String, dynamic> json) => _$$_DataFromJson(json);
+  factory _$DataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DataImplFromJson(json);
 
   @override
   final int id;
   @override
   final String name;
-
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'picture_big')
   final String image;
@@ -282,7 +287,7 @@ class _$_Data implements _Data {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Data &&
+            other is _$DataImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.image, image) || other.image == image));
@@ -295,12 +300,12 @@ class _$_Data implements _Data {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DataCopyWith<_$_Data> get copyWith =>
-      __$$_DataCopyWithImpl<_$_Data>(this, _$identity);
+  _$$DataImplCopyWith<_$DataImpl> get copyWith =>
+      __$$DataImplCopyWithImpl<_$DataImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DataToJson(
+    return _$$DataImplToJson(
       this,
     );
   }
@@ -310,18 +315,19 @@ abstract class _Data implements Data {
   factory _Data(
       {required final int id,
       required final String name,
-      @JsonKey(name: 'picture_big') required final String image}) = _$_Data;
+      @JsonKey(name: 'picture_big') required final String image}) = _$DataImpl;
 
-  factory _Data.fromJson(Map<String, dynamic> json) = _$_Data.fromJson;
+  factory _Data.fromJson(Map<String, dynamic> json) = _$DataImpl.fromJson;
 
   @override
   int get id;
   @override
   String get name;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'picture_big')
   String get image;
   @override
   @JsonKey(ignore: true)
-  _$$_DataCopyWith<_$_Data> get copyWith => throw _privateConstructorUsedError;
+  _$$DataImplCopyWith<_$DataImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

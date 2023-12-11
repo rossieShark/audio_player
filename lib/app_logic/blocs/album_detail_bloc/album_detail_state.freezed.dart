@@ -88,27 +88,28 @@ class _$AlbumDetailBlocStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$EmptyAlbumDetailBlocStateCopyWith<$Res> {
-  factory _$$EmptyAlbumDetailBlocStateCopyWith(
-          _$EmptyAlbumDetailBlocState value,
-          $Res Function(_$EmptyAlbumDetailBlocState) then) =
-      __$$EmptyAlbumDetailBlocStateCopyWithImpl<$Res>;
+abstract class _$$EmptyAlbumDetailBlocStateImplCopyWith<$Res> {
+  factory _$$EmptyAlbumDetailBlocStateImplCopyWith(
+          _$EmptyAlbumDetailBlocStateImpl value,
+          $Res Function(_$EmptyAlbumDetailBlocStateImpl) then) =
+      __$$EmptyAlbumDetailBlocStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$EmptyAlbumDetailBlocStateCopyWithImpl<$Res>
+class __$$EmptyAlbumDetailBlocStateImplCopyWithImpl<$Res>
     extends _$AlbumDetailBlocStateCopyWithImpl<$Res,
-        _$EmptyAlbumDetailBlocState>
-    implements _$$EmptyAlbumDetailBlocStateCopyWith<$Res> {
-  __$$EmptyAlbumDetailBlocStateCopyWithImpl(_$EmptyAlbumDetailBlocState _value,
-      $Res Function(_$EmptyAlbumDetailBlocState) _then)
+        _$EmptyAlbumDetailBlocStateImpl>
+    implements _$$EmptyAlbumDetailBlocStateImplCopyWith<$Res> {
+  __$$EmptyAlbumDetailBlocStateImplCopyWithImpl(
+      _$EmptyAlbumDetailBlocStateImpl _value,
+      $Res Function(_$EmptyAlbumDetailBlocStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$EmptyAlbumDetailBlocState implements EmptyAlbumDetailBlocState {
-  const _$EmptyAlbumDetailBlocState();
+class _$EmptyAlbumDetailBlocStateImpl implements EmptyAlbumDetailBlocState {
+  const _$EmptyAlbumDetailBlocStateImpl();
 
   @override
   String toString() {
@@ -191,32 +192,32 @@ class _$EmptyAlbumDetailBlocState implements EmptyAlbumDetailBlocState {
 }
 
 abstract class EmptyAlbumDetailBlocState implements AlbumDetailBlocState {
-  const factory EmptyAlbumDetailBlocState() = _$EmptyAlbumDetailBlocState;
+  const factory EmptyAlbumDetailBlocState() = _$EmptyAlbumDetailBlocStateImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadingAlbumDetailBlocStateCopyWith<$Res> {
-  factory _$$LoadingAlbumDetailBlocStateCopyWith(
-          _$LoadingAlbumDetailBlocState value,
-          $Res Function(_$LoadingAlbumDetailBlocState) then) =
-      __$$LoadingAlbumDetailBlocStateCopyWithImpl<$Res>;
+abstract class _$$LoadingAlbumDetailBlocStateImplCopyWith<$Res> {
+  factory _$$LoadingAlbumDetailBlocStateImplCopyWith(
+          _$LoadingAlbumDetailBlocStateImpl value,
+          $Res Function(_$LoadingAlbumDetailBlocStateImpl) then) =
+      __$$LoadingAlbumDetailBlocStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$LoadingAlbumDetailBlocStateCopyWithImpl<$Res>
+class __$$LoadingAlbumDetailBlocStateImplCopyWithImpl<$Res>
     extends _$AlbumDetailBlocStateCopyWithImpl<$Res,
-        _$LoadingAlbumDetailBlocState>
-    implements _$$LoadingAlbumDetailBlocStateCopyWith<$Res> {
-  __$$LoadingAlbumDetailBlocStateCopyWithImpl(
-      _$LoadingAlbumDetailBlocState _value,
-      $Res Function(_$LoadingAlbumDetailBlocState) _then)
+        _$LoadingAlbumDetailBlocStateImpl>
+    implements _$$LoadingAlbumDetailBlocStateImplCopyWith<$Res> {
+  __$$LoadingAlbumDetailBlocStateImplCopyWithImpl(
+      _$LoadingAlbumDetailBlocStateImpl _value,
+      $Res Function(_$LoadingAlbumDetailBlocStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$LoadingAlbumDetailBlocState implements LoadingAlbumDetailBlocState {
-  const _$LoadingAlbumDetailBlocState();
+class _$LoadingAlbumDetailBlocStateImpl implements LoadingAlbumDetailBlocState {
+  const _$LoadingAlbumDetailBlocStateImpl();
 
   @override
   String toString() {
@@ -299,31 +300,33 @@ class _$LoadingAlbumDetailBlocState implements LoadingAlbumDetailBlocState {
 }
 
 abstract class LoadingAlbumDetailBlocState implements AlbumDetailBlocState {
-  const factory LoadingAlbumDetailBlocState() = _$LoadingAlbumDetailBlocState;
+  const factory LoadingAlbumDetailBlocState() =
+      _$LoadingAlbumDetailBlocStateImpl;
 }
 
 /// @nodoc
-abstract class _$$ErrorAlbumDetailBlocStateCopyWith<$Res> {
-  factory _$$ErrorAlbumDetailBlocStateCopyWith(
-          _$ErrorAlbumDetailBlocState value,
-          $Res Function(_$ErrorAlbumDetailBlocState) then) =
-      __$$ErrorAlbumDetailBlocStateCopyWithImpl<$Res>;
+abstract class _$$ErrorAlbumDetailBlocStateImplCopyWith<$Res> {
+  factory _$$ErrorAlbumDetailBlocStateImplCopyWith(
+          _$ErrorAlbumDetailBlocStateImpl value,
+          $Res Function(_$ErrorAlbumDetailBlocStateImpl) then) =
+      __$$ErrorAlbumDetailBlocStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ErrorAlbumDetailBlocStateCopyWithImpl<$Res>
+class __$$ErrorAlbumDetailBlocStateImplCopyWithImpl<$Res>
     extends _$AlbumDetailBlocStateCopyWithImpl<$Res,
-        _$ErrorAlbumDetailBlocState>
-    implements _$$ErrorAlbumDetailBlocStateCopyWith<$Res> {
-  __$$ErrorAlbumDetailBlocStateCopyWithImpl(_$ErrorAlbumDetailBlocState _value,
-      $Res Function(_$ErrorAlbumDetailBlocState) _then)
+        _$ErrorAlbumDetailBlocStateImpl>
+    implements _$$ErrorAlbumDetailBlocStateImplCopyWith<$Res> {
+  __$$ErrorAlbumDetailBlocStateImplCopyWithImpl(
+      _$ErrorAlbumDetailBlocStateImpl _value,
+      $Res Function(_$ErrorAlbumDetailBlocStateImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ErrorAlbumDetailBlocState implements ErrorAlbumDetailBlocState {
-  const _$ErrorAlbumDetailBlocState();
+class _$ErrorAlbumDetailBlocStateImpl implements ErrorAlbumDetailBlocState {
+  const _$ErrorAlbumDetailBlocStateImpl();
 
   @override
   String toString() {
@@ -406,27 +409,27 @@ class _$ErrorAlbumDetailBlocState implements ErrorAlbumDetailBlocState {
 }
 
 abstract class ErrorAlbumDetailBlocState implements AlbumDetailBlocState {
-  const factory ErrorAlbumDetailBlocState() = _$ErrorAlbumDetailBlocState;
+  const factory ErrorAlbumDetailBlocState() = _$ErrorAlbumDetailBlocStateImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedAlbumDetailBlocStateCopyWith<$Res> {
-  factory _$$LoadedAlbumDetailBlocStateCopyWith(
-          _$LoadedAlbumDetailBlocState value,
-          $Res Function(_$LoadedAlbumDetailBlocState) then) =
-      __$$LoadedAlbumDetailBlocStateCopyWithImpl<$Res>;
+abstract class _$$LoadedAlbumDetailBlocStateImplCopyWith<$Res> {
+  factory _$$LoadedAlbumDetailBlocStateImplCopyWith(
+          _$LoadedAlbumDetailBlocStateImpl value,
+          $Res Function(_$LoadedAlbumDetailBlocStateImpl) then) =
+      __$$LoadedAlbumDetailBlocStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<DetailAlbum> albumDetailList});
 }
 
 /// @nodoc
-class __$$LoadedAlbumDetailBlocStateCopyWithImpl<$Res>
+class __$$LoadedAlbumDetailBlocStateImplCopyWithImpl<$Res>
     extends _$AlbumDetailBlocStateCopyWithImpl<$Res,
-        _$LoadedAlbumDetailBlocState>
-    implements _$$LoadedAlbumDetailBlocStateCopyWith<$Res> {
-  __$$LoadedAlbumDetailBlocStateCopyWithImpl(
-      _$LoadedAlbumDetailBlocState _value,
-      $Res Function(_$LoadedAlbumDetailBlocState) _then)
+        _$LoadedAlbumDetailBlocStateImpl>
+    implements _$$LoadedAlbumDetailBlocStateImplCopyWith<$Res> {
+  __$$LoadedAlbumDetailBlocStateImplCopyWithImpl(
+      _$LoadedAlbumDetailBlocStateImpl _value,
+      $Res Function(_$LoadedAlbumDetailBlocStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -434,7 +437,7 @@ class __$$LoadedAlbumDetailBlocStateCopyWithImpl<$Res>
   $Res call({
     Object? albumDetailList = null,
   }) {
-    return _then(_$LoadedAlbumDetailBlocState(
+    return _then(_$LoadedAlbumDetailBlocStateImpl(
       albumDetailList: null == albumDetailList
           ? _value._albumDetailList
           : albumDetailList // ignore: cast_nullable_to_non_nullable
@@ -445,8 +448,8 @@ class __$$LoadedAlbumDetailBlocStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedAlbumDetailBlocState implements LoadedAlbumDetailBlocState {
-  const _$LoadedAlbumDetailBlocState(
+class _$LoadedAlbumDetailBlocStateImpl implements LoadedAlbumDetailBlocState {
+  const _$LoadedAlbumDetailBlocStateImpl(
       {required final List<DetailAlbum> albumDetailList})
       : _albumDetailList = albumDetailList;
 
@@ -466,9 +469,9 @@ class _$LoadedAlbumDetailBlocState implements LoadedAlbumDetailBlocState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedAlbumDetailBlocStateCopyWith<_$LoadedAlbumDetailBlocState>
-      get copyWith => __$$LoadedAlbumDetailBlocStateCopyWithImpl<
-          _$LoadedAlbumDetailBlocState>(this, _$identity);
+  _$$LoadedAlbumDetailBlocStateImplCopyWith<_$LoadedAlbumDetailBlocStateImpl>
+      get copyWith => __$$LoadedAlbumDetailBlocStateImplCopyWithImpl<
+          _$LoadedAlbumDetailBlocStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -548,10 +551,10 @@ class _$LoadedAlbumDetailBlocState implements LoadedAlbumDetailBlocState {
 abstract class LoadedAlbumDetailBlocState implements AlbumDetailBlocState {
   const factory LoadedAlbumDetailBlocState(
           {required final List<DetailAlbum> albumDetailList}) =
-      _$LoadedAlbumDetailBlocState;
+      _$LoadedAlbumDetailBlocStateImpl;
 
   List<DetailAlbum> get albumDetailList;
   @JsonKey(ignore: true)
-  _$$LoadedAlbumDetailBlocStateCopyWith<_$LoadedAlbumDetailBlocState>
+  _$$LoadedAlbumDetailBlocStateImplCopyWith<_$LoadedAlbumDetailBlocStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
