@@ -21,7 +21,7 @@ void main() {
       build: () {
         // Stub the service to return a mock image path when picking from the gallery
         when(() => service.pickImageFromGallery())
-            .thenAnswer((_) async => 'image' as String?);
+            .thenAnswer((_) async => 'image');
         return bloc;
       },
       act: (bloc) => bloc.add(PickAndUploadImageEvent()),
@@ -37,7 +37,7 @@ void main() {
       build: () {
         // Stub the service to return a mock image path when picking from the camera
         when(() => service.pickImageFromCamera())
-            .thenAnswer((_) async => 'image' as String?);
+            .thenAnswer((_) async => 'image');
         return bloc;
       },
       act: (bloc) => bloc.add(PickfromCamAndUploadImageEvent()),

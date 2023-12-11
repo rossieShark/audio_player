@@ -535,12 +535,11 @@ class FavoriteArtistsCompanion extends UpdateCompanion<FavoriteArtist> {
   }
 }
 
-class $BestAlbumsTable extends BestAlbums
-    with TableInfo<$BestAlbumsTable, BestAlbum> {
+class $AlbumsTable extends Albums with TableInfo<$AlbumsTable, Album> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $BestAlbumsTable(this.attachedDatabase, [this._alias]);
+  $AlbumsTable(this.attachedDatabase, [this._alias]);
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
@@ -574,9 +573,9 @@ class $BestAlbumsTable extends BestAlbums
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
-  static const String $name = 'best_albums';
+  static const String $name = 'albums';
   @override
-  VerificationContext validateIntegrity(Insertable<BestAlbum> instance,
+  VerificationContext validateIntegrity(Insertable<Album> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -615,9 +614,9 @@ class $BestAlbumsTable extends BestAlbums
   @override
   Set<GeneratedColumn> get $primaryKey => {id, title};
   @override
-  BestAlbum map(Map<String, dynamic> data, {String? tablePrefix}) {
+  Album map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return BestAlbum(
+    return Album(
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
       title: attachedDatabase.typeMapping
@@ -632,18 +631,18 @@ class $BestAlbumsTable extends BestAlbums
   }
 
   @override
-  $BestAlbumsTable createAlias(String alias) {
-    return $BestAlbumsTable(attachedDatabase, alias);
+  $AlbumsTable createAlias(String alias) {
+    return $AlbumsTable(attachedDatabase, alias);
   }
 }
 
-class BestAlbum extends DataClass implements Insertable<BestAlbum> {
+class Album extends DataClass implements Insertable<Album> {
   final int id;
   final String title;
   final String image;
   final String artist;
   final String type;
-  const BestAlbum(
+  const Album(
       {required this.id,
       required this.title,
       required this.image,
@@ -660,8 +659,8 @@ class BestAlbum extends DataClass implements Insertable<BestAlbum> {
     return map;
   }
 
-  BestAlbumsCompanion toCompanion(bool nullToAbsent) {
-    return BestAlbumsCompanion(
+  AlbumsCompanion toCompanion(bool nullToAbsent) {
+    return AlbumsCompanion(
       id: Value(id),
       title: Value(title),
       image: Value(image),
@@ -670,10 +669,10 @@ class BestAlbum extends DataClass implements Insertable<BestAlbum> {
     );
   }
 
-  factory BestAlbum.fromJson(Map<String, dynamic> json,
+  factory Album.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return BestAlbum(
+    return Album(
       id: serializer.fromJson<int>(json['id']),
       title: serializer.fromJson<String>(json['title']),
       image: serializer.fromJson<String>(json['image']),
@@ -693,13 +692,13 @@ class BestAlbum extends DataClass implements Insertable<BestAlbum> {
     };
   }
 
-  BestAlbum copyWith(
+  Album copyWith(
           {int? id,
           String? title,
           String? image,
           String? artist,
           String? type}) =>
-      BestAlbum(
+      Album(
         id: id ?? this.id,
         title: title ?? this.title,
         image: image ?? this.image,
@@ -708,7 +707,7 @@ class BestAlbum extends DataClass implements Insertable<BestAlbum> {
       );
   @override
   String toString() {
-    return (StringBuffer('BestAlbum(')
+    return (StringBuffer('Album(')
           ..write('id: $id, ')
           ..write('title: $title, ')
           ..write('image: $image, ')
@@ -723,7 +722,7 @@ class BestAlbum extends DataClass implements Insertable<BestAlbum> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is BestAlbum &&
+      (other is Album &&
           other.id == this.id &&
           other.title == this.title &&
           other.image == this.image &&
@@ -731,14 +730,14 @@ class BestAlbum extends DataClass implements Insertable<BestAlbum> {
           other.type == this.type);
 }
 
-class BestAlbumsCompanion extends UpdateCompanion<BestAlbum> {
+class AlbumsCompanion extends UpdateCompanion<Album> {
   final Value<int> id;
   final Value<String> title;
   final Value<String> image;
   final Value<String> artist;
   final Value<String> type;
   final Value<int> rowid;
-  const BestAlbumsCompanion({
+  const AlbumsCompanion({
     this.id = const Value.absent(),
     this.title = const Value.absent(),
     this.image = const Value.absent(),
@@ -746,7 +745,7 @@ class BestAlbumsCompanion extends UpdateCompanion<BestAlbum> {
     this.type = const Value.absent(),
     this.rowid = const Value.absent(),
   });
-  BestAlbumsCompanion.insert({
+  AlbumsCompanion.insert({
     required int id,
     required String title,
     required String image,
@@ -758,7 +757,7 @@ class BestAlbumsCompanion extends UpdateCompanion<BestAlbum> {
         image = Value(image),
         artist = Value(artist),
         type = Value(type);
-  static Insertable<BestAlbum> custom({
+  static Insertable<Album> custom({
     Expression<int>? id,
     Expression<String>? title,
     Expression<String>? image,
@@ -776,14 +775,14 @@ class BestAlbumsCompanion extends UpdateCompanion<BestAlbum> {
     });
   }
 
-  BestAlbumsCompanion copyWith(
+  AlbumsCompanion copyWith(
       {Value<int>? id,
       Value<String>? title,
       Value<String>? image,
       Value<String>? artist,
       Value<String>? type,
       Value<int>? rowid}) {
-    return BestAlbumsCompanion(
+    return AlbumsCompanion(
       id: id ?? this.id,
       title: title ?? this.title,
       image: image ?? this.image,
@@ -819,7 +818,7 @@ class BestAlbumsCompanion extends UpdateCompanion<BestAlbum> {
 
   @override
   String toString() {
-    return (StringBuffer('BestAlbumsCompanion(')
+    return (StringBuffer('AlbumsCompanion(')
           ..write('id: $id, ')
           ..write('title: $title, ')
           ..write('image: $image, ')
@@ -2976,7 +2975,7 @@ abstract class _$AudioAppDatabase extends GeneratedDatabase {
       $RecentlyPlayedSongsTable(this);
   late final $FavoriteArtistsTable favoriteArtists =
       $FavoriteArtistsTable(this);
-  late final $BestAlbumsTable bestAlbums = $BestAlbumsTable(this);
+  late final $AlbumsTable albums = $AlbumsTable(this);
   late final $DetailAlbumsTable detailAlbums = $DetailAlbumsTable(this);
   late final $FavoriteAlbumsTable favoriteAlbums = $FavoriteAlbumsTable(this);
   late final $FavoriteSongsTable favoriteSongs = $FavoriteSongsTable(this);
@@ -2993,7 +2992,7 @@ abstract class _$AudioAppDatabase extends GeneratedDatabase {
   List<DatabaseSchemaEntity> get allSchemaEntities => [
         recentlyPlayedSongs,
         favoriteArtists,
-        bestAlbums,
+        albums,
         detailAlbums,
         favoriteAlbums,
         favoriteSongs,

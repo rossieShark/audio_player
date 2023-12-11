@@ -107,9 +107,9 @@ void main() {
 }
 
 // Helper methods to create test data
-List<BestAlbum> createTestAlbum() {
+List<Album> createTestAlbum() {
   return const [
-    BestAlbum(
+    Album(
       artist: 'artist',
       // detailAlbum: 1,
       id: 1,
@@ -117,7 +117,7 @@ List<BestAlbum> createTestAlbum() {
       title: 'title',
       type: 'type',
     ),
-    BestAlbum(
+    Album(
       artist: 'artist',
       // detailAlbum: 2,
       id: 2,
@@ -128,9 +128,9 @@ List<BestAlbum> createTestAlbum() {
   ];
 }
 
-List<BestAlbum> createTestAlbumWith1Value() {
+List<Album> createTestAlbumWith1Value() {
   return const [
-    BestAlbum(
+    Album(
       artist: 'artist',
       // detailAlbum: 1,
       id: 1,

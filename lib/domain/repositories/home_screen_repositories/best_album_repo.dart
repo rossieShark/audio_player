@@ -9,15 +9,14 @@ class BestAlbumRepository {
   BestAlbumRepository(this._database, this._recentlyPlayedService);
 
   /// Caches albums into the database and returns the cached best albums.
-  Future<List<BestAlbum>> _cacheAlbums(List<BestAlbumsList> albums) async {
+  Future<List<Album>> _cacheAlbums(List<BestAlbumsList> albums) async {
     try {
       final albumsToInsert = albums.map((album) {
-        return BestAlbum(
+        return Album(
           type: album.type,
           title: album.title,
           id: album.id,
           image: album.coverImage,
-          // detailAlbum: album.id,
           artist: album.artist.name,
         );
       }).toList();
@@ -32,7 +31,7 @@ class BestAlbumRepository {
   }
 
   /// Gets all best albums from the database.
-  Future<List<BestAlbum>> _getAlbumsFromDb() async {
+  Future<List<Album>> _getAlbumsFromDb() async {
     try {
       return await _database.getallBestAlbums();
     } catch (error) {
@@ -42,7 +41,7 @@ class BestAlbumRepository {
   }
 
   /// Gets best albums based on the provided index and limit.
-  Future<List<BestAlbum>> getBestAlbums(int index, int limit) async {
+  Future<List<Album>> getBestAlbums(int index, int limit) async {
     try {
       final dbAlbums = await _getAlbumsFromDb();
 
@@ -89,7 +88,7 @@ class BestAlbumsPaginationService {
   int _index = 0;
   int _limit = 10;
 
-  List<BestAlbum> items = [];
+  List<Album> items = [];
 
   bool get isLoading => _isLoading;
 

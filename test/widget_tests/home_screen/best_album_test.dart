@@ -186,9 +186,9 @@ void main() {
   });
 }
 
-List<BestAlbum> _createTestList(String image) {
+List<Album> _createTestList(String image) {
   return [
-    BestAlbum(
+    Album(
       id: 1,
       image: image,
       artist: 'Artist',
@@ -196,7 +196,7 @@ List<BestAlbum> _createTestList(String image) {
       // detailAlbum: 1,
       type: 'album',
     ),
-    BestAlbum(
+    Album(
         id: 1,
         image: image,
         artist: 'Artist',

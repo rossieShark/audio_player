@@ -21,14 +21,13 @@ class FavoriteArtists extends Table {
   Set<Column> get primaryKey => {id};
 }
 
-@DataClassName('BestAlbum')
-class BestAlbums extends Table {
+@DataClassName('Album')
+class Albums extends Table {
   IntColumn get id => integer().customConstraint('NOT NULL')();
   TextColumn get title => text()();
   TextColumn get image => text()();
   TextColumn get artist => text()();
   TextColumn get type => text()();
-  // IntColumn get detailAlbum => integer()();
   @override
   Set<Column> get primaryKey => {id, title};
 }

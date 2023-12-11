@@ -18,7 +18,7 @@ void main() {
 
       expect(albums, isNotEmpty);
       expect(albums.length, 2);
-      expect(albums, isA<List<BestAlbum>>());
+      expect(albums, isA<List<Album>>());
       expect(albums[0].id, 1);
       expect(albums[1].title, 'title');
     });
@@ -34,7 +34,7 @@ void main() {
 
       expect(service.items, isNotEmpty);
       expect(service.isLoading, false);
-      expect(service.items, isA<List<BestAlbum>>());
+      expect(service.items, isA<List<Album>>());
       expect(service.items.length, 2);
     });
   });
@@ -42,16 +42,16 @@ void main() {
 
 class MockBestAlbumRepository extends Mock implements BestAlbumRepository {}
 
-List<BestAlbum> _createTestList() {
+List<Album> _createTestList() {
   return [
-    const BestAlbum(
+    const Album(
         id: 1,
         artist: 'artist',
         // detailAlbum: 1,
         image: 'image',
         title: 'title',
         type: 'album'),
-    const BestAlbum(
+    const Album(
         id: 2,
         artist: 'artist',
         // detailAlbum: 2,

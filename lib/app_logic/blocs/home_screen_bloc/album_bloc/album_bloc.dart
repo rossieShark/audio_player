@@ -29,7 +29,7 @@ class AlbumRepository {
   final BestAlbumsPaginationService _service;
   AlbumRepository(this._service);
 
-  Future<List<BestAlbum>> getAlbums() async {
+  Future<List<Album>> getAlbums() async {
     await _service.loadMoreItems();
     return _service.items;
   }

@@ -20,21 +20,21 @@ mixin _$AlbumBlocState {
   TResult when<TResult extends Object?>({
     required TResult Function() error,
     required TResult Function() loading,
-    required TResult Function(List<BestAlbum> data) loaded,
+    required TResult Function(List<Album> data) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? error,
     TResult? Function()? loading,
-    TResult? Function(List<BestAlbum> data)? loaded,
+    TResult? Function(List<Album> data)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? error,
     TResult Function()? loading,
-    TResult Function(List<BestAlbum> data)? loaded,
+    TResult Function(List<Album> data)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -111,7 +111,7 @@ class _$ErrorAlbumBlocStateImpl implements ErrorAlbumBlocState {
   TResult when<TResult extends Object?>({
     required TResult Function() error,
     required TResult Function() loading,
-    required TResult Function(List<BestAlbum> data) loaded,
+    required TResult Function(List<Album> data) loaded,
   }) {
     return error();
   }
@@ -121,7 +121,7 @@ class _$ErrorAlbumBlocStateImpl implements ErrorAlbumBlocState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? error,
     TResult? Function()? loading,
-    TResult? Function(List<BestAlbum> data)? loaded,
+    TResult? Function(List<Album> data)? loaded,
   }) {
     return error?.call();
   }
@@ -131,7 +131,7 @@ class _$ErrorAlbumBlocStateImpl implements ErrorAlbumBlocState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? error,
     TResult Function()? loading,
-    TResult Function(List<BestAlbum> data)? loaded,
+    TResult Function(List<Album> data)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -211,7 +211,7 @@ class _$LoadingAlbumBlocStateImpl implements LoadingAlbumBlocState {
   TResult when<TResult extends Object?>({
     required TResult Function() error,
     required TResult Function() loading,
-    required TResult Function(List<BestAlbum> data) loaded,
+    required TResult Function(List<Album> data) loaded,
   }) {
     return loading();
   }
@@ -221,7 +221,7 @@ class _$LoadingAlbumBlocStateImpl implements LoadingAlbumBlocState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? error,
     TResult? Function()? loading,
-    TResult? Function(List<BestAlbum> data)? loaded,
+    TResult? Function(List<Album> data)? loaded,
   }) {
     return loading?.call();
   }
@@ -231,7 +231,7 @@ class _$LoadingAlbumBlocStateImpl implements LoadingAlbumBlocState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? error,
     TResult Function()? loading,
-    TResult Function(List<BestAlbum> data)? loaded,
+    TResult Function(List<Album> data)? loaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -285,7 +285,7 @@ abstract class _$$LoadedAlbumBlocStateImplCopyWith<$Res> {
           $Res Function(_$LoadedAlbumBlocStateImpl) then) =
       __$$LoadedAlbumBlocStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<BestAlbum> data});
+  $Res call({List<Album> data});
 }
 
 /// @nodoc
@@ -305,7 +305,7 @@ class __$$LoadedAlbumBlocStateImplCopyWithImpl<$Res>
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<BestAlbum>,
+              as List<Album>,
     ));
   }
 }
@@ -313,12 +313,12 @@ class __$$LoadedAlbumBlocStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedAlbumBlocStateImpl implements LoadedAlbumBlocState {
-  const _$LoadedAlbumBlocStateImpl({required final List<BestAlbum> data})
+  const _$LoadedAlbumBlocStateImpl({required final List<Album> data})
       : _data = data;
 
-  final List<BestAlbum> _data;
+  final List<Album> _data;
   @override
-  List<BestAlbum> get data {
+  List<Album> get data {
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_data);
@@ -342,7 +342,7 @@ class _$LoadedAlbumBlocStateImpl implements LoadedAlbumBlocState {
   TResult when<TResult extends Object?>({
     required TResult Function() error,
     required TResult Function() loading,
-    required TResult Function(List<BestAlbum> data) loaded,
+    required TResult Function(List<Album> data) loaded,
   }) {
     return loaded(data);
   }
@@ -352,7 +352,7 @@ class _$LoadedAlbumBlocStateImpl implements LoadedAlbumBlocState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? error,
     TResult? Function()? loading,
-    TResult? Function(List<BestAlbum> data)? loaded,
+    TResult? Function(List<Album> data)? loaded,
   }) {
     return loaded?.call(data);
   }
@@ -362,7 +362,7 @@ class _$LoadedAlbumBlocStateImpl implements LoadedAlbumBlocState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? error,
     TResult Function()? loading,
-    TResult Function(List<BestAlbum> data)? loaded,
+    TResult Function(List<Album> data)? loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -407,10 +407,10 @@ class _$LoadedAlbumBlocStateImpl implements LoadedAlbumBlocState {
 }
 
 abstract class LoadedAlbumBlocState implements AlbumBlocState {
-  const factory LoadedAlbumBlocState({required final List<BestAlbum> data}) =
+  const factory LoadedAlbumBlocState({required final List<Album> data}) =
       _$LoadedAlbumBlocStateImpl;
 
-  List<BestAlbum> get data;
+  List<Album> get data;
   @JsonKey(ignore: true)
   _$$LoadedAlbumBlocStateImplCopyWith<_$LoadedAlbumBlocStateImpl>
       get copyWith => throw _privateConstructorUsedError;

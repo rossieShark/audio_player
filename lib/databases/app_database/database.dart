@@ -8,7 +8,7 @@ part 'database.g.dart';
 @DriftDatabase(tables: [
   RecentlyPlayedSongs,
   FavoriteArtists,
-  BestAlbums,
+  Albums,
   DetailAlbums,
   FavoriteAlbums,
   FavoriteSongs,
@@ -21,7 +21,7 @@ class AudioAppDatabase extends _$AudioAppDatabase {
   AudioAppDatabase() : super(impl.connect());
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 7;
 
 //RecentlyPlayedSong
   Future<List<RecentlyPlayedSong>> getallRecentlyPlayedSongs() {
@@ -50,14 +50,18 @@ class AudioAppDatabase extends _$AudioAppDatabase {
   }
 
 //BestAlbum
-  Future<List<BestAlbum>> getallBestAlbums() {
-    return select(bestAlbums).get();
+  Future<List<Album>> getallBestAlbums() {
+    return select(albums).get();
   }
 
-  Future<void> addManyAlbums(List<BestAlbum> items) async {
+  Future<void> addManyAlbums(List<Album> items) async {
     await batch((batch) {
-      batch.insertAll(bestAlbums, items);
+      batch.insertAll(albums, items);
     });
+  }
+
+  Future<int> deleteAll() {
+    return delete(albums).go();
   }
 
 //DetailAlbum
@@ -154,14 +158,13 @@ class AudioAppDatabase extends _$AudioAppDatabase {
       await m.createAll();
     }, onUpgrade: (Migrator m, int from, int to) async {
       if (from < 2) {
-        await m.addColumn(bestAlbums, bestAlbums.artist);
         await m.addColumn(recentlyPlayedSongs, recentlyPlayedSongs.type);
       }
       if (from < 3) {
-        await m.addColumn(bestAlbums, bestAlbums.type);
-      }
-      if (from < 3) {
         await m.createTable(myMusicFolders);
+      }
+      if (from < 7) {
+        m.createTable(albums);
       }
     });
   }

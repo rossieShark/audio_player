@@ -7,7 +7,7 @@ part 'album_bloc_state.freezed.dart';
 class AlbumBlocState with _$AlbumBlocState {
   const factory AlbumBlocState.error() = ErrorAlbumBlocState;
   const factory AlbumBlocState.loading() = LoadingAlbumBlocState;
-  const factory AlbumBlocState.loaded({required List<BestAlbum> data}) =
+  const factory AlbumBlocState.loaded({required List<Album> data}) =
       LoadedAlbumBlocState;
   // factory AlbumBlocState.fromJson(Map<String, Object?> json) =>
   //     _$AlbumBlocStateFromJson(json);

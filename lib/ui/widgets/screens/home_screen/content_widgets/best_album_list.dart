@@ -25,7 +25,7 @@ class BestAlbumList extends StatelessWidget {
 }
 
 class BestAlbumListBody extends StatelessWidget {
-  final List<BestAlbum>? bestAlbumList;
+  final List<Album>? bestAlbumList;
   const BestAlbumListBody({super.key, required this.bestAlbumList});
   @override
   Widget build(BuildContext context) {

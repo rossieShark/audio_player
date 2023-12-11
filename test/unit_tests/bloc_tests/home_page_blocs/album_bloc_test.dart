@@ -71,21 +71,21 @@ void main() {
 
       // Assert
       expect(albums, isNotEmpty);
-      expect(albums, isA<List<BestAlbum>>());
+      expect(albums, isA<List<Album>>());
     });
   });
 }
 
-List<BestAlbum> createTestAlbums() {
+List<Album> createTestAlbums() {
   return const [
-    BestAlbum(
+    Album(
         id: 1,
         artist: 'artist',
         // detailAlbum: 1,
         image: 'image',
         title: 'title',
         type: 'album'),
-    BestAlbum(
+    Album(
         id: 2,
         artist: 'artist',
         // detailAlbum: 2,
