@@ -15,6 +15,7 @@ class CustomTextField extends StatelessWidget {
   final Color? textColor;
   final bool? showSuffixIcon;
   final Color? borderColor;
+  final TextInputType? textInputType;
 
   const CustomTextField(
       {Key? key,
@@ -29,6 +30,7 @@ class CustomTextField extends StatelessWidget {
       this.textFieldColor,
       this.showSuffixIcon,
       this.borderColor,
+      this.textInputType,
       this.textColor})
       : super(key: key);
 
@@ -42,6 +44,7 @@ class CustomTextField extends StatelessWidget {
         decoration:
             BoxDecoration(color: textFieldColor ?? AppColors.white.color),
         child: TextField(
+          keyboardType: textInputType,
           obscureText: obscureText,
           controller: controller,
           focusNode: focusNode,

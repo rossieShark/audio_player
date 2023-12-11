@@ -28,6 +28,7 @@ class SignUpWidget extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
             child: CustomTextField(
               obscureText: false,
+              textInputType: TextInputType.emailAddress,
               focusNode: emailFocusNode,
               controller: signUpTextController,
               hintText: AppLocalizations.of(context)!.enterEmail,

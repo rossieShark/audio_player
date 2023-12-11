@@ -31,6 +31,7 @@ class SignInWidget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
             child: CustomTextField(
+              textInputType: TextInputType.emailAddress,
               obscureText: false,
               focusNode: _emailFocusNode,
               controller: _loginTextController,
