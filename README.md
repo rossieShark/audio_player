@@ -1,4 +1,6 @@
-# Louder
+# Louder      ![sound1](https://github.com/rossieShark/audio_player/assets/122214235/578bc27f-4994-4760-b5d9-c04889a8baf8)
+
+
 
  Приложения для прослушивания музыки
 
