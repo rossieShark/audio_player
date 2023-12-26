@@ -53,6 +53,7 @@ dependencies:
   nock: ^1.2.3
   golden_toolkit: ^0.15.0
   equatable: ^2.0.5
+  logging: ^1.2.0
 
 dev_dependencies:
   flutter_test:

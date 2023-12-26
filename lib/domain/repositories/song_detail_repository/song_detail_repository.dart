@@ -1,5 +1,7 @@
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/services/api_service/service.dart';
+import 'package:audio_player/domain/services/logger.dart';
+import 'package:logging/logging.dart';
 
 abstract class SongDetailRepo {
   Future<DetailInfoSong?> getDetailSongInfo(String id);
@@ -10,7 +12,7 @@ class SongDetailRepository implements SongDetailRepo {
   final AudioPlayerService _songDetailsService;
 
   SongDetailRepository(this._database, this._songDetailsService);
-
+  final Logger _logger = getLogger('SongDetailRepository');
   @override
   Future<DetailInfoSong?> getDetailSongInfo(String id) async {
     final int songId = int.parse(id);
@@ -35,7 +37,7 @@ class SongDetailRepository implements SongDetailRepo {
 
         return detailSongToInsert;
       } else {
-        print('API request failed: ${apiResponse.error}');
+        _logger.severe('API request failed: ${apiResponse.error}');
         return null;
       }
     }

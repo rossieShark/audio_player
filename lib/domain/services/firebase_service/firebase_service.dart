@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/domain/services/logger.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 
@@ -10,18 +11,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:logging/logging.dart';
 
 class FireBaseFunctions {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final User? _user = FirebaseAuth.instance.currentUser;
+
+  final Logger _logger = getLogger('FireBaseFunctions');
+
   Future<bool> signInWithGoogle() async {
     try {
       await FirebaseAuth.instance.signOut();
       FirebaseAuth.instance.userChanges().listen((User? user) {
         if (user == null) {
-          print('User is currently signed out!');
+          _logger.info('User is currently signed out!');
         } else {
-          print('User is signed in!');
+          _logger.info('User is signed in!');
         }
       });
       GoogleSignIn googleSignIn = GoogleSignIn(
@@ -40,13 +45,13 @@ class FireBaseFunctions {
       await FirebaseAuth.instance.signInWithCredential(credential);
       return true;
     } catch (e) {
-      print('Error google signing in: $e');
+      _logger.severe('Error google signing in: $e');
       return false;
     }
   }
 
   Future<void> validSignWithGoogle(BuildContext context) async {
-    bool success = await FireBaseFunctions().signInWithGoogle();
+    bool success = await signInWithGoogle();
     if (success) {
       return context.go(Routes().home);
     } else {
@@ -60,7 +65,7 @@ class FireBaseFunctions {
 
   Future<void> signUp(
       BuildContext context, String email, String password) async {
-    bool success = await FireBaseFunctions().register(email, password);
+    bool success = await register(email, password);
     if (success) {
       return context.go(Routes().home);
     } else {
@@ -90,9 +95,9 @@ class FireBaseFunctions {
     if (_user != null) {
       try {
         await _user!.delete();
-        print('User account deleted');
+        _logger.info('User account deleted');
       } catch (e) {
-        print('Error deleting account: $e');
+        _logger.severe('Error deleting account: $e');
       }
     }
   }
@@ -101,9 +106,9 @@ class FireBaseFunctions {
     try {
       await _auth.signOut();
 
-      print('User signed out');
+      _logger.info('User signed out');
     } catch (e) {
-      print('Error signing out: $e');
+      _logger.severe('Error signing out: $e');
     }
   }
 
@@ -151,7 +156,7 @@ class FireBaseFunctions {
     } else {
       context.read<PasswordMissmatchCubit>().passwordMissmatchText(
           AppLocalizations.of(context)!.passwordMissmatch);
-      print("passwordMissmatch");
+      _logger.info("passwordMissmatch");
     }
   }
 
@@ -163,7 +168,7 @@ class FireBaseFunctions {
       );
       return true;
     } catch (e) {
-      print('Error signing in: $e');
+      _logger.severe('Error signing in: $e');
       return false;
     }
   }
@@ -176,7 +181,7 @@ class FireBaseFunctions {
       );
       return true;
     } catch (e) {
-      print('Error signing up: $e');
+      _logger.severe('Error signing up: $e');
       return false;
     }
   }

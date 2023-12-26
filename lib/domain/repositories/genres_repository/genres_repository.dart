@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
+import 'package:audio_player/domain/services/logger.dart';
 import 'package:audio_player/domain/services/services.dart';
+import 'package:logging/logging.dart';
 
 abstract class Genres {
   Future<List<MusicGenre>> getAllGenres();
@@ -12,6 +14,7 @@ class GenresRepository implements Genres {
   final AudioPlayerService _genresService;
 
   GenresRepository(this._database, this._genresService);
+  final Logger _logger = getLogger('GenresRepository');
 
   /// Caches the provided tracks into the database and returns the cached genres.
   Future<List<MusicGenre>> _cacheTracks(List<Data> tracks) async {
@@ -27,8 +30,8 @@ class GenresRepository implements Genres {
       await _database.addManyGenres(genresToInsert);
 
       return genresToInsert;
-    } catch (error) {
-      print('Error caching tracks: $error');
+    } catch (error, stackTrace) {
+      _logger.severe('Error caching tracks: $error, stack trace: $stackTrace');
       return [];
     }
   }
@@ -44,8 +47,9 @@ class GenresRepository implements Genres {
       } else {
         return await _database.getallGenres();
       }
-    } catch (error) {
-      print('Error getting all genres: $error');
+    } catch (error, stackTrace) {
+      _logger
+          .severe('Error getting all genres: $error, stack trace: $stackTrace');
       return [];
     }
   }
@@ -56,8 +60,9 @@ class GenresRepository implements Genres {
       final genresList = await _genresService.getGenres();
       final items = genresList.body?.data as List<Data>;
       return items;
-    } catch (error) {
-      print('Error getting genres from service: $error');
+    } catch (error, stackTrace) {
+      _logger.severe(
+          'Error getting genres from service: $error, stack trace: $stackTrace');
       return [];
     }
   }
@@ -67,8 +72,9 @@ class GenresRepository implements Genres {
     try {
       final dbTracks = await _database.getallGenres();
       return dbTracks.isEmpty;
-    } catch (error) {
-      print('Error checking if tracks are available: $error');
+    } catch (error, stackTrace) {
+      _logger.severe(
+          'Error checking if tracks are available: $error, stack trace: $stackTrace');
       return false;
     }
   }

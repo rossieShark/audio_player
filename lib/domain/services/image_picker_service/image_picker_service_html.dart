@@ -4,17 +4,19 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:html';
 
+import 'package:audio_player/domain/services/logger.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:logging/logging.dart';
 
 class ImagePickerService {
+  final Logger _logger = getLogger('ImagePickerService html');
   Future<String?> pickImageFromGallery() async {
     final uploadInput = FileUploadInputElement();
     uploadInput.multiple = true;
     uploadInput.draggable = true;
     uploadInput.click();
 
-    final completer =
-        Completer<String?>(); 
+    final completer = Completer<String?>();
 
     uploadInput.onChange.listen((event) async {
       final files = uploadInput.files;
@@ -33,22 +35,21 @@ class ImagePickerService {
         try {
           await ref.putData(bytesData);
           final imageUrl = await ref.getDownloadURL();
-          completer
-              .complete(imageUrl); 
-        } catch (e) {
-          print('Error uploading image: $e');
-          completer.completeError(e); 
+          completer.complete(imageUrl);
+        } catch (error, stackTrace) {
+          _logger.severe(
+              'Error uploading image: $error, stack trace: $stackTrace');
+          completer.completeError(error);
         }
       });
 
       reader.readAsDataUrl(file);
     });
 
-    return completer.future; 
+    return completer.future;
   }
 
   Future<String?> pickImageFromCamera() {
-  
-    return Future.value(null); 
+    return Future.value(null);
   }
 }

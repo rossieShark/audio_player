@@ -1,6 +1,8 @@
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/home_screen_data/favourite_artist_model/favourite_artist_model.dart';
+import 'package:audio_player/domain/services/logger.dart';
 import 'package:audio_player/domain/services/services.dart';
+import 'package:logging/logging.dart';
 
 abstract class FavoriteArtistRepo {
   Future<List<FavoriteArtist>> getFavoriteArtists();
@@ -11,6 +13,7 @@ class FavoriteArtistRepository implements FavoriteArtistRepo {
   final AudioPlayerService _recentlyPlayedService;
 
   FavoriteArtistRepository(this._database, this._recentlyPlayedService);
+  final Logger _logger = getLogger('FavoriteArtistRepository');
 
   /// Caches the artists into the database and returns the cached favorite artists.
   Future<List<FavoriteArtist>> _cacheArtists(List<Artists> artists) async {
@@ -25,8 +28,9 @@ class FavoriteArtistRepository implements FavoriteArtistRepo {
 
       await _database.addManyFavoriteArtists(artistsToInsert);
       return artistsToInsert;
-    } catch (error) {
-      print('Error caching favorite artists: $error');
+    } catch (error, stackTrace) {
+      _logger.severe(
+          'Error caching favorite artists: $error, stack trace: $stackTrace');
       return [];
     }
   }
@@ -35,8 +39,9 @@ class FavoriteArtistRepository implements FavoriteArtistRepo {
   Future<List<FavoriteArtist>> _getArtistsFromDb() async {
     try {
       return await _database.getallFavouriteArtists();
-    } catch (error) {
-      print('Error getting favorite artists from database: $error');
+    } catch (error, stackTrace) {
+      _logger.severe(
+          'Error getting favorite artists from database: $error, stack trace: $stackTrace');
       return [];
     }
   }
@@ -50,8 +55,9 @@ class FavoriteArtistRepository implements FavoriteArtistRepo {
         return dbArtists;
       }
       return await _cacheArtists(await _getFavoriteArtistsFromApi());
-    } catch (error) {
-      print('Error getting favorite artists: $error');
+    } catch (error, stackTrace) {
+      _logger.severe(
+          'Error getting favorite artists: $error, stack trace: $stackTrace');
       return [];
     }
   }
@@ -62,8 +68,9 @@ class FavoriteArtistRepository implements FavoriteArtistRepo {
       final apiArtists = await _recentlyPlayedService.getFavoriteArtists();
       final apiArtistsResponse = apiArtists.body?.data as List<Artists>;
       return apiArtistsResponse;
-    } catch (error) {
-      print('Error getting favorite artists from API: $error');
+    } catch (error, stackTrace) {
+      _logger.severe(
+          'Error getting favorite artists from API: $error, stack trace: $stackTrace');
       return [];
     }
   }

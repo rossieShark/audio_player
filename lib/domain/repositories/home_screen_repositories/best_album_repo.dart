@@ -1,6 +1,8 @@
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/home_screen_data/home_screen_data.dart';
+import 'package:audio_player/domain/services/logger.dart';
 import 'package:audio_player/domain/services/services.dart';
+import 'package:logging/logging.dart';
 
 abstract class BestAlbums {
   Future<List<Album>> getBestAlbums(int index, int limit);
@@ -11,6 +13,7 @@ class BestAlbumRepository implements BestAlbums {
   final AudioPlayerService _recentlyPlayedService;
 
   BestAlbumRepository(this._database, this._recentlyPlayedService);
+  final Logger _logger = getLogger('BestAlbumRepository');
 
   /// Caches albums into the database and returns the cached best albums.
   Future<List<Album>> _cacheAlbums(List<BestAlbumsList> albums) async {
@@ -28,8 +31,9 @@ class BestAlbumRepository implements BestAlbums {
       await _database.addManyAlbums(albumsToInsert);
 
       return albumsToInsert;
-    } catch (error) {
-      print('Error caching best albums: $error');
+    } catch (error, stackTrace) {
+      _logger.severe(
+          'Error caching best albums: $error, stack trace: $stackTrace');
       return [];
     }
   }
@@ -38,8 +42,9 @@ class BestAlbumRepository implements BestAlbums {
   Future<List<Album>> _getAlbumsFromDb() async {
     try {
       return await _database.getallBestAlbums();
-    } catch (error) {
-      print('Error getting best albums from database: $error');
+    } catch (error, stackTrace) {
+      _logger.severe(
+          'Error getting best albums from database: $error, stack trace: $stackTrace');
       return [];
     }
   }
@@ -64,8 +69,9 @@ class BestAlbumRepository implements BestAlbums {
       }
 
       return dbAlbums.sublist(startIndex, endIndex);
-    } catch (error) {
-      print('Error getting best albums: $error');
+    } catch (error, stackTrace) {
+      _logger.severe(
+          'Error getting best albums: $error, stack trace: $stackTrace');
       return [];
     }
   }
@@ -78,8 +84,9 @@ class BestAlbumRepository implements BestAlbums {
           await _recentlyPlayedService.getBestAlbums(index, limit);
       final apiAlbums = apiAlbumsResponse.body?.data as List<BestAlbumsList>;
       return apiAlbums;
-    } catch (error) {
-      print('Error fetching and caching best albums: $error');
+    } catch (error, stackTrace) {
+      _logger.severe(
+          'Error fetching and caching best albums: $error, stack trace: $stackTrace');
       return [];
     }
   }

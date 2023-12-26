@@ -1,6 +1,8 @@
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
+import 'package:audio_player/domain/services/logger.dart';
 import 'package:audio_player/domain/services/services.dart';
+import 'package:logging/logging.dart';
 
 abstract class AlbumDetails {
   Future<List<DetailAlbum>> getDetailAlbums(String albumId);
@@ -11,6 +13,7 @@ class AlbumDetailsRepository implements AlbumDetails {
   final AudioPlayerService _albumDetailsService;
 
   AlbumDetailsRepository(this._database, this._albumDetailsService);
+  final Logger _logger = getLogger('AlbumDetailsRepository');
 
   /// Gets detailed album information either from the local database or the API if not cached.
   @override
@@ -24,8 +27,9 @@ class AlbumDetailsRepository implements AlbumDetails {
         final albumAppearances = await _getAlbumsFromApi(albumId);
         return await _cacheAlbums(albumAppearances, albumId);
       }
-    } catch (error) {
-      print('Error getting detail album information: $error');
+    } catch (error, stackTrace) {
+      _logger.severe(
+          'Error getting detail album information: $error, stack trace: $stackTrace');
       return [];
     }
   }
@@ -34,8 +38,9 @@ class AlbumDetailsRepository implements AlbumDetails {
   Future<List<DetailAlbum>> _getAlbumsFromDb(String albumId) async {
     try {
       return await _database.watchInfoInDetailAlbum(int.parse(albumId)).first;
-    } catch (error) {
-      print('Error getting detail album information from database: $error');
+    } catch (error, stackTrace) {
+      _logger.severe(
+          'Error getting detail album information from database: $error, stack trace: $stackTrace');
       return [];
     }
   }
@@ -58,8 +63,9 @@ class AlbumDetailsRepository implements AlbumDetails {
       await _database.addManyDetailAlbums(detailAlbumsToInsert);
 
       return detailAlbumsToInsert;
-    } catch (error) {
-      print('Error caching detail album information: $error');
+    } catch (error, stackTrace) {
+      _logger.severe(
+          'Error caching detail album information: $error, stack trace: $stackTrace');
       return [];
     }
   }
@@ -69,8 +75,9 @@ class AlbumDetailsRepository implements AlbumDetails {
     try {
       final songsList = await _albumDetailsService.getAlbumSongsList(albumId);
       return songsList.body?.data as List<AlbumData>;
-    } catch (error) {
-      print('Error getting detail album information from API: $error');
+    } catch (error, stackTrace) {
+      _logger.severe(
+          'Error getting detail album information from API:$error, stack trace: $stackTrace');
       return [];
     }
   }

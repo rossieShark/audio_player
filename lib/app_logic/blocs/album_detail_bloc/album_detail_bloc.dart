@@ -1,9 +1,11 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/repositories/index.dart';
+import 'package:audio_player/domain/services/logger.dart';
+import 'package:logging/logging.dart';
 
 class AlbumDetailBloc extends Bloc<AlbumDetailBlocEvent, AlbumDetailBlocState> {
   final AlbumDetails repository;
-
+  final Logger _logger = getLogger('AlbumDetailBloc');
   AlbumDetailBloc(this.repository)
       : super(const AlbumDetailBlocState.loading()) {
     on<FetchAlbumDetailBlocEvent>(_fetchAlbumDetail);
@@ -17,9 +19,10 @@ class AlbumDetailBloc extends Bloc<AlbumDetailBlocEvent, AlbumDetailBlocState> {
         emit(const AlbumDetailBlocState.empty());
       } else {
         emit(AlbumDetailBlocState.loaded(albumDetailList: albumDetail));
-        print('Emitted album detail state');
+        _logger.info('Emitted album detail state');
       }
-    } catch (error) {
+    } catch (error, stackTrace) {
+      _logger.severe('Fetch error  $error, stack trace: $stackTrace');
       emit(const AlbumDetailBlocState.error());
     }
   }

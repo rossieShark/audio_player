@@ -1,6 +1,8 @@
 import 'package:audio_player/domain/entity/models.dart';
+import 'package:audio_player/domain/services/logger.dart';
 import 'package:audio_player/domain/services/services.dart';
 import 'package:audio_player/ui/widgets/screens/index.dart';
+import 'package:logging/logging.dart';
 
 abstract class SearchResultRepo {
   Future<List<SearchData>> getSearchResult(
@@ -10,18 +12,25 @@ abstract class SearchResultRepo {
 class SearchResultRepository implements SearchResultRepo {
   final AudioPlayerService _searchResultService;
   SearchResultRepository(this._searchResultService);
+  final Logger _logger = getLogger('SearchResultRepository');
 
   Future<List<SearchData>> getSearchAllResults(
     int index,
     int limit,
     String q,
   ) async {
-    final apiResult =
-        await _searchResultService.getSearchResult(q, index, limit);
+    try {
+      final apiResult =
+          await _searchResultService.getSearchResult(q, index, limit);
 
-    final apiResultResponse = apiResult.body?.data as List<SearchData>;
+      final apiResultResponse = apiResult.body?.data as List<SearchData>;
 
-    return apiResultResponse;
+      return apiResultResponse;
+    } catch (error, stackTrace) {
+      _logger.severe(
+          'Error getting search result: $error, stack trace: $stackTrace');
+      return [];
+    }
   }
 
   Future<List<SearchData>> getSearchAlbumResults(
@@ -29,22 +38,27 @@ class SearchResultRepository implements SearchResultRepo {
     int limit,
     String q,
   ) async {
-    final apiResult =
-        await _searchResultService.getSearchAlbumResult(q, index, limit);
-    print(apiResult);
-    final apiResultResponse = apiResult.body?.data as List<BestAlbumsList>;
-    final List<SearchData> searchResult = apiResultResponse.map((album) {
-      return SearchData(
-        artist:
-            SearchDataArtist(image: album.coverImage, name: album.artist.name),
-        id: album.id,
-        title: album.title,
-        type: SearchFilters.album,
-        preview: '',
-      );
-    }).toList();
+    try {
+      final apiResult =
+          await _searchResultService.getSearchAlbumResult(q, index, limit);
+      final apiResultResponse = apiResult.body?.data as List<BestAlbumsList>;
+      final List<SearchData> searchResult = apiResultResponse.map((album) {
+        return SearchData(
+          artist: SearchDataArtist(
+              image: album.coverImage, name: album.artist.name),
+          id: album.id,
+          title: album.title,
+          type: SearchFilters.album,
+          preview: '',
+        );
+      }).toList();
 
-    return searchResult;
+      return searchResult;
+    } catch (error, stackTrace) {
+      _logger.severe(
+          'Error getting search album result: $error, stack trace: $stackTrace');
+      return [];
+    }
   }
 
   Future<List<SearchData>> getSearchTrackResults(
@@ -52,12 +66,18 @@ class SearchResultRepository implements SearchResultRepo {
     int limit,
     String q,
   ) async {
-    final apiResult =
-        await _searchResultService.getSearchTrackResult(q, index, limit);
+    try {
+      final apiResult =
+          await _searchResultService.getSearchTrackResult(q, index, limit);
 
-    final apiResultResponse = apiResult.body?.data as List<SearchData>;
+      final apiResultResponse = apiResult.body?.data as List<SearchData>;
 
-    return apiResultResponse;
+      return apiResultResponse;
+    } catch (error, stackTrace) {
+      _logger.severe(
+          'Error getting search track result: $error, stack trace: $stackTrace');
+      return [];
+    }
   }
 
   @override
