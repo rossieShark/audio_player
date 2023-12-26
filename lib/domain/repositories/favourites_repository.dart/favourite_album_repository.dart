@@ -1,12 +1,14 @@
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
+import 'package:audio_player/domain/repositories/favourites_repository.dart/favourites_repo.dart';
 
-class FavouriteAlbumRepository {
+class FavouriteAlbumRepository implements Favourites {
   final AudioAppDatabase _database;
 
   FavouriteAlbumRepository(this._database);
 
-  Future<List<SongModel>> addToFavoritesAlbum(SongModel detailSong) async {
+  @override
+  Future<List<SongModel>> addToFavorites(SongModel detailSong) async {
     await _database.insertFavoritAlbum(
       FavoriteAlbum(
         preview: detailSong.preview,
@@ -18,21 +20,24 @@ class FavouriteAlbumRepository {
         isFavourite: detailSong.isFavourite,
       ),
     );
-    return loadAlbums();
+    return loadFavourites();
   }
 
-  Future<List<SongModel>> removeFromFavoritesAlbum(SongModel detailSong) async {
+  @override
+  Future<List<SongModel>> removeFromFavorites(SongModel detailSong) async {
     await _database.deleteFavoriteAlbum(int.parse(detailSong.id));
-    return loadAlbums();
+    return loadFavourites();
   }
 
+  @override
   Future<bool> isFavourite(String albumId) async {
-    final albums = await loadAlbums();
+    final albums = await loadFavourites();
     bool isFavorite = albums.any((album) => album.id == albumId);
     return isFavorite;
   }
 
-  Future<List<SongModel>> loadAlbums() async {
+  @override
+  Future<List<SongModel>> loadFavourites() async {
     final favoriteAlbums = await _database.getFavoriteAlbums();
     final loadedFavoriteAlbums = favoriteAlbums
         .map(

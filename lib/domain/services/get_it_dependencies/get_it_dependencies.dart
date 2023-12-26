@@ -25,43 +25,43 @@ class SetGetItDependencies {
   }
 
   void setupRepoDependencies() {
-    GetIt.instance.registerLazySingleton<RecentlyPlayedRepository>(
+    GetIt.instance.registerFactory<RecentlyPlayedRepo>(
       () =>
           RecentlyPlayedRepository(GetIt.instance.get(), GetIt.instance.get()),
     );
-    GetIt.instance.registerLazySingleton<FavoriteArtistRepository>(
+    GetIt.instance.registerFactory<FavoriteArtistRepo>(
       () =>
           FavoriteArtistRepository(GetIt.instance.get(), GetIt.instance.get()),
     );
-    GetIt.instance.registerFactory<BestAlbumRepository>(
+    GetIt.instance.registerFactory<BestAlbums>(
         () => BestAlbumRepository(GetIt.instance.get(), GetIt.instance.get()));
 
-    GetIt.instance.registerLazySingleton<AlbumDetailsRepository>(
+    GetIt.instance.registerFactory<AlbumDetails>(
       () => AlbumDetailsRepository(GetIt.instance.get(), GetIt.instance.get()),
     );
-    GetIt.instance.registerLazySingleton<GenresRepository>(
+    GetIt.instance.registerFactory<Genres>(
       () => GenresRepository(GetIt.instance.get(), GetIt.instance.get()),
     );
-    GetIt.instance.registerLazySingleton<SongDetailRepository>(
+    GetIt.instance.registerFactory<SongDetailRepo>(
       () => SongDetailRepository(GetIt.instance.get(), GetIt.instance.get()),
     );
-    GetIt.instance.registerLazySingleton<SearchResultRepository>(
+    GetIt.instance.registerFactory<SearchResultRepo>(
       () => SearchResultRepository(GetIt.instance.get()),
     );
-    GetIt.instance.registerLazySingleton<AlbumRepository>(
+    GetIt.instance.registerFactory<AlbumRepository>(
       () => AlbumRepository(GetIt.instance.get()),
     );
-    GetIt.instance.registerLazySingleton<RecentlySearchedRepository>(
+    GetIt.instance.registerFactory<RecentlySearchedRepo>(
       () => RecentlySearchedRepository(GetIt.instance.get()),
     );
 
-    GetIt.instance.registerLazySingleton<SearchRepository>(
+    GetIt.instance.registerFactory<SearchRepository>(
         () => SearchRepository(GetIt.instance.get()));
-    GetIt.instance.registerLazySingleton<FavouriteAlbumRepository>(
+    GetIt.instance.registerFactory<FavouriteAlbumRepository>(
         () => FavouriteAlbumRepository(GetIt.instance.get()));
-    GetIt.instance.registerLazySingleton<FavouriteSongRepository>(
+    GetIt.instance.registerFactory<FavouriteSongRepository>(
         () => FavouriteSongRepository(GetIt.instance.get()));
-    GetIt.instance.registerLazySingleton<NewPlaylistRepository>(
+    GetIt.instance.registerFactory<NewPlaylistRepo>(
         () => NewPlaylistRepository(GetIt.instance.get()));
   }
 
@@ -108,11 +108,11 @@ class SetGetItDependencies {
     GetIt.instance.registerLazySingleton(() => AudioPlayerService.create());
 
     GetIt.instance
-        .registerLazySingleton<ImagePickerService>(() => ImagePickerService());
-    GetIt.instance.registerFactory<BestAlbumsPaginationService>(
+        .registerFactory<ImagePickerService>(() => ImagePickerService());
+    GetIt.instance.registerFactory<BestAlbumsPagination>(
         () => BestAlbumsPaginationService(GetIt.instance.get()));
 
-    GetIt.instance.registerFactory<SearchResultPaginationService>(
+    GetIt.instance.registerFactory<SearchResultPagination>(
         () => SearchResultPaginationService(GetIt.instance.get()));
   }
 }

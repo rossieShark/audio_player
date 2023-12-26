@@ -2,7 +2,11 @@ import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/home_screen_data/home_screen_data.dart';
 import 'package:audio_player/domain/services/services.dart';
 
-class BestAlbumRepository {
+abstract class BestAlbums {
+  Future<List<Album>> getBestAlbums(int index, int limit);
+}
+
+class BestAlbumRepository implements BestAlbums {
   final AudioAppDatabase _database;
   final AudioPlayerService _recentlyPlayedService;
 
@@ -41,6 +45,7 @@ class BestAlbumRepository {
   }
 
   /// Gets best albums based on the provided index and limit.
+  @override
   Future<List<Album>> getBestAlbums(int index, int limit) async {
     try {
       final dbAlbums = await _getAlbumsFromDb();
@@ -80,18 +85,25 @@ class BestAlbumRepository {
   }
 }
 
-class BestAlbumsPaginationService {
-  final BestAlbumRepository _bestAlbumsRepository;
+abstract class BestAlbumsPagination {
+  Future<void> loadMoreItems();
+  List<Album> items = [];
+}
+
+class BestAlbumsPaginationService implements BestAlbumsPagination {
+  final BestAlbums _bestAlbumsRepository;
   BestAlbumsPaginationService(this._bestAlbumsRepository);
   bool _isLoading = false;
   final int _perPage = 10;
   int _index = 0;
   int _limit = 10;
 
+  @override
   List<Album> items = [];
 
   bool get isLoading => _isLoading;
 
+  @override
   Future<void> loadMoreItems() async {
     if (_isLoading) return;
     _isLoading = true;

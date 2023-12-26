@@ -47,7 +47,7 @@ class SearchResultBloc extends Bloc<SearchEvent, SearchState> {
 }
 
 class SearchRepository {
-  final SearchResultPaginationService _service;
+  final SearchResultPagination _service;
   SearchRepository(this._service);
   Future<List<SearchData>> getSearchResult(String q, String? filter) async {
     await _service.loadMoreItems(q, filter);

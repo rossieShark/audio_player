@@ -1,12 +1,17 @@
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/services/api_service/service.dart';
 
-class SongDetailRepository {
+abstract class SongDetailRepo {
+  Future<DetailInfoSong?> getDetailSongInfo(String id);
+}
+
+class SongDetailRepository implements SongDetailRepo {
   final AudioAppDatabase _database;
   final AudioPlayerService _songDetailsService;
 
   SongDetailRepository(this._database, this._songDetailsService);
 
+  @override
   Future<DetailInfoSong?> getDetailSongInfo(String id) async {
     final int songId = int.parse(id);
 

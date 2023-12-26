@@ -3,7 +3,7 @@ import 'package:audio_player/domain/entity/favorite_folder_model.dart';
 import 'package:audio_player/domain/repositories/new_playlist_repository/new_playlist_repository.dart';
 
 class NewPlaylistBloc extends Bloc<NewPlaylistBlocEvent, NewPlaylistState> {
-  final NewPlaylistRepository _repository;
+  final NewPlaylistRepo _repository;
 
   NewPlaylistBloc(this._repository) : super(const NewPlaylistState.empty()) {
     on<AddNewPlaylistEvent>(_onAddFolder);
@@ -12,9 +12,6 @@ class NewPlaylistBloc extends Bloc<NewPlaylistBlocEvent, NewPlaylistState> {
 
   void _onAddFolder(
       AddNewPlaylistEvent event, Emitter<NewPlaylistState> emit) async {
-    // List<FavoriteFolder> folders = await _returnMyFolderList();
-    // final folder = _repository.convertToFavoriteFolder(event.folderName);
-    // folders.add(folder);
     final folders = await _repository.addToFolders(event.folderName);
     emit(NewPlaylistState.loaded(folders: folders));
   }

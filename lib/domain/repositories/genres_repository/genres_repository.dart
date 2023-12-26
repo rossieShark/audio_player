@@ -3,14 +3,18 @@ import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/domain/services/services.dart';
 
-class GenresRepository {
+abstract class Genres {
+  Future<List<MusicGenre>> getAllGenres();
+}
+
+class GenresRepository implements Genres {
   final AudioAppDatabase _database;
   final AudioPlayerService _genresService;
 
   GenresRepository(this._database, this._genresService);
 
   /// Caches the provided tracks into the database and returns the cached genres.
-  Future<List<MusicGenre>> cacheTracks(List<Data> tracks) async {
+  Future<List<MusicGenre>> _cacheTracks(List<Data> tracks) async {
     try {
       final genresToInsert = tracks.map((item) {
         return MusicGenre(
@@ -30,12 +34,13 @@ class GenresRepository {
   }
 
   /// Gets all genres, either from the service or the database if cached.
+  @override
   Future<List<MusicGenre>> getAllGenres() async {
     try {
-      final isAvailable = await isTracksAvailable();
+      final isAvailable = await _isTracksAvailable();
       if (isAvailable) {
-        final result = await getGenresFromService();
-        return await cacheTracks(result);
+        final result = await _getGenresFromService();
+        return await _cacheTracks(result);
       } else {
         return await _database.getallGenres();
       }
@@ -46,7 +51,7 @@ class GenresRepository {
   }
 
   /// Retrieves genres from the service.
-  Future<List<Data>> getGenresFromService() async {
+  Future<List<Data>> _getGenresFromService() async {
     try {
       final genresList = await _genresService.getGenres();
       final items = genresList.body?.data as List<Data>;
@@ -58,7 +63,7 @@ class GenresRepository {
   }
 
   /// Checks if tracks are available in the database.
-  Future<bool> isTracksAvailable() async {
+  Future<bool> _isTracksAvailable() async {
     try {
       final dbTracks = await _database.getallGenres();
       return dbTracks.isEmpty;

@@ -4,7 +4,7 @@ import 'package:audio_player/domain/repositories/recently_searched_repository/re
 
 class RecentlySearchedBloc
     extends Bloc<RecentlySearchedEvent, RecentlySearchedState> {
-  final RecentlySearchedRepository _repository;
+  final RecentlySearchedRepo _repository;
 
   RecentlySearchedBloc(this._repository)
       : super(const RecentlySearchedState.loading()) {

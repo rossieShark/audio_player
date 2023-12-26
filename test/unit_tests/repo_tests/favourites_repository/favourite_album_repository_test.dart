@@ -27,7 +27,7 @@ void main() {
           .thenAnswer((_) => Future.value([_createTestAlbums()]));
 
       // Act
-      final result = await repository.loadAlbums();
+      final result = await repository.loadFavourites();
 
       // Assert
       expect(result, isNotNull);
@@ -44,7 +44,7 @@ void main() {
       when(() => audioDatabase.insertFavoritAlbum(any()))
           .thenAnswer((_) => Future.value());
       // Act
-      final resultFuture = repository.addToFavoritesAlbum(albumModel);
+      final resultFuture = repository.addToFavorites(albumModel);
 
       // Assert
       await expectLater(resultFuture, completion(isNotNull));
@@ -98,7 +98,7 @@ void main() {
       when(() => audioDatabase.deleteFavoriteAlbum(any()))
           .thenAnswer((_) => Future<void>.value());
       // Act
-      final resultFuture = repository.removeFromFavoritesAlbum(albumModel);
+      final resultFuture = repository.removeFromFavorites(albumModel);
 
       // Assert
       await expectLater(resultFuture, completion(isNotNull));

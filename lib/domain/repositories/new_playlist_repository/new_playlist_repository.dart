@@ -2,10 +2,17 @@ import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/resources/resources.dart';
 
-class NewPlaylistRepository {
+abstract class NewPlaylistRepo {
+  Future<List<FavoriteFolder>> loadPlaylists();
+  Future<List<FavoriteFolder>> addToFolders(String title);
+  FavoriteFolder convertToFavoriteFolder(String title);
+}
+
+class NewPlaylistRepository implements NewPlaylistRepo {
   final AudioAppDatabase _database;
 
   NewPlaylistRepository(this._database);
+  @override
   Future<List<FavoriteFolder>> loadPlaylists() async {
     final folders = await _database.getFolders();
     final loadedFolders = folders
@@ -19,6 +26,7 @@ class NewPlaylistRepository {
     return loadedFolders;
   }
 
+  @override
   Future<List<FavoriteFolder>> addToFolders(String title) async {
     final folder = convertToFavoriteFolder(title);
     await _database.insertToMyFolders(
@@ -30,6 +38,7 @@ class NewPlaylistRepository {
     return await loadPlaylists();
   }
 
+  @override
   FavoriteFolder convertToFavoriteFolder(String title) {
     return FavoriteFolder(image: AppImages.playlist, title: title);
   }

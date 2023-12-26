@@ -4,7 +4,7 @@ import 'package:audio_player/domain/repositories/home_screen_repositories/recent
 
 class RecentlyPlayedBloc
     extends Bloc<RecentlyPlayedBlocEvent, RecentlyPlayedState> {
-  final RecentlyPlayedRepository _repository;
+  final RecentlyPlayedRepo _repository;
 
   RecentlyPlayedBloc(this._repository)
       : super(const RecentlyPlayedState.loading()) {

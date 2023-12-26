@@ -2,7 +2,11 @@ import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/recently_played_model/recently_played_model.dart';
 import 'package:audio_player/domain/services/services.dart';
 
-class RecentlyPlayedRepository {
+abstract class RecentlyPlayedRepo {
+  Future<List<RecentlyPlayedSong>> getTracks();
+}
+
+class RecentlyPlayedRepository implements RecentlyPlayedRepo {
   final AudioAppDatabase _database;
   final AudioPlayerService _recentlyPlayedService;
 
@@ -41,6 +45,7 @@ class RecentlyPlayedRepository {
   }
 
   /// Gets recently played songs, either from the database or the API if not cached.
+  @override
   Future<List<RecentlyPlayedSong>> getTracks() async {
     try {
       final dbTracks = await _getTracksFromDb();

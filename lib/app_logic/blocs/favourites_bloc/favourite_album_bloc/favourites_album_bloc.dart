@@ -18,13 +18,13 @@ class FavoriteAlbumBloc extends Bloc<FavoriteAlbumEvent, FavoriteAlbumState> {
   bool get isSorted => _isSorted;
   void _onAddAlbums(
       AddAlbumEvent event, Emitter<FavoriteAlbumState> emit) async {
-    final albums = await _repository.addToFavoritesAlbum(event.albums);
+    final albums = await _repository.addToFavorites(event.albums);
     emit(FavoriteAlbumState.loaded(data: albums));
   }
 
   void _onLoadAlbums(
       LoadFavoriteAlbumEvent event, Emitter<FavoriteAlbumState> emit) async {
-    final albums = await _repository.loadAlbums();
+    final albums = await _repository.loadFavourites();
     if (albums.isEmpty) {
       emit(const FavoriteAlbumState.noResults());
     } else {
@@ -44,7 +44,7 @@ class FavoriteAlbumBloc extends Bloc<FavoriteAlbumEvent, FavoriteAlbumState> {
 
   void _onRemoveAlbum(
       RemoveAlbumsEvent event, Emitter<FavoriteAlbumState> emit) async {
-    final albums = await _repository.removeFromFavoritesAlbum(event.album);
+    final albums = await _repository.removeFromFavorites(event.album);
     if (albums.isEmpty) {
       emit(const FavoriteAlbumState.noResults());
     } else {
@@ -54,7 +54,7 @@ class FavoriteAlbumBloc extends Bloc<FavoriteAlbumEvent, FavoriteAlbumState> {
 
   void _onSortingAlbum(
       SortAlbumsEvent event, Emitter<FavoriteAlbumState> emit) async {
-    List<SongModel> albums = await _repository.loadAlbums();
+    List<SongModel> albums = await _repository.loadFavourites();
     if (_isSorted) {
       // If already sorted, return the original list
       emit(FavoriteAlbumState.loaded(data: albums));

@@ -45,7 +45,7 @@ void main() {
     blocTest<FavoriteSongBloc, FavouriteSongState>(
       'emits LoadedFavouriteSongState when LoadFavouriteSongsEvent is added',
       build: () {
-        when(() => repository.loadSongs())
+        when(() => repository.loadFavourites())
             .thenAnswer((_) async => [songModelToAdd]);
         return favoriteBloc;
       },
@@ -59,14 +59,14 @@ void main() {
       ],
       verify: (_) {
         // Verify that loadFromDatabase was called
-        verify(() => repository.loadSongs()).called(1);
+        verify(() => repository.loadFavourites()).called(1);
       },
     );
 
     blocTest<FavoriteSongBloc, FavouriteSongState>(
       'emits NoResultsFavouriteSongState when LoadFavouriteSongsEvent is added',
       build: () {
-        when(() => repository.loadSongs()).thenAnswer((_) async => []);
+        when(() => repository.loadFavourites()).thenAnswer((_) async => []);
         return favoriteBloc;
       },
       act: (bloc) => bloc.add(const LoadFavouriteSongsEvent()),
@@ -75,13 +75,13 @@ void main() {
       ],
       verify: (_) {
         // Verify that loadFromDatabase was called
-        verify(() => repository.loadSongs()).called(1);
+        verify(() => repository.loadFavourites()).called(1);
       },
     );
     blocTest<FavoriteSongBloc, FavouriteSongState>(
       'emits LoadedFavouriteSongState when AddSongsEvent is added ',
       build: () {
-        when(() => repository.loadSongs())
+        when(() => repository.loadFavourites())
             .thenAnswer((_) async => [existingSongModel]);
         when(() => repository.addToFavorites(songModelToAdd))
             .thenAnswer((_) async => [existingSongModel, songModelToAdd]);
@@ -104,9 +104,9 @@ void main() {
     blocTest<FavoriteSongBloc, FavouriteSongState>(
       'emits LoadedFavouriteSongState when RemoveSongsEvent is added ',
       build: () {
-        when(() => repository.loadSongs())
+        when(() => repository.loadFavourites())
             .thenAnswer((_) async => [existingSongModel, songModelToAdd]);
-        when(() => repository.removeSongFromDatabase(songModelToAdd))
+        when(() => repository.removeFromFavorites(songModelToAdd))
             .thenAnswer((_) async => [existingSongModel]);
         return favoriteBloc;
       },
@@ -120,17 +120,16 @@ void main() {
       ],
       verify: (_) {
         // Verify that removeSongFromDatabase was called
-        verify(() => repository.removeSongFromDatabase(songModelToAdd))
-            .called(1);
+        verify(() => repository.removeFromFavorites(songModelToAdd)).called(1);
       },
     );
 
     blocTest<FavoriteSongBloc, FavouriteSongState>(
       'emits NoResults when RemoveSongsEvent is added ',
       build: () {
-        when(() => repository.loadSongs())
+        when(() => repository.loadFavourites())
             .thenAnswer((_) async => [songModelToAdd]);
-        when(() => repository.removeSongFromDatabase(songModelToAdd))
+        when(() => repository.removeFromFavorites(songModelToAdd))
             .thenAnswer((_) async => []);
         return favoriteBloc;
       },
@@ -138,8 +137,7 @@ void main() {
       expect: () => [isA<NoResultsFavouriteSongState>()],
       verify: (_) {
         // Verify that removeSongFromDatabase was called
-        verify(() => repository.removeSongFromDatabase(songModelToAdd))
-            .called(1);
+        verify(() => repository.removeFromFavorites(songModelToAdd)).called(1);
       },
     );
 
@@ -148,7 +146,7 @@ void main() {
       build: () {
         when(() => repository.isFavourite(songModelToAdd.id))
             .thenAnswer((_) async => true);
-        when(() => repository.removeSongFromDatabase(songModelToAdd))
+        when(() => repository.removeFromFavorites(songModelToAdd))
             .thenAnswer((_) async => []);
         return favoriteBloc;
       },
@@ -157,8 +155,7 @@ void main() {
         isA<NoResultsFavouriteSongState>(), // The state after the toggle, you need to adjust this based on your expected logic
       ],
       verify: (_) {
-        verify(() => repository.removeSongFromDatabase(songModelToAdd))
-            .called(1);
+        verify(() => repository.removeFromFavorites(songModelToAdd)).called(1);
         verifyNever(() => repository.addToFavorites(songModelToAdd)).called(0);
       },
     );
@@ -182,7 +179,7 @@ void main() {
       ],
       verify: (_) {
         verify(() => repository.addToFavorites(existingSongModel)).called(1);
-        verifyNever(() => repository.removeSongFromDatabase(existingSongModel))
+        verifyNever(() => repository.removeFromFavorites(existingSongModel))
             .called(0);
       },
     );
@@ -190,7 +187,7 @@ void main() {
     blocTest<FavoriteSongBloc, FavouriteSongState>(
       'return sortedList when SortSongsEvent event is added',
       build: () {
-        when(() => repository.loadSongs())
+        when(() => repository.loadFavourites())
             .thenAnswer((_) async => [existingSongModel, songModelToAdd]);
 
         return favoriteBloc;
@@ -204,14 +201,14 @@ void main() {
         ),
       ],
       verify: (_) {
-        verify(() => repository.loadSongs()).called(1);
+        verify(() => repository.loadFavourites()).called(1);
       },
     );
 
     blocTest<FavoriteSongBloc, FavouriteSongState>(
       'return sortedList when SortSongsEvent event is added',
       build: () {
-        when(() => repository.loadSongs())
+        when(() => repository.loadFavourites())
             .thenAnswer((_) async => [existingSongModel, songModelToAdd]);
 
         return favoriteBloc;
@@ -226,7 +223,7 @@ void main() {
           ),
       ],
       verify: (_) {
-        verify(() => repository.loadSongs()).called(1);
+        verify(() => repository.loadFavourites()).called(1);
       },
     );
   });

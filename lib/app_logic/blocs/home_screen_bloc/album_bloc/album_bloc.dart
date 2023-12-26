@@ -26,7 +26,7 @@ class AlbumBloc extends Bloc<AlbumEvent, AlbumBlocState> {
 }
 
 class AlbumRepository {
-  final BestAlbumsPaginationService _service;
+  final BestAlbumsPagination _service;
   AlbumRepository(this._service);
 
   Future<List<Album>> getAlbums() async {

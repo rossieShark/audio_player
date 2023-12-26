@@ -1,11 +1,19 @@
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/favorite_song_model.dart';
 
-class RecentlySearchedRepository {
+abstract class RecentlySearchedRepo {
+  Future<List<SongModel>> loadFromDatabase();
+  Future<List<SongModel>> addToRecentlySearched(SongModel detailSong);
+  Future<List<SongModel>> removeFromRecentlySearched(SongModel detailSong);
+  Future<void> removeAllRecentlySearched();
+}
+
+class RecentlySearchedRepository implements RecentlySearchedRepo {
   final AudioAppDatabase _database;
 
   RecentlySearchedRepository(this._database);
 
+  @override
   Future<List<SongModel>> loadFromDatabase() async {
     final recentlySearchedSongs = await _database.getRecentlySearchedSongs();
     final loadedRecentlySearchedSongs = recentlySearchedSongs
@@ -24,6 +32,7 @@ class RecentlySearchedRepository {
     return loadedRecentlySearchedSongs;
   }
 
+  @override
   Future<List<SongModel>> addToRecentlySearched(SongModel detailSong) async {
     bool isUniqueSong = await isUnique(detailSong.id);
     if (isUniqueSong) {
@@ -43,6 +52,7 @@ class RecentlySearchedRepository {
     return await loadFromDatabase();
   }
 
+  @override
   Future<List<SongModel>> removeFromRecentlySearched(
       SongModel detailSong) async {
     await _database.deleteRecentlySearched(int.parse(detailSong.id));
@@ -54,6 +64,7 @@ class RecentlySearchedRepository {
     return recentlySearched.every((song) => song.id != id);
   }
 
+  @override
   Future<void> removeAllRecentlySearched() async {
     await _database.clearAll();
   }

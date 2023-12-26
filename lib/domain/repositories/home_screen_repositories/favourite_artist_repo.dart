@@ -2,7 +2,11 @@ import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/home_screen_data/favourite_artist_model/favourite_artist_model.dart';
 import 'package:audio_player/domain/services/services.dart';
 
-class FavoriteArtistRepository {
+abstract class FavoriteArtistRepo {
+  Future<List<FavoriteArtist>> getFavoriteArtists();
+}
+
+class FavoriteArtistRepository implements FavoriteArtistRepo {
   final AudioAppDatabase _database;
   final AudioPlayerService _recentlyPlayedService;
 
@@ -38,6 +42,7 @@ class FavoriteArtistRepository {
   }
 
   /// Gets favorite artists, either from the database or the API if not cached.
+  @override
   Future<List<FavoriteArtist>> getFavoriteArtists() async {
     try {
       final dbArtists = await _getArtistsFromDb();

@@ -25,7 +25,7 @@ void main() {
           .thenAnswer((_) => Future.value([createTestTracks()]));
 
       // Act
-      final result = await repository.loadSongs();
+      final result = await repository.loadFavourites();
 
       // Assert
       expect(result, isNotNull);
@@ -95,7 +95,7 @@ void main() {
       when(() => audioDatabase.deleteFavoriteSong(any()))
           .thenAnswer((_) => Future<void>.value());
       // Act
-      final resultFuture = repository.removeSongFromDatabase(songModel);
+      final resultFuture = repository.removeFromFavorites(songModel);
 
       // Assert
       await expectLater(resultFuture, completion(isNotNull));

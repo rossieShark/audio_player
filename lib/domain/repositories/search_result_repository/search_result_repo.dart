@@ -2,7 +2,12 @@ import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/domain/services/services.dart';
 import 'package:audio_player/ui/widgets/screens/index.dart';
 
-class SearchResultRepository {
+abstract class SearchResultRepo {
+  Future<List<SearchData>> getSearchResult(
+      int index, int limit, String q, String filter);
+}
+
+class SearchResultRepository implements SearchResultRepo {
   final AudioPlayerService _searchResultService;
   SearchResultRepository(this._searchResultService);
 
@@ -55,6 +60,7 @@ class SearchResultRepository {
     return apiResultResponse;
   }
 
+  @override
   Future<List<SearchData>> getSearchResult(
       int index, int limit, String q, String filter) async {
     switch (filter) {
@@ -68,8 +74,13 @@ class SearchResultRepository {
   }
 }
 
-class SearchResultPaginationService {
-  final SearchResultRepository _searchResultRepository;
+abstract class SearchResultPagination {
+  List<SearchData> items = [];
+  Future<void> loadMoreItems(String q, String? filter);
+}
+
+class SearchResultPaginationService implements SearchResultPagination {
+  final SearchResultRepo _searchResultRepository;
   SearchResultPaginationService(this._searchResultRepository);
 
   bool _isLoading = false;
@@ -80,9 +91,11 @@ class SearchResultPaginationService {
   String _q = '';
   String _filter = SearchFilters.all;
 
+  @override
   List<SearchData> items = [];
   bool get isLoading => _isLoading;
 
+  @override
   Future<void> loadMoreItems(String q, String? filter) async {
     if (q.isEmpty) {
       items.clear();

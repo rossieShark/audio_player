@@ -24,7 +24,7 @@ class FavoriteSongBloc extends Bloc<FavoriteSongEvent, FavouriteSongState> {
 
   void _onLoadSongs(
       LoadFavouriteSongsEvent event, Emitter<FavouriteSongState> emit) async {
-    List<SongModel> songs = await _repository.loadSongs();
+    List<SongModel> songs = await _repository.loadFavourites();
     if (songs.isEmpty) {
       emit(const FavouriteSongState.noResults());
     } else {
@@ -44,7 +44,7 @@ class FavoriteSongBloc extends Bloc<FavoriteSongEvent, FavouriteSongState> {
 
   void _onRemoveSong(
       RemoveSongsEvent event, Emitter<FavouriteSongState> emit) async {
-    final songs = await _repository.removeSongFromDatabase(event.detailSong);
+    final songs = await _repository.removeFromFavorites(event.detailSong);
     if (songs.isEmpty) {
       emit(const FavouriteSongState.noResults());
     } else {
@@ -54,7 +54,7 @@ class FavoriteSongBloc extends Bloc<FavoriteSongEvent, FavouriteSongState> {
 
   void _onSorting(
       SortSongsEvent event, Emitter<FavouriteSongState> emit) async {
-    List<SongModel> songs = await _repository.loadSongs();
+    List<SongModel> songs = await _repository.loadFavourites();
 
     if (_isSorted) {
       // If already sorted, return the original list

@@ -2,7 +2,7 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/repositories/index.dart';
 
 class GenresBloc extends Bloc<GenresEvent, GenresBlocState> {
-  final GenresRepository repository;
+  final Genres repository;
 
   GenresBloc(this.repository) : super(const GenresBlocState.loading()) {
     on<FetchGenresEvent>(fetchGenres);

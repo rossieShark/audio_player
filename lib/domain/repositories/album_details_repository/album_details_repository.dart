@@ -2,13 +2,18 @@ import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/domain/services/services.dart';
 
-class AlbumDetailsRepository {
+abstract class AlbumDetails {
+  Future<List<DetailAlbum>> getDetailAlbums(String albumId);
+}
+
+class AlbumDetailsRepository implements AlbumDetails {
   final AudioAppDatabase _database;
   final AudioPlayerService _albumDetailsService;
 
   AlbumDetailsRepository(this._database, this._albumDetailsService);
 
   /// Gets detailed album information either from the local database or the API if not cached.
+  @override
   Future<List<DetailAlbum>> getDetailAlbums(String albumId) async {
     try {
       final cachedAlbums = await _getAlbumsFromDb(albumId);

@@ -4,7 +4,7 @@ import 'package:audio_player/domain/repositories/home_screen_repositories/favour
 
 class FavoriteArtistBloc
     extends Bloc<FavoriteArtistEvent, FavoriteArtistBlocState> {
-  final FavoriteArtistRepository repository;
+  final FavoriteArtistRepo repository;
 
   FavoriteArtistBloc(this.repository)
       : super(const FavoriteArtistBlocState.loading()) {

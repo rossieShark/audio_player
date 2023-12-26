@@ -3,7 +3,7 @@ import 'package:audio_player/domain/repositories/index.dart';
 
 class DetailMusicPageBloc
     extends Bloc<DetailMusicPageEvent, DetailMusicPageState> {
-  final SongDetailRepository repository;
+  final SongDetailRepo repository;
 
   DetailMusicPageBloc(this.repository)
       : super(const DetailMusicPageState.loading()) {

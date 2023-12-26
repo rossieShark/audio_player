@@ -2,7 +2,7 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/repositories/index.dart';
 
 class AlbumDetailBloc extends Bloc<AlbumDetailBlocEvent, AlbumDetailBlocState> {
-  final AlbumDetailsRepository repository;
+  final AlbumDetails repository;
 
   AlbumDetailBloc(this.repository)
       : super(const AlbumDetailBlocState.loading()) {
