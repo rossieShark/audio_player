@@ -2,6 +2,7 @@ import 'package:audio_player/databases/app_database/tables.dart';
 import 'package:audio_player/databases/connection/connection.dart' as impl;
 
 import 'package:drift/drift.dart';
+import 'package:injectable/injectable.dart';
 
 part 'database.g.dart';
 
@@ -17,6 +18,7 @@ part 'database.g.dart';
   MusicGenres,
   MyMusicFolders
 ])
+@lazySingleton
 class AudioAppDatabase extends _$AudioAppDatabase {
   AudioAppDatabase() : super(impl.connect());
 

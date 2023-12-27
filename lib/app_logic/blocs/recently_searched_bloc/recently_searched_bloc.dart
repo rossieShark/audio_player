@@ -2,8 +2,10 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/favorite_song_model.dart';
 import 'package:audio_player/domain/repositories/recently_searched_repository/recently_searched_repository.dart';
 import 'package:audio_player/domain/services/logger.dart';
+import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 
+@injectable
 class RecentlySearchedBloc
     extends Bloc<RecentlySearchedEvent, RecentlySearchedState> {
   final RecentlySearchedRepo _repository;

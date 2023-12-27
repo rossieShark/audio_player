@@ -1,12 +1,14 @@
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/services/api_service/service.dart';
 import 'package:audio_player/domain/services/logger.dart';
+import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 
 abstract class SongDetailRepo {
   Future<DetailInfoSong?> getDetailSongInfo(String id);
 }
 
+@Injectable(as: SongDetailRepo)
 class SongDetailRepository implements SongDetailRepo {
   final AudioAppDatabase _database;
   final AudioPlayerService _songDetailsService;

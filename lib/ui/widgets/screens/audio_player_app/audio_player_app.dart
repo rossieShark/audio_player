@@ -1,10 +1,10 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/app_logic/blocs/filter_bloc.dart';
+import 'package:audio_player/di/init_di.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/ui/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
 class AudioPlayerApp extends StatefulWidget {
@@ -28,32 +28,31 @@ class _AudioPlayerAppState extends State<AudioPlayerApp> {
     return MultiProvider(
       providers: [
         BlocProvider<AlbumDetailBloc>(
-          create: (context) => GetIt.I.get(),
+          create: (context) => getIt<AlbumDetailBloc>(),
         ),
         BlocProvider<FavoriteSongBloc>(
-          create: (context) => GetIt.I.get(),
+          create: (context) => getIt<FavoriteSongBloc>(),
         ),
         BlocProvider<FavoriteAlbumBloc>(
-          create: (context) => GetIt.I.get(),
+          create: (context) => getIt<FavoriteAlbumBloc>(),
         ),
         BlocProvider<SearchFilterBloc>(
-          create: (context) => GetIt.I.get(),
+          create: (context) => getIt<SearchFilterBloc>(),
         ),
         BlocProvider<NewPlaylistBloc>(
-          create: (context) => GetIt.I.get()..add(const LoadNewPlaylistEvent()),
+          create: (context) => getIt<NewPlaylistBloc>(),
         ),
         BlocProvider<PasswordMissmatchCubit>(
-          create: (context) => PasswordMissmatchCubit(),
+          create: (context) => getIt<PasswordMissmatchCubit>(),
         ),
         BlocProvider<RecentlySearchedBloc>(
-          create: (context) =>
-              GetIt.I.get()..add(const LoadRecentlySearchedEvent()),
+          create: (context) => getIt<RecentlySearchedBloc>(),
         ),
         BlocProvider<MusicBloc>(
-          create: (context) => GetIt.I(),
+          create: (context) => getIt<MusicBloc>(),
         ),
         BlocProvider<ImageBloc>(
-          create: (context) => GetIt.I(),
+          create: (context) => getIt<ImageBloc>(),
         ),
       ],
       child: BlocBuilder<LanguageBloc, Locale?>(builder: (context, state) {

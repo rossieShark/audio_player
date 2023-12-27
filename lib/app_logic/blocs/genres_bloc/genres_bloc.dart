@@ -1,8 +1,10 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/repositories/index.dart';
 import 'package:audio_player/domain/services/logger.dart';
+import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 
+@injectable
 class GenresBloc extends Bloc<GenresEvent, GenresBlocState> {
   final Genres repository;
   final Logger _logger = getLogger('GenresBloc');

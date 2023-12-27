@@ -1,4 +1,5 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/di/init_di.dart';
 
 import 'package:audio_player/ui/navigation/navigation_routes.dart';
 import 'package:audio_player/ui/widgets/screens/index.dart';
@@ -10,7 +11,7 @@ import 'package:audio_player/ui/widgets/screens/settings_page/settings_page.dart
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get_it/get_it.dart';
+
 import 'package:go_router/go_router.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -34,13 +35,13 @@ final router = GoRouter(
               key: state.pageKey,
               child: const HomePage().createWithMultiProviders([
                 BlocProvider<AlbumBloc>(
-                  create: (_) => GetIt.I.get(),
+                  create: (_) => getIt<AlbumBloc>(),
                 ),
                 BlocProvider<FavoriteArtistBloc>(
-                  create: (context) => GetIt.I.get(),
+                  create: (context) => getIt<FavoriteArtistBloc>(),
                 ),
                 BlocProvider<RecentlyPlayedBloc>(
-                  create: (context) => GetIt.I.get(),
+                  create: (context) => getIt<RecentlyPlayedBloc>(),
                 ),
               ]),
             ),
@@ -59,10 +60,10 @@ final router = GoRouter(
               key: state.pageKey,
               child: const SearchPage().createWithMultiProviders([
                 BlocProvider<SearchResultBloc>(
-                  create: (context) => GetIt.I.get(),
+                  create: (context) => getIt<SearchResultBloc>(),
                 ),
                 BlocProvider<GenresBloc>(
-                  create: (context) => GetIt.I.get(),
+                  create: (context) => getIt<GenresBloc>(),
                 ),
               ]),
             ),
@@ -82,7 +83,7 @@ final router = GoRouter(
         key: state.pageKey,
         child: const MyFavoriteSongs().createWithMultiProviders([
           BlocProvider<FavoriteSongBloc>(
-            create: (context) => GetIt.I.get(),
+            create: (context) => getIt<FavoriteSongBloc>(),
           ),
         ]),
       ),
@@ -125,7 +126,7 @@ final router = GoRouter(
               param: songId,
             ).createWithMultiProviders([
               BlocProvider<DetailMusicPageBloc>(
-                create: (blocContext) => GetIt.I.get(),
+                create: (blocContext) => getIt<DetailMusicPageBloc>(),
               ),
             ]),
           );
@@ -175,13 +176,13 @@ final webRouter =
                   key: state.pageKey,
                   child: const HomePage().createWithMultiProviders([
                     BlocProvider<AlbumBloc>(
-                      create: (_) => GetIt.I.get(),
+                      create: (_) => getIt<AlbumBloc>(),
                     ),
                     BlocProvider<FavoriteArtistBloc>(
-                      create: (context) => GetIt.I.get(),
+                      create: (context) => getIt<FavoriteArtistBloc>(),
                     ),
                     BlocProvider<RecentlyPlayedBloc>(
-                      create: (context) => GetIt.I.get(),
+                      create: (context) => getIt<RecentlyPlayedBloc>(),
                     ),
                   ]),
                 ),
@@ -205,7 +206,8 @@ final webRouter =
                       ).createWithMultiProviders(
                         [
                           BlocProvider<DetailMusicPageBloc>(
-                            create: (blocContext) => GetIt.I.get(),
+                            create: (blocContext) =>
+                                getIt<DetailMusicPageBloc>(),
                           ),
                         ],
                       ),
@@ -255,10 +257,10 @@ final webRouter =
             key: state.pageKey,
             child: const SearchPage().createWithMultiProviders([
               BlocProvider<SearchResultBloc>(
-                create: (context) => GetIt.I.get(),
+                create: (context) => getIt<SearchResultBloc>(),
               ),
               BlocProvider<GenresBloc>(
-                create: (context) => GetIt.I.get(),
+                create: (context) => getIt<GenresBloc>(),
               ),
             ]),
           ),

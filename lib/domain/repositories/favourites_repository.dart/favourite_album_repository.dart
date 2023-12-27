@@ -2,8 +2,11 @@ import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/domain/repositories/favourites_repository.dart/favourites_repo.dart';
 import 'package:audio_player/domain/services/logger.dart';
+import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 
+@Named("favouriteAlbums")
+@Injectable(as: Favourites)
 class FavouriteAlbumRepository implements Favourites {
   final AudioAppDatabase _database;
 

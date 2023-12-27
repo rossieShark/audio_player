@@ -3,12 +3,14 @@ import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/domain/services/logger.dart';
 import 'package:audio_player/domain/services/services.dart';
+import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 
 abstract class Genres {
   Future<List<MusicGenre>> getAllGenres();
 }
 
+@Injectable(as: Genres)
 class GenresRepository implements Genres {
   final AudioAppDatabase _database;
   final AudioPlayerService _genresService;

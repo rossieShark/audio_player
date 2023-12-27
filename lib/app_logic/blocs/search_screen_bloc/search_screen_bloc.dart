@@ -3,8 +3,10 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/domain/repositories/search_result_repository/search_result_repo.dart';
 import 'package:audio_player/domain/services/logger.dart';
+import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 
+@injectable
 class SearchResultBloc extends Bloc<SearchEvent, SearchState> {
   final SearchRepository repository;
   final Logger _logger = getLogger('SearchResultBloc');
@@ -58,6 +60,7 @@ class SearchResultBloc extends Bloc<SearchEvent, SearchState> {
   }
 }
 
+@injectable
 class SearchRepository {
   final SearchResultPagination _service;
   SearchRepository(this._service);

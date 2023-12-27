@@ -1,6 +1,7 @@
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/favorite_song_model.dart';
 import 'package:audio_player/domain/services/logger.dart';
+import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 
 abstract class RecentlySearchedRepo {
@@ -10,6 +11,7 @@ abstract class RecentlySearchedRepo {
   Future<void> removeAllRecentlySearched();
 }
 
+@Injectable(as: RecentlySearchedRepo)
 class RecentlySearchedRepository implements RecentlySearchedRepo {
   final AudioAppDatabase _database;
 

@@ -2,8 +2,10 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/repositories/home_screen_repositories/recently_played_repo.dart';
 import 'package:audio_player/domain/services/logger.dart';
+import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 
+@injectable
 class RecentlyPlayedBloc
     extends Bloc<RecentlyPlayedBlocEvent, RecentlyPlayedState> {
   final RecentlyPlayedRepo _repository;

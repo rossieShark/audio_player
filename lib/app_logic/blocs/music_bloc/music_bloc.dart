@@ -2,7 +2,9 @@ import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_event.dart';
 import 'package:audio_player/app_logic/blocs/music_bloc/music_bloc_state.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class MusicBloc extends Bloc<MusicEvent, MusicState> {
   final AudioPlayer _audioPlayer;
 

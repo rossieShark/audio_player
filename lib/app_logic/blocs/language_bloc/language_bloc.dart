@@ -3,8 +3,10 @@ import 'dart:ui';
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/language_storage/language_storage.dart';
 import 'package:audio_player/domain/services/logger.dart';
+import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 
+@injectable
 class LanguageBloc extends Cubit<Locale?> {
   final LanguageStorage _storage;
   final Logger _logger = getLogger('LanguageBloc');

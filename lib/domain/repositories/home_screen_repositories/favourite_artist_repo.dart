@@ -2,12 +2,14 @@ import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/home_screen_data/favourite_artist_model/favourite_artist_model.dart';
 import 'package:audio_player/domain/services/logger.dart';
 import 'package:audio_player/domain/services/services.dart';
+import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 
 abstract class FavoriteArtistRepo {
   Future<List<FavoriteArtist>> getFavoriteArtists();
 }
 
+@Injectable(as: FavoriteArtistRepo)
 class FavoriteArtistRepository implements FavoriteArtistRepo {
   final AudioAppDatabase _database;
   final AudioPlayerService _recentlyPlayedService;

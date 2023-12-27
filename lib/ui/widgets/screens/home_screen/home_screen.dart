@@ -58,8 +58,7 @@ class _BuildMainSectionState extends State<_BuildMainSection> {
   @override
   void initState() {
     super.initState();
-    final albumBloc = BlocProvider.of<AlbumBloc>(context);
-    albumBloc.add(FetchAlbumsEvent());
+    _fetchBestAlbums();
     _scrollController = ScrollController();
     _scrollController.addListener(() {
       _scrollListener();
@@ -69,9 +68,13 @@ class _BuildMainSectionState extends State<_BuildMainSection> {
   void _scrollListener() {
     if (_scrollController.offset >=
         _scrollController.position.maxScrollExtent - 200) {
-      final albumBloc = BlocProvider.of<AlbumBloc>(context);
-      albumBloc.add(FetchAlbumsEvent());
+      _fetchBestAlbums();
     }
+  }
+
+  void _fetchBestAlbums() {
+    final albumBloc = BlocProvider.of<AlbumBloc>(context);
+    albumBloc.add(FetchAlbumsEvent());
   }
 
   @override

@@ -3,11 +3,13 @@ import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/domain/entity/recently_played_model/recently_played_model.dart';
 import 'package:audio_player/domain/services/services.dart';
 import 'package:chopper/chopper.dart';
+import 'package:injectable/injectable.dart';
 
 part 'service.chopper.dart';
 
 @ChopperApi(baseUrl: "https://api.deezer.com")
 abstract class AudioPlayerService extends ChopperService {
+  @factoryMethod
   static AudioPlayerService create() => _$AudioPlayerService(
         ChopperClient(converter: $JsonSerializableConverter()),
       );

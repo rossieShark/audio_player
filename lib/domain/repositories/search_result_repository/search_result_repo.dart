@@ -2,6 +2,7 @@ import 'package:audio_player/domain/entity/models.dart';
 import 'package:audio_player/domain/services/logger.dart';
 import 'package:audio_player/domain/services/services.dart';
 import 'package:audio_player/ui/widgets/screens/index.dart';
+import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 
 abstract class SearchResultRepo {
@@ -9,6 +10,7 @@ abstract class SearchResultRepo {
       int index, int limit, String q, String filter);
 }
 
+@Injectable(as: SearchResultRepo)
 class SearchResultRepository implements SearchResultRepo {
   final AudioPlayerService _searchResultService;
   SearchResultRepository(this._searchResultService);
@@ -99,6 +101,7 @@ abstract class SearchResultPagination {
   Future<void> loadMoreItems(String q, String? filter);
 }
 
+@Injectable(as: SearchResultPagination)
 class SearchResultPaginationService implements SearchResultPagination {
   final SearchResultRepo _searchResultRepository;
   SearchResultPaginationService(this._searchResultRepository);

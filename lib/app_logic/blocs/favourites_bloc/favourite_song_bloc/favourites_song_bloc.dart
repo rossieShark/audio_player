@@ -1,12 +1,15 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/favorite_song_model.dart';
 import 'package:audio_player/domain/repositories/favourites_repository.dart/favourite_song_repository.dart';
+import 'package:audio_player/domain/repositories/favourites_repository.dart/favourites_repo.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class FavoriteSongBloc extends Bloc<FavoriteSongEvent, FavouriteSongState> {
-  final FavouriteSongRepository _repository;
+  final Favourites _repository;
 
   FavoriteSongBloc(
-    this._repository,
+    @Named("favouriteSongs") this._repository,
   ) : super(const FavouriteSongState.loading()) {
     on<AddSongsEvent>(_onAddSongs);
     on<LoadFavouriteSongsEvent>(_onLoadSongs);

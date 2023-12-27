@@ -2,8 +2,10 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/repositories/home_screen_repositories/best_album_repo.dart';
 import 'package:audio_player/domain/services/logger.dart';
+import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 
+@injectable
 class AlbumBloc extends Bloc<AlbumEvent, AlbumBlocState> {
   final AlbumRepository repository;
   final Logger _logger = getLogger('AlbumBloc');
@@ -28,6 +30,7 @@ class AlbumBloc extends Bloc<AlbumEvent, AlbumBlocState> {
   }
 }
 
+@injectable
 class AlbumRepository {
   final BestAlbumsPagination _service;
   AlbumRepository(this._service);

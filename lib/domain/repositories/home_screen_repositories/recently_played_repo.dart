@@ -2,12 +2,14 @@ import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/recently_played_model/recently_played_model.dart';
 import 'package:audio_player/domain/services/logger.dart';
 import 'package:audio_player/domain/services/services.dart';
+import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 
 abstract class RecentlyPlayedRepo {
   Future<List<RecentlyPlayedSong>> getTracks();
 }
 
+@Injectable(as: RecentlyPlayedRepo)
 class RecentlyPlayedRepository implements RecentlyPlayedRepo {
   final AudioAppDatabase _database;
   final AudioPlayerService _recentlyPlayedService;

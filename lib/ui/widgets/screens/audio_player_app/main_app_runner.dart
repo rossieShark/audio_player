@@ -22,7 +22,7 @@ class MainAppRunner implements AppRunner {
       print('${rec.level.name}: ${rec.time}: ${rec.message}');
     });
     configureDependencies(env);
-    _initialiseMain();
+    // _initialiseMain();
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
@@ -35,10 +35,10 @@ class MainAppRunner implements AppRunner {
   }
 }
 
-void _initialiseMain() {
-  SetGetItDependencies().setupDatabaseDependencies();
-  SetGetItDependencies().setupProviderDependencies();
-  SetGetItDependencies().setupRepoDependencies();
-  SetGetItDependencies().setupBlocDependencies();
-  SetGetItDependencies().setupServiceDependencies();
-}
+// void _initialiseMain() {
+//   SetGetItDependencies().setupDatabaseDependencies();
+//   SetGetItDependencies().setupProviderDependencies();
+//   SetGetItDependencies().setupRepoDependencies();
+//   SetGetItDependencies().setupBlocDependencies();
+//   SetGetItDependencies().setupServiceDependencies();
+// }

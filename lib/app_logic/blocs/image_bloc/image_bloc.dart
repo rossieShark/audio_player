@@ -1,8 +1,10 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/services/logger.dart';
 import 'package:audio_player/domain/services/services.dart';
+import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 
+@injectable
 class ImageBloc extends Bloc<ImageBlocEvents, ImageBlocState> {
   final ImagePickerService _imagePickerService;
   final Logger _logger = getLogger('ImageBloc');

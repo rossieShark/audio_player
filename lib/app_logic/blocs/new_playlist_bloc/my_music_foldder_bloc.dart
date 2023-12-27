@@ -2,8 +2,10 @@ import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/entity/favorite_folder_model.dart';
 import 'package:audio_player/domain/repositories/new_playlist_repository/new_playlist_repository.dart';
 import 'package:audio_player/domain/services/logger.dart';
+import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 
+@injectable
 class NewPlaylistBloc extends Bloc<NewPlaylistBlocEvent, NewPlaylistState> {
   final NewPlaylistRepo _repository;
   final Logger _logger = getLogger('NewPlaylistBloc');

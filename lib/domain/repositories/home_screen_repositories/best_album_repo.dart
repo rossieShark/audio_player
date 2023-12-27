@@ -2,12 +2,14 @@ import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/entity/home_screen_data/home_screen_data.dart';
 import 'package:audio_player/domain/services/logger.dart';
 import 'package:audio_player/domain/services/services.dart';
+import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 
 abstract class BestAlbums {
   Future<List<Album>> getBestAlbums(int index, int limit);
 }
 
+@Injectable(as: BestAlbums)
 class BestAlbumRepository implements BestAlbums {
   final AudioAppDatabase _database;
   final AudioPlayerService _recentlyPlayedService;
@@ -97,6 +99,7 @@ abstract class BestAlbumsPagination {
   List<Album> items = [];
 }
 
+@Injectable(as: BestAlbumsPagination)
 class BestAlbumsPaginationService implements BestAlbumsPagination {
   final BestAlbums _bestAlbumsRepository;
   BestAlbumsPaginationService(this._bestAlbumsRepository);
