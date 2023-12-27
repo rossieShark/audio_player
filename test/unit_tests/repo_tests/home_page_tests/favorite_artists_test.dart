@@ -1,7 +1,7 @@
-import 'package:audio_player/databases/app_database/database.dart';
-import 'package:audio_player/domain/entity/home_screen_data/favourite_artist_model/favourite_artist_model.dart';
-import 'package:audio_player/domain/repositories/index.dart';
-import 'package:audio_player/domain/services/services.dart';
+import 'package:audio_player/app/databases/app_database/database.dart';
+import 'package:audio_player/app/domain/entity/home_screen_data/favourite_artist_model/favourite_artist_model.dart';
+import 'package:audio_player/app/domain/repositories/index.dart';
+import 'package:audio_player/app/domain/services/services.dart';
 
 import 'package:chopper/chopper.dart';
 import 'package:http/http.dart' as http;

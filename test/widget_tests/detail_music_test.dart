@@ -1,10 +1,10 @@
-import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/databases/app_database/database.dart';
-import 'package:audio_player/ui/widgets/screens/album_detail_screen/content_widgets/no_data_widget.dart';
-import 'package:audio_player/ui/widgets/screens/detail_music_screen/mobile/detail_music_screen.dart';
-import 'package:audio_player/ui/widgets/screens/detail_music_screen/web/inactive_web_detail.dart';
-import 'package:audio_player/ui/widgets/screens/detail_music_screen/web/web_detail.dart';
-import 'package:audio_player/ui/widgets/widgets/fading_indicator.dart';
+import 'package:audio_player/app/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app/databases/app_database/database.dart';
+import 'package:audio_player/app/ui/widgets/screens/album_detail_screen/content_widgets/no_data_widget.dart';
+import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/mobile/detail_music_screen.dart';
+import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/web/inactive_web_detail.dart';
+import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/web/web_detail.dart';
+import 'package:audio_player/app/ui/widgets/widgets/fading_indicator.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';

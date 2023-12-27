@@ -1,6 +1,6 @@
 import 'package:animate_gradient/animate_gradient.dart';
 
-import 'package:audio_player/ui/widgets/widgets/custom_containers_widgets/animated_container.dart';
+import 'package:audio_player/app/ui/widgets/widgets/custom_containers_widgets/animated_container.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';

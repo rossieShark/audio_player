@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/ui/widgets/screens/index.dart';
-import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
+import 'package:audio_player/app/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app/ui/widgets/screens/index.dart';
+import 'package:audio_player/app/ui/widgets/widgets/widget_exports.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';

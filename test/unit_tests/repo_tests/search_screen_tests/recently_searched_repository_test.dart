@@ -1,6 +1,6 @@
-import 'package:audio_player/databases/app_database/database.dart';
-import 'package:audio_player/domain/entity/models.dart';
-import 'package:audio_player/domain/repositories/recently_searched_repository/recently_searched_repository.dart';
+import 'package:audio_player/app/databases/app_database/database.dart';
+import 'package:audio_player/app/domain/entity/models.dart';
+import 'package:audio_player/app/domain/repositories/recently_searched_repository/recently_searched_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

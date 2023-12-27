@@ -1,6 +1,6 @@
-import 'package:audio_player/domain/entity/models.dart';
-import 'package:audio_player/domain/repositories/index.dart';
-import 'package:audio_player/domain/services/services.dart';
+import 'package:audio_player/app/domain/entity/models.dart';
+import 'package:audio_player/app/domain/repositories/index.dart';
+import 'package:audio_player/app/domain/services/services.dart';
 
 import 'package:chopper/chopper.dart';
 import 'package:http/http.dart' as http;

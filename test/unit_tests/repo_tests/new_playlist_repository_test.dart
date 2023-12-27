@@ -1,5 +1,5 @@
-import 'package:audio_player/databases/app_database/database.dart';
-import 'package:audio_player/domain/repositories/new_playlist_repository/new_playlist_repository.dart';
+import 'package:audio_player/app/databases/app_database/database.dart';
+import 'package:audio_player/app/domain/repositories/new_playlist_repository/new_playlist_repository.dart';
 import 'package:audio_player/resources/resources.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

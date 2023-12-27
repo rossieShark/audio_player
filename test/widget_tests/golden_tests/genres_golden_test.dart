@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:audio_player/ui/widgets/screens/search_screen/bloc_empty_state/web/genres_section/create_genres_section.dart';
-import 'package:audio_player/ui/widgets/widgets/ui_properties.dart';
+import 'package:audio_player/app/ui/widgets/screens/search_screen/bloc_empty_state/web/genres_section/create_genres_section.dart';
+import 'package:audio_player/app/ui/widgets/widgets/ui_properties.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';

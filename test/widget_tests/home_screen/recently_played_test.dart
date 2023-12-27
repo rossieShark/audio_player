@@ -1,8 +1,8 @@
-import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/databases/app_database/database.dart';
-import 'package:audio_player/ui/widgets/screens/home_screen/home_screen_index.dart';
-import 'package:audio_player/ui/widgets/widgets/responsive_widgets/platform_widget/extended_platform.dart';
-import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
+import 'package:audio_player/app/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app/databases/app_database/database.dart';
+import 'package:audio_player/app/ui/widgets/screens/home_screen/home_screen_index.dart';
+import 'package:audio_player/app/ui/widgets/widgets/responsive_widgets/platform_widget/extended_platform.dart';
+import 'package:audio_player/app/ui/widgets/widgets/widget_exports.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

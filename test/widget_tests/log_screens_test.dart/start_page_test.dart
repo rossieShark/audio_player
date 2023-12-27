@@ -1,5 +1,5 @@
-import 'package:audio_player/ui/widgets/screens/log_pages/start_page/start_page.dart';
-import 'package:audio_player/ui/navigation/navigation_routes.dart';
+import 'package:audio_player/app/ui/widgets/screens/log_pages/start_page/start_page.dart';
+import 'package:audio_player/app/ui/navigation/navigation_routes.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';

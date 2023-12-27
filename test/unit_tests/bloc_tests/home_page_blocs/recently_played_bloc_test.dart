@@ -1,6 +1,6 @@
-import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/databases/app_database/database.dart';
-import 'package:audio_player/domain/repositories/index.dart';
+import 'package:audio_player/app/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app/databases/app_database/database.dart';
+import 'package:audio_player/app/domain/repositories/index.dart';
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';

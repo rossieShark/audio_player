@@ -1,7 +1,7 @@
-import 'package:audio_player/databases/app_database/database.dart';
-import 'package:audio_player/domain/entity/genres_model/genres_model.dart';
-import 'package:audio_player/domain/repositories/genres_repository/genres_repository.dart';
-import 'package:audio_player/domain/services/services.dart';
+import 'package:audio_player/app/databases/app_database/database.dart';
+import 'package:audio_player/app/domain/entity/genres_model/genres_model.dart';
+import 'package:audio_player/app/domain/repositories/genres_repository/genres_repository.dart';
+import 'package:audio_player/app/domain/services/services.dart';
 
 import 'package:chopper/chopper.dart';
 import 'package:http/http.dart' as http;

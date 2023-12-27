@@ -1,4 +1,4 @@
-import 'package:audio_player/app_logic/blocs/filter_bloc.dart';
+import 'package:audio_player/app/app_logic/blocs/filter_bloc.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 

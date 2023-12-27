@@ -1,6 +1,6 @@
-import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/domain/entity/models.dart';
-import 'package:audio_player/domain/repositories/favourites_repository.dart/favourite_album_repository.dart';
+import 'package:audio_player/app/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app/domain/entity/models.dart';
+import 'package:audio_player/app/domain/repositories/favourites_repository.dart/favourite_album_repository.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

@@ -1,6 +1,6 @@
-import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/domain/entity/search_result/search_result_model.dart';
-import 'package:audio_player/ui/widgets/screens/search_screen/bloc_loaded_state/search_section.dart';
+import 'package:audio_player/app/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app/domain/entity/search_result/search_result_model.dart';
+import 'package:audio_player/app/ui/widgets/screens/search_screen/bloc_loaded_state/search_section.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';

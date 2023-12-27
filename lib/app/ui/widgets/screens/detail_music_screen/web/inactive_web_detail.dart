@@ -1,0 +1,115 @@
+import 'package:audio_player/resources/resources.dart';
+import 'package:audio_player/app/ui/widgets/widgets/widget_exports.dart';
+import 'package:flutter/material.dart';
+
+class InactiveWebDetailPage extends StatelessWidget {
+  const InactiveWebDetailPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.background.color,
+      body: const Padding(
+          padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+          child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Column(children: [
+                  _MusicControlSection(),
+                  _SliderSection(),
+                ]),
+              ])),
+    );
+  }
+}
+
+class _MusicControlSection extends StatelessWidget {
+  const _MusicControlSection();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const IconButtonWidget(
+            iconData: Icons.repeat,
+            size: 20,
+            color: Colors.grey,
+            onPressed: null),
+        const IconButtonWidget(
+            iconData: Icons.fast_rewind,
+            size: 20,
+            color: Colors.grey,
+            onPressed: null),
+        const SizedBox(
+          width: 10,
+        ),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Container(
+            height: 40,
+            width: 40,
+            decoration:
+                BoxDecoration(color: AppColors.white.color.withOpacity(0.1)),
+            child: const IconButtonWidget(
+                iconData: Icons.play_arrow,
+                color: Colors.grey,
+                size: 40 / 2,
+                onPressed: null),
+          ),
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        const IconButtonWidget(
+            iconData: Icons.fast_forward,
+            size: 20,
+            color: Colors.grey,
+            onPressed: null),
+        const IconButtonWidget(
+            iconData: Icons.shuffle,
+            size: 20,
+            color: Colors.grey,
+            onPressed: null),
+      ],
+    );
+  }
+}
+
+class _SliderSection extends StatelessWidget {
+  const _SliderSection();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const Text('-:--',
+            style: TextStyle(
+                fontFamily: FontFamily.poiretOne,
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: Colors.grey)),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.5,
+          child: const Slider(
+            inactiveColor: Colors.grey,
+            value: 0.5,
+            min: 0.0,
+            max: 1.0,
+            onChanged: null,
+          ),
+        ),
+        const Text('-:--',
+            style: TextStyle(
+                fontFamily: FontFamily.poiretOne,
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: Colors.grey)),
+      ],
+    );
+  }
+}

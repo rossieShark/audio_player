@@ -1,8 +1,8 @@
-import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
-import 'package:audio_player/ui/widgets/screens/settings_page/change_profile/change_user_photo.dart';
-import 'package:audio_player/ui/widgets/screens/settings_page/settings_index.dart';
-import 'package:audio_player/ui/widgets/screens/settings_page/settings_page.dart';
-import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
+import 'package:audio_player/app/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app/ui/widgets/screens/settings_page/change_profile/change_user_photo.dart';
+import 'package:audio_player/app/ui/widgets/screens/settings_page/settings_index.dart';
+import 'package:audio_player/app/ui/widgets/screens/settings_page/settings_page.dart';
+import 'package:audio_player/app/ui/widgets/widgets/widget_exports.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
