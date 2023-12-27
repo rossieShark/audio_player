@@ -3,9 +3,7 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/services/services.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
-
 import 'package:audio_player/ui/widgets/widgets/widget_exports.dart';
-
 import 'package:flutter/material.dart';
 
 class ChangePassword extends StatefulWidget {
@@ -91,14 +89,10 @@ class _ChangePasswordState extends State<ChangePassword> {
   }
 
   Future<void> _changePassword(BuildContext context) async {
-    try {
-      await FireBaseFunctions().changePassword(
-        _passwordController.text,
-        _newPasswordController.text,
-        context,
-      );
-    } catch (e) {
-      print('Error changing password: $e');
-    }
+    await FireBaseFunctions().changePassword(
+      _passwordController.text,
+      _newPasswordController.text,
+      context,
+    );
   }
 }

@@ -34,7 +34,6 @@ class NewFolddersListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HoverableWidget(builder: (context, child, isHovered) {
-      print(folders.length);
       return SizedBox(
         height: 60 * folders.length.toDouble(),
         child: ListView.builder(

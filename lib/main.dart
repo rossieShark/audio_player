@@ -14,6 +14,7 @@ import 'app_logic/blocs/bloc_exports.dart';
 void main() async {
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((LogRecord rec) {
+    // ignore: avoid_print
     print('${rec.level.name}: ${rec.time}: ${rec.message}');
   });
   WidgetsFlutterBinding.ensureInitialized();

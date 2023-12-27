@@ -1,9 +1,11 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/domain/repositories/index.dart';
+import 'package:audio_player/domain/services/logger.dart';
+import 'package:logging/logging.dart';
 
 class GenresBloc extends Bloc<GenresEvent, GenresBlocState> {
   final Genres repository;
-
+  final Logger _logger = getLogger('GenresBloc');
   GenresBloc(this.repository) : super(const GenresBlocState.loading()) {
     on<FetchGenresEvent>(fetchGenres);
   }
@@ -17,9 +19,10 @@ class GenresBloc extends Bloc<GenresEvent, GenresBlocState> {
       } else {
         emit(GenresBlocState.loaded(data: genres));
       }
-    } catch (error) {
+    } catch (error, stackTrace) {
       emit(const GenresBlocState.error());
-      print('Error fetching song detail: $error');
+      _logger.severe(
+          'Error fetching song detail: $error, stack trace: $stackTrace');
     }
   }
 }

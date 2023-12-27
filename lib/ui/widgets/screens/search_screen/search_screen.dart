@@ -40,7 +40,6 @@ class _SearchPageState extends State<SearchPage> {
   void _setupTextFieldListener() {
     _textFieldController.addListener(() {
       final filter = context.read<SearchFilterBloc>().state;
-      print(filter);
       searchBloc.add(SearchEvent.textChanged(
           newText: _textFieldController.text, filter: filter));
     });

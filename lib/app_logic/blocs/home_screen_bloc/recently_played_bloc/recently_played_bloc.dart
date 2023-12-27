@@ -1,11 +1,13 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/repositories/home_screen_repositories/recently_played_repo.dart';
+import 'package:audio_player/domain/services/logger.dart';
+import 'package:logging/logging.dart';
 
 class RecentlyPlayedBloc
     extends Bloc<RecentlyPlayedBlocEvent, RecentlyPlayedState> {
   final RecentlyPlayedRepo _repository;
-
+  final Logger _logger = getLogger('RecentlyPlayedBloc');
   RecentlyPlayedBloc(this._repository)
       : super(const RecentlyPlayedState.loading()) {
     on<FetchRecentlyPlayedEvent>(_fetchRecentlyPlayed);
@@ -20,9 +22,10 @@ class RecentlyPlayedBloc
       } else {
         emit(RecentlyPlayedState.loaded(data: recentlyPlayedtList));
       }
-    } catch (error) {
+    } catch (error, stackTrace) {
       emit(const RecentlyPlayedState.error());
-      print('Error fetching song detail: $error');
+      _logger.severe(
+          'Error fetching song detail: $error, stack trace: $stackTrace');
     }
   }
 

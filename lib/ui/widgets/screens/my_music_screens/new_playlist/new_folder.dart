@@ -128,7 +128,6 @@ class _AddNewPlaylistButton extends StatelessWidget {
 
   bool _checkIfFolderExists(NewPlaylistState state) {
     if (state is LoadedNewPlaylistState) {
-      print(newPlaylistTextController.text);
       return state.folders
           .any((folder) => folder.title == newPlaylistTextController.text);
     }

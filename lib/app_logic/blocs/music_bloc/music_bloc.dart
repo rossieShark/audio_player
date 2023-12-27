@@ -50,7 +50,6 @@ class MusicBloc extends Bloc<MusicEvent, MusicState> {
     final songs = state.playlist;
     songs.addAll(event.songs);
     add(Play(song: songs[0]));
-    print(songs.length);
     emit(state.copyWith(playlist: songs));
   }
 

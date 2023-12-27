@@ -1,11 +1,13 @@
 import 'package:audio_player/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/databases/app_database/database.dart';
 import 'package:audio_player/domain/repositories/home_screen_repositories/favourite_artist_repo.dart';
+import 'package:audio_player/domain/services/logger.dart';
+import 'package:logging/logging.dart';
 
 class FavoriteArtistBloc
     extends Bloc<FavoriteArtistEvent, FavoriteArtistBlocState> {
   final FavoriteArtistRepo repository;
-
+  final Logger _logger = getLogger('FavoriteArtistBloc');
   FavoriteArtistBloc(this.repository)
       : super(const FavoriteArtistBlocState.loading()) {
     on<FetchFavoriteArtistsEvent>(_fetchFavoriteArtists);
@@ -20,9 +22,10 @@ class FavoriteArtistBloc
       } else {
         emit(FavoriteArtistBlocState.loaded(data: favoriteArtists));
       }
-    } catch (error) {
+    } catch (error, stackTrace) {
       emit(const FavoriteArtistBlocState.error());
-      print('Error fetching song detail: $error');
+      _logger.severe(
+          'Error fetching song detail: $error, stack trace: $stackTrace');
     }
   }
 

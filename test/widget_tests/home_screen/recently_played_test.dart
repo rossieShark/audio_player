@@ -110,8 +110,6 @@ void main() {
           ]),
         );
 
-        print(debugDefaultTargetPlatformOverride);
-
         // Build widget and trigger a frame.
         await tester.pumpWidget(
           MaterialApp(

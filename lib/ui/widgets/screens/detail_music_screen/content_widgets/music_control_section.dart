@@ -50,7 +50,6 @@ class _MusicControlSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.songInfo.type);
     return Row(
       children: [
         ClipRRect(

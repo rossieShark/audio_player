@@ -150,13 +150,17 @@ class FireBaseFunctions {
     String newPassword,
     BuildContext context,
   ) async {
-    if (password == newPassword) {
-      await _user?.updatePassword(password);
-      context.pop();
-    } else {
-      context.read<PasswordMissmatchCubit>().passwordMissmatchText(
-          AppLocalizations.of(context)!.passwordMissmatch);
-      _logger.info("passwordMissmatch");
+    try {
+      if (password == newPassword) {
+        await _user?.updatePassword(password);
+        context.pop();
+      } else {
+        context.read<PasswordMissmatchCubit>().passwordMissmatchText(
+            AppLocalizations.of(context)!.passwordMissmatch);
+        _logger.info("passwordMissmatch");
+      }
+    } catch (e) {
+      _logger.severe('Error changing password: $e');
     }
   }
 

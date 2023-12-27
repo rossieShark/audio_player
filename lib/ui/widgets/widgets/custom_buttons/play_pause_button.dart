@@ -49,7 +49,6 @@ class CreatePlayPauseButton extends StatelessWidget {
   }
 
   bool isSongPlay(MusicState state) {
-    print(type);
     if (type == SearchFilters.track) {
       return state.playlist.any((song) => song.id == playedSong.id);
     } else {
