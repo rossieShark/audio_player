@@ -10,7 +10,8 @@ import 'package:audio_player/domain/services/get_it_dependencies/get_it_dependen
 import 'package:audio_player/firebase_options.dart';
 
 class MainAppRunner implements AppRunner {
-  const MainAppRunner();
+  final String env;
+  const MainAppRunner(this.env);
 
   @override
   Future<void> preloadData() async {
@@ -20,7 +21,7 @@ class MainAppRunner implements AppRunner {
       // ignore: avoid_print
       print('${rec.level.name}: ${rec.time}: ${rec.message}');
     });
-    configureDependencies();
+    configureDependencies(env);
     _initialiseMain();
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,

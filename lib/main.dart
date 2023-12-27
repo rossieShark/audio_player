@@ -2,8 +2,8 @@ import 'package:audio_player/ui/widgets/screens/audio_player_app/main_app_builde
 import 'package:audio_player/ui/widgets/screens/audio_player_app/main_app_runner.dart';
 
 void main() async {
-  // final env = const String.fromEnvironment('env', defaultValue: 'dev');
-  final runner = MainAppRunner();
+  const env = String.fromEnvironment('env', defaultValue: 'dev');
+  const runner = MainAppRunner(env);
   final builder = MainAppBuilder();
   runner.run(builder);
 }
