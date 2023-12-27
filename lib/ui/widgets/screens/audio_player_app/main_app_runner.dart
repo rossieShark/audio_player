@@ -6,7 +6,6 @@ import 'package:logging/logging.dart';
 
 import 'package:audio_player/domain/interfaces/app_builder.dart';
 import 'package:audio_player/domain/interfaces/app_runner.dart';
-import 'package:audio_player/domain/services/get_it_dependencies/get_it_dependencies.dart';
 import 'package:audio_player/firebase_options.dart';
 
 class MainAppRunner implements AppRunner {
