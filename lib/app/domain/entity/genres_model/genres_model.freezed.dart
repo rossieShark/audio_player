@@ -165,7 +165,8 @@ Data _$DataFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Data {
   int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String get name =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'picture_big')
   String get image => throw _privateConstructorUsedError;
 
@@ -272,6 +273,7 @@ class _$DataImpl implements _Data {
   final int id;
   @override
   final String name;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'picture_big')
   final String image;
@@ -321,7 +323,7 @@ abstract class _Data implements Data {
   int get id;
   @override
   String get name;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'picture_big')
   String get image;
   @override
