@@ -1,12 +1,14 @@
 import 'package:audio_player/app/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/app/domain/entity/played_song_model.dart';
 import 'package:audio_player/app/ui/widgets/screens/search_screen/search_export.dart';
+import 'package:audio_player/app/ui/widgets/widgets/custom_buttons/play_button/play_button_widget.dart';
 import 'package:audio_player/app/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
 class CreatePlayPauseButton extends StatelessWidget {
   final PlayedSong playedSong;
   final List<PlayedSong>? playedSongs;
+
   final VoidCallback? onPressed;
   final Color? containerColor;
 
@@ -22,17 +24,34 @@ class CreatePlayPauseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MusicBloc, MusicState>(builder: (context, state) {
-      return CreatePlayButton(
-        onPressed: () {
-          onPressed == null ? null : onPressed!();
-          _playPauseMusic(context);
+      return PlatformBuilder(
+        builder: (context, child, widget) {
+          return widget;
         },
-        size: 40,
-        icon: (state.isPlaying && isSongPlay(state))
-            ? Icon(Icons.pause, color: AppColors.white.color)
-            : Icon(Icons.play_arrow, color: AppColors.white.color),
-        containerColor:
-            containerColor ?? AppColors.accent.color.withOpacity(0.8),
+        web: CreatePlayButton(
+          onPressed: () {
+            onPressed == null ? null : onPressed!();
+            _playPauseMusic(context);
+          },
+          size: 40,
+          icon: (state.isPlaying && isSongPlay(state))
+              ? Icon(Icons.pause, color: AppColors.white.color)
+              : Icon(Icons.play_arrow, color: AppColors.white.color),
+          containerColor:
+              containerColor ?? AppColors.accent.color.withOpacity(0.8),
+        ),
+        other: PlayButton(
+          onPressed: () {
+            onPressed == null ? null : onPressed!();
+            _playPauseMusic(context);
+          },
+          size: 40,
+          icon: (state.isPlaying && isSongPlay(state))
+              ? Icon(Icons.pause, color: AppColors.white.color)
+              : Icon(Icons.play_arrow, color: AppColors.white.color),
+          containerColor:
+              containerColor ?? AppColors.accent.color.withOpacity(0.8),
+        ),
       );
     });
   }
