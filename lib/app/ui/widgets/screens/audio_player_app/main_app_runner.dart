@@ -34,10 +34,4 @@ class MainAppRunner implements AppRunner {
   }
 }
 
-// void _initialiseMain() {
-//   SetGetItDependencies().setupDatabaseDependencies();
-//   SetGetItDependencies().setupProviderDependencies();
-//   SetGetItDependencies().setupRepoDependencies();
-//   SetGetItDependencies().setupBlocDependencies();
-//   SetGetItDependencies().setupServiceDependencies();
-// }
+

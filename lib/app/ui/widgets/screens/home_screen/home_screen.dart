@@ -6,6 +6,7 @@ import 'package:audio_player/app/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:miniplayer/miniplayer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -54,6 +55,7 @@ class _BuildMainSection extends StatefulWidget {
 
 class _BuildMainSectionState extends State<_BuildMainSection> {
   late ScrollController _scrollController;
+  static const double _playerMinHeight = 60.0;
 
   @override
   void initState() {
@@ -106,15 +108,25 @@ class _BuildMainSectionState extends State<_BuildMainSection> {
             _BuildBestAlbumsSection(),
           ],
         ),
-        other: ListView(
-          controller: _scrollController,
+        other: Stack(
           children: [
-            _BuildRecentlyPlayedSection(),
-            _BuildFavoriteArtistSection(),
-            const SizedBox(
-              height: 15,
+            ListView(
+              controller: _scrollController,
+              children: [
+                _BuildRecentlyPlayedSection(),
+                _BuildFavoriteArtistSection(),
+                const SizedBox(
+                  height: 15,
+                ),
+                _BuildBestAlbumsSection(),
+              ],
             ),
-            _BuildBestAlbumsSection(),
+            Miniplayer(
+                minHeight: _playerMinHeight,
+                maxHeight: MediaQuery.of(context).size.height,
+                builder: (height, percentage) {
+                  return Container(color: AppColors.white.color);
+                })
           ],
         ),
         builder: (context, child, widget) {
