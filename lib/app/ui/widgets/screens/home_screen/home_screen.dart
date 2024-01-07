@@ -1,7 +1,10 @@
 import 'package:audio_player/app/app_logic/blocs/bloc_exports.dart';
 
 import 'package:audio_player/app/ui/navigation/navigation_routes.dart';
+import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/mobile/detail_music_screen.dart';
+import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/web/web_detail.dart';
 import 'package:audio_player/app/ui/widgets/screens/home_screen/home_screen_index.dart';
+import 'package:audio_player/app/ui/widgets/screens/home_screen/mini_player/mini_player_widget.dart';
 import 'package:audio_player/app/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -121,12 +124,23 @@ class _BuildMainSectionState extends State<_BuildMainSection> {
                 _BuildBestAlbumsSection(),
               ],
             ),
-            Miniplayer(
-                minHeight: _playerMinHeight,
-                maxHeight: MediaQuery.of(context).size.height,
-                builder: (height, percentage) {
-                  return Container(color: AppColors.white.color);
-                })
+            BlocBuilder<MusicBloc, MusicState?>(builder: (context, state) {
+              return Offstage(
+                offstage:
+                    state?.currentSongId == null || state?.currentSongId == -1,
+                child: Miniplayer(
+                    minHeight: _playerMinHeight,
+                    maxHeight: MediaQuery.of(context).size.height,
+                    builder: (height, percentage) {
+                      if (height <= _playerMinHeight + 50.0) {
+                        return const MiniPlayerWidget();
+                      } else {
+                        return MobileDetailMusicPage(
+                            param: state!.currentSongId.toString());
+                      }
+                    }),
+              );
+            })
           ],
         ),
         builder: (context, child, widget) {
