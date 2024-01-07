@@ -21,7 +21,7 @@ class MainAppRunner implements AppRunner {
       print('${rec.level.name}: ${rec.time}: ${rec.message}');
     });
     configureDependencies(env);
-    // _initialiseMain();
+
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
@@ -33,5 +33,3 @@ class MainAppRunner implements AppRunner {
     runApp(appBuilder.buildApp());
   }
 }
-
-

@@ -229,18 +229,12 @@ class _CreatePlayButton extends StatelessWidget {
           other: CreatePlayPauseButton(
             type: SearchFilters.track,
             playedSong: song,
-            //onPressed: () => _onMobiePressed(context)),
           ),
           builder: (context, child, widget) {
             return widget;
           }),
     );
   }
-
-  // void _onMobiePressed(BuildContext context) {
-  //   GoRouter.of(context)
-  //       .push(Uri(path: '/${Routes().detailTrack}$id').toString());
-  // }
 }
 
 class _CreateRecentlyPlayedImage extends StatelessWidget {

@@ -123,9 +123,6 @@ class _CreatePlayPauseButton extends StatelessWidget {
                   : Icons.play_arrow,
               color: AppColors.white.color,
               onPressed: () {
-                final id = playedSong.id;
-                GoRouter.of(context)
-                    .push(Uri(path: '/${Routes().detailTrack}$id').toString());
                 _playPauseMusic(context);
               }),
           builder: (context, child, widget) {

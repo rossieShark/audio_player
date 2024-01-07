@@ -6,6 +6,7 @@ import 'package:audio_player/app/ui/widgets/screens/search_screen/bloc_loaded_st
 import 'package:audio_player/app/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:path/path.dart';
 
 class SearchListView extends StatelessWidget {
   const SearchListView({
@@ -62,9 +63,7 @@ class SearchListView extends StatelessWidget {
     int id = searchSong.id;
     final bloc = context.read<RecentlySearchedBloc>();
     if ((searchSong.type == SearchFilters.track) && !isHovered) {
-      GoRouter.of(context)
-          .push(Uri(path: '/${Routes().detailTrack}$id').toString());
-
+      _playPauseMusic(context, searchSong);
       bloc.add(AddToRecentlySearchedEvent(
         SongModel(
             type: searchSong.type,
@@ -98,6 +97,13 @@ class SearchListView extends StatelessWidget {
         ),
       ));
     }
+  }
+
+  void _playPauseMusic(BuildContext context, SearchData searchSong) {
+    final musicBloc = context.read<MusicBloc>();
+
+    musicBloc.add(PlayPause(
+        song: PlayedSong(id: searchSong.id, preview: searchSong.preview)));
   }
 }
 

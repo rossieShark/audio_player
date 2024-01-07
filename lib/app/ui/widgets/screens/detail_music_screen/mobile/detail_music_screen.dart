@@ -46,13 +46,10 @@ class DetailMusicBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final maxWidth = MediaQuery.of(context).size.width;
     final maxHeight = MediaQuery.of(context).size.height;
-    // return Scaffold(
-    //   backgroundColor: AppColors.background.color,
-    //   body:
     if (height > maxHeight / 2) {
-      return Container(
-        color: AppColors.background.color,
-        child: Column(
+      return Scaffold(
+        backgroundColor: AppColors.background.color,
+        body: Column(
           children: [
             _BackgroundImage(
                 maxWidth: maxWidth, maxHeight: height, songInfo: songInfo),

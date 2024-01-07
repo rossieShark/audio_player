@@ -70,6 +70,7 @@ void main() {
             create: (context) => mockBloc,
             child: const MobileDetailMusicPage(
               param: '1',
+              height: 200,
             ),
           ),
         ),
@@ -99,6 +100,7 @@ void main() {
             child: TestableWidget().makeTestableWidget(
               child: const MobileDetailMusicPage(
                 param: '1',
+                height: 200,
               ),
             ),
           ),
@@ -168,6 +170,7 @@ void main() {
             child: TestableWidget().makeTestableWidget(
               child: const MobileDetailMusicPage(
                 param: '1',
+                height: 200,
               ),
             ),
           ),

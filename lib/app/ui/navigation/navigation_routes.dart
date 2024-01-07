@@ -36,27 +36,12 @@ class NavigationUtils {
   }
 }
 
-// enum RouteName {
-//   home,
-//   myMusic,
-//   search,
-//   favoriteTracks,
-//   favoriteAlbums,
-//   detailMusic,
-//   albumDetail,
-//   settings,
-//   sigIn,
-//   signUp,
-//   start,
-// }
-
 class Routes {
   final String _home = '/';
   final String _search = '/search';
   final String _myMusic = '/my_music';
   final String _tracks = 'tracks';
   final String _albums = 'albums';
-  final String _detailMusic = 'detail_music/';
   final String _albumDetail = 'album_detail/';
   final String _settings = 'settings';
   final String _signin = '/signin';
@@ -69,7 +54,6 @@ class Routes {
   String get myMusic => _myMusic;
   String get tracks => _tracks;
   String get albums => _albums;
-  String get detailTrack => _detailMusic;
   String get albumDetail => _albumDetail;
   String get settings => _settings;
   String get signIn => _signin;

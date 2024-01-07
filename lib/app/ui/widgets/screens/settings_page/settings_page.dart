@@ -33,7 +33,6 @@ class _SettingsState extends State<Settings> {
       body: Padding(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
         child: SettingsList(
-          // physics: const NeverScrollableScrollPhysics(),
           lightTheme: SettingsThemeData(
             settingsListBackground: AppColors.background.color,
             trailingTextColor: Colors.grey,

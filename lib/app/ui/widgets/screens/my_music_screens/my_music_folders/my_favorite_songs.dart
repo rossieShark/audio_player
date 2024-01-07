@@ -1,5 +1,6 @@
 import 'package:audio_player/app/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/app/domain/entity/favorite_song_model.dart';
+import 'package:audio_player/app/domain/entity/models.dart';
 
 import 'package:audio_player/app/ui/navigation/navigation_routes.dart';
 import 'package:audio_player/app/ui/widgets/screens/index.dart';
@@ -74,9 +75,7 @@ class _MobileFavouriteListViewBody extends StatelessWidget {
         bloc.add(RemoveSongsEvent(song));
       },
       onTap: () {
-        // String id = song.id;
-        // GoRouter.of(context)
-        //     .push(Uri(path: '/${Routes().detailTrack}$id').toString());
+        _playPauseMusic(context);
       },
       song: song,
       child: CustomListViewContent(
@@ -94,6 +93,13 @@ class _MobileFavouriteListViewBody extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _playPauseMusic(BuildContext context) {
+    final musicBloc = context.read<MusicBloc>();
+
+    musicBloc.add(PlayPause(
+        song: PlayedSong(id: int.parse(song.id), preview: song.preview)));
   }
 }
 

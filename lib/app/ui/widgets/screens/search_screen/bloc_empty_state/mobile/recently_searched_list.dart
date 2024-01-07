@@ -1,12 +1,11 @@
 import 'package:audio_player/app/app_logic/blocs/bloc_exports.dart';
+import 'package:audio_player/app/domain/entity/models.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/app/domain/entity/favorite_song_model.dart';
 import 'package:audio_player/resources/resources.dart';
-import 'package:audio_player/app/ui/navigation/navigation_routes.dart';
 
 import 'package:audio_player/app/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class RecentlySearchedList extends StatelessWidget {
   final double width;
@@ -59,11 +58,7 @@ class _CreateListView extends StatelessWidget {
                   final song = recentlySearched[index];
 
                   return GestureDetector(
-                    onTap: () {
-                      String id = song.id;
-                      GoRouter.of(context).push(
-                          Uri(path: '/${Routes().detailTrack}$id').toString());
-                    },
+                    onTap: () => _playPauseMusic(context, song),
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                       child: CustomListViewContent(
@@ -78,6 +73,13 @@ class _CreateListView extends StatelessWidget {
                 }),
           );
         });
+  }
+
+  void _playPauseMusic(BuildContext context, SongModel song) {
+    final musicBloc = context.read<MusicBloc>();
+
+    musicBloc.add(PlayPause(
+        song: PlayedSong(id: int.parse(song.id), preview: song.preview)));
   }
 }
 
