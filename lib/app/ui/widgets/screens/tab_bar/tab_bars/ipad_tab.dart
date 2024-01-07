@@ -1,3 +1,4 @@
+import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/mini_player/mini_player_widget.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/app/ui/navigation/navigation_routes.dart';
 
@@ -30,7 +31,12 @@ class IPadTabBar extends StatelessWidget {
             flex: 2,
             child: SizedBox(
               width: double.infinity,
-              child: child,
+              child: Stack(
+                children: [
+                  child,
+                  const MiniPlayerWidget(),
+                ],
+              ),
             ),
           ),
         ],
