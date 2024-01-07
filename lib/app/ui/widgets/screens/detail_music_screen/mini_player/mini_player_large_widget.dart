@@ -7,10 +7,10 @@ import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/detail_m
 import 'package:audio_player/app/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
-class MobileDetailMusicPage extends StatelessWidget {
+class MiniPlayerLargeWidget extends StatelessWidget {
   final String param;
   final double height;
-  const MobileDetailMusicPage(
+  const MiniPlayerLargeWidget(
       {super.key, required this.param, required this.height});
 
   @override
@@ -22,7 +22,7 @@ class MobileDetailMusicPage extends StatelessWidget {
           loading: (_) => const Center(
                 child: CustomFadingCircleIndicator(),
               ),
-          loaded: (data) => DetailMusicBody(
+          loaded: (data) => MiniPlayerLargeWidgetLoaded(
                 param: param,
                 songInfo: data.songDetail,
                 height: height,
@@ -31,8 +31,8 @@ class MobileDetailMusicPage extends StatelessWidget {
   }
 }
 
-class DetailMusicBody extends StatelessWidget {
-  const DetailMusicBody(
+class MiniPlayerLargeWidgetLoaded extends StatelessWidget {
+  const MiniPlayerLargeWidgetLoaded(
       {super.key,
       required this.param,
       required this.songInfo,
@@ -47,55 +47,90 @@ class DetailMusicBody extends StatelessWidget {
     final maxWidth = MediaQuery.of(context).size.width;
     final maxHeight = MediaQuery.of(context).size.height;
     if (height > maxHeight / 2) {
-      return Scaffold(
-        backgroundColor: AppColors.background.color,
-        body: Column(
-          children: [
-            _BackgroundImage(
-                maxWidth: maxWidth, maxHeight: height, songInfo: songInfo),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CreateTitleSection(
-                    param: param,
-                    songInfo: songInfo,
-                  ),
-                  CreateSliderSection(
-                    width: maxWidth * 0.7,
-                  ),
-                  CreatMusicControlSection(
-                    songInfo: songInfo!,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
+      return _FullScreenContent(
+          maxWidth: maxWidth, height: height, songInfo: songInfo, param: param);
     } else {
-      return Container(
-        color: AppColors.background.color,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            CreateTitleSection(
-              param: param,
-              songInfo: songInfo,
-            ),
-            CreatMusicControlSection(
-              songInfo: songInfo!,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-          ],
-        ),
-      );
+      return _HalfScreenContent(param: param, songInfo: songInfo);
     }
+  }
+}
+
+class _HalfScreenContent extends StatelessWidget {
+  const _HalfScreenContent({
+    required this.param,
+    required this.songInfo,
+  });
+
+  final String param;
+  final DetailInfoSong? songInfo;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: AppColors.background.color,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          CreateTitleSection(
+            param: param,
+            songInfo: songInfo,
+          ),
+          CreatMusicControlSection(
+            songInfo: songInfo!,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _FullScreenContent extends StatelessWidget {
+  const _FullScreenContent({
+    required this.maxWidth,
+    required this.height,
+    required this.songInfo,
+    required this.param,
+  });
+
+  final double maxWidth;
+  final double height;
+  final DetailInfoSong? songInfo;
+  final String param;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.background.color,
+      body: Column(
+        children: [
+          _BackgroundImage(
+              maxWidth: maxWidth, maxHeight: height, songInfo: songInfo),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CreateTitleSection(
+                  param: param,
+                  songInfo: songInfo,
+                ),
+                CreateSliderSection(
+                  width: maxWidth * 0.7,
+                ),
+                CreatMusicControlSection(
+                  songInfo: songInfo!,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 

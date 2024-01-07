@@ -1,7 +1,7 @@
 import 'package:audio_player/app/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/app/databases/app_database/database.dart';
 import 'package:audio_player/app/ui/widgets/screens/album_detail_screen/content_widgets/no_data_widget.dart';
-import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/mobile/detail_music_screen.dart';
+import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/mini_player/mini_player_large_widget.dart';
 import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/web/inactive_web_detail.dart';
 import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/web/web_detail.dart';
 import 'package:audio_player/app/ui/widgets/widgets/fading_indicator.dart';
@@ -68,7 +68,7 @@ void main() {
         MaterialApp(
           home: BlocProvider<DetailMusicPageBloc>(
             create: (context) => mockBloc,
-            child: const MobileDetailMusicPage(
+            child: const MiniPlayerLargeWidget(
               param: '1',
               height: 200,
             ),
@@ -98,7 +98,7 @@ void main() {
           home: BlocProvider<DetailMusicPageBloc>(
             create: (context) => mockBloc,
             child: TestableWidget().makeTestableWidget(
-              child: const MobileDetailMusicPage(
+              child: const MiniPlayerLargeWidget(
                 param: '1',
                 height: 200,
               ),
@@ -168,7 +168,7 @@ void main() {
               )
             ],
             child: TestableWidget().makeTestableWidget(
-              child: const MobileDetailMusicPage(
+              child: const MiniPlayerLargeWidget(
                 param: '1',
                 height: 200,
               ),
@@ -178,7 +178,7 @@ void main() {
 
         await tester.pump(Duration.zero);
 
-        expect(find.byType(MobileDetailMusicPage), findsOneWidget);
+        expect(find.byType(MiniPlayerLargeWidget), findsOneWidget);
         expect(find.byType(NoDataWidget), findsNothing);
       },
     );

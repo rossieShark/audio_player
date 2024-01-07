@@ -1,7 +1,7 @@
 import 'package:audio_player/app/app_logic/blocs/music_bloc/music_bloc.dart';
 import 'package:audio_player/app/app_logic/blocs/music_bloc/music_bloc_state.dart';
-import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/mini_player/mini_player_widget.dart';
-import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/mobile/detail_music_screen.dart';
+import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/mini_player/mini_player_small_widget.dart';
+import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/mini_player/mini_player_large_widget.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audio_player/app/ui/navigation/navigation_routes.dart';
 import 'package:audio_player/app/ui/widgets/widgets/widget_exports.dart';
@@ -35,9 +35,9 @@ class MobileTabBar extends StatelessWidget {
                   maxHeight: MediaQuery.of(context).size.height - 200,
                   builder: (height, percentage) {
                     if (height == _playerMinHeight) {
-                      return const MiniPlayerWidget();
+                      return const MiniPlayerSmallWidget();
                     } else {
-                      return MobileDetailMusicPage(
+                      return MiniPlayerLargeWidget(
                         param: state!.currentSongId.toString(),
                         height: height,
                       );

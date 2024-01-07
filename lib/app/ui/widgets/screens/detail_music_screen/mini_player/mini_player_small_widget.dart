@@ -15,14 +15,14 @@ import 'package:audio_player/resources/resources.dart';
 
 import 'package:flutter/material.dart';
 
-class MiniPlayerWidget extends StatefulWidget {
-  const MiniPlayerWidget({super.key});
+class MiniPlayerSmallWidget extends StatefulWidget {
+  const MiniPlayerSmallWidget({super.key});
 
   @override
-  State<MiniPlayerWidget> createState() => _MiniPlayerWidgetState();
+  State<MiniPlayerSmallWidget> createState() => _MiniPlayerSmallWidgetState();
 }
 
-class _MiniPlayerWidgetState extends State<MiniPlayerWidget> {
+class _MiniPlayerSmallWidgetState extends State<MiniPlayerSmallWidget> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MusicBloc, MusicState?>(builder: (context, state) {

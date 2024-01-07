@@ -4,4 +4,4 @@ export 'package:audio_player/app/ui/widgets/screens/detail_music_screen/web/inac
 export 'package:audio_player/app/ui/widgets/screens/detail_music_screen/content_widgets/create_slider_section.dart';
 export 'package:audio_player/app/ui/widgets/screens/detail_music_screen/content_widgets/create_title_section.dart';
 export 'package:audio_player/app/ui/widgets/screens/detail_music_screen/content_widgets/music_control_section.dart';
-export 'package:audio_player/app/ui/widgets/screens/detail_music_screen/mobile/detail_music_screen.dart';
+export 'package:audio_player/app/ui/widgets/screens/detail_music_screen/mini_player/mini_player_large_widget.dart';
