@@ -74,10 +74,9 @@ class _MobileFavouriteListViewBody extends StatelessWidget {
         bloc.add(RemoveSongsEvent(song));
       },
       onTap: () {
-        String id = song.id;
-
-        GoRouter.of(context)
-            .push(Uri(path: '/${Routes().detailTrack}$id').toString());
+        // String id = song.id;
+        // GoRouter.of(context)
+        //     .push(Uri(path: '/${Routes().detailTrack}$id').toString());
       },
       song: song,
       child: CustomListViewContent(

@@ -1,7 +1,6 @@
 import 'package:audio_player/app/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/app/domain/entity/played_song_model.dart';
 import 'package:audio_player/app/ui/widgets/screens/search_screen/search_export.dart';
-import 'package:audio_player/app/ui/widgets/widgets/custom_buttons/play_button/play_button_widget.dart';
 import 'package:audio_player/app/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 
@@ -30,8 +29,8 @@ class CreatePlayPauseButton extends StatelessWidget {
         },
         web: CreatePlayButton(
           onPressed: () {
-            onPressed == null ? null : onPressed!();
             _playPauseMusic(context);
+            onPressed == null ? null : onPressed!();
           },
           size: 40,
           icon: (state.isPlaying && isSongPlay(state))
@@ -40,10 +39,10 @@ class CreatePlayPauseButton extends StatelessWidget {
           containerColor:
               containerColor ?? AppColors.accent.color.withOpacity(0.8),
         ),
-        other: PlayButton(
+        other: CreatePlayButton(
           onPressed: () {
-            onPressed == null ? null : onPressed!();
             _playPauseMusic(context);
+            onPressed == null ? null : onPressed!();
           },
           size: 40,
           icon: (state.isPlaying && isSongPlay(state))

@@ -1,15 +1,11 @@
 import 'package:audio_player/app/app_logic/blocs/bloc_exports.dart';
 
 import 'package:audio_player/app/ui/navigation/navigation_routes.dart';
-import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/mobile/detail_music_screen.dart';
-import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/web/web_detail.dart';
 import 'package:audio_player/app/ui/widgets/screens/home_screen/home_screen_index.dart';
-import 'package:audio_player/app/ui/widgets/screens/home_screen/mini_player/mini_player_widget.dart';
 import 'package:audio_player/app/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:audio_player/flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:miniplayer/miniplayer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -58,7 +54,6 @@ class _BuildMainSection extends StatefulWidget {
 
 class _BuildMainSectionState extends State<_BuildMainSection> {
   late ScrollController _scrollController;
-  static const double _playerMinHeight = 60.0;
 
   @override
   void initState() {
@@ -111,38 +106,15 @@ class _BuildMainSectionState extends State<_BuildMainSection> {
             _BuildBestAlbumsSection(),
           ],
         ),
-        other: Stack(
+        other: ListView(
+          controller: _scrollController,
           children: [
-            ListView(
-              controller: _scrollController,
-              children: [
-                _BuildRecentlyPlayedSection(),
-                _BuildFavoriteArtistSection(),
-                const SizedBox(
-                  height: 15,
-                ),
-                _BuildBestAlbumsSection(),
-              ],
+            _BuildRecentlyPlayedSection(),
+            _BuildFavoriteArtistSection(),
+            const SizedBox(
+              height: 15,
             ),
-            BlocBuilder<MusicBloc, MusicState?>(builder: (context, state) {
-              return Offstage(
-                offstage:
-                    state?.currentSongId == null || state?.currentSongId == -1,
-                child: Miniplayer(
-                    minHeight: _playerMinHeight,
-                    maxHeight: MediaQuery.of(context).size.height - 200,
-                    builder: (height, percentage) {
-                      if (height <= _playerMinHeight + 50.0) {
-                        return const MiniPlayerWidget();
-                      } else {
-                        return MobileDetailMusicPage(
-                          param: state!.currentSongId.toString(),
-                          height: height,
-                        );
-                      }
-                    }),
-              );
-            })
+            _BuildBestAlbumsSection(),
           ],
         ),
         builder: (context, child, widget) {

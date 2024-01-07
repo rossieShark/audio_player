@@ -14,7 +14,6 @@ class MobileDetailMusicPage extends StatelessWidget {
       {super.key, required this.param, required this.height});
 
   @override
-  @override
   Widget build(BuildContext context) {
     return BlocBuilder<DetailMusicPageBloc, DetailMusicPageState>(
         builder: (context, state) {
@@ -45,75 +44,59 @@ class DetailMusicBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background.color,
-      body: GestureDetector(
-          // onVerticalDragUpdate: (details) {
-          //   if (details.delta.dy > 10) {
-          //     GoRouter.of(context).pop();
-          //   }
-          // },
-          child: _CreatMainContent(
-        param: param,
-        songInfo: songInfo,
-        height: height,
-      )),
-    );
-  }
-}
-
-class _CreatMainContent extends StatelessWidget {
-  final DetailInfoSong? songInfo;
-  final String param;
-  final double height;
-  const _CreatMainContent(
-      {required this.songInfo, required this.param, required this.height});
-
-  @override
-  Widget build(BuildContext context) {
     final maxWidth = MediaQuery.of(context).size.width;
-    if (height > MediaQuery.of(context).size.height / 2) {
-      return Column(
-        children: [
-          _BackgroundImage(
-              maxWidth: maxWidth, maxHeight: height, songInfo: songInfo),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                CreateTitleSection(
-                  param: param,
-                  songInfo: songInfo,
-                ),
-                CreateSliderSection(
-                  width: maxWidth * 0.7,
-                ),
-                CreatMusicControlSection(
-                  songInfo: songInfo!,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-              ],
+    final maxHeight = MediaQuery.of(context).size.height;
+    // return Scaffold(
+    //   backgroundColor: AppColors.background.color,
+    //   body:
+    if (height > maxHeight / 2) {
+      return Container(
+        color: AppColors.background.color,
+        child: Column(
+          children: [
+            _BackgroundImage(
+                maxWidth: maxWidth, maxHeight: height, songInfo: songInfo),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  CreateTitleSection(
+                    param: param,
+                    songInfo: songInfo,
+                  ),
+                  CreateSliderSection(
+                    width: maxWidth * 0.7,
+                  ),
+                  CreatMusicControlSection(
+                    songInfo: songInfo!,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
     } else {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          CreateTitleSection(
-            param: param,
-            songInfo: songInfo,
-          ),
-          CreatMusicControlSection(
-            songInfo: songInfo!,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-        ],
+      return Container(
+        color: AppColors.background.color,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            CreateTitleSection(
+              param: param,
+              songInfo: songInfo,
+            ),
+            CreatMusicControlSection(
+              songInfo: songInfo!,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+          ],
+        ),
       );
     }
   }
@@ -132,7 +115,6 @@ class _BackgroundImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final height = MediaQuery.of(context).size.height / 2;
     return ClipRRect(
       borderRadius: BorderRadius.only(
         bottomLeft: Radius.circular(maxWidth / 2),

@@ -3,16 +3,16 @@ import 'package:audio_player/app/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/app/databases/app_database/database.dart';
 import 'package:audio_player/app/domain/entity/played_song_model.dart';
 import 'package:audio_player/app/ui/widgets/screens/album_detail_screen/content_widgets/no_data_widget.dart';
-import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/web/inactive_web_detail.dart';
+
 import 'package:audio_player/app/ui/widgets/screens/search_screen/bloc_loaded_state/search_section.dart';
 import 'package:audio_player/app/ui/widgets/widgets/custom_buttons/like_buton_widget.dart';
 import 'package:audio_player/app/ui/widgets/widgets/custom_buttons/play_pause_button.dart';
 import 'package:audio_player/app/ui/widgets/widgets/fading_indicator.dart';
-import 'package:audio_player/app/ui/widgets/widgets/responsive_widgets/responsive_widget.dart';
+
 import 'package:audio_player/app/ui/widgets/widgets/songs_title_widget.dart';
 import 'package:audio_player/app/ui/widgets/widgets/ui_properties.dart';
 import 'package:audio_player/resources/resources.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 class MiniPlayerWidget extends StatefulWidget {
@@ -66,10 +66,7 @@ class CreateMainWebContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background.color,
-      body: CreateNarrowContent(songInfo: songInfo, param: param),
-    );
+    return CreateNarrowContent(songInfo: songInfo, param: param);
   }
 }
 
@@ -86,7 +83,8 @@ class CreateNarrowContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final song = PlayedSong(id: songInfo!.id, preview: songInfo!.preview);
-    return SizedBox(
+    return Container(
+      color: AppColors.background.color,
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         _CreateImageSection(songInfo: songInfo!),
         Expanded(
@@ -95,22 +93,22 @@ class CreateNarrowContent extends StatelessWidget {
             songTitle: songInfo?.title,
           ),
         ),
-        Row(
-          children: [
-            CreatePlayPauseButton(playedSong: song, type: SearchFilters.track),
-            const SizedBox(
-              width: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 16),
-              child: LikeButtonWidget(
-                  preview: songInfo!.preview,
-                  id: param ?? '',
-                  artistNames: songInfo?.artistNames ?? '',
-                  title: songInfo?.title ?? '',
-                  image: songInfo?.imageUrl ?? ''),
-            ),
-          ],
+        CreatePlayPauseButton(
+          playedSong: song,
+          type: SearchFilters.track,
+          onPressed: () => print('pressed'),
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: 16),
+          child: LikeButtonWidget(
+              preview: songInfo!.preview,
+              id: param ?? '',
+              artistNames: songInfo?.artistNames ?? '',
+              title: songInfo?.title ?? '',
+              image: songInfo?.imageUrl ?? ''),
         ),
       ]),
     );

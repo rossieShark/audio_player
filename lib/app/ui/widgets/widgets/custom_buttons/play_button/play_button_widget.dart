@@ -85,11 +85,11 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
         children: [
           if (_showWaves) ...[
             Blob(
-                color: Color.fromARGB(255, 204, 165, 48),
+                color: const Color.fromARGB(255, 204, 165, 48),
                 scale: _scale,
                 rotation: _rotation),
             Blob(
-                color: Color.fromARGB(255, 93, 32, 52),
+                color: const Color.fromARGB(255, 93, 32, 52),
                 scale: _scale,
                 rotation: _rotation * 2 - 30),
             Blob(
@@ -98,13 +98,13 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
                 rotation: _rotation * 3 - 45),
           ],
           Container(
-            constraints: BoxConstraints.expand(),
-            child: AnimatedSwitcher(
-              child: _buildIcon(),
-              duration: _kToggleDuration,
-            ),
+            constraints: const BoxConstraints.expand(),
             decoration: BoxDecoration(
                 shape: BoxShape.circle, color: widget.containerColor),
+            child: AnimatedSwitcher(
+              duration: _kToggleDuration,
+              child: _buildIcon(),
+            ),
           ),
         ],
       ),

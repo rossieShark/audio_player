@@ -115,25 +115,6 @@ final router = GoRouter(
         ),
       ),
     ),
-    // GoRoute(
-    //   parentNavigatorKey: _rootNavigatorKey,
-    //   path: '/${Routes().detailTrack}:id',
-    //   builder: (context, state) => Builder(
-    //     builder: (innerContext) {
-    //       final songId = state.pathParameters['id'] ?? '';
-    //       return SlideUpTransition(
-    //         child: MobileDetailMusicPage(
-    //           param: songId,
-    //         ),
-    //         // ).createWithMultiProviders([
-    //         //   BlocProvider<DetailMusicPageBloc>(
-    //         //     create: (blocContext) => getIt<DetailMusicPageBloc>(),
-    //         //   ),
-    //         // ]),
-    //       );
-    //     },
-    //   ),
-    // ),
     GoRoute(
       parentNavigatorKey: _rootNavigatorKey,
       path: '/${Routes().settings}',
@@ -196,26 +177,6 @@ final webRouter =
               }
             },
             routes: [
-              // GoRoute(
-              //   path: 'detail_music/:id',
-              //   builder: (context, state) => Builder(
-              //     builder: (innerContext) {
-              //       final songId = state.pathParameters['id'] ?? '';
-              //       return SlideUpTransition(
-              //         child: MobileDetailMusicPage(
-              //           param: songId,
-              //         ).createWithMultiProviders(
-              //           [
-              //             BlocProvider<DetailMusicPageBloc>(
-              //               create: (blocContext) =>
-              //                   getIt<DetailMusicPageBloc>(),
-              //             ),
-              //           ],
-              //         ),
-              //       );
-              //     },
-              //   ),
-              // ),
               GoRoute(
                 path: '${Routes().albumDetail}:id',
                 pageBuilder: (context, state) => CupertinoPage(
