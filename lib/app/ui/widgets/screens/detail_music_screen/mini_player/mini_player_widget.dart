@@ -96,7 +96,6 @@ class CreateNarrowContent extends StatelessWidget {
         CreatePlayPauseButton(
           playedSong: song,
           type: SearchFilters.track,
-          onPressed: () => print('pressed'),
         ),
         const SizedBox(
           width: 10,

@@ -1,10 +1,8 @@
 import 'package:audio_player/app/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/app/databases/app_database/database.dart';
 import 'package:audio_player/app/domain/entity/played_song_model.dart';
-import 'package:audio_player/app/ui/navigation/navigation_routes.dart';
 import 'package:audio_player/app/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class DetailAlbumListView extends StatelessWidget {
   const DetailAlbumListView({

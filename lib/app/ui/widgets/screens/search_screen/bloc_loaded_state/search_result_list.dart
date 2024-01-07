@@ -6,7 +6,6 @@ import 'package:audio_player/app/ui/widgets/screens/search_screen/bloc_loaded_st
 import 'package:audio_player/app/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:path/path.dart';
 
 class SearchListView extends StatelessWidget {
   const SearchListView({
