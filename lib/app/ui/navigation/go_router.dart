@@ -124,11 +124,12 @@ final router = GoRouter(
           return SlideUpTransition(
             child: MobileDetailMusicPage(
               param: songId,
-            ).createWithMultiProviders([
-              BlocProvider<DetailMusicPageBloc>(
-                create: (blocContext) => getIt<DetailMusicPageBloc>(),
-              ),
-            ]),
+            ),
+            // ).createWithMultiProviders([
+            //   BlocProvider<DetailMusicPageBloc>(
+            //     create: (blocContext) => getIt<DetailMusicPageBloc>(),
+            //   ),
+            // ]),
           );
         },
       ),

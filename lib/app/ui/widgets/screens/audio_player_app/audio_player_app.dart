@@ -54,6 +54,9 @@ class _AudioPlayerAppState extends State<AudioPlayerApp> {
         BlocProvider<ImageBloc>(
           create: (context) => getIt<ImageBloc>(),
         ),
+        BlocProvider<DetailMusicPageBloc>(
+          create: (context) => getIt<DetailMusicPageBloc>(),
+        ),
       ],
       child: BlocBuilder<LanguageBloc, Locale?>(builder: (context, state) {
         return MaterialApp.router(
