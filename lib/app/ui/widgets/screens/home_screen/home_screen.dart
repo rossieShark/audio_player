@@ -130,13 +130,15 @@ class _BuildMainSectionState extends State<_BuildMainSection> {
                     state?.currentSongId == null || state?.currentSongId == -1,
                 child: Miniplayer(
                     minHeight: _playerMinHeight,
-                    maxHeight: MediaQuery.of(context).size.height,
+                    maxHeight: MediaQuery.of(context).size.height - 200,
                     builder: (height, percentage) {
                       if (height <= _playerMinHeight + 50.0) {
                         return const MiniPlayerWidget();
                       } else {
                         return MobileDetailMusicPage(
-                            param: state!.currentSongId.toString());
+                          param: state!.currentSongId.toString(),
+                          height: height,
+                        );
                       }
                     }),
               );

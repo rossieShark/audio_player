@@ -6,25 +6,14 @@ import 'package:audio_player/app/ui/widgets/screens/album_detail_screen/detail_a
 import 'package:audio_player/app/ui/widgets/screens/detail_music_screen/detail_music_index.dart';
 import 'package:audio_player/app/ui/widgets/widgets/widget_exports.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-class MobileDetailMusicPage extends StatefulWidget {
+class MobileDetailMusicPage extends StatelessWidget {
   final String param;
-  const MobileDetailMusicPage({super.key, required this.param});
+  final double height;
+  const MobileDetailMusicPage(
+      {super.key, required this.param, required this.height});
 
   @override
-  State<MobileDetailMusicPage> createState() => _MobileDetailMusicPageState();
-}
-
-class _MobileDetailMusicPageState extends State<MobileDetailMusicPage> {
-  @override
-  void initState() {
-    super.initState();
-    BlocProvider.of<DetailMusicPageBloc>(context).add(
-      FetchSongDetailEvent(widget.param),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DetailMusicPageBloc, DetailMusicPageState>(
@@ -34,38 +23,41 @@ class _MobileDetailMusicPageState extends State<MobileDetailMusicPage> {
           loading: (_) => const Center(
                 child: CustomFadingCircleIndicator(),
               ),
-          loaded: (data) =>
-              DetailMusicBody(widget: widget, songInfo: data.songDetail));
+          loaded: (data) => DetailMusicBody(
+                param: param,
+                songInfo: data.songDetail,
+                height: height,
+              ));
     });
   }
 }
 
 class DetailMusicBody extends StatelessWidget {
-  const DetailMusicBody({
-    super.key,
-    required this.widget,
-    required this.songInfo,
-  });
+  const DetailMusicBody(
+      {super.key,
+      required this.param,
+      required this.songInfo,
+      required this.height});
 
-  final MobileDetailMusicPage widget;
+  final String param;
   final DetailInfoSong? songInfo;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background.color,
-      body: SingleChildScrollView(
-        child: GestureDetector(
-            onVerticalDragUpdate: (details) {
-              if (details.delta.dy > 10) {
-                GoRouter.of(context).pop();
-              }
-            },
-            child: _CreatMainContent(
-              param: widget.param,
-              songInfo: songInfo,
-            )),
-      ),
+      body: GestureDetector(
+          // onVerticalDragUpdate: (details) {
+          //   if (details.delta.dy > 10) {
+          //     GoRouter.of(context).pop();
+          //   }
+          // },
+          child: _CreatMainContent(
+        param: param,
+        songInfo: songInfo,
+        height: height,
+      )),
     );
   }
 }
@@ -73,40 +65,57 @@ class DetailMusicBody extends StatelessWidget {
 class _CreatMainContent extends StatelessWidget {
   final DetailInfoSong? songInfo;
   final String param;
-
-  const _CreatMainContent({required this.songInfo, required this.param});
+  final double height;
+  const _CreatMainContent(
+      {required this.songInfo, required this.param, required this.height});
 
   @override
   Widget build(BuildContext context) {
     final maxWidth = MediaQuery.of(context).size.width;
-    final maxHeight = MediaQuery.of(context).size.height;
-    return Column(
-      children: [
-        _BackgroundImage(
-            maxWidth: maxWidth, maxHeight: maxHeight, songInfo: songInfo),
-        SizedBox(
-          height: maxHeight / 2 - 20 < 0 ? maxHeight / 2 : maxHeight / 2 - 20,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              CreateTitleSection(
-                param: param,
-                songInfo: songInfo,
-              ),
-              CreateSliderSection(
-                width: maxWidth * 0.7,
-              ),
-              CreatMusicControlSection(
-                songInfo: songInfo!,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-            ],
+    if (height > MediaQuery.of(context).size.height / 2) {
+      return Column(
+        children: [
+          _BackgroundImage(
+              maxWidth: maxWidth, maxHeight: height, songInfo: songInfo),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CreateTitleSection(
+                  param: param,
+                  songInfo: songInfo,
+                ),
+                CreateSliderSection(
+                  width: maxWidth * 0.7,
+                ),
+                CreatMusicControlSection(
+                  songInfo: songInfo!,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
-    );
+        ],
+      );
+    } else {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          CreateTitleSection(
+            param: param,
+            songInfo: songInfo,
+          ),
+          CreatMusicControlSection(
+            songInfo: songInfo!,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+        ],
+      );
+    }
   }
 }
 
@@ -123,6 +132,7 @@ class _BackgroundImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final height = MediaQuery.of(context).size.height / 2;
     return ClipRRect(
       borderRadius: BorderRadius.only(
         bottomLeft: Radius.circular(maxWidth / 2),
