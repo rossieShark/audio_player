@@ -10,6 +10,10 @@ void main() {
     expect(File(AppImages.black).existsSync(), isTrue);
     expect(File(AppImages.facebook).existsSync(), isTrue);
     expect(File(AppImages.google).existsSync(), isTrue);
+    expect(File(AppImages.laptop).existsSync(), isTrue);
+    expect(File(AppImages.onboarding1).existsSync(), isTrue);
+    expect(File(AppImages.onboarding2).existsSync(), isTrue);
+    expect(File(AppImages.onboarding3).existsSync(), isTrue);
     expect(File(AppImages.playlist).existsSync(), isTrue);
     expect(File(AppImages.sound).existsSync(), isTrue);
     expect(File(AppImages.sound1152).existsSync(), isTrue);

@@ -1,7 +1,8 @@
 import 'package:audio_player/app/domain/entity/models.dart';
 import 'package:audio_player/app/domain/services/logger.dart';
 import 'package:audio_player/app/domain/services/services.dart';
-import 'package:audio_player/app/ui/widgets/screens/index.dart';
+import 'package:audio_player/app/ui/widgets/screens/search_screen/bloc_loaded_state/search_section.dart';
+
 import 'package:injectable/injectable.dart';
 import 'package:logging/logging.dart';
 

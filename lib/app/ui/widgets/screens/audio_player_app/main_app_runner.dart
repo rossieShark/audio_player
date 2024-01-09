@@ -7,6 +7,9 @@ import 'package:logging/logging.dart';
 import 'package:audio_player/app/domain/interfaces/app_builder.dart';
 import 'package:audio_player/app/domain/interfaces/app_runner.dart';
 import 'package:audio_player/firebase_options.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+int? initScreen;
 
 class MainAppRunner implements AppRunner {
   final String env;
@@ -21,7 +24,9 @@ class MainAppRunner implements AppRunner {
       print('${rec.level.name}: ${rec.time}: ${rec.message}');
     });
     configureDependencies(env);
-
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    initScreen = prefs.getInt("initScreen");
+    await prefs.setInt("initScreen", 1);
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );

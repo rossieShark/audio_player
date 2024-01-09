@@ -68,7 +68,7 @@ class _CreateAppInformationWidget extends StatelessWidget {
     return const Column(
       children: [
         CreateAppImage(),
-        _CreateAppTitle(),
+        CreateAppTitle(title: 'Louder'),
         _CreateAppDescription(),
       ],
     );
@@ -95,17 +95,18 @@ class _CreateAppDescription extends StatelessWidget {
   }
 }
 
-class _CreateAppTitle extends StatelessWidget {
-  const _CreateAppTitle();
+class CreateAppTitle extends StatelessWidget {
+  final String title;
+  const CreateAppTitle({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
-    return const Text('Louder',
+    return Text(title,
         style: TextStyle(
           fontSize: 40,
           fontWeight: FontWeight.w600,
           fontFamily: FontFamily.poiretOne,
-          color: Colors.white,
+          color: AppColors.white.color,
         ));
   }
 }

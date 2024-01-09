@@ -1,17 +1,12 @@
 import 'package:audio_player/app/app_logic/blocs/bloc_exports.dart';
 import 'package:audio_player/app/di/init_di.dart';
-
 import 'package:audio_player/app/ui/navigation/navigation_routes.dart';
+import 'package:audio_player/app/ui/widgets/screens/audio_player_app/main_app_runner.dart';
 import 'package:audio_player/app/ui/widgets/screens/index.dart';
-import 'package:audio_player/app/ui/widgets/screens/log_pages/sign_in/sign_in_page.dart';
-import 'package:audio_player/app/ui/widgets/screens/log_pages/sign_up/sign_up_screen.dart';
-import 'package:audio_player/app/ui/widgets/screens/log_pages/start_page/start_page.dart';
-import 'package:audio_player/app/ui/widgets/screens/my_music_screens/widgets/new_playlist_content.dart';
-import 'package:audio_player/app/ui/widgets/screens/settings_page/settings_page.dart';
+import 'package:audio_player/app/ui/widgets/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:audio_player/app/ui/widgets/widgets/widget_exports.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'package:go_router/go_router.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -20,8 +15,16 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>();
 final _webShellNavigatorKey = GlobalKey<NavigatorState>();
 
 final router = GoRouter(
+  initialLocation: initScreen == 0 || initScreen == null ? "/onboarding" : "/",
   navigatorKey: _rootNavigatorKey,
   routes: [
+    GoRoute(
+      path: '/onboarding',
+      pageBuilder: (context, state) => CupertinoPage(
+        key: state.pageKey,
+        child: OnboardingScreen(),
+      ),
+    ),
     ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (context, state, widget) => TabBarContent(
